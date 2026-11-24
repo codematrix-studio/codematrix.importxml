@@ -1591,7 +1591,7 @@ class Utils {
 				}
 				elseif($ext === 'rar' && class_exists('\\RarArchive'))
 				{
-					$rar = \\RarArchive::open($archiveFn);
+					$rar = \RarArchive::open($archiveFn);
 					if($rar)
 					{
 						foreach($rar->getEntries() as $entry)
