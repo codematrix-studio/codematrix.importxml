@@ -1657,6 +1657,10 @@ class Utils {
 					}
 				}
 			}
+			if($archiveExtracted && $arFile['type'] === 'application/zip')
+			{
+				self::CorrectEncodingForExtractDir($tmpsubdir);
+			}
 			if(!$archiveExtracted)
 			{
 				self::DeleteDirFiles($tmpsubdir);
