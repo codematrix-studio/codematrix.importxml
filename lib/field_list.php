@@ -31,12 +31,12 @@ class FieldList {
 	public function ShowBasicElements($fname)
 	{
 		$arGroups = $this->GetBasicElements();
-		?><select name="<?echo $fname;?>"><?
+		?><select name="<?phpecho $fname;?>"><?php
 		foreach($arGroups as $k=>$v)
 		{
 			echo '<option name="'.htmlspecialcharsbx($k).'">'.$v.'</option>';
 		}
-		?></select><?
+		?></select><?php
 	}
 	
 	public static function GetIblockElementFields()
@@ -1206,27 +1206,27 @@ class FieldList {
 			$arOffer = Utils::GetOfferIblock($IBLOCK_ID, true);
 			if($arOffer) $arGroupsOffers = $this->GetFields($arOffer['OFFERS_IBLOCK_ID'], $arOffer['OFFERS_PROPERTY_ID']);
 		}
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
-		/*?><option value="new_prop"><?echo Loc::getMessage("CODEMATRIX_IX_CREATE_PROPERTY");?></option><?*/
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
+		/*?><option value="new_prop"><?phpecho Loc::getMessage("CODEMATRIX_IX_CREATE_PROPERTY");?></option><?php*/
 		foreach($arGroups as $k2=>$v2)
 		{
-			?><optgroup label="<?echo $v2['title']?>"><?
+			?><optgroup label="<?phpecho $v2['title']?>"><?php
 			foreach($v2['items'] as $k=>$v)
 			{
-				?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+				?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 			}
-			?></optgroup><?
+			?></optgroup><?php
 		}
 		foreach($arGroupsOffers as $k2=>$v2)
 		{
-			?><optgroup label="<?echo $v2['title']?>"><?
+			?><optgroup label="<?phpecho $v2['title']?>"><?php
 			foreach($v2['items'] as $k=>$v)
 			{
-				?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+				?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 			}
-			?></optgroup><?
+			?></optgroup><?php
 		}
-		?><optgroup label="<?echo Loc::getMessage("CODEMATRIX_IX_GROUP_FIELDS_OTHER");?>"><option value="VARIABLE"><?echo Loc::getMessage("CODEMATRIX_IX_VARIABLE");?></option><option value="PROFILE_URL"><?echo Loc::getMessage("CODEMATRIX_IX_PROFILE_URL");?></option></optgroup></select><?
+		?><optgroup label="<?phpecho Loc::getMessage("CODEMATRIX_IX_GROUP_FIELDS_OTHER");?>"><option value="VARIABLE"><?phpecho Loc::getMessage("CODEMATRIX_IX_VARIABLE");?></option><option value="PROFILE_URL"><?phpecho Loc::getMessage("CODEMATRIX_IX_PROFILE_URL");?></option></optgroup></select><?php
 	}
 	
 	public function ShowSelectOfferFields($IBLOCK_ID, $fname, $value="")
@@ -1238,55 +1238,55 @@ class FieldList {
 			if($arOffer) $arGroupsOffers = $this->GetFields($arOffer['OFFERS_IBLOCK_ID'], $arOffer['OFFERS_PROPERTY_ID']);
 		}
 		if(empty($arGroupsOffers)) return;
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
 		foreach($arGroupsOffers as $k2=>$v2)
 		{
-			?><optgroup label="<?echo $v2['title']?>"><?
+			?><optgroup label="<?phpecho $v2['title']?>"><?php
 			foreach($v2['items'] as $k=>$v)
 			{
-				?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+				?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 			}
-			?></optgroup><?
+			?></optgroup><?php
 		}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function ShowSelectSectionFields($IBLOCK_ID, $fname, $value="")
 	{
 		$prefix = 'ISECT_';
 		$arGroups = $this->GetSectionFields($IBLOCK_ID);
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
 		foreach($arGroups as $k2=>$v2)
 		{
-			?><optgroup label="<?echo $v2['title']?>"><?
+			?><optgroup label="<?phpecho $v2['title']?>"><?php
 			foreach($v2['items'] as $k=>$v)
 			{
-				?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+				?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 			}
-			?></optgroup><?
+			?></optgroup><?php
 		}
-		?><optgroup label="<?echo Loc::getMessage("CODEMATRIX_IX_GROUP_FIELDS_OTHER");?>"><option value="<?echo $prefix;?>PROFILE_URL"><?echo Loc::getMessage("CODEMATRIX_IX_PROFILE_URL");?></option></optgroup></select><?
+		?><optgroup label="<?phpecho Loc::getMessage("CODEMATRIX_IX_GROUP_FIELDS_OTHER");?>"><option value="<?phpecho $prefix;?>PROFILE_URL"><?phpecho Loc::getMessage("CODEMATRIX_IX_PROFILE_URL");?></option></optgroup></select><?php
 	}
 	
 	public function ShowSelectSubSectionFields($IBLOCK_ID, $fname, $level=1, $value="")
 	{
 		$prefix = 'I'.str_repeat('SUB', $level).'SECT_';
 		$arGroups = $this->GetSectionFields($IBLOCK_ID);
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
 		foreach($arGroups as $k2=>$v2)
 		{
-			?><optgroup label="<?echo $v2['title']?>"><?
+			?><optgroup label="<?phpecho $v2['title']?>"><?php
 			foreach($v2['items'] as $k=>$v)
 			{
 				if(strpos($k, 'ISECT_')==0)
 				{
 					$k = $prefix.substr($k, 6);
 				}
-				?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+				?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 			}
-			?></optgroup><?
+			?></optgroup><?php
 		}
-		?><optgroup label="<?echo Loc::getMessage("CODEMATRIX_IX_GROUP_FIELDS_OTHER");?>"><option value="<?echo $prefix;?>PROFILE_URL"><?echo Loc::getMessage("CODEMATRIX_IX_PROFILE_URL");?></option></optgroup></select><?
+		?><optgroup label="<?phpecho Loc::getMessage("CODEMATRIX_IX_GROUP_FIELDS_OTHER");?>"><option value="<?phpecho $prefix;?>PROFILE_URL"><?phpecho Loc::getMessage("CODEMATRIX_IX_PROFILE_URL");?></option></optgroup></select><?php
 	}
 	
 	public function GetPropertyFields($IBLOCK_ID, $groupName='PROPERTY')
@@ -1315,12 +1315,12 @@ class FieldList {
 	public function ShowSelectPropertyFields($IBLOCK_ID, $fname, $value="")
 	{
 		$arFields = $this->GetPropertyFields($IBLOCK_ID);
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
 		foreach($arFields as $k=>$v)
 		{
-			?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+			?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 		}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function ShowSelectOfferPropertyFields($IBLOCK_ID, $fname, $value="")
@@ -1329,12 +1329,12 @@ class FieldList {
 		if($this->isSku) $OFFER_IBLOCK_ID = Utils::GetOfferIblock($IBLOCK_ID);
 		if(!$OFFER_IBLOCK_ID) return;
 		$arFields = $this->GetPropertyFields($OFFER_IBLOCK_ID, 'OFFPROPERTY');
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
 		foreach($arFields as $k=>$v)
 		{
-			?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+			?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 		}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function GetIbPropertyFields($IBLOCK_ID=false)
@@ -1371,12 +1371,12 @@ class FieldList {
 	public function ShowSelectIbPropertyFields($IBLOCK_ID, $fname, $value="")
 	{
 		$arFields = $this->GetIbPropertyFields($IBLOCK_ID);
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
 		foreach($arFields as $k=>$v)
 		{
-			?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+			?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 		}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function GetIbPropValFields()
@@ -1392,12 +1392,12 @@ class FieldList {
 	public function ShowSelectIbPropValFields($IBLOCK_ID, $fname, $value="")
 	{
 		$arFields = $this->GetIbPropValFields();
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
 		foreach($arFields as $k=>$v)
 		{
-			?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+			?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 		}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function GetStoreFields()
@@ -1418,12 +1418,12 @@ class FieldList {
 	public function ShowSelectStoreFields($IBLOCK_ID, $fname, $value="")
 	{
 		$arFields = $this->GetStoreFields();
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
 		foreach($arFields as $k=>$v)
 		{
-			?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+			?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 		}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function GetRestStoreFields()
@@ -1438,27 +1438,27 @@ class FieldList {
 	public function ShowSelectRestStoreFields($IBLOCK_ID, $fname, $value="")
 	{
 		$arFields = $this->GetRestStoreFields();
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
 		foreach($arFields as $k=>$v)
 		{
-			?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+			?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 		}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function ShowSelectUidFields($IBLOCK_ID, $fname, $val=false, $prefix='')
 	{
 		$fields = $this->GetSelectUidFields($IBLOCK_ID, $val, $prefix);
-		?><select name="<?echo $fname;?>" class="chosen" multiple><?echo $fields;?></select><?
+		?><select name="<?phpecho $fname;?>" class="chosen" multiple><?phpecho $fields;?></select><?php
 	}
 	
 	public function ShowSelectSectionUidFields($IBLOCK_ID, $fname, $val=false)
 	{
-		?><select name="<?echo $fname;?>" style="max-width: 400px;"><?
-			?><option value="NAME"<?if($val=='NAME') echo ' selected';?>><?echo Loc::getMessage("CODEMATRIX_IX_SECTION_NAME"); ?></option><?
-			?><option value="CODE"<?if($val=='CODE') echo ' selected';?>><?echo Loc::getMessage("CODEMATRIX_IX_SECTION_CODE"); ?></option><?
-			?><option value="ID"<?if($val=='ID') echo ' selected';?>><?echo Loc::getMessage("CODEMATRIX_IX_SECTION_ID"); ?></option><?
-			?><option value="XML_ID"<?if($val=='XML_ID') echo ' selected';?>><?echo Loc::getMessage("CODEMATRIX_IX_SECTION_XML_ID"); ?></option><?
+		?><select name="<?phpecho $fname;?>" style="max-width: 400px;"><?php
+			?><option value="NAME"<?phpif($val=='NAME') echo ' selected';?>><?phpecho Loc::getMessage("CODEMATRIX_IX_SECTION_NAME"); ?></option><?php
+			?><option value="CODE"<?phpif($val=='CODE') echo ' selected';?>><?phpecho Loc::getMessage("CODEMATRIX_IX_SECTION_CODE"); ?></option><?php
+			?><option value="ID"<?phpif($val=='ID') echo ' selected';?>><?phpecho Loc::getMessage("CODEMATRIX_IX_SECTION_ID"); ?></option><?php
+			?><option value="XML_ID"<?phpif($val=='XML_ID') echo ' selected';?>><?phpecho Loc::getMessage("CODEMATRIX_IX_SECTION_XML_ID"); ?></option><?php
 			
 			$dbRes = \CUserTypeEntity::GetList(array('SORT'=>'ASC', 'ID'=>'ASC'), array('ENTITY_ID'=>'IBLOCK_'.$IBLOCK_ID.'_SECTION', 'LANG'=>LANGUAGE_ID));
 			while($arField = $dbRes->Fetch())
@@ -1467,21 +1467,21 @@ class FieldList {
 				$name = trim($arField['LIST_COLUMN_LABEL']);
 				if(strlen($name)==0) $name = trim($arField['EDIT_FORM_LABEL']);
 				if(strlen($name)==0) $name = trim($arField['FIELD_NAME']);
-				?><option value="<?echo htmlspecialcharsbx($arField['FIELD_NAME']);?>"<?if($val==$arField['FIELD_NAME']) echo ' selected';?>><?echo htmlspecialcharsbx($name.' ['.$arField['FIELD_NAME'].']');?></option><?
+				?><option value="<?phpecho htmlspecialcharsbx($arField['FIELD_NAME']);?>"<?phpif($val==$arField['FIELD_NAME']) echo ' selected';?>><?phpecho htmlspecialcharsbx($name.' ['.$arField['FIELD_NAME'].']');?></option><?php
 			}
 			
-		?></select><?
+		?></select><?php
 	}
 	
 	public function ShowSelectPropertyList($IBLOCK_ID, $fname, $val=false, $prefix='')
 	{
 		$properties = $this->GetSelectPropertyList($IBLOCK_ID, $val, $prefix);
 		$catalogFields = $this->GetSelectCatalogList($IBLOCK_ID, $val, $prefix);
-		?><select name="<?echo $fname;?>" class="kda-chosen-multi" multiple data-placeholder="<?echo Loc::getMessage('CODEMATRIX_IX_PLACEHOLDER_CHOOSE');?>">
-		<?
+		?><select name="<?phpecho $fname;?>" class="kda-chosen-multi" multiple data-placeholder="<?phpecho Loc::getMessage('CODEMATRIX_IX_PLACEHOLDER_CHOOSE');?>">
+		<?php
 		if(strlen($properties) > 0) echo '<optgroup label="'.Loc::getMessage("CODEMATRIX_IX_GROUP_PROP").'">'.$properties.'</optgroup>';
 		if(strlen($catalogFields) > 0) echo '<optgroup label="'.Loc::getMessage("CODEMATRIX_IX_GROUP_CATALOG").'">'.$catalogFields.'</optgroup>';
-		?></select><?
+		?></select><?php
 	}
 	
 	public function GetSelectPropertyList($IBLOCK_ID, $val=false, $prefix='')
@@ -1537,8 +1537,8 @@ class FieldList {
 		}
 		
 		echo '<span id="quantity_sum_stores_list"'.($display ? '' : ' style="display: none;"').'>';
-		/*echo GetMessage("CODEMATRIX_IX_PRODUCT_STORES");?>:<br><?*/
-		?><select name="<?echo $fname;?>" class="kda-chosen-multi" multiple data-placeholder="<?echo Loc::getMessage('CODEMATRIX_IX_PLACEHOLDER_CHOOSE');?>"><?echo $this->GetSelectStoreListForSum($val);?></select><?
+		/*echo GetMessage("CODEMATRIX_IX_PRODUCT_STORES");?>:<br><?php*/
+		?><select name="<?phpecho $fname;?>" class="kda-chosen-multi" multiple data-placeholder="<?phpecho Loc::getMessage('CODEMATRIX_IX_PLACEHOLDER_CHOOSE');?>"><?phpecho $this->GetSelectStoreListForSum($val);?></select><?php
 		//echo '<br><small>'.GetMessage("CODEMATRIX_IX_PRODUCT_STORES_HINT").'<small>';
 		echo '</span>';
 	}
@@ -1570,13 +1570,13 @@ class FieldList {
 		if(!$IBLOCK_ID) return;
 		if(!$isOffer)
 		{
-			echo GetMessage("CODEMATRIX_IX_PRODUCT_PROPERTIES");?>:<br><?
+			echo GetMessage("CODEMATRIX_IX_PRODUCT_PROPERTIES");?>:<br><?php
 		}
 		else
 		{
-			?><br><?echo GetMessage("CODEMATRIX_IX_OFFER_PROPERTIES");?>:<br><?
+			?><br><?phpecho GetMessage("CODEMATRIX_IX_OFFER_PROPERTIES");?>:<br><?php
 		}
-		?><select name="<?echo $fname;?>" class="kda-chosen-multi" multiple data-placeholder="<?echo Loc::getMessage('CODEMATRIX_IX_PLACEHOLDER_CHOOSE');?>"><?echo $this->GetSelectPropertyListForSum($IBLOCK_ID, $val);?></select><?
+		?><select name="<?phpecho $fname;?>" class="kda-chosen-multi" multiple data-placeholder="<?phpecho Loc::getMessage('CODEMATRIX_IX_PLACEHOLDER_CHOOSE');?>"><?phpecho $this->GetSelectPropertyListForSum($IBLOCK_ID, $val);?></select><?php
 	}
 	
 	public function GetSelectPropertyListForSum($IBLOCK_ID, $val=false)
@@ -1612,7 +1612,7 @@ class FieldList {
 				if($ar['general']=="Y")
 				{
 					$k = $prefix.$k;
-					?><option value="<?echo $k; ?>" <?if((is_array($val) && in_array($k, $val)) || $k==$val){echo 'selected';}?>><?echo htmlspecialcharsbx($ar["name"]); ?></option><?
+					?><option value="<?phpecho $k; ?>" <?phpif((is_array($val) && in_array($k, $val)) || $k==$val){echo 'selected';}?>><?phpecho htmlspecialcharsbx($ar["name"]); ?></option><?php
 				}
 			}
 			
@@ -1623,7 +1623,7 @@ class FieldList {
 					if($ar['general']=="Y")
 					{
 						$ar["value"] = $prefix.$ar["value"];
-						?><option value="<?echo $ar["value"] ?>" <?if((is_array($val) && in_array($ar["value"], $val)) || $ar["value"]==$val){echo 'selected';}?>><?echo Loc::getMessage("CODEMATRIX_IX_FI_PROP");?> "<?echo htmlspecialcharsbx($ar["name"]); ?>"</option><?
+						?><option value="<?phpecho $ar["value"] ?>" <?phpif((is_array($val) && in_array($ar["value"], $val)) || $ar["value"]==$val){echo 'selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_FI_PROP");?> "<?phpecho htmlspecialcharsbx($ar["name"]); ?>"</option><?php
 					}
 				}
 			}		
@@ -1646,7 +1646,7 @@ class FieldList {
 				if($ar['uid']=="Y")
 				{
 					$k = $prefix.$k;
-					?><option value="<?echo $k; ?>" <?if((is_array($val) && in_array($k, $val)) || $k==$val){echo 'selected';}?>><?echo htmlspecialcharsbx($ar["name"]); ?></option><?
+					?><option value="<?phpecho $k; ?>" <?phpif((is_array($val) && in_array($k, $val)) || $k==$val){echo 'selected';}?>><?phpecho htmlspecialcharsbx($ar["name"]); ?></option><?php
 				}
 			}
 			
@@ -1657,7 +1657,7 @@ class FieldList {
 					if($ar['uid']=="Y")
 					{
 						$ar["value"] = $prefix.$ar["value"];
-						?><option value="<?echo $ar["value"] ?>" <?if((is_array($val) && in_array($ar["value"], $val)) || $ar["value"]==$val){echo 'selected';}?>><?echo Loc::getMessage("CODEMATRIX_IX_FI_PROP");?> "<?echo htmlspecialcharsbx($ar["name"]); ?>"</option><?
+						?><option value="<?phpecho $ar["value"] ?>" <?phpif((is_array($val) && in_array($ar["value"], $val)) || $ar["value"]==$val){echo 'selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_FI_PROP");?> "<?phpecho htmlspecialcharsbx($ar["name"]); ?>"</option><?php
 					}
 				}
 			}		
@@ -1703,12 +1703,12 @@ class FieldList {
 			}
 		}
 	
-		?><select name="<?echo $fname;?>"><?
+		?><select name="<?phpecho $fname;?>"><?php
 		foreach($this->Sections[$IBLOCK_ID] as $arr)
 		{
-			?><option value="<?echo $arr['ID'];?>" <?if($arr['ID']==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($arr['NAME']); ?></option><?
+			?><option value="<?phpecho $arr['ID'];?>" <?phpif($arr['ID']==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($arr['NAME']); ?></option><?php
 		}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function GetIblocks()
@@ -1777,15 +1777,15 @@ class FieldList {
 	public function ShowSelectFieldsHighload($HIGHLOADBLOCK_ID, $fname, $value="")
 	{
 		$arFields = $this->GetHigloadBlockFields($HIGHLOADBLOCK_ID);
-		?><select name="<?echo $fname;?>"><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?
-		/*?><option value="new_prop"><?echo Loc::getMessage("CODEMATRIX_IX_CREATE_HIGHLOAD_FIELD");?></option><?*/
-		?><optgroup label="<?echo Loc::getMessage("CODEMATRIX_IX_HIGHLOAD_FIELDS")?>"><?
+		?><select name="<?phpecho $fname;?>"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_CHOOSE_FIELD");?></option><?php
+		/*?><option value="new_prop"><?phpecho Loc::getMessage("CODEMATRIX_IX_CREATE_HIGHLOAD_FIELD");?></option><?php*/
+		?><optgroup label="<?phpecho Loc::getMessage("CODEMATRIX_IX_HIGHLOAD_FIELDS")?>"><?php
 		foreach($arFields as $k=>$v)
 		{
-			?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v['NAME_LANG']); ?></option><?
+			?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v['NAME_LANG']); ?></option><?php
 		}
-		?></optgroup><?
-		?></select><?
+		?></optgroup><?php
+		?></select><?php
 	}
 	
 	public function GetHigloadBlockFields($HIGHLOADBLOCK_ID)
@@ -1826,7 +1826,7 @@ class FieldList {
 				{
 					if($ar['UID']=="Y")
 					{
-						?><option value="<?echo $ar["FIELD_NAME"] ?>" <?if((is_array($val) && in_array($ar["FIELD_NAME"], $val)) || $ar["FIELD_NAME"]==$val){echo 'selected';}?>><?echo htmlspecialcharsbx($ar["NAME_LANG"]); ?></option><?
+						?><option value="<?phpecho $ar["FIELD_NAME"] ?>" <?phpif((is_array($val) && in_array($ar["FIELD_NAME"], $val)) || $ar["FIELD_NAME"]==$val){echo 'selected';}?>><?phpecho htmlspecialcharsbx($ar["NAME_LANG"]); ?></option><?php
 					}
 				}
 			}		
@@ -1838,7 +1838,7 @@ class FieldList {
 	public function ShowSelectUidFieldsHighload($HIGHLOADBLOCK_ID, $fname, $val=false)
 	{
 		$this->GetSelectUidFieldsHighload($HIGHLOADBLOCK_ID, $val);
-		?><select name="<?echo $fname;?>" class="chosen" multiple><?echo $this->UidFieldsHighload[$HIGHLOADBLOCK_ID];?></select><?
+		?><select name="<?phpecho $fname;?>" class="chosen" multiple><?phpecho $this->UidFieldsHighload[$HIGHLOADBLOCK_ID];?></select><?php
 	}
 	
 	public function GetIblockSettingsFields($IBLOCK_ID, $offers = false)

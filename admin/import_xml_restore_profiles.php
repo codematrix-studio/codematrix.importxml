@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/iblock/prolog.php");
@@ -60,37 +60,37 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 ?>
 <form action="" method="post" enctype="multipart/form-data" name="restore_profiles" id="restore_profiles">
 	<input type="hidden" name="action" value="save">
-	<?/*if($error){
+	<?php/*if($error){
 		ShowError($error);
 		?><script>
 			EProfileList.RestoreDialogButtonsSet(true);
-		</script><?
+		</script><?php
 	}*/?>
 	
 	<table width="100%">
 		<col width="40%">
 		<col width="60%">
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("EXOL_IX_RESTORE_FILE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("EXOL_IX_RESTORE_FILE");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<input type="file" name="RESTORE_FILE">
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("EXOL_IX_RESTORE_TYPE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("EXOL_IX_RESTORE_TYPE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<label><input type="radio" name="PARAMS[RESTORE_TYPE]" value="ADD" checked> <?echo GetMessage("EXOL_IX_RESTORE_TYPE_ADD");?></label><br>
-				<label><input type="radio" name="PARAMS[RESTORE_TYPE]" value="REPLACE"> <?echo GetMessage("EXOL_IX_RESTORE_TYPE_REPLACE");?></label>
+				<label><input type="radio" name="PARAMS[RESTORE_TYPE]" value="ADD" checked> <?phpecho GetMessage("EXOL_IX_RESTORE_TYPE_ADD");?></label><br>
+				<label><input type="radio" name="PARAMS[RESTORE_TYPE]" value="REPLACE"> <?phpecho GetMessage("EXOL_IX_RESTORE_TYPE_REPLACE");?></label>
 			</td>
 		</tr>
 		
 		<tr id="kit_restore_profile_list_row" style="display: none;">
-			<td class="adm-detail-content-cell-l" valign="top"><?echo GetMessage("CODEMATRIX_IX_RESTORE_PROFILE_CHOOSE");?>:</td>
+			<td class="adm-detail-content-cell-l" valign="top"><?phpecho GetMessage("CODEMATRIX_IX_RESTORE_PROFILE_CHOOSE");?>:</td>
 			<td class="adm-detail-content-cell-r" valign="top">
 				<div id="kit_restore_profile_list"></div>
 			</td>
 		</tr>
 	</table>
 </form>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

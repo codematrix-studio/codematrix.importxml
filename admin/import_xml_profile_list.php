@@ -1,8 +1,8 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once ($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 $moduleId = 'codematrix.importxml';
-$moduleFilePrefix = 'kit_import_xml';
+$moduleFilePrefix = 'codematrix_import_xml';
 $moduleJsId = str_replace('.', '_', $moduleId);
 $moduleDemoExpiredFunc = $moduleJsId.'_demo_expired';
 $moduleShowDemoFunc = $moduleJsId.'_show_demo';
@@ -50,7 +50,7 @@ if($_GET['action']=='showoldparams' || $_GET['action']=='saveoldparams')
 		$arChanges = $oProfile->GetChangesList($pid);
 		?>
 		<form action="" method="post" enctype="multipart/form-data" id="restore_profile_params">
-			<?
+			<?php
 			if(false /*empty($arChanges)*/)
 			{
 				echo GetMessage("CODEMATRIX_IX_OLD_SETTINGS_NO_POINTS");
@@ -63,15 +63,15 @@ if($_GET['action']=='showoldparams' || $_GET['action']=='saveoldparams')
 				<col width="50%">
 				<col width="50%">
 				<tr>
-					<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_OLD_SETTINGS_PROFILE_NAME")?>:</td>
-					<td class="adm-detail-content-cell-r"><b><?echo $arProfile['NAME']?></b></td>
+					<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_OLD_SETTINGS_PROFILE_NAME")?>:</td>
+					<td class="adm-detail-content-cell-r"><b><?phpecho $arProfile['NAME']?></b></td>
 				</tr>
 				<tr>
-					<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_OLD_SETTINGS_RESTORE_POINT")?>:</td>
+					<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_OLD_SETTINGS_RESTORE_POINT")?>:</td>
 					<td class="adm-detail-content-cell-r">
 						<select name="restore_point" id="restore_point">
-							<option value=""><?echo GetMessage("CODEMATRIX_IX_OLD_SETTINGS_RESTORE_POINT_CURRENT")?></option>
-						<?
+							<option value=""><?phpecho GetMessage("CODEMATRIX_IX_OLD_SETTINGS_RESTORE_POINT_CURRENT")?></option>
+						<?php
 						foreach($arChanges as $arChangeItem)
 						{
 							echo '<option value="'.htmlspecialcharsbx($arChangeItem['ID']).'">'.htmlspecialcharsbx($arChangeItem['DATE']).'</option>';
@@ -81,11 +81,11 @@ if($_GET['action']=='showoldparams' || $_GET['action']=='saveoldparams')
 					</td>
 				</tr>
 			</table>
-			<?
+			<?php
 			}
 			?>
 		</form>
-		<?
+		<?php
 		require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");
 	}
 	die();
@@ -325,8 +325,8 @@ $context = new CAdminContextMenu($aMenu);
 $context->Show();
 ?>
 
-<form name="find_form" method="GET" action="<?echo $APPLICATION->GetCurPage()?>?">
-<?
+<form name="find_form" method="GET" action="<?phpecho $APPLICATION->GetCurPage()?>?">
+<?php
 $oFilter = new CAdminFilter(
 	$sTableID."_filter",
 	array(
@@ -337,12 +337,12 @@ $oFilter = new CAdminFilter(
 $oFilter->Begin();
 ?>
 	<tr>
-		<td><?echo GetMessage("CODEMATRIX_IX_F_NAME")?>:</td>
+		<td><?phpecho GetMessage("CODEMATRIX_IX_F_NAME")?>:</td>
 		<td>
-			<input type="text" name="filter_name" value="<?echo htmlspecialcharsex($filter_name)?>">
+			<input type="text" name="filter_name" value="<?phpecho htmlspecialcharsex($filter_name)?>">
 		</td>
 	</tr>
-<?
+<?php
 $oFilter->Buttons(
 	array(
 		"table_id" => $sTableID,
@@ -354,7 +354,7 @@ $oFilter->End();
 ?>
 </form>
 
-<?
+<?php
 $lAdmin->DisplayList();
 require ($DOCUMENT_ROOT."/bitrix/modules/main/include/epilog_admin.php");
 ?>

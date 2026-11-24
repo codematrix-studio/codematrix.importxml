@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/iblock/prolog.php");
@@ -61,7 +61,7 @@ if(count($FILTER) > 0 && count(preg_grep('/^find_/', array_keys($FILTER))) > 0)
 }
 ?>
 <form action="" method="post" enctype="multipart/form-data" name="filter_form" id="kit-ix-filter" class="kit-ix-filter">
-	<?
+	<?php
 	if($oldTypeFilter)
 	{
 		\Bitrix\CodeMatrixImportxml\Utils::ShowFilter('codematrix_importxml_'.$PROFILE_ID, $IBLOCK_ID, $FILTER);
@@ -74,4 +74,4 @@ if(count($FILTER) > 0 && count(preg_grep('/^find_/', array_keys($FILTER))) > 0)
 	}
 	?>
 </form>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

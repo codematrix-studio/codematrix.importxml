@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_ECON_SETTINGS"] = "Настройки подключения";
 $MESS["CODEMATRIX_IX_ECON_INPUT_SERVER"] = "Сервер входящей почты (imap)";
 $MESS["CODEMATRIX_IX_ECON_EMAIL"] = "E-mail";

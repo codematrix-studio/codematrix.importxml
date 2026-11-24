@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['CODEMATRIX_IX_NO_PROFILE'] = "- не выбран -";
 $MESS['CODEMATRIX_IX_NEW_PROFILE'] = "Создать новый";
 $MESS['CODEMATRIX_IX_PROFILE_NAME_EXISTS'] = "Профиль с указанным именем уже существует";

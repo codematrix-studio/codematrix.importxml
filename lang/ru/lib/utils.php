@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['CODEMATRIX_IX_FILE_SOURCE_EMAIL'] = "Загрузить файл с Email-адреса";
 $MESS['CODEMATRIX_IX_FILE_SOURCE_LINKAUTH'] = "Загрузить файл по ссылке с авторизацией";
 $MESS['CODEMATRIX_IX_FILTER_FROMTO_ID'] = "ID (начальный и конечный)";

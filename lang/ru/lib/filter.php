@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["KDA_IE_FILTER_ADD_FIELD"] = "Добавить поле для фильтрации";
 $MESS['KDA_IE_CHOOSE_FIELD'] = "- выбрать поле -";
 $MESS['KDA_IE_FI_GROUP_COND'] = "группа условий";

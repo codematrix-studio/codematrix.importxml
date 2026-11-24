@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_HELP_TAB1"] = "Видео-инструкции";
 $MESS["CODEMATRIX_IX_HELP_TAB1_ALT"] = "Видео-инструкции по настройке импорта";
 $MESS["CODEMATRIX_IX_HELP_TAB2"] = "FAQ";

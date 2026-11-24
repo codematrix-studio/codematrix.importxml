@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_URL_DATA_FILE"] = "Файл для загрузки";
 $MESS["CODEMATRIX_IX_OPEN"] = "Открыть...";
 $MESS['CODEMATRIX_IX_INFOBLOCK'] = "Информационный блок:";

@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['CODEMATRIX_IX_NOT_SET_UID'] = "Не указано поле для идентификации элемента (поле %s)";
 $MESS['CODEMATRIX_IX_NOT_SET_SECTION_UID'] = "Не указано поле для идентификации раздела (поле %s)";
 $MESS['CODEMATRIX_IX_NOT_SET_FIELD'] = "Не указано поле %s";

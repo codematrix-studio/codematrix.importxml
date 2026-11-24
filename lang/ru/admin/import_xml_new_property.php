@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_NP_TITLE"] = "Новое свойство";
 $MESS["CODEMATRIX_IX_NP_ACTIVE"] = "Свойство активно";
 $MESS["CODEMATRIX_IX_NP_SORT"] = "Порядок сортировки";

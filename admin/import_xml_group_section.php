@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/iblock/prolog.php");
@@ -78,10 +78,10 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 <form action="" method="post" enctype="multipart/form-data" name="field_settings">
 	<input type="hidden" name="action" value="save">
 	<div style="display: none;">
-		<?echo $sectionSelect;?>
+		<?phpecho $sectionSelect;?>
 	</div>
 	
-	<?
+	<?php
 	/*echo BeginNote();
 	echo GetMessage("CODEMATRIX_IX_SECTION_MAPPING_NOTE");
 	echo EndNote();*/
@@ -92,24 +92,24 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 		<col width="50%">
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="" <?=(!isset($arParams['SECTION_LOAD_MODE']) || strlen($arParams['SECTION_LOAD_MODE'])==0 ? 'checked' : '')?> id="kit_slm_default"><label for="kit_slm_default"><?echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_DEFAULT");?></label><br>
-				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED' ? 'checked' : '')?> id="kit_slm_mapped"><label for="kit_slm_mapped"><?echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED");?></label><br>
-				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED_CHILD" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED_CHILD' ? 'checked' : '')?> id="kit_slm_mapped_child"><label for="kit_slm_mapped_child"><?echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED_CHILD");?></label>
+				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="" <?=(!isset($arParams['SECTION_LOAD_MODE']) || strlen($arParams['SECTION_LOAD_MODE'])==0 ? 'checked' : '')?> id="kit_slm_default"><label for="kit_slm_default"><?phpecho GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_DEFAULT");?></label><br>
+				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED' ? 'checked' : '')?> id="kit_slm_mapped"><label for="kit_slm_mapped"><?phpecho GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED");?></label><br>
+				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED_CHILD" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED_CHILD' ? 'checked' : '')?> id="kit_slm_mapped_child"><label for="kit_slm_mapped_child"><?phpecho GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED_CHILD");?></label>
 			</td>
 		</tr>
 
 
 		<tr class="heading">
 			<td colspan="2">
-				<?echo GetMessage("CODEMATRIX_IX_SECTION_MAPPING_TITLE");?>
+				<?phpecho GetMessage("CODEMATRIX_IX_SECTION_MAPPING_TITLE");?>
 			</td>
 		</tr>
 		
 	<tr>
 	  <td colspan="2">
-		<?
+		<?php
 		if(!is_array($arXmlSections)) echo GetMessage("CODEMATRIX_IX_SECTION_NOT_CHOOSE_FIELDS");
 		elseif(count($arXmlSections)==0) echo GetMessage("CODEMATRIX_IX_SECTION_NO_STRUCT");
 		else
@@ -119,10 +119,10 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 		<col width="50%">
 		<col width="50%">
 		<tr>
-			<th><? echo GetMessage("CODEMATRIX_IX_SECTION_IN_FILE");?></th>
-			<th><? echo GetMessage("CODEMATRIX_IX_SECTION_ON_SITE");?></th>
+			<th><?php echo GetMessage("CODEMATRIX_IX_SECTION_IN_FILE");?></th>
+			<th><?php echo GetMessage("CODEMATRIX_IX_SECTION_ON_SITE");?></th>
 		</tr>
-		<?
+		<?php
 		$arMap2 = array();
 		foreach($arMap as $k=>$v)
 		{
@@ -134,11 +134,11 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 			$xmlId = trim($xmlId);
 		?>
 			<tr>
-				<td><?echo $arXmlSection['NAME'].(trim($xmlId)==trim($arXmlSection['NAME']) ? '' : ' ['.$xmlId.']');?></td>
+				<td><?phpecho $arXmlSection['NAME'].(trim($xmlId)==trim($arXmlSection['NAME']) ? '' : ' ['.$xmlId.']');?></td>
 				<td>
-				  <div class="kit-ix-select-mapping-wrap" data-nc-message="<?echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
-					<a href="javascript:void(0)" class="kit-ix-mapping-add-field" title="<?echo GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
-					<?
+				  <div class="kit-ix-select-mapping-wrap" data-nc-message="<?phpecho GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
+					<a href="javascript:void(0)" class="kit-ix-mapping-add-field" title="<?phpecho GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
+					<?php
 					$isFields = false;
 					if(array_key_exists($xmlId, $arMap2))
 					{
@@ -165,17 +165,17 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 				  </div>
 				</td>
 			</tr>
-		<?}?>
+		<?php}?>
 		</table>
-		<div style="padding: 10px 0px 0px 0px; text-align: right;"><input type="button" value="<?echo GetMessage("CODEMATRIX_IX_AUTO_INSERT_SECTIONS");?>" onclick="ESettings.JuxtaposeSections(this)"></div>
-		<?
+		<div style="padding: 10px 0px 0px 0px; text-align: right;"><input type="button" value="<?phpecho GetMessage("CODEMATRIX_IX_AUTO_INSERT_SECTIONS");?>" onclick="ESettings.JuxtaposeSections(this)"></div>
+		<?php
 		echo BeginNote();
 		echo GetMessage("CODEMATRIX_IX_AUTO_MAPPING_NOTE");
 		echo EndNote();
 		?>
-		<?}?>
+		<?php}?>
 	  </td>
 	</tr>
 	</table>
 </form>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

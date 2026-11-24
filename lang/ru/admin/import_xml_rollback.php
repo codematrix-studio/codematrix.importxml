@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_ROLLBACK_PAGE_TITLE"] = "Откат импорта";
 $MESS["CODEMATRIX_IX_BACK_TO_PROFILES"] = "Вернуться к списку профилей";
 $MESS["CODEMATRIX_IX_ROLLBACK_TAB1"] = "Настройки";

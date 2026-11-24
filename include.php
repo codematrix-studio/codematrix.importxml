@@ -1,5 +1,4 @@
 <?php
-include_once(dirname(__FILE__) . '/install/demo.php');
 if (!class_exists('CCodeMatrixImportXMLRunner')) {
     class CCodeMatrixImportXMLRunner
     {
@@ -10,28 +9,8 @@ if (!class_exists('CCodeMatrixImportXMLRunner')) {
             return self::$_2019323885;
         }
 
-        private static function __1667935303()
-        {
-            $_38733226 = CModule::IncludeModuleEx(self::$_2019323885);
-            $_789239635 = str_replace('.', '_', self::$_2019323885);
-            if ($_38733226 == MODULE_DEMO) {
-                $_289305976 = time();
-                if (defined($_789239635 . '_OLDSITEEXPIREDATE')) {
-                    if ($_289305976 >= constant($_789239635 . '_OLDSITEEXPIREDATE') || constant($_789239635 . '_OLDSITEEXPIREDATE') > $_289305976 + 1500000 || $_289305976 - filectime(__FILE__) > 1500000) {
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            } elseif ($_38733226 == MODULE_DEMO_EXPIRED) {
-                return true;
-            }
-            return false;
-        }
-
         static function ImportIblock($_2029131979, $_1137406749, $_1334224997, $_1605213925, $_279272061 = false)
         {
-            if (self::__1667935303()) return array();
             $_906924150 = new \Bitrix\CodeMatrixImportxml\Importer($_2029131979, $_1137406749, $_1334224997, $_1605213925, $_279272061);
             return $_906924150->Import();
         }

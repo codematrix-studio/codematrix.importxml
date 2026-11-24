@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['CODEMATRIX_IS_GROUP_ELEMENT'] = "Элемент (товар)";
 $MESS['CODEMATRIX_IS_GROUP_SECTION'] = "Раздел";
 $MESS['CODEMATRIX_IX_STANDARD_FIELDS'] = "Стандартные поля";

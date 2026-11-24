@@ -1,10 +1,10 @@
-<?
+<?php
 if (!CModule::IncludeModule("iblock"))
 	return false;
 
 IncludeModuleLangFile(__FILE__);
 $moduleId = 'codematrix.importxml';
-$moduleFilePrefix = 'kit_import_xml';
+$moduleFilePrefix = 'codematrix_import_xml';
 $moduleIdUl = str_replace('.', '_', $moduleId);
 
 $aMenu = array();

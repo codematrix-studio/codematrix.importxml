@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['IBLOCK_BAD_FILE_ERROR'] = "Произошла ошибка при загрузке файла на сервер.";
 $MESS['IBLOCK_BAD_FILE_NOT_FOUND'] = "Файл не найден.";
 $MESS['IBLOCK_BAD_FILE_NOT_PICTURE'] = "Не графический файл.";

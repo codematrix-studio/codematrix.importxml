@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_PROFILE_LIST"] = "Профили импорта";
 $MESS["CODEMATRIX_IX_PROFILE_LIST_TITLE"] = "Профили импорта";
 $MESS["CODEMATRIX_IX_PL_SORT"] = "Сортировка";

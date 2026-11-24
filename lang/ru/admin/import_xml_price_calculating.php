@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['CODEMATRIX_IX_CALC_PRICE_TYPE'] = "Тип расчитываемой цены";
 $MESS['CODEMATRIX_IX_CALC_ADD_PRICE_TYPE'] = "добавить тип";
 $MESS['CODEMATRIX_IX_CALC_PRICE_CALC'] = "Логика расчета цены";

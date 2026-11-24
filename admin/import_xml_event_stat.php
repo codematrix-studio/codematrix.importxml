@@ -6,7 +6,7 @@ if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 require_once($_SERVER["DOCUMENT_ROOT"].BX_ROOT."/modules/main/prolog.php");
 $moduleId = 'codematrix.importxml';
-$moduleFilePrefix = 'kit_import_xml';
+$moduleFilePrefix = 'codematrix_import_xml';
 $moduleJsId = str_replace('.', '_', $moduleId);
 $moduleJsId2 = $moduleJsId;
 $moduleDemoExpiredFunc = $moduleJsId2.'_demo_expired';
@@ -360,9 +360,9 @@ if (!call_user_func($moduleDemoExpiredFunc)) {
 	call_user_func($moduleShowDemoFunc);
 }
 ?>
-<form name="find_form" id="filter_find_form" method="GET" action="<?echo $APPLICATION->GetCurPage()?>?">
-<input type="hidden" name="lang" value="<?echo LANG?>">
-<?
+<form name="find_form" id="filter_find_form" method="GET" action="<?phpecho $APPLICATION->GetCurPage()?>?">
+<input type="hidden" name="lang" value="<?phpecho LANG?>">
+<?php
 $arFilterNames = array(
 	"find_timestamp_x" => GetMessage("CODEMATRIX_IX_EVENTLOG_DATE_START"),
 	"find_user_id" => GetMessage("CODEMATRIX_IX_EVENTLOG_USER_ID"),
@@ -372,34 +372,34 @@ $oFilter = new CAdminFilter($sTableID."_filter", $arFilterNames);
 $oFilter->Begin();
 ?>
 <tr>
-	<td><?echo GetMessage("CODEMATRIX_IX_EVENTLOG_PROFILE_ID")?>:</td>
+	<td><?phpecho GetMessage("CODEMATRIX_IX_EVENTLOG_PROFILE_ID")?>:</td>
 	<td>
 		<select name="find_profile_id" >
-			<option value=""><?echo GetMessage("CODEMATRIX_IX_ALL"); ?></option>
-			<?
+			<option value=""><?phpecho GetMessage("CODEMATRIX_IX_ALL"); ?></option>
+			<?php
 			foreach($arProfiles as $k=>$profile)
 			{
 				$key = $k + 1;
-				?><option value="<?echo $key;?>" <?if($find_profile_id==$key){echo 'selected';}?>><?echo $profile; ?></option><?
+				?><option value="<?phpecho $key;?>" <?phpif($find_profile_id==$key){echo 'selected';}?>><?phpecho $profile; ?></option><?php
 			}
 			?>
 		</select>
 	</td>
 </tr>
 <tr>
-	<td><?echo GetMessage("CODEMATRIX_IX_EVENTLOG_DATE_START")?>:</td>
-	<td><?echo CAdminCalendar::CalendarPeriod("find_timestamp_x_1", "find_timestamp_x_2", $find_timestamp_x_1, $find_timestamp_x_2, false, 15, true)?></td>
+	<td><?phpecho GetMessage("CODEMATRIX_IX_EVENTLOG_DATE_START")?>:</td>
+	<td><?phpecho CAdminCalendar::CalendarPeriod("find_timestamp_x_1", "find_timestamp_x_2", $find_timestamp_x_1, $find_timestamp_x_2, false, 15, true)?></td>
 </tr>
 <tr>
-	<td><?echo GetMessage("CODEMATRIX_IX_EVENTLOG_USER_ID")?>:</td>
-	<td><input type="text" name="find_user_id" size="47" value="<?echo htmlspecialcharsbx($find_user_id)?>"></td>
+	<td><?phpecho GetMessage("CODEMATRIX_IX_EVENTLOG_USER_ID")?>:</td>
+	<td><input type="text" name="find_user_id" size="47" value="<?phpecho htmlspecialcharsbx($find_user_id)?>"></td>
 </tr>
-<?
+<?php
 $oFilter->Buttons(array("table_id"=>$sTableID, "url"=>$APPLICATION->GetCurPage(), "form"=>"find_form"));
 $oFilter->End();
 ?>
 </form>
-<?
+<?php
 
 $lAdmin->DisplayList();
 

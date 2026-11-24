@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_PROPERTY_NOT_CREATE"] = "Не создавать новые свойства";
 $MESS["CODEMATRIX_IX_PROPERTY_NOT_LOAD_WO_MAPPED"] = "Не загружать свойства, для которых не указано сопоставление";
 $MESS["CODEMATRIX_IX_PROPERTY_MAPPING_TITLE"] = "Сопоставление свойств";

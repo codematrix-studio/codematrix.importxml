@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_SECTION_LOAD_MODE"] = "Режим загрузки разделов";
 $MESS["CODEMATRIX_IX_SECTION_LOAD_MODE_DEFAULT"] = "Загружать все разделы";
 $MESS["CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED"] = "Только сопоставленные разделы";

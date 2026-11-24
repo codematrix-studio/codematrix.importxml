@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined("B_PROLOG_INCLUDED"))
 {
 	function gsRequestUri($u=false){

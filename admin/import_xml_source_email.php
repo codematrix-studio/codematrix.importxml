@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/iblock/prolog.php");
@@ -72,61 +72,61 @@ $mail = new \Bitrix\CodeMatrixImportxml\SMail($EMAIL_SETTINGS);
 $arFolders = $mail->GetListingFolders();
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_admin.php");
 ?>
-<form action="<?echo $APPLICATION->GetCurUri();?>" method="post" enctype="multipart/form-data" name="field_settings">
+<form action="<?phpecho $APPLICATION->GetCurUri();?>" method="post" enctype="multipart/form-data" name="field_settings">
 	<input type="hidden" name="action" value="save">
-	<?//ShowPostData($_POST);?>
+	<?php//ShowPostData($_POST);?>
 	<table width="100%" class="kit-ix-list-settings kit-ix-email-settings">
 		<col width="50%">
 		<col width="50%">
 		<tr class="heading">
 			<td colspan="2">
-				<?echo GetMessage("CODEMATRIX_IX_ECON_SETTINGS"); ?>
+				<?phpecho GetMessage("CODEMATRIX_IX_ECON_SETTINGS"); ?>
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_INPUT_SERVER");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_INPUT_SERVER");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="EMAIL_SETTINGS[SERVER]" value="<?echo htmlspecialcharsex($EMAIL_SETTINGS['SERVER'])?>">
+				<input type="text" name="EMAIL_SETTINGS[SERVER]" value="<?phpecho htmlspecialcharsex($EMAIL_SETTINGS['SERVER'])?>">
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_EMAIL");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_EMAIL");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="EMAIL_SETTINGS[EMAIL]" value="<?echo htmlspecialcharsex($EMAIL_SETTINGS['EMAIL'])?>">
+				<input type="text" name="EMAIL_SETTINGS[EMAIL]" value="<?phpecho htmlspecialcharsex($EMAIL_SETTINGS['EMAIL'])?>">
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_PASSWORD");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_PASSWORD");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="password" name="EMAIL_SETTINGS[PASSWORD]" value="<?echo htmlspecialcharsex($EMAIL_SETTINGS['PASSWORD'])?>"> <?/*?><a href="javascript:void(0)" onclick="var inp = $(this).prev('input')[0]; inp.type=(inp.type=='password' ? 'text' : 'password');"><?echo GetMessage("CODEMATRIX_IX_ECON_SHOW_HIDE");?></a><?*/?>
+				<input type="password" name="EMAIL_SETTINGS[PASSWORD]" value="<?phpecho htmlspecialcharsex($EMAIL_SETTINGS['PASSWORD'])?>"> <?php/*?><a href="javascript:void(0)" onclick="var inp = $(this).prev('input')[0]; inp.type=(inp.type=='password' ? 'text' : 'password');"><?phpecho GetMessage("CODEMATRIX_IX_ECON_SHOW_HIDE");?></a><?php*/?>
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_SECURITY");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_SECURITY");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<select name="EMAIL_SETTINGS[SECURITY]">
-					<option name="ssl" <?if($EMAIL_SETTINGS['SECURITY']=='ssl'){echo 'selected';}?>><?echo GetMessage("CODEMATRIX_IX_ECON_SECURITY_SSL");?></option>
-					<option name="tls" <?if($EMAIL_SETTINGS['SECURITY']=='tls'){echo 'selected';}?>><?echo GetMessage("CODEMATRIX_IX_ECON_SECURITY_TLS");?></option>
-					<option name=""><?echo GetMessage("CODEMATRIX_IX_ECON_SECURITY_NO");?></option>
+					<option name="ssl" <?phpif($EMAIL_SETTINGS['SECURITY']=='ssl'){echo 'selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_ECON_SECURITY_SSL");?></option>
+					<option name="tls" <?phpif($EMAIL_SETTINGS['SECURITY']=='tls'){echo 'selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_ECON_SECURITY_TLS");?></option>
+					<option name=""><?phpecho GetMessage("CODEMATRIX_IX_ECON_SECURITY_NO");?></option>
 				</select>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" class="kit-ix-email-checkparams">
-				<a href="javascript:void(0)" onclick="EProfile.CheckEmailConnectData(this)"><?echo GetMessage("CODEMATRIX_IX_ECON_CHECK_SETTINGS");?></a> <div id="connect_result"></div>
+				<a href="javascript:void(0)" onclick="EProfile.CheckEmailConnectData(this)"><?phpecho GetMessage("CODEMATRIX_IX_ECON_CHECK_SETTINGS");?></a> <div id="connect_result"></div>
 			</td>
 		</tr>
 		
 		<tr class="heading">
 			<td colspan="2">
-				<?echo GetMessage("CODEMATRIX_IX_ECON_FILE_PARAMS"); ?>
+				<?phpecho GetMessage("CODEMATRIX_IX_ECON_FILE_PARAMS"); ?>
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_FOLDER");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_FOLDER");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<select name="EMAIL_SETTINGS[FOLDER]">
-					<?
+					<?php
 					foreach($arFolders as $k=>$v)
 					{
 						echo '<option value="'.htmlspecialcharsex($k).'"'.($EMAIL_SETTINGS['FOLDER']==$k ? ' selected' : '').'>'.$v.'</option>';
@@ -136,47 +136,47 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_FROM");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_FROM");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="EMAIL_SETTINGS[FROM]" value="<?echo htmlspecialcharsex($EMAIL_SETTINGS['FROM'])?>">
+				<input type="text" name="EMAIL_SETTINGS[FROM]" value="<?phpecho htmlspecialcharsex($EMAIL_SETTINGS['FROM'])?>">
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_SUBJECT");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_SUBJECT");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="EMAIL_SETTINGS[SUBJECT]" value="<?echo htmlspecialcharsex($EMAIL_SETTINGS['SUBJECT'])?>">
+				<input type="text" name="EMAIL_SETTINGS[SUBJECT]" value="<?phpecho htmlspecialcharsex($EMAIL_SETTINGS['SUBJECT'])?>">
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_FILENAME");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_FILENAME");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="EMAIL_SETTINGS[FILENAME]" value="<?echo htmlspecialcharsex($EMAIL_SETTINGS['FILENAME'])?>">
+				<input type="text" name="EMAIL_SETTINGS[FILENAME]" value="<?phpecho htmlspecialcharsex($EMAIL_SETTINGS['FILENAME'])?>">
 				&nbsp;
 				<input type="hidden" name="EMAIL_SETTINGS[FILENAME_REGEXP]" value="N">
-				<input type="checkbox" name="EMAIL_SETTINGS[FILENAME_REGEXP]" value="Y" <?if($EMAIL_SETTINGS['FILENAME_REGEXP']=='Y'){echo 'checked';}?> id="email_filename_regexp"> <label for="email_filename_regexp"><?echo GetMessage("CODEMATRIX_IX_ECON_FILENAME_REGEXP");?></label>
+				<input type="checkbox" name="EMAIL_SETTINGS[FILENAME_REGEXP]" value="Y" <?phpif($EMAIL_SETTINGS['FILENAME_REGEXP']=='Y'){echo 'checked';}?> id="email_filename_regexp"> <label for="email_filename_regexp"><?phpecho GetMessage("CODEMATRIX_IX_ECON_FILENAME_REGEXP");?></label>
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_UNSEEN_ONLY");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_UNSEEN_ONLY");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<input type="hidden" name="EMAIL_SETTINGS[UNSEEN_ONLY]" value="N">
-				<input type="checkbox" name="EMAIL_SETTINGS[UNSEEN_ONLY]" value="Y" <?if($EMAIL_SETTINGS['UNSEEN_ONLY']!='N'){echo 'checked';}?>>
+				<input type="checkbox" name="EMAIL_SETTINGS[UNSEEN_ONLY]" value="Y" <?phpif($EMAIL_SETTINGS['UNSEEN_ONLY']!='N'){echo 'checked';}?>>
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_SET_SEEN_OLD_MAIL");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_SET_SEEN_OLD_MAIL");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<input type="hidden" name="EMAIL_SETTINGS[SET_SEEN_OLD_MAIL]" value="N">
-				<input type="checkbox" name="EMAIL_SETTINGS[SET_SEEN_OLD_MAIL]" value="Y" <?if($EMAIL_SETTINGS['SET_SEEN_OLD_MAIL']=='Y'){echo 'checked';}?>>
+				<input type="checkbox" name="EMAIL_SETTINGS[SET_SEEN_OLD_MAIL]" value="Y" <?phpif($EMAIL_SETTINGS['SET_SEEN_OLD_MAIL']=='Y'){echo 'checked';}?>>
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_ECON_DELETE_OLD_MAIL");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_ECON_DELETE_OLD_MAIL");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<input type="hidden" name="EMAIL_SETTINGS[DELETE_OLD_MAIL]" value="N">
-				<input type="checkbox" name="EMAIL_SETTINGS[DELETE_OLD_MAIL]" value="Y" <?if($EMAIL_SETTINGS['DELETE_OLD_MAIL']=='Y'){echo 'checked';}?>>
+				<input type="checkbox" name="EMAIL_SETTINGS[DELETE_OLD_MAIL]" value="Y" <?phpif($EMAIL_SETTINGS['DELETE_OLD_MAIL']=='Y'){echo 'checked';}?>>
 			</td>
 		</tr>
 	</table>
 </form>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

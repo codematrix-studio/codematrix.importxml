@@ -49,7 +49,7 @@ class Json2Xml
 			CheckDirPath(dirname($this->fileXml));
 			if(file_exists($this->fileXml)) unlink($this->fileXml);
 			$this->xmlHandle = fopen($this->fileXml, 'a');
-			fwrite($this->xmlHandle, '<?xml version="1.0" encoding="'.$this->siteEncoding.'"?>'."\r\n");
+			fwrite($this->xmlHandle, '<?phpxml version="1.0" encoding="'.$this->siteEncoding.'"?>'."\r\n");
 			$this->ConvertItem($arItem, 'data');
 			fclose($this->xmlHandle);
 			unset($arItem);

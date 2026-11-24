@@ -1,4 +1,4 @@
-<?
+<?php
 IncludeModuleLangFile(__FILE__);
 
 function codematrix_importxml_demo_expired() {
@@ -125,7 +125,7 @@ function codematrix_importxml_show_demo($bAjax = false) {
 			}
 		}
 	}
-	?><script>BX.ready(function(){BX.bind(BX('kit_module_activate'), 'click', function(){var div = BX.findNextSibling(this, {tag: 'DIV'}); BX.style(div, 'display', (BX.style(div, 'display')=='none' ? '' : 'none'));});});</script><?
+	?><script>BX.ready(function(){BX.bind(BX('codematrix_module_activate'), 'click', function(){var div = BX.findNextSibling(this, {tag: 'DIV'}); BX.style(div, 'display', (BX.style(div, 'display')=='none' ? '' : 'none'));});});</script><?php
 }
 
 ?>

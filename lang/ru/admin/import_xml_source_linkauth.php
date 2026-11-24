@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_LAUTH_SETTINGS"] = "Настройки авторизации";
 $MESS["CODEMATRIX_IX_LAUTH_FILELINK"] = "Ссылка на файл";
 $MESS["CODEMATRIX_IX_LAUTH_PAGEAUTH"] = "Ссылка на страницу авторизации";

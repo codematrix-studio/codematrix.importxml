@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_CRON_TITLE"] = "Настройка cron";
 $MESS["CODEMATRIX_IX_CRON_PROFILE_TITLE"] = "Профиль";
 $MESS["CODEMATRIX_IX_CRON_CHOOSE_PROFILE"] = "Выберите профиль";

@@ -1,5 +1,5 @@
 var kitIXModuleName = 'codematrix.importxml';
-var kitIXModuleFilePrefix = 'kit_import_xml';
+var kitIXModuleFilePrefix = 'codematrix_import_xml';
 var EIXPreview = {
 	Init: function()
 	{

@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/iblock/prolog.php");
@@ -62,22 +62,22 @@ if(is_callable(array('\Bitrix\Iblock\Model\PropertyFeature', 'isEnabledFeatures'
 	<input type="hidden" name="action" value="save">
 	<div style="display: none;">
 		<select name="section">
-			<option value=""><?echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE");?></option><?
+			<option value=""><?phpecho GetMessage("CODEMATRIX_IX_NOT_CHOOSE");?></option><?php
 			foreach($arGroupFields as $k2=>$v2)
 			{
-				?><optgroup label="<?echo $v2['title']?>"><?
+				?><optgroup label="<?phpecho $v2['title']?>"><?php
 				foreach($v2['items'] as $k=>$v)
 				{
 					$arFields[$k] = ($v2['title'] ? $v2['title'].' - ' : '').$v;
-					?><option value="<?echo $k; ?>" <?if($k==$value){echo 'selected';}?>><?echo htmlspecialcharsbx($v); ?></option><?
+					?><option value="<?phpecho $k; ?>" <?phpif($k==$value){echo 'selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
 				}
-				?></optgroup><?
+				?></optgroup><?php
 			}
 			?>
 		</select>
 	</div>
 
-	<?
+	<?php
 	/*echo BeginNote();
 	echo GetMessage("CODEMATRIX_IX_SECTION_MAPPING_NOTE");
 	echo EndNote();*/
@@ -88,14 +88,14 @@ if(is_callable(array('\Bitrix\Iblock\Model\PropertyFeature', 'isEnabledFeatures'
 		<col width="50%">
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_PROPERTY_NOT_CREATE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_PROPERTY_NOT_CREATE");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<input type="checkbox" name="MAP[PROPERTY_NOT_CREATE]" value="Y" <?=($arParams['PROPERTY_NOT_CREATE']=='Y' ? 'checked' : '')?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_PROPERTY_NOT_LOAD_WO_MAPPED");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_PROPERTY_NOT_LOAD_WO_MAPPED");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<input type="checkbox" name="MAP[NOT_LOAD_WO_MAPPED]" value="Y" <?=($arParams['NOT_LOAD_WO_MAPPED']=='Y' ? 'checked' : '')?>>
 			</td>
@@ -103,88 +103,88 @@ if(is_callable(array('\Bitrix\Iblock\Model\PropertyFeature', 'isEnabledFeatures'
 		
 		<tr class="heading">
 			<td colspan="2">
-				<?echo GetMessage("CODEMATRIX_IX_PROPERTY_CREATE_TITLE");?>
+				<?phpecho GetMessage("CODEMATRIX_IX_PROPERTY_CREATE_TITLE");?>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_NP_TYPE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_TYPE");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<select name="MAP[NEW_PROPS][PROPERTY_TYPE]">
-					<option value="S" <?if($arParams['NEW_PROPS']['PROPERTY_TYPE']=="S")echo " selected"?>><?echo GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_S")?></option>
-					<option value="N" <?if($arParams['NEW_PROPS']['PROPERTY_TYPE']=="N")echo " selected"?>><?echo GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_N")?></option>
-					<option value="L" <?if($arParams['NEW_PROPS']['PROPERTY_TYPE']=="L")echo " selected"?>><?echo GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_L")?></option>
+					<option value="S" <?phpif($arParams['NEW_PROPS']['PROPERTY_TYPE']=="S")echo " selected"?>><?phpecho GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_S")?></option>
+					<option value="N" <?phpif($arParams['NEW_PROPS']['PROPERTY_TYPE']=="N")echo " selected"?>><?phpecho GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_N")?></option>
+					<option value="L" <?phpif($arParams['NEW_PROPS']['PROPERTY_TYPE']=="L")echo " selected"?>><?phpecho GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_L")?></option>
 				</select>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_NP_SORT");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_SORT");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="MAP[NEW_PROPS][SORT]" value="<?echo ($arParams['NEW_PROPS']['SORT'] ? htmlspecialcharsbx($arParams['NEW_PROPS']['SORT']) : '500')?>">
+				<input type="text" name="MAP[NEW_PROPS][SORT]" value="<?phpecho ($arParams['NEW_PROPS']['SORT'] ? htmlspecialcharsbx($arParams['NEW_PROPS']['SORT']) : '500')?>">
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_NP_CODE_PREFIX");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_CODE_PREFIX");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="MAP[NEW_PROPS][CODE_PREFIX]" value="<?echo ($arParams['NEW_PROPS']['CODE_PREFIX'] ? htmlspecialcharsbx($arParams['NEW_PROPS']['CODE_PREFIX']) : '')?>">
+				<input type="text" name="MAP[NEW_PROPS][CODE_PREFIX]" value="<?phpecho ($arParams['NEW_PROPS']['CODE_PREFIX'] ? htmlspecialcharsbx($arParams['NEW_PROPS']['CODE_PREFIX']) : '')?>">
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_NP_MULTIPLE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_MULTIPLE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="checkbox" name="MAP[NEW_PROPS][MULTIPLE]" value="Y"<?echo ($arParams['NEW_PROPS']['MULTIPLE']=='Y' ? ' checked' : '')?>>
+				<input type="checkbox" name="MAP[NEW_PROPS][MULTIPLE]" value="Y"<?phpecho ($arParams['NEW_PROPS']['MULTIPLE']=='Y' ? ' checked' : '')?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_NP_SMART_FILTER");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_SMART_FILTER");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="checkbox" name="MAP[NEW_PROPS][SMART_FILTER]" value="Y"<?echo ($arParams['NEW_PROPS']['SMART_FILTER']=='Y' ? ' checked' : '')?>>
+				<input type="checkbox" name="MAP[NEW_PROPS][SMART_FILTER]" value="Y"<?phpecho ($arParams['NEW_PROPS']['SMART_FILTER']=='Y' ? ' checked' : '')?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_NP_DISPLAY_EXPANDED");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_DISPLAY_EXPANDED");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="checkbox" name="MAP[NEW_PROPS][DISPLAY_EXPANDED]" value="Y"<?echo ($arParams['NEW_PROPS']['DISPLAY_EXPANDED']=='Y' ? ' checked' : '')?>>
+				<input type="checkbox" name="MAP[NEW_PROPS][DISPLAY_EXPANDED]" value="Y"<?phpecho ($arParams['NEW_PROPS']['DISPLAY_EXPANDED']=='Y' ? ' checked' : '')?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_NP_SHOW_IN_FORM");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_SHOW_IN_FORM");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<input type="hidden" name="MAP[NEW_PROPS][SECTION_PROPERTY]" value="N">
-				<input type="checkbox" name="MAP[NEW_PROPS][SECTION_PROPERTY]" value="Y"<?echo ($arParams['NEW_PROPS']['SECTION_PROPERTY']!='N' ? ' checked' : '')?>>
+				<input type="checkbox" name="MAP[NEW_PROPS][SECTION_PROPERTY]" value="Y"<?phpecho ($arParams['NEW_PROPS']['SECTION_PROPERTY']!='N' ? ' checked' : '')?>>
 			</td>
 		</tr>
 		
-		<?
+		<?php
 		foreach($arFeatures as $arFeature)
 		{
 		?>
 			<tr>
-				<td class="adm-detail-content-cell-l"><?echo $arFeature['FEATURE_NAME'];?>:</td>
+				<td class="adm-detail-content-cell-l"><?phpecho $arFeature['FEATURE_NAME'];?>:</td>
 				<td class="adm-detail-content-cell-r">
-					<input type="hidden" name="MAP[NEW_PROPS][<?echo htmlspecialcharsbx($arFeature['MODULE_ID'].':'.$arFeature['FEATURE_ID']);?>]" value="N">
-					<input type="checkbox" name="MAP[NEW_PROPS][<?echo htmlspecialcharsbx($arFeature['MODULE_ID'].':'.$arFeature['FEATURE_ID']);?>]" value="Y"<?echo ($arParams['NEW_PROPS'][$arFeature['MODULE_ID'].':'.$arFeature['FEATURE_ID']]=='Y' ? ' checked' : '')?>>
+					<input type="hidden" name="MAP[NEW_PROPS][<?phpecho htmlspecialcharsbx($arFeature['MODULE_ID'].':'.$arFeature['FEATURE_ID']);?>]" value="N">
+					<input type="checkbox" name="MAP[NEW_PROPS][<?phpecho htmlspecialcharsbx($arFeature['MODULE_ID'].':'.$arFeature['FEATURE_ID']);?>]" value="Y"<?phpecho ($arParams['NEW_PROPS'][$arFeature['MODULE_ID'].':'.$arFeature['FEATURE_ID']]=='Y' ? ' checked' : '')?>>
 				</td>
 			</tr>
-		<?
+		<?php
 		}
 		?>
 
 		<tr class="heading">
 			<td colspan="2">
-				<?echo GetMessage("CODEMATRIX_IX_PROPERTY_MAPPING_TITLE");?>
+				<?phpecho GetMessage("CODEMATRIX_IX_PROPERTY_MAPPING_TITLE");?>
 			</td>
 		</tr>
 		
 	<tr>
 	  <td colspan="2">
-		<?
+		<?php
 		if(!is_array($arXmlProps)) echo GetMessage("CODEMATRIX_IX_PROPERTY_NOT_CHOOSE_FIELDS");
 		elseif(count($arXmlProps)==0) echo GetMessage("CODEMATRIX_IX_PROPERTY_NO_STRUCT");
 		else
@@ -194,10 +194,10 @@ if(is_callable(array('\Bitrix\Iblock\Model\PropertyFeature', 'isEnabledFeatures'
 		<col width="50%">
 		<col width="50%">
 		<tr>
-			<th><? echo GetMessage("CODEMATRIX_IX_PROPERTY_IN_FILE");?></th>
-			<th><? echo GetMessage("CODEMATRIX_IX_PROPERTY_ON_SITE");?></th>
+			<th><?php echo GetMessage("CODEMATRIX_IX_PROPERTY_IN_FILE");?></th>
+			<th><?php echo GetMessage("CODEMATRIX_IX_PROPERTY_ON_SITE");?></th>
 		</tr>
-		<?
+		<?php
 		$arMap2 = array();
 		foreach($arMap as $k=>$v)
 		{
@@ -209,11 +209,11 @@ if(is_callable(array('\Bitrix\Iblock\Model\PropertyFeature', 'isEnabledFeatures'
 			$xmlId = trim($xmlId);
 		?>
 			<tr>
-				<td><?echo $arXmlProp['NAME'];?></td>
+				<td><?phpecho $arXmlProp['NAME'];?></td>
 				<td>
-				  <div class="kit-ix-select-mapping-wrap" data-nc-message="<?echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
-					<a href="javascript:void(0)" class="kit-ix-mapping-add-field" title="<?echo GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
-					<?
+				  <div class="kit-ix-select-mapping-wrap" data-nc-message="<?phpecho GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
+					<a href="javascript:void(0)" class="kit-ix-mapping-add-field" title="<?phpecho GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
+					<?php
 					$isFields = false;
 					if(array_key_exists($xmlId, $arMap2))
 					{
@@ -244,11 +244,11 @@ if(is_callable(array('\Bitrix\Iblock\Model\PropertyFeature', 'isEnabledFeatures'
 				  </div>
 				</td>
 			</tr>
-		<?}?>
+		<?php}?>
 		</table>
-		<?}?>
+		<?php}?>
 	  </td>
 	</tr>
 	</table>
 </form>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

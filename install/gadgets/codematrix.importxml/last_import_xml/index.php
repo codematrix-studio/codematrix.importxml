@@ -1,9 +1,9 @@
-<?
+<?php
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Loader;
 Loc::loadMessages(__FILE__);
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-$moduleFilePrefix = 'kit_import_xml';
+$moduleFilePrefix = 'codematrix_import_xml';
 $moduleId = 'codematrix.importxml';
 if(!Loader::includeModule($moduleId)) return;
 $MODULE_RIGHT = $APPLICATION->GetGroupRight($moduleId);

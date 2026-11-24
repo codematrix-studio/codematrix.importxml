@@ -1,8 +1,8 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once ($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 $moduleId = 'codematrix.importxml';
-$moduleFilePrefix = 'kit_import_xml';
+$moduleFilePrefix = 'codematrix_import_xml';
 $moduleJsId = str_replace('.', '_', $moduleId);
 $moduleDemoExpiredFunc = $moduleJsId.'_demo_expired';
 $moduleShowDemoFunc = $moduleJsId.'_show_demo';
@@ -106,9 +106,9 @@ if ($REQUEST_METHOD == "POST" && $MODE=='AJAX')
 		$fl = new \Bitrix\CodeMatrixImportxml\FieldList($SETTINGS_DEFAULT);
 		$APPLICATION->RestartBuffer();
 		if(ob_get_contents()) ob_end_clean();
-		?><div><?
+		?><div><?php
 		$fl->ShowSelectUidFieldsHighload($HIGHLOADBLOCK_ID, 'fields[]');
-		?></div><?
+		?></div><?php
 		die();
 	}
 	
@@ -512,9 +512,9 @@ if(strlen($strErrorProfile.$strError) > 0)
 }
 ?>
 
-<form method="POST" action="<?echo $sDocPath ?>?<?if(strlen($PROFILE_ID) > 0){echo 'PROFILE_ID='.$PROFILE_ID.'&';}?>lang=<?echo LANG ?>" ENCTYPE="multipart/form-data" name="dataload" id="dataload" class="kit-ix-s1-form">
+<form method="POST" action="<?phpecho $sDocPath ?>?<?phpif(strlen($PROFILE_ID) > 0){echo 'PROFILE_ID='.$PROFILE_ID.'&';}?>lang=<?phpecho LANG ?>" ENCTYPE="multipart/form-data" name="dataload" id="dataload" class="kit-ix-s1-form">
 
-<?
+<?php
 $arProfile = (strlen($PROFILE_ID) > 0 ? $oProfile->GetFieldsByID($PROFILE_ID) : array());
 $aTabs = array(
 	array(
@@ -541,7 +541,7 @@ $tabControl = new CAdminTabControl("tabControl", $aTabs, false, true);
 $tabControl->Begin();
 ?>
 
-<?$tabControl->BeginNextTab();
+<?php$tabControl->BeginNextTab();
 if ($STEP == 1)
 {
 	$fl = new \Bitrix\CodeMatrixImportxml\FieldList($SETTINGS_DEFAULT);
@@ -551,35 +551,35 @@ if ($STEP == 1)
 	<tr class="heading">
 		<td colspan="2" class="kit-ix-profile-header">
 			<div>
-				<?echo GetMessage("CODEMATRIX_IX_PROFILE_HEADER"); ?>
-				<?/*?><a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?echo GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="kit-ix-help-link"></a><?*/?>
+				<?phpecho GetMessage("CODEMATRIX_IX_PROFILE_HEADER"); ?>
+				<?php/*?><a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?phpecho GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="kit-ix-help-link"></a><?php*/?>
 			</div>
 		</td>
 	</tr>
 
 	<tr>
-		<td><?echo GetMessage("CODEMATRIX_IX_PROFILE"); ?>:</td>
+		<td><?phpecho GetMessage("CODEMATRIX_IX_PROFILE"); ?>:</td>
 		<td>		
-			<?$oProfile->ShowProfileList('PROFILE_ID');?>
+			<?php$oProfile->ShowProfileList('PROFILE_ID');?>
 			
-			<?if(strlen($PROFILE_ID) > 0 && $PROFILE_ID!='new'){?>
+			<?phpif(strlen($PROFILE_ID) > 0 && $PROFILE_ID!='new'){?>
 				<span class="kit-ix-edit-btns">
-					<a href="javascript:void(0)" class="adm-table-btn-edit" onclick="EProfile.ShowRename();" title="<?echo GetMessage("CODEMATRIX_IX_RENAME_PROFILE");?>" id="action_edit_button"></a>
-					<a href="javascript:void(0);" class="adm-table-btn-copy" onclick="EProfile.Copy();" title="<?echo GetMessage("CODEMATRIX_IX_COPY_PROFILE");?>" id="action_copy_button"></a>
-					<a href="javascript:void(0);" class="adm-table-btn-delete" onclick="if(confirm('<?echo GetMessage("CODEMATRIX_IX_DELETE_PROFILE_CONFIRM");?>')){EProfile.Delete();}" title="<?echo GetMessage("CODEMATRIX_IX_DELETE_PROFILE");?>" id="action_delete_button"></a>
+					<a href="javascript:void(0)" class="adm-table-btn-edit" onclick="EProfile.ShowRename();" title="<?phpecho GetMessage("CODEMATRIX_IX_RENAME_PROFILE");?>" id="action_edit_button"></a>
+					<a href="javascript:void(0);" class="adm-table-btn-copy" onclick="EProfile.Copy();" title="<?phpecho GetMessage("CODEMATRIX_IX_COPY_PROFILE");?>" id="action_copy_button"></a>
+					<a href="javascript:void(0);" class="adm-table-btn-delete" onclick="if(confirm('<?phpecho GetMessage("CODEMATRIX_IX_DELETE_PROFILE_CONFIRM");?>')){EProfile.Delete();}" title="<?phpecho GetMessage("CODEMATRIX_IX_DELETE_PROFILE");?>" id="action_delete_button"></a>
 				</span>
-			<?}?>
+			<?php}?>
 		</td>
 	</tr>
 	
 	<tr id="new_profile_name">
-		<td><?echo GetMessage("CODEMATRIX_IX_NEW_PROFILE_NAME"); ?>:</td>
+		<td><?phpecho GetMessage("CODEMATRIX_IX_NEW_PROFILE_NAME"); ?>:</td>
 		<td>
-			<input type="text" name="NEW_PROFILE_NAME" value="<?echo htmlspecialcharsbx($NEW_PROFILE_NAME)?>" size="50">
+			<input type="text" name="NEW_PROFILE_NAME" value="<?phpecho htmlspecialcharsbx($NEW_PROFILE_NAME)?>" size="50">
 		</td>
 	</tr>
 
-	<?
+	<?php
 	if(strlen($PROFILE_ID) > 0)
 	{
 		$isDescription = (bool)(strlen(trim($SETTINGS_DEFAULT['PROFILE_DESCRIPTION'])) > 0);
@@ -588,31 +588,31 @@ if ($STEP == 1)
 	?>
 		<tr>
 			<td class="kit-ix-settings-margin-container" colspan="2" align="center">
-				<a class="kit-ix-grey" href="javascript:void(0)" onclick="ESettings.AddProfileDescription(this)"><?echo GetMessage("CODEMATRIX_IX_PROFILE_DESCRIPTION_ADD");?></a>
+				<a class="kit-ix-grey" href="javascript:void(0)" onclick="ESettings.AddProfileDescription(this)"><?phpecho GetMessage("CODEMATRIX_IX_PROFILE_DESCRIPTION_ADD");?></a>
 			</td>
 		</tr>
-		<?
+		<?php
 		}
 		?>
-		<tr <?if(!$isDescription){echo ' style="display: none;"';}?>>
-			<td><?echo GetMessage("CODEMATRIX_IX_PROFILE_DESCRIPTION"); ?>:</td>
+		<tr <?phpif(!$isDescription){echo ' style="display: none;"';}?>>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_PROFILE_DESCRIPTION"); ?>:</td>
 			<td>
-				<textarea name="SETTINGS_DEFAULT[PROFILE_DESCRIPTION]" cols="50" rows="3"><?echo htmlspecialcharsbx($SETTINGS_DEFAULT['PROFILE_DESCRIPTION'])?></textarea>
+				<textarea name="SETTINGS_DEFAULT[PROFILE_DESCRIPTION]" cols="50" rows="3"><?phpecho htmlspecialcharsbx($SETTINGS_DEFAULT['PROFILE_DESCRIPTION'])?></textarea>
 			</td>
 		</tr>
 		
 		<tr class="heading">
-			<td colspan="2"><?echo GetMessage("CODEMATRIX_IX_DEFAULT_SETTINGS"); ?></td>
+			<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_DEFAULT_SETTINGS"); ?></td>
 		</tr>
 		
 		<tr>
-			<td width="40%"><?echo GetMessage("CODEMATRIX_IX_URL_DATA_FILE"); ?></td>
+			<td width="40%"><?phpecho GetMessage("CODEMATRIX_IX_URL_DATA_FILE"); ?></td>
 			<td width="60%" class="kit-ix-file-choose">
 				<!--CODEMATRIX_IX_CHOOSE_FILE-->
-				<?if($SETTINGS_DEFAULT['EMAIL_DATA_FILE']) echo '<input type="hidden" name="SETTINGS_DEFAULT[EMAIL_DATA_FILE]" value="'.htmlspecialcharsbx($SETTINGS_DEFAULT['EMAIL_DATA_FILE']).'">';?>
-				<?if($SETTINGS_DEFAULT['EXT_DATA_FILE']) echo '<input type="hidden" name="EXT_DATA_FILE" value="'.htmlspecialcharsbx($SETTINGS_DEFAULT['EXT_DATA_FILE']).'">';?>
-				<input type="hidden" name="OLD_DATA_FILE" value="<?echo htmlspecialcharsbx($SETTINGS_DEFAULT['DATA_FILE']); ?>">
-				<?
+				<?phpif($SETTINGS_DEFAULT['EMAIL_DATA_FILE']) echo '<input type="hidden" name="SETTINGS_DEFAULT[EMAIL_DATA_FILE]" value="'.htmlspecialcharsbx($SETTINGS_DEFAULT['EMAIL_DATA_FILE']).'">';?>
+				<?phpif($SETTINGS_DEFAULT['EXT_DATA_FILE']) echo '<input type="hidden" name="EXT_DATA_FILE" value="'.htmlspecialcharsbx($SETTINGS_DEFAULT['EXT_DATA_FILE']).'">';?>
+				<input type="hidden" name="OLD_DATA_FILE" value="<?phpecho htmlspecialcharsbx($SETTINGS_DEFAULT['DATA_FILE']); ?>">
+				<?php
 				$arFile = CFile::GetFileArray($SETTINGS_DEFAULT["DATA_FILE"]);
 				if(stripos($arFile['SRC'], 'http')===0)
 				{
@@ -658,15 +658,15 @@ if ($STEP == 1)
 		</tr>
 
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_HIGHLOADBLOCK"); ?></td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_HIGHLOADBLOCK"); ?></td>
 			<td>
 				<select id="SETTINGS_DEFAULT[HIGHLOADBLOCK_ID]" name="SETTINGS_DEFAULT[HIGHLOADBLOCK_ID]" class="adm-detail-iblock-list">
-					<option value=""><?echo GetMessage("CODEMATRIX_IX_CHOOSE_HIGHLOADBLOCK"); ?></option>
-					<?
+					<option value=""><?phpecho GetMessage("CODEMATRIX_IX_CHOOSE_HIGHLOADBLOCK"); ?></option>
+					<?php
 					$arHighloadBlock = $fl->GetHighloadBlocks();
 					foreach($arHighloadBlock as $arBlock)
 					{
-						?><option value="<?echo $arBlock['ID']?>" <?if($SETTINGS_DEFAULT['HIGHLOADBLOCK_ID']==$arBlock['ID']){echo 'selected';}?>><?echo $arBlock['NAME']; ?></option><?
+						?><option value="<?phpecho $arBlock['ID']?>" <?phpif($SETTINGS_DEFAULT['HIGHLOADBLOCK_ID']==$arBlock['ID']){echo 'selected';}?>><?phpecho $arBlock['NAME']; ?></option><?php
 					}
 					?>
 				</select>
@@ -674,106 +674,106 @@ if ($STEP == 1)
 		</tr>
 		
 		<tr class="heading">
-			<td colspan="2"><?echo GetMessage("CODEMATRIX_IX_SETTINGS_PROCESSING"); ?></td>
+			<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_PROCESSING"); ?></td>
 		</tr>
 		
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_ELEMENT_UID"); ?>: <span id="hint_ELEMENT_UID"></span><script>BX.hint_replace(BX('hint_ELEMENT_UID'), '<?echo GetMessage("CODEMATRIX_IX_ELEMENT_UID_HINT"); ?>');</script></td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_ELEMENT_UID"); ?>: <span id="hint_ELEMENT_UID"></span><script>BX.hint_replace(BX('hint_ELEMENT_UID'), '<?phpecho GetMessage("CODEMATRIX_IX_ELEMENT_UID_HINT"); ?>');</script></td>
 			<td>
-				<?$fl->ShowSelectUidFieldsHighload($SETTINGS_DEFAULT['HIGHLOADBLOCK_ID'], 'SETTINGS_DEFAULT[ELEMENT_UID][]', $SETTINGS_DEFAULT['ELEMENT_UID']);?>
+				<?php$fl->ShowSelectUidFieldsHighload($SETTINGS_DEFAULT['HIGHLOADBLOCK_ID'], 'SETTINGS_DEFAULT[ELEMENT_UID][]', $SETTINGS_DEFAULT['ELEMENT_UID']);?>
 			</td>
 		</tr>
 
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_ONLY_UPDATE_MODE"); ?>: <span id="hint_ONLY_UPDATE_MODE"></span><script>BX.hint_replace(BX('hint_ONLY_UPDATE_MODE'), '<?echo GetMessage("CODEMATRIX_IX_ONLY_UPDATE_MODE_HINT"); ?>');</script></td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_ONLY_UPDATE_MODE"); ?>: <span id="hint_ONLY_UPDATE_MODE"></span><script>BX.hint_replace(BX('hint_ONLY_UPDATE_MODE'), '<?phpecho GetMessage("CODEMATRIX_IX_ONLY_UPDATE_MODE_HINT"); ?>');</script></td>
 			<td>
-				<input type="checkbox" name="SETTINGS_DEFAULT[ONLY_UPDATE_MODE]" value="Y" <?if($SETTINGS_DEFAULT['ONLY_UPDATE_MODE']=='Y'){echo 'checked';}?> onchange="EProfile.RadioChb(this, ['SETTINGS_DEFAULT[ONLY_CREATE_MODE]', 'SETTINGS_DEFAULT[ONLY_DELETE_MODE]'])">
+				<input type="checkbox" name="SETTINGS_DEFAULT[ONLY_UPDATE_MODE]" value="Y" <?phpif($SETTINGS_DEFAULT['ONLY_UPDATE_MODE']=='Y'){echo 'checked';}?> onchange="EProfile.RadioChb(this, ['SETTINGS_DEFAULT[ONLY_CREATE_MODE]', 'SETTINGS_DEFAULT[ONLY_DELETE_MODE]'])">
 			</td>
 		</tr>
 		
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_ONLY_CREATE_MODE"); ?>: <span id="hint_ONLY_CREATE_MODE"></span><script>BX.hint_replace(BX('hint_ONLY_CREATE_MODE'), '<?echo GetMessage("CODEMATRIX_IX_ONLY_CREATE_MODE_HINT"); ?>');</script></td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_ONLY_CREATE_MODE"); ?>: <span id="hint_ONLY_CREATE_MODE"></span><script>BX.hint_replace(BX('hint_ONLY_CREATE_MODE'), '<?phpecho GetMessage("CODEMATRIX_IX_ONLY_CREATE_MODE_HINT"); ?>');</script></td>
 			<td>
-				<input type="checkbox" name="SETTINGS_DEFAULT[ONLY_CREATE_MODE]" value="Y" <?if($SETTINGS_DEFAULT['ONLY_CREATE_MODE']=='Y'){echo 'checked';}?> onchange="EProfile.RadioChb(this, ['SETTINGS_DEFAULT[ONLY_UPDATE_MODE]', 'SETTINGS_DEFAULT[ONLY_DELETE_MODE]'])">
+				<input type="checkbox" name="SETTINGS_DEFAULT[ONLY_CREATE_MODE]" value="Y" <?phpif($SETTINGS_DEFAULT['ONLY_CREATE_MODE']=='Y'){echo 'checked';}?> onchange="EProfile.RadioChb(this, ['SETTINGS_DEFAULT[ONLY_UPDATE_MODE]', 'SETTINGS_DEFAULT[ONLY_DELETE_MODE]'])">
 			</td>
 		</tr>
 		
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_ELEMENT_MULTIPLE_SEPARATOR"); ?>:</td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_ELEMENT_MULTIPLE_SEPARATOR"); ?>:</td>
 			<td>
-				<input type="text" name="SETTINGS_DEFAULT[ELEMENT_MULTIPLE_SEPARATOR]" size="3" value="<?echo ($SETTINGS_DEFAULT['ELEMENT_MULTIPLE_SEPARATOR'] ? htmlspecialcharsbx($SETTINGS_DEFAULT['ELEMENT_MULTIPLE_SEPARATOR']) : ';'); ?>">
+				<input type="text" name="SETTINGS_DEFAULT[ELEMENT_MULTIPLE_SEPARATOR]" size="3" value="<?phpecho ($SETTINGS_DEFAULT['ELEMENT_MULTIPLE_SEPARATOR'] ? htmlspecialcharsbx($SETTINGS_DEFAULT['ELEMENT_MULTIPLE_SEPARATOR']) : ';'); ?>">
 			</td>
 		</tr>
 		
 		<tr class="heading">
-			<td colspan="2"><?echo GetMessage("CODEMATRIX_IX_SETTINGS_PROCESSING_MISSING_ELEMENTS"); ?> <a href="javascript:void(0)" onclick="EProfile.ToggleAdditionalSettings(this)" class="kit_ix_head_more show"><?echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL_SHOW_HIDE"); ?></a></td>
+			<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_PROCESSING_MISSING_ELEMENTS"); ?> <a href="javascript:void(0)" onclick="EProfile.ToggleAdditionalSettings(this)" class="kit_ix_head_more show"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL_SHOW_HIDE"); ?></a></td>
 		</tr>
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_ELEMENT_MISSING_REMOVE_ELEMENT"); ?>:</td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_ELEMENT_MISSING_REMOVE_ELEMENT"); ?>:</td>
 			<td>
-				<input type="checkbox" name="SETTINGS_DEFAULT[CELEMENT_MISSING_REMOVE_ELEMENT]" value="Y" <?if($SETTINGS_DEFAULT['CELEMENT_MISSING_REMOVE_ELEMENT']=='Y'){echo 'checked';}?> data-confirm="<?echo GetMessage("CODEMATRIX_IX_ELEMENT_MISSING_REMOVE_ELEMENT_CONFIRM"); ?>">
+				<input type="checkbox" name="SETTINGS_DEFAULT[CELEMENT_MISSING_REMOVE_ELEMENT]" value="Y" <?phpif($SETTINGS_DEFAULT['CELEMENT_MISSING_REMOVE_ELEMENT']=='Y'){echo 'checked';}?> data-confirm="<?phpecho GetMessage("CODEMATRIX_IX_ELEMENT_MISSING_REMOVE_ELEMENT_CONFIRM"); ?>">
 			</td>
 		</tr>
 		
 		<tr>
 			<td colspan="2" align="center">
-				<input type="hidden" id="ELEMENT_MISSING_FILTER" name="SETTINGS_DEFAULT[ELEMENT_MISSING_FILTER]" value="<?echo htmlspecialcharsbx($SETTINGS_DEFAULT['ELEMENT_MISSING_FILTER']);?>">
-				<a href="javascript:void(0)" onclick="EProfile.OpenMissignElementFilter(this)"><?echo GetMessage("CODEMATRIX_IX_ELEMENT_MISSING_SET_FILTER"); ?></a>
+				<input type="hidden" id="ELEMENT_MISSING_FILTER" name="SETTINGS_DEFAULT[ELEMENT_MISSING_FILTER]" value="<?phpecho htmlspecialcharsbx($SETTINGS_DEFAULT['ELEMENT_MISSING_FILTER']);?>">
+				<a href="javascript:void(0)" onclick="EProfile.OpenMissignElementFilter(this)"><?phpecho GetMessage("CODEMATRIX_IX_ELEMENT_MISSING_SET_FILTER"); ?></a>
 			</td>
 		</tr>
 		
 		<tr class="heading">
-			<td colspan="2"><?echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL"); ?> <a href="javascript:void(0)" onclick="EProfile.ToggleAdditionalSettings(this)" class="kit_ix_head_more show" id="kda-head-more-link"><?echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL_SHOW_HIDE"); ?></a></td>
+			<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL"); ?> <a href="javascript:void(0)" onclick="EProfile.ToggleAdditionalSettings(this)" class="kit_ix_head_more show" id="kda-head-more-link"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL_SHOW_HIDE"); ?></a></td>
 		</tr>
 		
-		<?/*?>
+		<?php/*?>
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_STAT_SAVE"); ?>:</td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_STAT_SAVE"); ?>:</td>
 			<td>
-				<input type="checkbox" name="SETTINGS_DEFAULT[STAT_SAVE]" value="Y" <?if($SETTINGS_DEFAULT['STAT_SAVE']=='Y'){echo 'checked';}?>>
+				<input type="checkbox" name="SETTINGS_DEFAULT[STAT_SAVE]" value="Y" <?phpif($SETTINGS_DEFAULT['STAT_SAVE']=='Y'){echo 'checked';}?>>
 			</td>
 		</tr>
-		<?*/?>
+		<?php*/?>
 		
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_HTML_ENTITY_DECODE"); ?>:</td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_HTML_ENTITY_DECODE"); ?>:</td>
 			<td>
 				<input type="hidden" name="SETTINGS_DEFAULT[HTML_ENTITY_DECODE]" value="N">
-				<input type="checkbox" name="SETTINGS_DEFAULT[HTML_ENTITY_DECODE]" value="Y" <?if($SETTINGS_DEFAULT['HTML_ENTITY_DECODE']=='Y' || $PROFILE_ID=='new'){echo 'checked';}?>>
+				<input type="checkbox" name="SETTINGS_DEFAULT[HTML_ENTITY_DECODE]" value="Y" <?phpif($SETTINGS_DEFAULT['HTML_ENTITY_DECODE']=='Y' || $PROFILE_ID=='new'){echo 'checked';}?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_NOT_USE_XML_READER"); ?>: <span id="hint_NOT_USE_XML_READER"></span><script>BX.hint_replace(BX('hint_NOT_USE_XML_READER'), '<?echo GetMessage("CODEMATRIX_IX_NOT_USE_XML_READER_HINT"); ?>');</script></td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_NOT_USE_XML_READER"); ?>: <span id="hint_NOT_USE_XML_READER"></span><script>BX.hint_replace(BX('hint_NOT_USE_XML_READER'), '<?phpecho GetMessage("CODEMATRIX_IX_NOT_USE_XML_READER_HINT"); ?>');</script></td>
 			<td>
-				<input type="checkbox" name="SETTINGS_DEFAULT[NOT_USE_XML_READER]" value="Y" <?if($SETTINGS_DEFAULT['NOT_USE_XML_READER']=='Y'){echo 'checked';}?>>
+				<input type="checkbox" name="SETTINGS_DEFAULT[NOT_USE_XML_READER]" value="Y" <?phpif($SETTINGS_DEFAULT['NOT_USE_XML_READER']=='Y'){echo 'checked';}?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td><?echo GetMessage("CODEMATRIX_IX_AUTO_FIX_XML_ERRORS"); ?>: <span id="hint_AUTO_FIX_XML_ERRORS"></span><script>BX.hint_replace(BX('hint_AUTO_FIX_XML_ERRORS'), '<?echo GetMessage("CODEMATRIX_IX_AUTO_FIX_XML_ERRORS_HINT"); ?>');</script></td>
+			<td><?phpecho GetMessage("CODEMATRIX_IX_AUTO_FIX_XML_ERRORS"); ?>: <span id="hint_AUTO_FIX_XML_ERRORS"></span><script>BX.hint_replace(BX('hint_AUTO_FIX_XML_ERRORS'), '<?phpecho GetMessage("CODEMATRIX_IX_AUTO_FIX_XML_ERRORS_HINT"); ?>');</script></td>
 			<td>
-				<input type="checkbox" name="SETTINGS_DEFAULT[AUTO_FIX_XML_ERRORS]" value="Y" <?if($SETTINGS_DEFAULT['AUTO_FIX_XML_ERRORS']=='Y'){echo 'checked';}?>>
+				<input type="checkbox" name="SETTINGS_DEFAULT[AUTO_FIX_XML_ERRORS]" value="Y" <?phpif($SETTINGS_DEFAULT['AUTO_FIX_XML_ERRORS']=='Y'){echo 'checked';}?>>
 			</td>
 		</tr>
 		
 		<tr>
 			<td class="kit-ix-settings-margin-container" colspan="2" align="center">
-				<a href="javascript:void(0)" onclick="ESettings.ShowPHPExpression(this)"><?echo GetMessage("CODEMATRIX_IX_ONAFTERSAVE_HANDLER");?></a>
+				<a href="javascript:void(0)" onclick="ESettings.ShowPHPExpression(this)"><?phpecho GetMessage("CODEMATRIX_IX_ONAFTERSAVE_HANDLER");?></a>
 				<div class="kit-ix-settings-phpexpression" style="display: none;">
-					<?echo GetMessage("CODEMATRIX_IX_ONAFTERSAVE_HANDLER_HINT");?>
-					<textarea name="SETTINGS_DEFAULT[ONAFTERSAVE_HANDLER]"><?echo $SETTINGS_DEFAULT['ONAFTERSAVE_HANDLER']?></textarea>
+					<?phpecho GetMessage("CODEMATRIX_IX_ONAFTERSAVE_HANDLER_HINT");?>
+					<textarea name="SETTINGS_DEFAULT[ONAFTERSAVE_HANDLER]"><?phpecho $SETTINGS_DEFAULT['ONAFTERSAVE_HANDLER']?></textarea>
 				</div>
 			</td>
 		</tr>
 		
-	<?
+	<?php
 	}
 }
 $tabControl->EndTab();
 ?>
 
-<?$tabControl->BeginNextTab();
+<?php$tabControl->BeginNextTab();
 if ($STEP == 2)
 {
 ?>
@@ -781,18 +781,18 @@ if ($STEP == 2)
 	<tr>
 		<td colspan="2" id="preview_file">
 			<div class="kit-ix-file-preloader">
-				<?echo GetMessage("CODEMATRIX_IX_PRELOADING"); ?>
+				<?phpecho GetMessage("CODEMATRIX_IX_PRELOADING"); ?>
 			</div>
 		</td>
 	</tr>
 	
-	<?
+	<?php
 }
 $tabControl->EndTab();
 ?>
 
 
-<?$tabControl->BeginNextTab();
+<?php$tabControl->BeginNextTab();
 if ($STEP == 3)
 {
 ?>
@@ -800,15 +800,15 @@ if ($STEP == 3)
 		<td id="resblock" class="kit-ix-result">
 		 <table width="100%"><tr><td width="50%">
 			<div id="progressbar"><span class="pline"></span><span class="presult load"><b>0%</b><span 
-				data-prefix="<?echo GetMessage("CODEMATRIX_IX_READ_LINES"); ?>" 
-				data-import_sections="<?echo GetMessage("CODEMATRIX_IX_STATUS_IMPORT_SECTIONS"); ?>" 
-				data-import="<?echo GetMessage("CODEMATRIX_IX_STATUS_IMPORT"); ?>" 
-				data-deactivate_elements="<?echo GetMessage("CODEMATRIX_IX_STATUS_DEACTIVATE_ELEMENTS"); ?>" 
-				data-deactivate_sections="<?echo GetMessage("CODEMATRIX_IX_STATUS_DEACTIVATE_SECTIONS"); ?>" 
-			><?echo GetMessage("CODEMATRIX_IX_IMPORT_INIT"); ?></span></span></div>
+				data-prefix="<?phpecho GetMessage("CODEMATRIX_IX_READ_LINES"); ?>" 
+				data-import_sections="<?phpecho GetMessage("CODEMATRIX_IX_STATUS_IMPORT_SECTIONS"); ?>" 
+				data-import="<?phpecho GetMessage("CODEMATRIX_IX_STATUS_IMPORT"); ?>" 
+				data-deactivate_elements="<?phpecho GetMessage("CODEMATRIX_IX_STATUS_DEACTIVATE_ELEMENTS"); ?>" 
+				data-deactivate_sections="<?phpecho GetMessage("CODEMATRIX_IX_STATUS_DEACTIVATE_SECTIONS"); ?>" 
+			><?phpecho GetMessage("CODEMATRIX_IX_IMPORT_INIT"); ?></span></span></div>
 
 			<div id="block_error_import" style="display: none;">
-				<?echo CAdminMessage::ShowMessage(array(
+				<?phpecho CAdminMessage::ShowMessage(array(
 					"TYPE" => "ERROR",
 					"MESSAGE" => GetMessage("CODEMATRIX_IX_IMPORT_ERROR_CONNECT"),
 					"DETAILS" => '<div>'.(COption::GetOptionString($moduleId, 'AUTO_CONTINUE_IMPORT', 'N')=='Y' ? sprintf(GetMessage("CODEMATRIX_IX_IMPORT_AUTO_CONTINUE"), '<span id="kit_ix_auto_continue_time"></span>').'<br>' : '').'<a href="javascript:void(0)" onclick="EProfile.ContinueProccess(this, '.$PROFILE_ID.');" id="kda_ie_continue_link">'.GetMessage("CODEMATRIX_IX_PROCESSED_CONTINUE").'</a><br><br>'.sprintf(GetMessage("CODEMATRIX_IX_IMPORT_ERROR_CONNECT_COMMENT"), '/bitrix/admin/settings.php?lang=ru&mid='.$moduleId.'&mid_menu=1').'</div>',
@@ -817,7 +817,7 @@ if ($STEP == 3)
 			</div>
 			
 			<div id="block_error" style="display: none;">
-				<?echo CAdminMessage::ShowMessage(array(
+				<?phpecho CAdminMessage::ShowMessage(array(
 					"TYPE" => "ERROR",
 					"MESSAGE" => GetMessage("CODEMATRIX_IX_IMPORT_ERROR"),
 					"DETAILS" => '<div id="res_error"></div>',
@@ -826,7 +826,7 @@ if ($STEP == 3)
 			</div>
 		 </td><td>
 			<div class="detail_status">
-				<?echo CAdminMessage::ShowMessage(array(
+				<?phpecho CAdminMessage::ShowMessage(array(
 					"TYPE" => "PROGRESS",
 					"MESSAGE" => '<!--<div id="res_continue">'.GetMessage("CODEMATRIX_IX_AUTO_REFRESH_CONTINUE").'</div><div id="res_finish" style="display: none;">'.GetMessage("CODEMATRIX_IX_SUCCESS").'</div>-->',
 					"DETAILS" =>
@@ -854,64 +854,64 @@ if ($STEP == 3)
 		 </td></tr></table>
 		</td>
 	</tr>
-<?
+<?php
 }
 $tabControl->EndTab();
 ?>
 
-<?$tabControl->Buttons();
+<?php$tabControl->Buttons();
 ?>
 
 
-<?echo bitrix_sessid_post(); ?>
-<?
+<?phpecho bitrix_sessid_post(); ?>
+<?php
 if($STEP > 1)
 {
 	if(strlen($PROFILE_ID) > 0)
 	{
-		?><input type="hidden" name="PROFILE_ID" value="<?echo htmlspecialcharsbx($PROFILE_ID) ?>"><?
+		?><input type="hidden" name="PROFILE_ID" value="<?phpecho htmlspecialcharsbx($PROFILE_ID) ?>"><?php
 	}
 	else
 	{
 		foreach($SETTINGS_DEFAULT as $k=>$v)
 		{
-			?><input type="hidden" name="SETTINGS_DEFAULT[<?echo $k?>]" value="<?echo htmlspecialcharsbx($v) ?>"><?
+			?><input type="hidden" name="SETTINGS_DEFAULT[<?phpecho $k?>]" value="<?phpecho htmlspecialcharsbx($v) ?>"><?php
 		}
 	}
 }
 ?>
 
 
-<?
+<?php
 if($STEP == 2){ ?>
-<input type="submit" name="backButton" value="&lt;&lt; <?echo GetMessage("CODEMATRIX_IX_BACK"); ?>">
-<input type="submit" name="saveConfigButton" value="<?echo GetMessage("CODEMATRIX_IX_SAVE_CONFIGURATION"); ?>" style="float: right;">
-<?
+<input type="submit" name="backButton" value="&lt;&lt; <?phpecho GetMessage("CODEMATRIX_IX_BACK"); ?>">
+<input type="submit" name="saveConfigButton" value="<?phpecho GetMessage("CODEMATRIX_IX_SAVE_CONFIGURATION"); ?>" style="float: right;">
+<?php
 }
 
 if($STEP < 3)
 {
 ?>
-	<input type="hidden" name="STEP" value="<?echo $STEP + 1; ?>">
-	<input type="submit" value="<?echo ($STEP == 2) ? GetMessage("CODEMATRIX_IX_NEXT_STEP_F") : GetMessage("CODEMATRIX_IX_NEXT_STEP"); ?> &gt;&gt;" name="submit_btn" class="adm-btn-save">
-<? 
+	<input type="hidden" name="STEP" value="<?phpecho $STEP + 1; ?>">
+	<input type="submit" value="<?phpecho ($STEP == 2) ? GetMessage("CODEMATRIX_IX_NEXT_STEP_F") : GetMessage("CODEMATRIX_IX_NEXT_STEP"); ?> &gt;&gt;" name="submit_btn" class="adm-btn-save">
+<?php 
 }
 else
 {
 ?>
 	<input type="hidden" name="STEP" value="1">
-	<input type="submit" name="backButton2" value="&lt;&lt; <?echo GetMessage("CODEMATRIX_IX_2_1_STEP"); ?>" class="adm-btn-save">
-<?
+	<input type="submit" name="backButton2" value="&lt;&lt; <?phpecho GetMessage("CODEMATRIX_IX_2_1_STEP"); ?>" class="adm-btn-save">
+<?php
 }
 ?>
 
-<?$tabControl->End();
+<?php$tabControl->End();
 ?>
 
 </form>
 
 <script language="JavaScript">
-<?if ($STEP < 2): 
+<?phpif ($STEP < 2): 
 	$arFile = \Bitrix\CodeMatrixImportxml\Utils::GetShowFileBySettings($SETTINGS_DEFAULT);
 	if($arFile['path'])
 	{
@@ -926,22 +926,22 @@ else
 				}
 				else if(l < 50) setTimeout(function(){KitSetFilePath(l+1);}, 50);
 			}
-			$('#bx_file_data_file_cont .adm-input-file-name').text("<?echo addslashes($arFile['path'])?>");<?
+			$('#bx_file_data_file_cont .adm-input-file-name').text("<?phpecho addslashes($arFile['path'])?>");<?php
 			if($arFile['link'])
 			{
 				?>
-				$('#bx_file_data_file_cont .adm-input-file-name').attr("target", "_blank").attr("href", "<?echo addslashes($arFile['link'])?>");<?
+				$('#bx_file_data_file_cont .adm-input-file-name').attr("target", "_blank").attr("href", "<?phpecho addslashes($arFile['link'])?>");<?php
 			}
 			?>
 		}
 		KitSetFilePath(0);
-		<?
+		<?php
 	}
 ?>
 tabControl.SelectTab("edit1");
 tabControl.DisableTab("edit2");
 tabControl.DisableTab("edit3");
-<?elseif ($STEP == 2): 
+<?phpelseif ($STEP == 2): 
 	/*$fl = new \Bitrix\CodeMatrixImportxml\FieldList($SETTINGS_DEFAULT);
 	$arMenu = $fl->GetLineActions();
 	foreach($arMenu as $k=>$v)
@@ -953,14 +953,14 @@ tabControl.SelectTab("edit2");
 tabControl.DisableTab("edit1");
 tabControl.DisableTab("edit3");
 
-<?/*var admKDAMessages = {};
-admKDAMessages['lineActions'] = {<?echo implode(', ', $arMenu);?>};*/?>
-<?elseif ($STEP > 2): ?>
+<?php/*var admKDAMessages = {};
+admKDAMessages['lineActions'] = {<?phpecho implode(', ', $arMenu);?>};*/?>
+<?phpelseif ($STEP > 2): ?>
 tabControl.SelectTab("edit3");
 tabControl.DisableTab("edit1");
 tabControl.DisableTab("edit2");
 
-<?
+<?php
 $arPost = $_POST;
 unset($arPost['settings_json'], $arPost['defaultsettings_json'], $arPost['struct_json'], $arPost['struct_base64'], $arPost['SETTINGS']);
 if(COption::GetOptionString($moduleId, 'SET_MAX_EXECUTION_TIME')=='Y')
@@ -980,13 +980,13 @@ if($_POST['PROCESS_CONTINUE']=='Y'){
 	$oProfile = new \Bitrix\CodeMatrixImportxml\Profile('highload');
 ?>
 	EImport.Init(<?=CUtil::PhpToJSObject($arPost);?>, <?=CUtil::PhpToJSObject($oProfile->GetProccessParams($_POST['PROFILE_ID']));?>);
-<?}else{?>
+<?php}else{?>
 	EImport.Init(<?=CUtil::PhpToJSObject($arPost);?>);
-<?}?>
-<?endif; ?>
+<?php}?>
+<?phpendif; ?>
 //-->
 </script>
 
-<?
+<?php
 require ($DOCUMENT_ROOT."/bitrix/modules/main/include/epilog_admin.php");
 ?>

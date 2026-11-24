@@ -1,4 +1,4 @@
-<?
+<?php
 function GetPhpPathForCron($checkPath = false)
 {
 	if(!function_exists('exec')) return '/usr/bin/php';
@@ -459,54 +459,54 @@ if(preg_match_all("#^\s*(([\*\-/,\d]+\s+){5})(\S+)\s+.*?(\S+)".preg_quote(CODEMA
 			<col width="40%">
 			<col width="60%">
 			<!--<tr class="heading">
-				<td colspan="2"><?echo GetMessage("CODEMATRIX_IX_CRON_PROFILE_TITLE"); ?></td>
+				<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_CRON_PROFILE_TITLE"); ?></td>
 			</tr>-->
 			<tr>
-				<td class="adm-detail-content-cell-l" width="40%"><?echo GetMessage("CODEMATRIX_IX_CRON_CHOOSE_PROFILE");?>:</td>
+				<td class="adm-detail-content-cell-l" width="40%"><?phpecho GetMessage("CODEMATRIX_IX_CRON_CHOOSE_PROFILE");?>:</td>
 				<td class="adm-detail-content-cell-r">
-					<select name="PROFILE_ID[]" onchange="/*EProfile.Choose(this)*/" class="kit-chosen-multi" style="width: 400px;" size="3" multiple><?
-						/*?><option value=""><?echo GetMessage("CODEMATRIX_IX_CRON_NO_PROFILE"); ?></option><?*/
+					<select name="PROFILE_ID[]" onchange="/*EProfile.Choose(this)*/" class="kit-chosen-multi" style="width: 400px;" size="3" multiple><?php
+						/*?><option value=""><?phpecho GetMessage("CODEMATRIX_IX_CRON_NO_PROFILE"); ?></option><?php*/
 						foreach($arProfiles as $k=>$profile)
 						{
-							?><option value="<?echo $k;?>"><?echo $profile; ?></option><?
+							?><option value="<?phpecho $k;?>"><?phpecho $profile; ?></option><?php
 						}
 					?></select>
 				</td>
 			</tr>
 			<tr>
-				<td class="adm-detail-content-cell-l"><? echo GetMessage("CODEMATRIX_IX_CRON_PERIOD"); ?></td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_CRON_PERIOD"); ?></td>
 				<td class="adm-detail-content-cell-r">
 					<table cellspacing="0" cellpadding="0"><tr>
 					<td>
 					<select name="agent_period_type" onchange="$(this).closest('table').find('div').hide(); $('#agent_period_'+this.value).show();">
-						<option value="daily"><? echo GetMessage("CODEMATRIX_IX_CRON_PERIOD_DAILY"); ?></option>
-						<option value="hours"><? echo GetMessage("CODEMATRIX_IX_CRON_PERIOD_HOURS"); ?></option>
-						<option value="minutes"><? echo GetMessage("CODEMATRIX_IX_CRON_PERIOD_MINUTES"); ?></option>
-						<option value="expert"><? echo GetMessage("CODEMATRIX_IX_CRON_PERIOD_EXPERT"); ?></option>
+						<option value="daily"><?php echo GetMessage("CODEMATRIX_IX_CRON_PERIOD_DAILY"); ?></option>
+						<option value="hours"><?php echo GetMessage("CODEMATRIX_IX_CRON_PERIOD_HOURS"); ?></option>
+						<option value="minutes"><?php echo GetMessage("CODEMATRIX_IX_CRON_PERIOD_MINUTES"); ?></option>
+						<option value="expert"><?php echo GetMessage("CODEMATRIX_IX_CRON_PERIOD_EXPERT"); ?></option>
 					</select>
 					</td>
 					<td>&nbsp; &nbsp;</td>
 					<td>
-					<div id="agent_period_daily"><? echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT"); ?> &nbsp; <input type="text" name="agent_period_daily_hours" value="" size="1" maxlength="2" placeholder="0"> :<?/* echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT_HOURS"); */?> <input type="text" name="agent_period_daily_minutes" value="" size="1" maxlength="2" placeholder="00"> <? /*echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT_MINUTES");*/ ?></div>
-					<div id="agent_period_hours" style="display: none;"><? echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_HOURS"); ?>: <input type="text" name="agent_period_hours" value="" size="2" placeholder="1"> <? /*echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT_HOURS");*/ ?></div>
-					<div id="agent_period_minutes" style="display: none;"><? echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_MINUTES"); ?>: <input type="text" name="agent_period_minutes" value="" size="2" placeholder="15"> <? /*echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT_MINUTES");*/ ?></div>
-					<div id="agent_period_expert" style="display: none;"><? echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_EXPERT"); ?>: <input type="text" name="agent_period_expert" value="* * * * *" size="12"></div>
+					<div id="agent_period_daily"><?php echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT"); ?> &nbsp; <input type="text" name="agent_period_daily_hours" value="" size="1" maxlength="2" placeholder="0"> :<?php/* echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT_HOURS"); */?> <input type="text" name="agent_period_daily_minutes" value="" size="1" maxlength="2" placeholder="00"> <?php /*echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT_MINUTES");*/ ?></div>
+					<div id="agent_period_hours" style="display: none;"><?php echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_HOURS"); ?>: <input type="text" name="agent_period_hours" value="" size="2" placeholder="1"> <?php /*echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT_HOURS");*/ ?></div>
+					<div id="agent_period_minutes" style="display: none;"><?php echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_MINUTES"); ?>: <input type="text" name="agent_period_minutes" value="" size="2" placeholder="15"> <?php /*echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_AT_MINUTES");*/ ?></div>
+					<div id="agent_period_expert" style="display: none;"><?php echo GetMessage("CODEMATRIX_IX_CRON_PERIODVAL_EXPERT"); ?>: <input type="text" name="agent_period_expert" value="* * * * *" size="12"></div>
 					</td>
 					</tr></table>
 				</td>
 			</tr>
 			<tr>
-				<td class="adm-detail-content-cell-l"><? echo GetMessage("CODEMATRIX_IX_CRON_PHP_PATH"); ?> <span id="hint_CRON_PHP_PATH"></span><script>BX.hint_replace(BX('hint_CRON_PHP_PATH'), '<?echo GetMessage("CODEMATRIX_IX_CRON_PHP_PATH_HINT"); ?>');</script></td>
-				<td class="adm-detail-content-cell-r"><input type="text" name="agent_php_path" value="<?echo $phpPath;?>" size="25"></td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_CRON_PHP_PATH"); ?> <span id="hint_CRON_PHP_PATH"></span><script>BX.hint_replace(BX('hint_CRON_PHP_PATH'), '<?phpecho GetMessage("CODEMATRIX_IX_CRON_PHP_PATH_HINT"); ?>');</script></td>
+				<td class="adm-detail-content-cell-r"><input type="text" name="agent_php_path" value="<?phpecho $phpPath;?>" size="25"></td>
 			</tr>
 			<tr>
-				<td class="adm-detail-content-cell-l"><? echo GetMessage("CODEMATRIX_IX_CRON_AUTO_CRON"); ?> <span id="hint_CRON_AUTO_CRON"></span><script>BX.hint_replace(BX('hint_CRON_AUTO_CRON'), '<?echo GetMessage("CODEMATRIX_IX_CRON_AUTO_CRON_HINT"); ?>');</script></td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_CRON_AUTO_CRON"); ?> <span id="hint_CRON_AUTO_CRON"></span><script>BX.hint_replace(BX('hint_CRON_AUTO_CRON'), '<?phpecho GetMessage("CODEMATRIX_IX_CRON_AUTO_CRON_HINT"); ?>');</script></td>
 				<td class="adm-detail-content-cell-r"><input type="hidden" name="auto_cron_tasks" value="N"><input type="checkbox" name="auto_cron_tasks" value="Y" checked></td>
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align: center;">
-					<input type="submit" name="delete" value="<? echo GetMessage("CODEMATRIX_IX_CRON_UNSET"); ?>" onclick="return EProfile.SaveCron(this);">
-					<input type="submit" name="add" value="<? echo GetMessage("CODEMATRIX_IX_CRON_SET"); ?>" onclick="return EProfile.SaveCron(this);" data-name-change="<? echo GetMessage("CODEMATRIX_IX_CRON_CHANGE"); ?>" data-name-add="<? echo GetMessage("CODEMATRIX_IX_CRON_SET"); ?>">
+					<input type="submit" name="delete" value="<?php echo GetMessage("CODEMATRIX_IX_CRON_UNSET"); ?>" onclick="return EProfile.SaveCron(this);">
+					<input type="submit" name="add" value="<?php echo GetMessage("CODEMATRIX_IX_CRON_SET"); ?>" onclick="return EProfile.SaveCron(this);" data-name-change="<?php echo GetMessage("CODEMATRIX_IX_CRON_CHANGE"); ?>" data-name-add="<?php echo GetMessage("CODEMATRIX_IX_CRON_SET"); ?>">
 				</td>
 			</tr>
 		</table>
@@ -514,7 +514,7 @@ if(preg_match_all("#^\s*(([\*\-/,\d]+\s+){5})(\S+)\s+.*?(\S+)".preg_quote(CODEMA
 	
 	<div>&nbsp;</div>
 	<div id="kit-ix-cron-records_wrap">
-	<?
+	<?php
 	if(count($arRecords) > 0)
 	{
 	?>
@@ -525,16 +525,16 @@ if(preg_match_all("#^\s*(([\*\-/,\d]+\s+){5})(\S+)\s+.*?(\S+)".preg_quote(CODEMA
 			<col width="30px">
 			<tr class="heading">
 				<td colspan="4">
-					<? echo GetMessage("CODEMATRIX_IX_CRON_REC_TITLE"); ?>
+					<?php echo GetMessage("CODEMATRIX_IX_CRON_REC_TITLE"); ?>
 				</td>
 			</tr>
 			<tr class="kit-ix-cron-records-titles">
-				<td><? echo GetMessage("CODEMATRIX_IX_CRON_REC_TIME"); ?></td>
-				<td><? echo GetMessage("CODEMATRIX_IX_CRON_REC_PROFILE"); ?></td>
+				<td><?php echo GetMessage("CODEMATRIX_IX_CRON_REC_TIME"); ?></td>
+				<td><?php echo GetMessage("CODEMATRIX_IX_CRON_REC_PROFILE"); ?></td>
 				<td></td>
 				<td></td>
 			</tr>
-			<?
+			<?php
 			foreach($arRecords as $key=>$rec)
 			{
 				$arRecProfiles = array();
@@ -555,14 +555,14 @@ if(preg_match_all("#^\s*(([\*\-/,\d]+\s+){5})(\S+)\s+.*?(\S+)".preg_quote(CODEMA
 			}
 			?>
 		</table>
-	<?
+	<?php
 	}
 	?>
 	</div>
 	
-	<?echo BeginNote();?>
-		<? echo GetMessage("CODEMATRIX_IX_CRON_DESCRIPTION"); ?>
-		<? if(!$cronWritable){echo '<br><br>'.GetMessage("CODEMATRIX_IX_CRON_NOT_WRITABLE");} ?>
-	<?echo EndNote();?>
+	<?phpecho BeginNote();?>
+		<?php echo GetMessage("CODEMATRIX_IX_CRON_DESCRIPTION"); ?>
+		<?php if(!$cronWritable){echo '<br><br>'.GetMessage("CODEMATRIX_IX_CRON_NOT_WRITABLE");} ?>
+	<?phpecho EndNote();?>
 </form>
-<?require($docRoot."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?phprequire($docRoot."/bitrix/modules/main/include/epilog_popup_admin.php");?>

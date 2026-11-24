@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_SETTINGS"] = "Настройки";
 $MESS["CODEMATRIX_IX_SETTINGS_TITLE"] = "Настройки";
 $MESS["CODEMATRIX_IX_SET_MAX_EXECUTION_TIME"] = "Установить максимальное время выполнения скрипта импорта?";

@@ -1,8 +1,8 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once ($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 $moduleId = 'codematrix.importxml';
-$moduleFilePrefix = 'kit_import_xml';
+$moduleFilePrefix = 'codematrix_import_xml';
 $moduleJsId = str_replace('.', '_', $moduleId);
 CModule::IncludeModule("iblock");
 CModule::IncludeModule($moduleId);
@@ -55,9 +55,9 @@ if($REQUEST_METHOD == "POST" && check_bitrix_sessid())
 		echo $message->Show();
 		?>
 		<script type="text/javascript">
-			DoNext(<?echo CUtil::PhpToJSObject($arResult['NS'])?>);
+			DoNext(<?phpecho CUtil::PhpToJSObject($arResult['NS'])?>);
 		</script>
-		<?
+		<?php
 		die();
 	}
 }
@@ -145,9 +145,9 @@ function DoNext(NS)
 </script>
 <div id="rollback_result_div"></div>
 
-<form method="POST" action="<?echo $sDocPath ?>?lang=<?echo LANG ?>" ENCTYPE="multipart/form-data" name="rollback" id="kit-ix-rollback">
+<form method="POST" action="<?phpecho $sDocPath ?>?lang=<?phpecho LANG ?>" ENCTYPE="multipart/form-data" name="rollback" id="kit-ix-rollback">
 
-<?
+<?php
 $oProfile = \Bitrix\CodeMatrixImportxml\Profile::getInstance();
 $arProfile = (strlen($PROFILE_ID) > 0 ? $oProfile->GetFieldsByID($PROFILE_ID) : array());
 $aTabs = array(
@@ -163,18 +163,18 @@ $tabControl = new CAdminTabControl("tabControl", $aTabs, false, true);
 $tabControl->Begin();
 ?>
 
-<?$tabControl->BeginNextTab();?>
+<?php$tabControl->BeginNextTab();?>
 
 	<!--<tr class="heading">
 		<td colspan="2" class="kit-ix-profile-header">
 			<div>
-				<?echo GetMessage("CODEMATRIX_IX_PROFILE_HEADER"); ?>
-				<a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?echo GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="kit-ix-help-link"></a>
+				<?phpecho GetMessage("CODEMATRIX_IX_PROFILE_HEADER"); ?>
+				<a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?phpecho GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="kit-ix-help-link"></a>
 			</div>
 		</td>
 	</tr>-->
 	
-	<?
+	<?php
 	$arDates = array();
 	$dbRes = \Bitrix\CodeMatrixImportxml\ProfileExecTable::getList(array(
 		'filter'=>array('PROFILE_ID'=>$PROFILE_ID+1, '!STAT_ID'=>false), 
@@ -196,26 +196,26 @@ $tabControl->Begin();
 	{
 	?>
 		<tr>
-			<td width="50%"><?echo GetMessage("CODEMATRIX_IX_ROLLBACK_DATETIME"); ?>:</td>
+			<td width="50%"><?phpecho GetMessage("CODEMATRIX_IX_ROLLBACK_DATETIME"); ?>:</td>
 			<td>
 				<select name="PROFILE_EXEC_ID" id="PROFILE_EXEC_ID">
-					<?
+					<?php
 					foreach($arDates as $arr)
 					{
-						?><option value="<?echo $arr['ID']?>"><?echo $arr['DATE_START']->toString()?></option><?
+						?><option value="<?phpecho $arr['ID']?>"><?phpecho $arr['DATE_START']->toString()?></option><?php
 					}
 					?>
 				</select>
 			</td>
 		</tr>
-	<?
+	<?php
 	}
 	else
 	{
 		echo GetMessage("CODEMATRIX_IX_ROLLBACK_DATES_NOTFOUND");
 	}
 	?>
-<?
+<?php
 $tabControl->EndTab();
 
 $tabControl->Buttons();
@@ -224,12 +224,12 @@ echo bitrix_sessid_post();
 if(strlen($PROFILE_ID) > 0 && !empty($arDates))
 {
 ?>
-	<input type="button" id="start_button" value="<?echo GetMessage("CODEMATRIX_IX_ROLLBACK_START_BUTTON")?>" OnClick="StartRollback();" class="adm-btn-save">
+	<input type="button" id="start_button" value="<?phpecho GetMessage("CODEMATRIX_IX_ROLLBACK_START_BUTTON")?>" OnClick="StartRollback();" class="adm-btn-save">
 	<input type="button" id="stop_button" value="<?=GetMessage("CODEMATRIX_IX_ROLLBACK_STOP_BUTTON")?>" OnClick="StopRollback();" disabled>
 	<input type="button" id="continue_button" value="<?=GetMessage("CODEMATRIX_IX_ROLLBACK_CONTINUE_BUTTON")?>" OnClick="ContinueRollback();" disabled>
 
-	<input type="hidden" name="PROFILE_ID" value="<?echo htmlspecialcharsbx($PROFILE_ID) ?>">
-<?
+	<input type="hidden" name="PROFILE_ID" value="<?phpecho htmlspecialcharsbx($PROFILE_ID) ?>">
+<?php
 }
 
 $arParams = array('STEPS_TIME'=>0, 'STEPS_DELAY'=>0);
@@ -246,9 +246,9 @@ else
 	if($stepsTime > 0) $arParams['STEPS_TIME'] = $stepsTime;
 }
 ?>
-<input type="hidden" name="STEPS_TIME" id="STEPS_TIME" value="<?echo (int)$arParams['STEPS_TIME'] ?>">
-<input type="hidden" name="STEPS_DELAY" id="STEPS_DELAY" value="<?echo (int)$arParams['STEPS_DELAY'] ?>">
-<?
+<input type="hidden" name="STEPS_TIME" id="STEPS_TIME" value="<?phpecho (int)$arParams['STEPS_TIME'] ?>">
+<input type="hidden" name="STEPS_DELAY" id="STEPS_DELAY" value="<?phpecho (int)$arParams['STEPS_DELAY'] ?>">
+<?php
 
 $tabControl->End();
 ?>
@@ -258,7 +258,7 @@ $tabControl->End();
 tabControl.SelectTab("edit1");
 </script>
 
-<?
+<?php
 echo BeginNote();
 echo GetMessage("CODEMATRIX_IX_ROLLBACK_BOTTOM_NOTE");
 echo EndNote();

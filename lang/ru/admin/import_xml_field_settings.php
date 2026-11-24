@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_SETTING_UPLOAD_FIELD"] = "Настройки загрузки поля";
 $MESS["CODEMATRIX_IX_SF_DO_UID"] = "Использовать в качестве поля для идентификации элемента";
 $MESS["CODEMATRIX_IX_FIELD_CURRENCY"] = "Цена указана в валюте";

@@ -1096,27 +1096,27 @@ class Profile {
 	public function ShowProfileList($fname, $PROFILE_ID='')
 	{
 		$arProfiles = $this->GetList(is_numeric($PROFILE_ID) && strlen($PROFILE_ID) > 0 ? array('LOGIC'=>'OR', array('ACTIVE'=>'Y'), array('ID'=>$PROFILE_ID+1)) : array());
-		?><select name="<?echo $fname;?>" id="<?echo $fname;?>" onchange="EProfile.Choose(this)" style="max-width: 400px; padding-right: 30px;"><?
-			?><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_NO_PROFILE"); ?></option><?
-			?><option value="new" <?if($_REQUEST[$fname]=='new'){echo 'selected';}?>><?echo Loc::getMessage("CODEMATRIX_IX_NEW_PROFILE"); ?></option><?
+		?><select name="<?phpecho $fname;?>" id="<?phpecho $fname;?>" onchange="EProfile.Choose(this)" style="max-width: 400px; padding-right: 30px;"><?php
+			?><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_NO_PROFILE"); ?></option><?php
+			?><option value="new" <?phpif($_REQUEST[$fname]=='new'){echo 'selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_NEW_PROFILE"); ?></option><?php
 			foreach($arProfiles as $k=>$profile)
 			{
-				?><option value="<?echo $k;?>" <?if(strlen($_REQUEST[$fname])>0 && strval($_REQUEST[$fname])===strval($k)){echo 'selected';}?>><?echo '['.$k.'] '.$profile; ?></option><?
+				?><option value="<?phpecho $k;?>" <?phpif(strlen($_REQUEST[$fname])>0 && strval($_REQUEST[$fname])===strval($k)){echo 'selected';}?>><?phpecho '['.$k.'] '.$profile; ?></option><?php
 			}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function ShowProfileListAlt($fname, $PROFILE_ID='')
 	{
 		//$arProfiles = $this->GetList(is_numeric($PROFILE_ID) && strlen($PROFILE_ID) > 0 ? array('LOGIC'=>'OR', array('ACTIVE'=>'Y'), array('ID'=>$PROFILE_ID+1)) : array());
 		$arProfiles = $this->GetList();
-		?><select name="<?echo $fname;?>" id="<?echo $fname;?>"><?
-			?><option value=""><?echo Loc::getMessage("CODEMATRIX_IX_NO_PROFILE"); ?></option><?
+		?><select name="<?phpecho $fname;?>" id="<?phpecho $fname;?>"><?php
+			?><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_NO_PROFILE"); ?></option><?php
 			foreach($arProfiles as $k=>$profile)
 			{
-				?><option value="<?echo $k;?>" <?if(is_numeric($PROFILE_ID) && strlen($PROFILE_ID) > 0 && strval($PROFILE_ID)===strval($k)){echo 'selected';}?>><?echo $profile; ?></option><?
+				?><option value="<?phpecho $k;?>" <?phpif(is_numeric($PROFILE_ID) && strlen($PROFILE_ID) > 0 && strval($PROFILE_ID)===strval($k)){echo 'selected';}?>><?phpecho $profile; ?></option><?php
 			}
-		?></select><?
+		?></select><?php
 	}
 	
 	public function SetParams($params=array())

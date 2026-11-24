@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['CODEMATRIX_IX_GROUP_ELEMENT'] = "Элемент (товар)";
 $MESS['CODEMATRIX_IX_GROUP_OFFER'] = "Торговое предложение";
 $MESS['CODEMATRIX_IX_GROUP_SECTION'] = "Раздел";

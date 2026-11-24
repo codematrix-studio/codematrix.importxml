@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/iblock/prolog.php");
@@ -200,10 +200,10 @@ if($_POST['action']=='save' && $_POST['AUTH_SETTINGS'])
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_admin.php");
 ?>
-<form action="<?echo $APPLICATION->GetCurUri();?>" method="post" enctype="multipart/form-data" name="field_settings">
+<form action="<?phpecho $APPLICATION->GetCurUri();?>" method="post" enctype="multipart/form-data" name="field_settings">
 	<input type="hidden" name="action" value="save">
-	<?//ShowPostData($_POST);?>
-	<?
+	<?php//ShowPostData($_POST);?>
+	<?php
 	echo BeginNote();
 	echo GetMessage("CODEMATRIX_IX_AUTH_LINK_VIDEO").' <a target="_blank" href="https://www.youtube.com/watch?v=GIH8VboVSNA">https://www.youtube.com/watch?v=GIH8VboVSNA</a>';
 	echo EndNote();
@@ -212,37 +212,37 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 		<col width="50%">
 		<col width="50%">
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_LAUTH_FILELINK");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_LAUTH_FILELINK");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" size="50" name="AUTH_SETTINGS[FILELINK]" value="<?echo htmlspecialcharsbx($AUTH_SETTINGS['FILELINK'])?>">
+				<input type="text" size="50" name="AUTH_SETTINGS[FILELINK]" value="<?phpecho htmlspecialcharsbx($AUTH_SETTINGS['FILELINK'])?>">
 			</td>
 		</tr>
 		<tr>
 			<td class="kit-ix-email-checkparams" colspan="2">
-				<a href="javascript:void(0)" onclick="EProfile.CheckLauthConnectData(this)"><?echo GetMessage("CODEMATRIX_IX_LAUTH_CHECK_SETTINGS");?></a> <div id="connect_result"></div>
+				<a href="javascript:void(0)" onclick="EProfile.CheckLauthConnectData(this)"><?phpecho GetMessage("CODEMATRIX_IX_LAUTH_CHECK_SETTINGS");?></a> <div id="connect_result"></div>
 				<div>&nbsp;</div>
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_LAUTH_PAGEAUTH");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_LAUTH_PAGEAUTH");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" size="50" name="AUTH_SETTINGS[PAGEAUTH]" value="<?echo htmlspecialcharsbx($AUTH_SETTINGS['PAGEAUTH'])?>" onchange="EProfile.LauthLoadParams(this)">
+				<input type="text" size="50" name="AUTH_SETTINGS[PAGEAUTH]" value="<?phpecho htmlspecialcharsbx($AUTH_SETTINGS['PAGEAUTH'])?>" onchange="EProfile.LauthLoadParams(this)">
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_LAUTH_POSTPAGEAUTH");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_LAUTH_POSTPAGEAUTH");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" size="50" name="AUTH_SETTINGS[POSTPAGEAUTH]" value="<?echo htmlspecialcharsbx($AUTH_SETTINGS['POSTPAGEAUTH'])?>">
+				<input type="text" size="50" name="AUTH_SETTINGS[POSTPAGEAUTH]" value="<?phpecho htmlspecialcharsbx($AUTH_SETTINGS['POSTPAGEAUTH'])?>">
 			</td>
 		</tr>
 		
 		
 		<tr class="heading">
 			<td colspan="2">
-				<?echo GetMessage("CODEMATRIX_IX_LAUTH_VARS"); ?>
+				<?phpecho GetMessage("CODEMATRIX_IX_LAUTH_VARS"); ?>
 			</td>
 		</tr>
-		<?
+		<?php
 		if(!is_array($AUTH_SETTINGS['VARS'])) $AUTH_SETTINGS['VARS'] = array();
 		if(count($AUTH_SETTINGS['VARS']) < 1) $AUTH_SETTINGS['VARS'][''] = '';
 		foreach($AUTH_SETTINGS['VARS'] as $var=>$value)
@@ -250,29 +250,29 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			?>
 			<tr class="kit-ix-lauth-var">
 				<td class="adm-detail-content-cell-l">
-					<?echo GetMessage("CODEMATRIX_IX_LAUTH_VAR");?>:
-					<input type="text" name="vars[]" value="<?echo htmlspecialcharsbx($var)?>">
+					<?phpecho GetMessage("CODEMATRIX_IX_LAUTH_VAR");?>:
+					<input type="text" name="vars[]" value="<?phpecho htmlspecialcharsbx($var)?>">
 				</td>
 				<td class="adm-detail-content-cell-r">
-					<?echo GetMessage("CODEMATRIX_IX_LAUTH_VALUE");?>:
-					<input type="text" name="values[]" value="<?echo htmlspecialcharsbx($value)?>">
+					<?phpecho GetMessage("CODEMATRIX_IX_LAUTH_VALUE");?>:
+					<input type="text" name="values[]" value="<?phpecho htmlspecialcharsbx($value)?>">
 				</td>
 			</tr>
-			<?
+			<?php
 		}
 		?>
 		<tr>
 			<td colspan="2" class="kit-ix-email-checkparams kit-ix-lauth-addvar">
-				<a href="javascript:void(0)" onclick="EProfile.LauthAddVar(this)"><?echo GetMessage("CODEMATRIX_IX_LAUTH_ADD_VAR");?></a>
+				<a href="javascript:void(0)" onclick="EProfile.LauthAddVar(this)"><?phpecho GetMessage("CODEMATRIX_IX_LAUTH_ADD_VAR");?></a>
 			</td>
 		</tr>
 		
 		<tr class="heading">
 			<td colspan="2">
-				<?echo GetMessage("CODEMATRIX_IX_LAUTH_HEADERS"); ?>
+				<?phpecho GetMessage("CODEMATRIX_IX_LAUTH_HEADERS"); ?>
 			</td>
 		</tr>
-		<?
+		<?php
 		if(!is_array($AUTH_SETTINGS['HEADERS'])) $AUTH_SETTINGS['HEADERS'] = array();
 		if(count($AUTH_SETTINGS['HEADERS']) < 1) $AUTH_SETTINGS['HEADERS'][''] = '';
 		foreach($AUTH_SETTINGS['HEADERS'] as $var=>$value)
@@ -280,40 +280,40 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			?>
 			<tr class="kit-ix-lauth-var">
 				<td class="adm-detail-content-cell-l">
-					<?echo GetMessage("CODEMATRIX_IX_LAUTH_HEADER");?>:
-					<input type="text" name="headers[]" value="<?echo htmlspecialcharsbx($var)?>">
+					<?phpecho GetMessage("CODEMATRIX_IX_LAUTH_HEADER");?>:
+					<input type="text" name="headers[]" value="<?phpecho htmlspecialcharsbx($var)?>">
 				</td>
 				<td class="adm-detail-content-cell-r">
-					<?echo GetMessage("CODEMATRIX_IX_LAUTH_VALUE");?>:
-					<input type="text" name="hvalues[]" value="<?echo htmlspecialcharsbx($value)?>">
+					<?phpecho GetMessage("CODEMATRIX_IX_LAUTH_VALUE");?>:
+					<input type="text" name="hvalues[]" value="<?phpecho htmlspecialcharsbx($value)?>">
 				</td>
 			</tr>
-			<?
+			<?php
 		}
 		?>
 		<tr>
 			<td colspan="2" class="kit-ix-email-checkparams">
-				<a href="javascript:void(0)" onclick="EProfile.LauthAddVar(this)"><?echo GetMessage("CODEMATRIX_IX_LAUTH_ADD_HEADER");?></a>
+				<a href="javascript:void(0)" onclick="EProfile.LauthAddVar(this)"><?phpecho GetMessage("CODEMATRIX_IX_LAUTH_ADD_HEADER");?></a>
 			</td>
 		</tr>
 		
 		<tr class="heading">
 			<td colspan="2">
-				<?echo GetMessage("CODEMATRIX_IX_LAUTH_OTHER_PARAMS"); ?>
+				<?phpecho GetMessage("CODEMATRIX_IX_LAUTH_OTHER_PARAMS"); ?>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" class="kit-ix-linkauth-handler">
-				<p><?echo GetMessage("CODEMATRIX_IX_LAUTH_HANDLER_FOR_LINK"); ?>:</p>
-				<?
+				<p><?phpecho GetMessage("CODEMATRIX_IX_LAUTH_HANDLER_FOR_LINK"); ?>:</p>
+				<?php
 				if(!$AUTH_SETTINGS['HANDLER_FOR_LINK'] && $AUTH_SETTINGS['HANDLER_FOR_LINK_BASE64'])
 				{
 					$AUTH_SETTINGS['HANDLER_FOR_LINK'] = base64_decode($AUTH_SETTINGS['HANDLER_FOR_LINK_BASE64']);
 				}
 				?>
-				<textarea name="AUTH_SETTINGS[HANDLER_FOR_LINK]"><?echo $AUTH_SETTINGS['HANDLER_FOR_LINK']?></textarea>
+				<textarea name="AUTH_SETTINGS[HANDLER_FOR_LINK]"><?phpecho $AUTH_SETTINGS['HANDLER_FOR_LINK']?></textarea>
 			</td>
 		</tr>
 	</table>
 </form>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

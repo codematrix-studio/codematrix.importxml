@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS["CODEMATRIX_IX_ADM_FILE_ADD"] = "Добавить файл";
 $MESS["CODEMATRIX_IX_ADM_FILE_ADD_M"] = "Добавить файлы";
 $MESS["CODEMATRIX_IX_ADM_FILE_UPLOAD"] = "Загрузить с компьютера";

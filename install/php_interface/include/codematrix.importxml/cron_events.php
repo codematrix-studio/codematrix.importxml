@@ -1,4 +1,4 @@
-<?
+<?php
 @set_time_limit(0);
 if(!defined('NOT_CHECK_PERMISSIONS')) define('NOT_CHECK_PERMISSIONS', true);
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);

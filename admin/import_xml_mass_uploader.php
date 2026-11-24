@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
 $module_id = 'codematrix.importxml';
@@ -71,7 +71,7 @@ if($_POST)
 {
 	?><script>
 		EProfile.MassUploaderSetButtons(true);
-	</script><?
+	</script><?php
 }
 
 $folder = '/upload/images/';
@@ -84,14 +84,14 @@ elseif(COption::GetOptionString($module_id, 'IMAGES_PATH')) $folder = COption::G
 		<col width="50%">
 		<col width="50%">
 		<tr>
-			<td class="adm-detail-content-cell-l"><?echo GetMessage("CODEMATRIX_IX_MASS_UPLOAD_FOLDER");?>:</td>
+			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_MASS_UPLOAD_FOLDER");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="folder" value="<?echo htmlspecialcharsex($folder);?>" size="30">
+				<input type="text" name="folder" value="<?phpecho htmlspecialcharsex($folder);?>" size="30">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<?
+				<?php
 				$fileInput = new \Bitrix\Main\UI\FileInput(array(
 					'name' => 'images[]', 
 					'edit' => false, 
@@ -105,4 +105,4 @@ elseif(COption::GetOptionString($module_id, 'IMAGES_PATH')) $folder = COption::G
 		</tr>
 	</table>
 </form>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

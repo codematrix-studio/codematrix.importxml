@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['GD_CODEMATRIX_IX_NO_DATA'] = "No profile has been created yet.";
 $MESS['GD_CODEMATRIX_IX_PROFILE_ID'] = "ID";
 $MESS['GD_CODEMATRIX_IX_PROFILE_NAME'] = "Profile name";
