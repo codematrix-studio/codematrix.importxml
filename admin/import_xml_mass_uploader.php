@@ -71,11 +71,25 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['a
 					if(empty($arImage['tmp_name']) || empty($arImage['name'])) continue;
 					$tmpName = str_replace('\\', '/', (string)$arImage['tmp_name']);
 					$tmpName = ltrim($tmpName, '/');
-					$candidate = realpath(rtrim(CTempFile::GetAbsoluteRoot(), '/\\').DIRECTORY_SEPARATOR.$tmpName);
-					if(!$candidate || !$tempRoot || strpos($candidate, rtrim($tempRoot, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR) !== 0 || !is_file($candidate))
+					$candidatePaths = array(
+						realpath($documentRoot.DIRECTORY_SEPARATOR.$tmpName),
+						realpath(rtrim(CTempFile::GetAbsoluteRoot(), '/\\').DIRECTORY_SEPARATOR.$tmpName),
+						realpath((string)$arImage['tmp_name'])
+					);
+					$candidate = false;
+					if($tempRoot)
 					{
-						continue;
+						$tempPrefix = rtrim($tempRoot, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+						foreach($candidatePaths as $candidatePath)
+						{
+							if($candidatePath && strpos($candidatePath, $tempPrefix) === 0 && is_file($candidatePath))
+							{
+								$candidate = $candidatePath;
+								break;
+							}
+						}
 					}
+					if(!$candidate) continue;
 
 					$originalName = basename(str_replace('\\', '/', (string)$arImage['name']));
 					$imgName = \Bitrix\Main\IO\Path::convertLogicalToPhysical($originalName);
