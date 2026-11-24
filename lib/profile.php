@@ -7,7 +7,7 @@ Loc::loadMessages(__FILE__);
 
 class Profile {
 	protected static $moduleId = 'codematrix.importxml';
-	protected static $moduleFilePrefix = 'kit_import_xml';
+	protected static $moduleFilePrefix = 'codematrix_import_xml';
 	protected static $dbIsPrepared = false;
 	protected static $instance = array();
 	private $params = array();
