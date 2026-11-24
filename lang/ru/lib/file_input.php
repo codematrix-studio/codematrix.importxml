@@ -1,0 +1,29 @@
+<?php
+$MESS["CODEMATRIX_IX_ADM_FILE_ADD"] = "Добавить файл";
+$MESS["CODEMATRIX_IX_ADM_FILE_ADD_M"] = "Добавить файлы";
+$MESS["CODEMATRIX_IX_ADM_FILE_UPLOAD"] = "Загрузить с компьютера";
+$MESS["CODEMATRIX_IX_ADM_FILE_MEDIALIB"] = "Выбрать из медиабиблиотеки";
+$MESS["CODEMATRIX_IX_ADM_FILE_SITE"] = "Выбрать из структуры";
+$MESS["CODEMATRIX_IX_ADM_FILE_CLOUD"] = "Загрузить из облаков";
+$MESS["CODEMATRIX_IX_ADM_FILE_NEW_UPLOAD"] = "Заменить файлом с компьютера";
+$MESS["CODEMATRIX_IX_ADM_FILE_NEW_MEDIALIB"] = "Заменить файлом из медиабиблиотеки";
+$MESS["CODEMATRIX_IX_ADM_FILE_NEW_SITE"] = "Заменить файлом из структуры";
+$MESS["CODEMATRIX_IX_ADM_FILE_NEW_CLOUD"] = "Заменить файлом из облаков";
+$MESS["CODEMATRIX_IX_ADM_FILE_CLEAR"] = "Отменить выбор";
+$MESS["CODEMATRIX_IX_ADM_FILE_DELETE"] = "Удалить";
+$MESS["CODEMATRIX_IX_ADM_FILE_ADD_DESC"] = "Добавить описание";
+$MESS["CODEMATRIX_IX_ADM_FILE_DESC"] = "описание...";
+$MESS["CODEMATRIX_IX_ADM_FILE_DESCRIPTION"] = "Описание";
+$MESS["CODEMATRIX_IX_ADM_FILE_INFO_SIZE"] = "Объем";
+$MESS["CODEMATRIX_IX_ADM_FILE_INFO_DIM"] = "Размер";
+$MESS["CODEMATRIX_IX_ADM_FILE_INFO_LINK"] = "Ссылка";
+$MESS["CODEMATRIX_IX_ADM_FILE_INFO_DATETIME"] = "Дата загрузки";
+$MESS["CODEMATRIX_IX_ADM_FILE_DOWNLOAD_LINK"] = "Скачать файл";
+$MESS["CODEMATRIX_IX_ADM_FILE_DELETED_TITLE"] = "Изображение<br>будет<br>удалено";
+$MESS["CODEMATRIX_IX_ADM_FILE_CANCEL_DEL"] = "Отменить удаление";
+$MESS["CODEMATRIX_IX_ADM_FILE_INSERT_PATH"] = "Вставить путь к файлу";
+$MESS["CODEMATRIX_IX_ADM_FILE_NOT_FOUND"] = "Файл не найден";
+$MESS["CODEMATRIX_IX_ADM_FILE_NEW_NOT_UPDATE"] = "Не загружать новый файл";
+$MESS['CODEMATRIX_IX_FILE_SOURCE_EMAIL'] = "Загрузить файл с Email-адреса";
+$MESS['CODEMATRIX_IX_FILE_SOURCE_LINKAUTH'] = "Загрузить файл по ссылке с авторизацией";
+?>

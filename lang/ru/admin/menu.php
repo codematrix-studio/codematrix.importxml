@@ -1,0 +1,8 @@
+<?php
+$MESS['CODEMATRIX_MENU_IMPORT_TITLE_PARENT'] = 'Импорт из XML/YML';
+$MESS['CODEMATRIX_MENU_IMPORT_TITLE'] = 'Импорт';
+$MESS['CODEMATRIX_MENU_IMPORT_TITLE_HIGHLOAD'] = 'Импорт в highload-блоки';
+$MESS['CODEMATRIX_MENU_IMPORT_TITLE_STAT_WRAP'] = 'Статистика';
+$MESS['CODEMATRIX_MENU_IMPORT_TITLE_STAT'] = 'История запуска профилей';
+$MESS['CODEMATRIX_MENU_IMPORT_TITLE_STAT_DETAIL'] = 'Детальная статистика';
+?>
