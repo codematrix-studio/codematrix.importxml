@@ -55,7 +55,7 @@ if($REQUEST_METHOD == "POST" && check_bitrix_sessid())
 		echo $message->Show();
 		?>
 		<script type="text/javascript">
-			DoNext(<?phpecho CUtil::PhpToJSObject($arResult['NS'])?>);
+			DoNext(<?php echo CUtil::PhpToJSObject($arResult['NS'])?>);
 		</script>
 		<?php
 		die();
@@ -145,7 +145,7 @@ function DoNext(NS)
 </script>
 <div id="rollback_result_div"></div>
 
-<form method="POST" action="<?phpecho $sDocPath ?>?lang=<?phpecho LANG ?>" ENCTYPE="multipart/form-data" name="rollback" id="kit-ix-rollback">
+<form method="POST" action="<?php echo $sDocPath ?>?lang=<?php echo LANG ?>" ENCTYPE="multipart/form-data" name="rollback" id="kit-ix-rollback">
 
 <?php
 $oProfile = \Bitrix\CodeMatrixImportxml\Profile::getInstance();
@@ -163,13 +163,13 @@ $tabControl = new CAdminTabControl("tabControl", $aTabs, false, true);
 $tabControl->Begin();
 ?>
 
-<?php$tabControl->BeginNextTab();?>
+<?php $tabControl->BeginNextTab();?>
 
 	<!--<tr class="heading">
 		<td colspan="2" class="kit-ix-profile-header">
 			<div>
-				<?phpecho GetMessage("CODEMATRIX_IX_PROFILE_HEADER"); ?>
-				<a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?phpecho GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="kit-ix-help-link"></a>
+				<?php echo GetMessage("CODEMATRIX_IX_PROFILE_HEADER"); ?>
+				<a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?php echo GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="kit-ix-help-link"></a>
 			</div>
 		</td>
 	</tr>-->
@@ -196,13 +196,13 @@ $tabControl->Begin();
 	{
 	?>
 		<tr>
-			<td width="50%"><?phpecho GetMessage("CODEMATRIX_IX_ROLLBACK_DATETIME"); ?>:</td>
+			<td width="50%"><?php echo GetMessage("CODEMATRIX_IX_ROLLBACK_DATETIME"); ?>:</td>
 			<td>
 				<select name="PROFILE_EXEC_ID" id="PROFILE_EXEC_ID">
 					<?php
 					foreach($arDates as $arr)
 					{
-						?><option value="<?phpecho $arr['ID']?>"><?phpecho $arr['DATE_START']->toString()?></option><?php
+						?><option value="<?php echo $arr['ID']?>"><?php echo $arr['DATE_START']->toString()?></option><?php
 					}
 					?>
 				</select>
@@ -224,11 +224,11 @@ echo bitrix_sessid_post();
 if(strlen($PROFILE_ID) > 0 && !empty($arDates))
 {
 ?>
-	<input type="button" id="start_button" value="<?phpecho GetMessage("CODEMATRIX_IX_ROLLBACK_START_BUTTON")?>" OnClick="StartRollback();" class="adm-btn-save">
+	<input type="button" id="start_button" value="<?php echo GetMessage("CODEMATRIX_IX_ROLLBACK_START_BUTTON")?>" OnClick="StartRollback();" class="adm-btn-save">
 	<input type="button" id="stop_button" value="<?=GetMessage("CODEMATRIX_IX_ROLLBACK_STOP_BUTTON")?>" OnClick="StopRollback();" disabled>
 	<input type="button" id="continue_button" value="<?=GetMessage("CODEMATRIX_IX_ROLLBACK_CONTINUE_BUTTON")?>" OnClick="ContinueRollback();" disabled>
 
-	<input type="hidden" name="PROFILE_ID" value="<?phpecho htmlspecialcharsbx($PROFILE_ID) ?>">
+	<input type="hidden" name="PROFILE_ID" value="<?php echo htmlspecialcharsbx($PROFILE_ID) ?>">
 <?php
 }
 
@@ -246,8 +246,8 @@ else
 	if($stepsTime > 0) $arParams['STEPS_TIME'] = $stepsTime;
 }
 ?>
-<input type="hidden" name="STEPS_TIME" id="STEPS_TIME" value="<?phpecho (int)$arParams['STEPS_TIME'] ?>">
-<input type="hidden" name="STEPS_DELAY" id="STEPS_DELAY" value="<?phpecho (int)$arParams['STEPS_DELAY'] ?>">
+<input type="hidden" name="STEPS_TIME" id="STEPS_TIME" value="<?php echo (int)$arParams['STEPS_TIME'] ?>">
+<input type="hidden" name="STEPS_DELAY" id="STEPS_DELAY" value="<?php echo (int)$arParams['STEPS_DELAY'] ?>">
 <?php
 
 $tabControl->End();

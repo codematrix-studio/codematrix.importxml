@@ -63,14 +63,14 @@ if($_GET['action']=='showoldparams' || $_GET['action']=='saveoldparams')
 				<col width="50%">
 				<col width="50%">
 				<tr>
-					<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_OLD_SETTINGS_PROFILE_NAME")?>:</td>
-					<td class="adm-detail-content-cell-r"><b><?phpecho $arProfile['NAME']?></b></td>
+					<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_OLD_SETTINGS_PROFILE_NAME")?>:</td>
+					<td class="adm-detail-content-cell-r"><b><?php echo $arProfile['NAME']?></b></td>
 				</tr>
 				<tr>
-					<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_OLD_SETTINGS_RESTORE_POINT")?>:</td>
+					<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_OLD_SETTINGS_RESTORE_POINT")?>:</td>
 					<td class="adm-detail-content-cell-r">
 						<select name="restore_point" id="restore_point">
-							<option value=""><?phpecho GetMessage("CODEMATRIX_IX_OLD_SETTINGS_RESTORE_POINT_CURRENT")?></option>
+							<option value=""><?php echo GetMessage("CODEMATRIX_IX_OLD_SETTINGS_RESTORE_POINT_CURRENT")?></option>
 						<?php
 						foreach($arChanges as $arChangeItem)
 						{
@@ -325,7 +325,7 @@ $context = new CAdminContextMenu($aMenu);
 $context->Show();
 ?>
 
-<form name="find_form" method="GET" action="<?phpecho $APPLICATION->GetCurPage()?>?">
+<form name="find_form" method="GET" action="<?php echo $APPLICATION->GetCurPage()?>?">
 <?php
 $oFilter = new CAdminFilter(
 	$sTableID."_filter",
@@ -337,9 +337,9 @@ $oFilter = new CAdminFilter(
 $oFilter->Begin();
 ?>
 	<tr>
-		<td><?phpecho GetMessage("CODEMATRIX_IX_F_NAME")?>:</td>
+		<td><?php echo GetMessage("CODEMATRIX_IX_F_NAME")?>:</td>
 		<td>
-			<input type="text" name="filter_name" value="<?phpecho htmlspecialcharsex($filter_name)?>">
+			<input type="text" name="filter_name" value="<?php echo htmlspecialcharsex($filter_name)?>">
 		</td>
 	</tr>
 <?php

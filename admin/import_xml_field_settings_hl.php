@@ -149,18 +149,18 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 	<table width="100%">
 		<col width="50%">
 		<col width="50%">
-		<?phpif($bVariable){?>
+		<?php if($bVariable){?>
 			<tr>
-				<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_VARIABLE_NAME");?>:</td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_VARIABLE_NAME");?>:</td>
 				<td class="adm-detail-content-cell-r">
-					<b>{<?phpecho $_GET['index'];?>}</b>
+					<b>{<?php echo $_GET['index'];?>}</b>
 				</td>
 			</tr>
-		<?php}?>	
+		<?php }?>	
 	
-		<?phpif($bIblockElement){?>
+		<?php if($bIblockElement){?>
 			<tr>
-				<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_REL_ELEMENT_FIELD");?>:</td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_REL_ELEMENT_FIELD");?>:</td>
 				<td class="adm-detail-content-cell-r">
 					<?php
 					list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'REL_ELEMENT_FIELD');
@@ -171,36 +171,36 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						$strOptions = $m[0].str_replace($m[0], '', $strOptions);
 					}
 					?>
-					<select name="<?phpecho $fName;?>" class="chosen" style="max-width: 450px;"><?phpecho $strOptions;?></select>
+					<select name="<?php echo $fName;?>" class="chosen" style="max-width: 450px;"><?php echo $strOptions;?></select>
 				</td>
 			</tr>
-		<?php}?>
+		<?php }?>
 		
-		<?phpif($bIblockSection){?>
+		<?php if($bIblockSection){?>
 			<tr>
-				<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_REL_SECTION_FIELD");?>:</td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_REL_SECTION_FIELD");?>:</td>
 				<td class="adm-detail-content-cell-r">
 					<?php
 					list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'REL_SECTION_FIELD');
 					?>
-					<select name="<?phpecho $fName;?>" class="chosen">
-						<option value="ID"<?phpif($val=='ID') echo ' selected';?>><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_SECTION_ID"); ?></option>
-						<option value="NAME"<?phpif($val=='NAME') echo ' selected';?>><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_SECTION_NAME"); ?></option>
-						<option value="CODE"<?phpif($val=='CODE') echo ' selected';?>><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_SECTION_CODE"); ?></option>
-						<option value="XML_ID"<?phpif($val=='XML_ID') echo ' selected';?>><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_SECTION_XML_ID"); ?></option>
+					<select name="<?php echo $fName;?>" class="chosen">
+						<option value="ID"<?php if($val=='ID') echo ' selected';?>><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_SECTION_ID"); ?></option>
+						<option value="NAME"<?php if($val=='NAME') echo ' selected';?>><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_SECTION_NAME"); ?></option>
+						<option value="CODE"<?php if($val=='CODE') echo ' selected';?>><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_SECTION_CODE"); ?></option>
+						<option value="XML_ID"<?php if($val=='XML_ID') echo ' selected';?>><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_SECTION_XML_ID"); ?></option>
 					</select>
 				</td>
 			</tr>
-		<?php}?>
+		<?php }?>
 		
-		<?phpif($bHlblock && !empty($arHLFields)){?>
+		<?php if($bHlblock && !empty($arHLFields)){?>
 			<tr>
-				<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_HLBL_FIELD");?>:</td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_HLBL_FIELD");?>:</td>
 				<td class="adm-detail-content-cell-r">
 					<?php
 					list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'HLBL_FIELD');
 					?>
-					<select name="<?phpecho $fName;?>" class="chosen">
+					<select name="<?php echo $fName;?>" class="chosen">
 						<?php
 						foreach($arHLFields as $k=>$name)
 						{
@@ -210,11 +210,11 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 					</select>
 				</td>
 			</tr>
-		<?php}?>
+		<?php }?>
 		
-		<?phpif($bUid){?>
+		<?php if($bUid){?>
 			<tr>
-				<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_ELEMENT_SEARCH_SUBSTRING");?>: <span id="hint_UID_SEARCH_SUBSTRING"></span><script>BX.hint_replace(BX('hint_UID_SEARCH_SUBSTRING'), '<?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_ELEMENT_SEARCH_SUBSTRING_HINT"); ?>');</script></td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ELEMENT_SEARCH_SUBSTRING");?>: <span id="hint_UID_SEARCH_SUBSTRING"></span><script>BX.hint_replace(BX('hint_UID_SEARCH_SUBSTRING'), '<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ELEMENT_SEARCH_SUBSTRING_HINT"); ?>');</script></td>
 				<td class="adm-detail-content-cell-r">
 					<?php
 					list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'UID_SEARCH_SUBSTRING');
@@ -222,24 +222,24 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 					<input type="checkbox" name="<?=$fName?>" value="Y" <?=($val=='Y' ? 'checked' : '')?>>
 				</td>
 			</tr>
-		<?php}?>
+		<?php }?>
 		
-		<?phpif($bMultipleProp){?>
+		<?php if($bMultipleProp){?>
 			<tr>
-				<td class="adm-detail-content-cell-l" valign="top"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_CHANGE_MULTIPLE_SEPARATOR");?>:</td>
+				<td class="adm-detail-content-cell-l" valign="top"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_CHANGE_MULTIPLE_SEPARATOR");?>:</td>
 				<td class="adm-detail-content-cell-r">
 					<?php
 					list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'CHANGE_MULTIPLE_SEPARATOR');
 					list($fName2, $v2) = GetFieldEextraVal($PEXTRASETTINGS, 'MULTIPLE_SEPARATOR');
 					?>
 					<input type="checkbox" name="<?=$fName?>" value="Y" <?=($val=='Y' ? 'checked' : '')?> onchange="$('#multiple_separator').css('display', (this.checked ? '' : 'none'));"><br>
-					<input type="text" id="multiple_separator" name="<?=$fName2?>" value="<?=htmlspecialcharsbx($v2)?>" placeholder="<?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_MULTIPLE_SEPARATOR_PLACEHOLDER");?>" <?=($val!='Y' ? 'style="display: none"' : '')?>>
+					<input type="text" id="multiple_separator" name="<?=$fName2?>" value="<?=htmlspecialcharsbx($v2)?>" placeholder="<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_MULTIPLE_SEPARATOR_PLACEHOLDER");?>" <?=($val!='Y' ? 'style="display: none"' : '')?>>
 				</td>
 			</tr>
-		<?php}?>
+		<?php }?>
 		
 		<tr class="heading">
-			<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_TITLE");?></td>
+			<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_TITLE");?></td>
 		</tr>
 		<tr>
 			<td class="kit-ix-settings-margin-container" colspan="2">
@@ -324,14 +324,14 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						 '</div>';
 				}
 				?>
-				<a href="javascript:void(0)" onclick="ESettings.AddConversion(this)"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_ADD_VALUE");?></a>
+				<a href="javascript:void(0)" onclick="ESettings.AddConversion(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_ADD_VALUE");?></a>
 			</td>
 		</tr>
 		
 		
-		<?phpif(true /*!$bVariable*/){?>
+		<?php if(true /*!$bVariable*/){?>
 			<tr class="heading">
-				<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_CONDITIONS_TITLE");?></td>
+				<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_CONDITIONS_TITLE");?></td>
 			</tr>
 			<tr>
 				<td class="kit-ix-settings-margin-container" colspan="2">
@@ -382,10 +382,10 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 							 '</div>';
 					}
 					?>
-					<a href="javascript:void(0)" onclick="ESettings.AddConversion(this)"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_CONDITION_ADD_VALUE");?></a>
+					<a href="javascript:void(0)" onclick="ESettings.AddConversion(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_CONDITION_ADD_VALUE");?></a>
 				</td>
 			</tr>
-		<?php}?>
+		<?php }?>
 		
 		
 		
@@ -423,7 +423,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			}
 			?>
 			<tr class="heading">
-				<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_PICTURE_PROCESSING"); ?></td>
+				<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_PICTURE_PROCESSING"); ?></td>
 			</tr>
 			<tr>
 				<td class="adm-detail-content-cell-l"></td>
@@ -433,46 +433,46 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						<input
 							type="checkbox"
 							value="Y"
-							id="<?phpecho $arFields['SCALE']['NAME']?>"
-							name="<?phpecho $arFields['SCALE']['NAME']?>"
+							id="<?php echo $arFields['SCALE']['NAME']?>"
+							name="<?php echo $arFields['SCALE']['NAME']?>"
 							<?php
 							if($arFields['SCALE']['VALUE']==="Y")
 								echo "checked";
 							?>
 							onclick="
-								BX('DIV_<?phpecho $arFields['WIDTH']['NAME']?>').style.display =
-								BX('DIV_<?phpecho $arFields['HEIGHT']['NAME']?>').style.display =
-								/*BX('DIV_<?phpecho $arFields['IGNORE_ERRORS_DIV']['NAME']?>').style.display =*/
-								BX('DIV_<?phpecho $arFields['METHOD_DIV']['NAME']?>').style.display =
-								BX('DIV_<?phpecho $arFields['COMPRESSION']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['WIDTH']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['HEIGHT']['NAME']?>').style.display =
+								/*BX('DIV_<?php echo $arFields['IGNORE_ERRORS_DIV']['NAME']?>').style.display =*/
+								BX('DIV_<?php echo $arFields['METHOD_DIV']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['COMPRESSION']['NAME']?>').style.display =
 								this.checked? 'block': 'none';
 							"
 						>
 					</div>
 					<div class="adm-list-label">
 						<label
-							for="<?phpecho $arFields['SCALE']['NAME']?>"
-						><?phpecho GetMessage("CODEMATRIX_IX_PICTURE_SCALE")?></label>
+							for="<?php echo $arFields['SCALE']['NAME']?>"
+						><?php echo GetMessage("CODEMATRIX_IX_PICTURE_SCALE")?></label>
 					</div>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['WIDTH']['NAME']?>"
+					id="DIV_<?php echo $arFields['WIDTH']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						echo ($arFields['SCALE']['VALUE']==="Y")? 'block': 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_WIDTH")?>:&nbsp;<input name="<?phpecho $arFields['WIDTH']['NAME']?>" type="text" value="<?phpecho htmlspecialcharsbx($arFields['WIDTH']['VALUE'])?>" size="7">
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_WIDTH")?>:&nbsp;<input name="<?php echo $arFields['WIDTH']['NAME']?>" type="text" value="<?php echo htmlspecialcharsbx($arFields['WIDTH']['VALUE'])?>" size="7">
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['HEIGHT']['NAME']?>"
+					id="DIV_<?php echo $arFields['HEIGHT']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						echo ($arFields['SCALE']['VALUE']==="Y")? 'block': 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_HEIGHT")?>:&nbsp;<input name="<?phpecho $arFields['HEIGHT']['NAME']?>" type="text" value="<?phpecho htmlspecialcharsbx($arFields['HEIGHT']['VALUE'])?>" size="7">
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_HEIGHT")?>:&nbsp;<input name="<?php echo $arFields['HEIGHT']['NAME']?>" type="text" value="<?php echo htmlspecialcharsbx($arFields['HEIGHT']['VALUE'])?>" size="7">
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['IGNORE_ERRORS_DIV']['NAME']?>"
+					id="DIV_<?php echo $arFields['IGNORE_ERRORS_DIV']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						//echo ($arFields['SCALE']['VALUE']==="Y")? 'block': 'none';
 						echo 'none';
@@ -482,8 +482,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						<input
 							type="checkbox"
 							value="Y"
-							id="<?phpecho $arFields['IGNORE_ERRORS']['NAME']?>"
-							name="<?phpecho $arFields['IGNORE_ERRORS']['NAME']?>"
+							id="<?php echo $arFields['IGNORE_ERRORS']['NAME']?>"
+							name="<?php echo $arFields['IGNORE_ERRORS']['NAME']?>"
 							<?php
 							if($arFields['IGNORE_ERRORS']['VALUE']==="Y")
 								echo "checked";
@@ -492,12 +492,12 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 					</div>
 					<div class="adm-list-label">
 						<label
-							for="<?phpecho $arFields['IGNORE_ERRORS']['NAME']?>"
-						><?phpecho GetMessage("CODEMATRIX_IX_PICTURE_IGNORE_ERRORS")?></label>
+							for="<?php echo $arFields['IGNORE_ERRORS']['NAME']?>"
+						><?php echo GetMessage("CODEMATRIX_IX_PICTURE_IGNORE_ERRORS")?></label>
 					</div>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['METHOD_DIV']['NAME']?>"
+					id="DIV_<?php echo $arFields['METHOD_DIV']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						echo ($arFields['SCALE']['VALUE']==="Y")? 'block': 'none';
 					?>"
@@ -506,8 +506,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						<input
 							type="checkbox"
 							value="Y"
-							id="<?phpecho $arFields['METHOD']['NAME']?>"
-							name="<?phpecho $arFields['METHOD']['NAME']?>"
+							id="<?php echo $arFields['METHOD']['NAME']?>"
+							name="<?php echo $arFields['METHOD']['NAME']?>"
 							<?php
 								if($arFields['METHOD']['VALUE']==="Y")
 									echo "checked";
@@ -516,20 +516,20 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 					</div>
 					<div class="adm-list-label">
 						<label
-							for="<?phpecho $arFields['METHOD']['NAME']?>"
-						><?phpecho GetMessage("CODEMATRIX_IX_PICTURE_METHOD")?></label>
+							for="<?php echo $arFields['METHOD']['NAME']?>"
+						><?php echo GetMessage("CODEMATRIX_IX_PICTURE_METHOD")?></label>
 					</div>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['COMPRESSION']['NAME']?>"
+					id="DIV_<?php echo $arFields['COMPRESSION']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						echo ($arFields['SCALE']['VALUE']==="Y")? 'block': 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_COMPRESSION")?>:&nbsp;<input
-						name="<?phpecho $arFields['COMPRESSION']['NAME']?>"
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_COMPRESSION")?>:&nbsp;<input
+						name="<?php echo $arFields['COMPRESSION']['NAME']?>"
 						type="text"
-						value="<?phpecho htmlspecialcharsbx($arFields['COMPRESSION']['VALUE'])?>"
+						value="<?php echo htmlspecialcharsbx($arFields['COMPRESSION']['VALUE'])?>"
 						style="width: 30px"
 					>
 				</div>
@@ -538,33 +538,33 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						<input
 							type="checkbox"
 							value="Y"
-							id="<?phpecho $arFields['USE_WATERMARK_FILE']['NAME']?>"
-							name="<?phpecho $arFields['USE_WATERMARK_FILE']['NAME']?>"
+							id="<?php echo $arFields['USE_WATERMARK_FILE']['NAME']?>"
+							name="<?php echo $arFields['USE_WATERMARK_FILE']['NAME']?>"
 							<?php
 							if($arFields['USE_WATERMARK_FILE']['VALUE']==="Y")
 								echo "checked";
 							?>
 							onclick="
-								BX('DIV_<?phpecho $arFields['USE_WATERMARK_FILE']['NAME']?>').style.display =
-								BX('DIV_<?phpecho $arFields['WATERMARK_FILE_ALPHA']['NAME']?>').style.display =
-								BX('DIV_<?phpecho $arFields['WATERMARK_FILE_POSITION']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['USE_WATERMARK_FILE']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['WATERMARK_FILE_ALPHA']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['WATERMARK_FILE_POSITION']['NAME']?>').style.display =
 								this.checked? 'block': 'none';
 							"
 						>
 					</div>
 					<div class="adm-list-label">
 						<label
-							for="<?phpecho $arFields['USE_WATERMARK_FILE']['NAME']?>"
-						><?phpecho GetMessage("CODEMATRIX_IX_PICTURE_USE_WATERMARK_FILE")?></label>
+							for="<?php echo $arFields['USE_WATERMARK_FILE']['NAME']?>"
+						><?php echo GetMessage("CODEMATRIX_IX_PICTURE_USE_WATERMARK_FILE")?></label>
 					</div>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['USE_WATERMARK_FILE']['NAME']?>"
+					id="DIV_<?php echo $arFields['USE_WATERMARK_FILE']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						if($arFields['USE_WATERMARK_FILE']['VALUE']==="Y") echo 'block'; else echo 'none';
 					?>"
 				>
-					<?phpCAdminFileDialog::ShowScript(array(
+					<?php CAdminFileDialog::ShowScript(array(
 						"event" => "BtnClick".strtr(htmlspecialcharsbx($_GET['field_name']), array('['=>'_', ']'=>'_')),
 						"arResultDest" => array("ELEMENT_ID" => strtr($arFields['WATERMARK_FILE']['NAME'], array('['=>'_', ']'=>'_'))),
 						"arPath" => array("PATH" => GetDirPath($arFields['WATERMARK_FILE']['VALUE'])),
@@ -576,34 +576,34 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						"allowAllFiles" => false,
 						"SaveConfig" => true,
 					));?>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_FILE")?>:&nbsp;<input
-						name="<?phpecho $arFields['WATERMARK_FILE']['NAME']?>"
-						id="<?phpecho strtr($arFields['WATERMARK_FILE']['NAME'], array('['=>'_', ']'=>'_'))?>"
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_FILE")?>:&nbsp;<input
+						name="<?php echo $arFields['WATERMARK_FILE']['NAME']?>"
+						id="<?php echo strtr($arFields['WATERMARK_FILE']['NAME'], array('['=>'_', ']'=>'_'))?>"
 						type="text"
-						value="<?phpecho htmlspecialcharsbx($arFields['WATERMARK_FILE']['VALUE'])?>"
+						value="<?php echo htmlspecialcharsbx($arFields['WATERMARK_FILE']['VALUE'])?>"
 						size="35"
-					>&nbsp;<input type="button" value="..." onClick="BtnClick<?phpecho strtr(htmlspecialcharsbx($_GET['field_name']), array('['=>'_', ']'=>'_'))?>()">
+					>&nbsp;<input type="button" value="..." onClick="BtnClick<?php echo strtr(htmlspecialcharsbx($_GET['field_name']), array('['=>'_', ']'=>'_'))?>()">
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['WATERMARK_FILE_ALPHA']['NAME']?>"
+					id="DIV_<?php echo $arFields['WATERMARK_FILE_ALPHA']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						if($arFields['USE_WATERMARK_FILE']['VALUE']==="Y") echo 'block'; else echo 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_FILE_ALPHA")?>:&nbsp;<input
-						name="<?phpecho $arFields['WATERMARK_FILE_ALPHA']['NAME']?>"
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_FILE_ALPHA")?>:&nbsp;<input
+						name="<?php echo $arFields['WATERMARK_FILE_ALPHA']['NAME']?>"
 						type="text"
-						value="<?phpecho htmlspecialcharsbx($arFields['WATERMARK_FILE_ALPHA']['VALUE'])?>"
+						value="<?php echo htmlspecialcharsbx($arFields['WATERMARK_FILE_ALPHA']['VALUE'])?>"
 						size="3"
 					>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['WATERMARK_FILE_POSITION']['NAME']?>"
+					id="DIV_<?php echo $arFields['WATERMARK_FILE_POSITION']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						if($arFields['USE_WATERMARK_FILE']['VALUE']==="Y") echo 'block'; else echo 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_POSITION")?>:&nbsp;<?phpecho SelectBox(
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_POSITION")?>:&nbsp;<?php echo SelectBox(
 						$arFields['WATERMARK_FILE_POSITION']['NAME'],
 						IBlockGetWatermarkPositions(),
 						"",
@@ -615,41 +615,41 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						<input
 							type="checkbox"
 							value="Y"
-							id="<?phpecho $arFields['USE_WATERMARK_TEXT']['NAME']?>"
-							name="<?phpecho $arFields['USE_WATERMARK_TEXT']['NAME']?>"
+							id="<?php echo $arFields['USE_WATERMARK_TEXT']['NAME']?>"
+							name="<?php echo $arFields['USE_WATERMARK_TEXT']['NAME']?>"
 							<?php
 							if($arFields['USE_WATERMARK_TEXT']['VALUE']==="Y")
 								echo "checked";
 							?>
 							onclick="
-								BX('DIV_<?phpecho $arFields['USE_WATERMARK_TEXT']['NAME']?>').style.display =
-								BX('DIV_<?phpecho $arFields['WATERMARK_TEXT_FONT']['NAME']?>').style.display =
-								BX('DIV_<?phpecho $arFields['WATERMARK_TEXT_COLOR']['NAME']?>').style.display =
-								BX('DIV_<?phpecho $arFields['WATERMARK_TEXT_SIZE']['NAME']?>').style.display =
-								BX('DIV_<?phpecho $arFields['WATERMARK_TEXT_POSITION']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['USE_WATERMARK_TEXT']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['WATERMARK_TEXT_FONT']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['WATERMARK_TEXT_COLOR']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['WATERMARK_TEXT_SIZE']['NAME']?>').style.display =
+								BX('DIV_<?php echo $arFields['WATERMARK_TEXT_POSITION']['NAME']?>').style.display =
 								this.checked? 'block': 'none';
 							"
 						>
 					</div>
 					<div class="adm-list-label">
 						<label
-							for="<?phpecho $arFields['USE_WATERMARK_TEXT']['NAME']?>"
-						><?phpecho GetMessage("CODEMATRIX_IX_PICTURE_USE_WATERMARK_TEXT")?></label>
+							for="<?php echo $arFields['USE_WATERMARK_TEXT']['NAME']?>"
+						><?php echo GetMessage("CODEMATRIX_IX_PICTURE_USE_WATERMARK_TEXT")?></label>
 					</div>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['USE_WATERMARK_TEXT']['NAME']?>"
+					id="DIV_<?php echo $arFields['USE_WATERMARK_TEXT']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						if($arFields['USE_WATERMARK_TEXT']['VALUE']==="Y") echo 'block'; else echo 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_TEXT")?>:&nbsp;<input
-						name="<?phpecho $arFields['WATERMARK_TEXT']['NAME']?>"
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_TEXT")?>:&nbsp;<input
+						name="<?php echo $arFields['WATERMARK_TEXT']['NAME']?>"
 						type="text"
-						value="<?phpecho htmlspecialcharsbx($arFields['WATERMARK_TEXT']['VALUE'])?>"
+						value="<?php echo htmlspecialcharsbx($arFields['WATERMARK_TEXT']['VALUE'])?>"
 						size="35"
 					>
-					<?phpCAdminFileDialog::ShowScript(array(
+					<?php CAdminFileDialog::ShowScript(array(
 						"event" => "BtnClickFont".strtr(htmlspecialcharsbx($_GET['field_name']), array('['=>'_', ']'=>'_')),
 						"arResultDest" => array("ELEMENT_ID" => strtr($arFields['WATERMARK_TEXT_FONT']['NAME'], array('['=>'_', ']'=>'_'))),
 						"arPath" => array("PATH" => GetDirPath($arFields['WATERMARK_TEXT_FONT']['VALUE'])),
@@ -663,38 +663,38 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 					));?>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['WATERMARK_TEXT_FONT']['NAME']?>"
+					id="DIV_<?php echo $arFields['WATERMARK_TEXT_FONT']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						if($arFields['USE_WATERMARK_TEXT']['VALUE']==="Y") echo 'block'; else echo 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_TEXT_FONT")?>:&nbsp;<input
-						name="<?phpecho $arFields['WATERMARK_TEXT_FONT']['NAME']?>"
-						id="<?phpecho strtr($arFields['WATERMARK_TEXT_FONT']['NAME'], array('['=>'_', ']'=>'_'))?>"
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_TEXT_FONT")?>:&nbsp;<input
+						name="<?php echo $arFields['WATERMARK_TEXT_FONT']['NAME']?>"
+						id="<?php echo strtr($arFields['WATERMARK_TEXT_FONT']['NAME'], array('['=>'_', ']'=>'_'))?>"
 						type="text"
-						value="<?phpecho htmlspecialcharsbx($arFields['WATERMARK_TEXT_FONT']['VALUE'])?>"
+						value="<?php echo htmlspecialcharsbx($arFields['WATERMARK_TEXT_FONT']['VALUE'])?>"
 						size="35">&nbsp;<input
 						type="button"
 						value="..."
-						onClick="BtnClickFont<?phpecho strtr(htmlspecialcharsbx($_GET['field_name']), array('['=>'_', ']'=>'_'))?>()"
+						onClick="BtnClickFont<?php echo strtr(htmlspecialcharsbx($_GET['field_name']), array('['=>'_', ']'=>'_'))?>()"
 					>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['WATERMARK_TEXT_COLOR']['NAME']?>"
+					id="DIV_<?php echo $arFields['WATERMARK_TEXT_COLOR']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						if($arFields['USE_WATERMARK_TEXT']['VALUE']==="Y") echo 'block'; else echo 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_TEXT_COLOR")?>:&nbsp;<input
-						name="<?phpecho $arFields['WATERMARK_TEXT_COLOR']['NAME']?>"
-						id="<?phpecho $arFields['WATERMARK_TEXT_COLOR']['NAME']?>"
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_TEXT_COLOR")?>:&nbsp;<input
+						name="<?php echo $arFields['WATERMARK_TEXT_COLOR']['NAME']?>"
+						id="<?php echo $arFields['WATERMARK_TEXT_COLOR']['NAME']?>"
 						type="text"
-						value="<?phpecho htmlspecialcharsbx($arFields['WATERMARK_TEXT_COLOR']['VALUE'])?>"
+						value="<?php echo htmlspecialcharsbx($arFields['WATERMARK_TEXT_COLOR']['VALUE'])?>"
 						size="7"
 					><script>
 						function EXTRA_WATERMARK_TEXT_COLOR(color)
 						{
-							BX('<?phpecho $arFields['WATERMARK_TEXT_COLOR']['NAME']?>').value = color.substring(1);
+							BX('<?php echo $arFields['WATERMARK_TEXT_COLOR']['NAME']?>').value = color.substring(1);
 						}
 					</script>&nbsp;<input
 						type="button"
@@ -712,25 +712,25 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 					?></span>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['WATERMARK_TEXT_SIZE']['NAME']?>"
+					id="DIV_<?php echo $arFields['WATERMARK_TEXT_SIZE']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						if($arFields['USE_WATERMARK_TEXT']['VALUE']==="Y") echo 'block'; else echo 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_SIZE")?>:&nbsp;<input
-						name="<?phpecho $arFields['WATERMARK_TEXT_SIZE']['NAME']?>"
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_SIZE")?>:&nbsp;<input
+						name="<?php echo $arFields['WATERMARK_TEXT_SIZE']['NAME']?>"
 						type="text"
-						value="<?phpecho htmlspecialcharsbx($arFields['WATERMARK_TEXT_SIZE']['VALUE'])?>"
+						value="<?php echo htmlspecialcharsbx($arFields['WATERMARK_TEXT_SIZE']['VALUE'])?>"
 						size="3"
 					>
 				</div>
 				<div class="adm-list-item"
-					id="DIV_<?phpecho $arFields['WATERMARK_TEXT_POSITION']['NAME']?>"
+					id="DIV_<?php echo $arFields['WATERMARK_TEXT_POSITION']['NAME']?>"
 					style="padding-left:16px;display:<?php
 						if($arFields['WATERMARK_TEXT_POSITION']['VALUE']==="Y") echo 'block'; else echo 'none';
 					?>"
 				>
-					<?phpecho GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_POSITION")?>:&nbsp;<?phpecho SelectBox(
+					<?php echo GetMessage("CODEMATRIX_IX_PICTURE_WATERMARK_POSITION")?>:&nbsp;<?php echo SelectBox(
 						$arFields['WATERMARK_TEXT_POSITION']['NAME'],
 						IBlockGetWatermarkPositions(),
 						"",
@@ -739,14 +739,14 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				</div>
 				</td>
 			</tr>
-		<?php}?>
+		<?php }?>
 
 	
 		<tr class="heading">
-			<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_FILTER"); ?></td>
+			<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FILTER"); ?></td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_UPLOAD");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_UPLOAD");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<?php
 				list($fName, $arVals) = GetFieldEextraVal($PEXTRASETTINGS, 'UPLOAD_VALUES');
@@ -766,11 +766,11 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 					echo '<div>'.$select.' <input type="text" name="'.$fName.'" value="'.htmlspecialcharsbx($v).'" '.($hide ? 'style="display: none;"' : '').'></div>';
 				}
 				?>
-				<a href="javascript:void(0)" onclick="ESettings.AddValue(this)"><?phpecho GetMessage("CODEMATRIX_IX_ADD_VALUE");?></a>
+				<a href="javascript:void(0)" onclick="ESettings.AddValue(this)"><?php echo GetMessage("CODEMATRIX_IX_ADD_VALUE");?></a>
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_NOT_UPLOAD");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_NOT_UPLOAD");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<?php
 				list($fName, $arVals) = GetFieldEextraVal($PEXTRASETTINGS, 'NOT_UPLOAD_VALUES');
@@ -790,11 +790,11 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 					echo '<div>'.$select.' <input type="text" name="'.$fName.'" value="'.htmlspecialcharsbx($v).'" '.($hide ? 'style="display: none;"' : '').'></div>';
 				}
 				?>
-				<a href="javascript:void(0)" onclick="ESettings.AddValue(this)"><?phpecho GetMessage("CODEMATRIX_IX_ADD_VALUE");?></a>
+				<a href="javascript:void(0)" onclick="ESettings.AddValue(this)"><?php echo GetMessage("CODEMATRIX_IX_ADD_VALUE");?></a>
 			</td>
 		</tr>
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_USE_FILTER_FOR_DEACTIVATE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_USE_FILTER_FOR_DEACTIVATE");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<?php
 				list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'USE_FILTER_FOR_DEACTIVATE');
@@ -804,24 +804,24 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 		</tr>
 		<tr>
 			<td class="kit-ix-settings-margin-container" colspan="2">
-				<a href="javascript:void(0)" onclick="ESettings.ShowPHPExpression(this)"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_EXPRESSION");?></a>
+				<a href="javascript:void(0)" onclick="ESettings.ShowPHPExpression(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_EXPRESSION");?></a>
 				<?php
 				list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'FILTER_EXPRESSION');
 				?>
 				<div class="kit-ix-settings-phpexpression" style="display: none;">
-					<?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_EXPRESSION_HINT");?>
-					<textarea name="<?phpecho $fName?>"><?phpecho $val?></textarea>
+					<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_EXPRESSION_HINT");?>
+					<textarea name="<?php echo $fName?>"><?php echo $val?></textarea>
 				</div>
 			</td>
 		</tr>
 
 		
-		<?phpif(!$bVariable){?>
+		<?php if(!$bVariable){?>
 			<tr class="heading">
-				<td colspan="2"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_ADDITIONAL"); ?></td>
+				<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITIONAL"); ?></td>
 			</tr>
 			<tr>
-				<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_ONLY_FOR_NEW");?>:</td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ONLY_FOR_NEW");?>:</td>
 				<td class="adm-detail-content-cell-r" style="min-width: 30%;">
 					<?php
 					list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'SET_NEW_ONLY');
@@ -830,7 +830,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				</td>
 			</tr>
 			<tr>
-				<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_NOT_TRIM");?>:</td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_NOT_TRIM");?>:</td>
 				<td class="adm-detail-content-cell-r" style="min-width: 30%;">
 					<?php
 					list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'NOT_TRIM');
@@ -839,9 +839,9 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				</td>
 			</tr>
 
-			<?phpif(!$bMultipleProp){?>
+			<?php if(!$bMultipleProp){?>
 				<tr>
-					<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SETTINGS_INDEX_LOAD_VALUE");?>:</td>
+					<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_INDEX_LOAD_VALUE");?>:</td>
 					<td class="adm-detail-content-cell-r" style="min-width: 30%;">
 						<?php
 						list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'INDEX_LOAD_VALUE');
@@ -849,8 +849,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						<input type="text" name="<?=$fName?>" value="<?=htmlspecialcharsbx($val)?>" size="3">
 					</td>
 				</tr>
-			<?php}?>
-		<?php}?>
+			<?php }?>
+		<?php }?>
 	</table>
 </form>
 <?php
@@ -858,11 +858,11 @@ if(!is_array($arSFields)) $arSFields = array();
 ?>
 <script>
 var admKDASettingMessages = {
-	'CELL_VALUE': '<?phpecho htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_SETTINGS_LANG_CELL_VALUE"));?>',
-	'RATE_USD': '<?phpecho htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_SETTINGS_LANG_RATE_USD"));?>',
-	'RATE_EUR': '<?phpecho htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_SETTINGS_LANG_RATE_EUR"));?>',
-	'EXTRAFIELDS': <?phpecho CUtil::PhpToJSObject($arSFields)?>,
-	'AVAILABLE_TAGS': <?phpecho CUtil::PhpToJSObject($availableTags)?>
+	'CELL_VALUE': '<?php echo htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_SETTINGS_LANG_CELL_VALUE"));?>',
+	'RATE_USD': '<?php echo htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_SETTINGS_LANG_RATE_USD"));?>',
+	'RATE_EUR': '<?php echo htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_SETTINGS_LANG_RATE_EUR"));?>',
+	'EXTRAFIELDS': <?php echo CUtil::PhpToJSObject($arSFields)?>,
+	'AVAILABLE_TAGS': <?php echo CUtil::PhpToJSObject($availableTags)?>
 };
 </script>
-<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

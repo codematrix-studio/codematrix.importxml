@@ -53,7 +53,7 @@ if($USER->IsAdmin())
 
 	$tabControl->Begin();
 	?>
-	<form method="POST" action="<?phpecho $APPLICATION->GetCurPage()?>?lang=<?phpecho LANGUAGE_ID?>&mid_menu=1&mid=<?=$module_id?>" name="<?phpecho $formName;?>">
+	<form method="POST" action="<?php echo $APPLICATION->GetCurPage()?>?lang=<?php echo LANGUAGE_ID?>&mid_menu=1&mid=<?=$module_id?>" name="<?php echo $formName;?>">
 	<?php echo bitrix_sessid_post();
 
 	$tabControl->BeginNextTab();
@@ -63,33 +63,33 @@ if($USER->IsAdmin())
 		<td width="50%"><?php echo Loc::getMessage('CODEMATRIX_IX_SET_MAX_EXECUTION_TIME'); ?></td>
 		<td width="50%">
 			<input type="hidden" name="SETTINGS[SET_MAX_EXECUTION_TIME]" value="N">
-			<input type="checkbox" name="SETTINGS[SET_MAX_EXECUTION_TIME]" value="Y" onchange="document.getElementById('MAX_EXECUTION_TIME').style.display=document.getElementById('EXECUTION_DELAY').style.display=(this.checked ? '' : 'none')" <?phpif($setMaxExecutionTime){echo 'checked';}?>>
+			<input type="checkbox" name="SETTINGS[SET_MAX_EXECUTION_TIME]" value="Y" onchange="document.getElementById('MAX_EXECUTION_TIME').style.display=document.getElementById('EXECUTION_DELAY').style.display=(this.checked ? '' : 'none')" <?php if($setMaxExecutionTime){echo 'checked';}?>>
 		</td>
 	</tr>
-	<tr id="MAX_EXECUTION_TIME" <?phpif(!$setMaxExecutionTime){echo 'style="display: none;"';}?>>
+	<tr id="MAX_EXECUTION_TIME" <?php if(!$setMaxExecutionTime){echo 'style="display: none;"';}?>>
 		<td width="50%"><?php echo Loc::getMessage('CODEMATRIX_IX_MAX_EXECUTION_TIME'); ?></td>
 		<td width="50%">
-			<input type="text" name="SETTINGS[MAX_EXECUTION_TIME]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'MAX_EXECUTION_TIME'));?>" size="4" maxlength="4">
+			<input type="text" name="SETTINGS[MAX_EXECUTION_TIME]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'MAX_EXECUTION_TIME'));?>" size="4" maxlength="4">
 		</td>
 	</tr>
-	<tr id="EXECUTION_DELAY" <?phpif(!$setMaxExecutionTime){echo 'style="display: none;"';}?>>
+	<tr id="EXECUTION_DELAY" <?php if(!$setMaxExecutionTime){echo 'style="display: none;"';}?>>
 		<td width="50%"><?php echo Loc::getMessage('CODEMATRIX_IX_EXECUTION_DELAY'); ?></td>
 		<td width="50%">
-			<input type="text" name="SETTINGS[EXECUTION_DELAY]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'EXECUTION_DELAY'));?>" size="3" maxlength="3">
+			<input type="text" name="SETTINGS[EXECUTION_DELAY]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'EXECUTION_DELAY'));?>" size="3" maxlength="3">
 		</td>
 	</tr>
 	<tr>
 		<td width="50%"><?php echo Loc::getMessage('CODEMATRIX_IX_AUTO_CONTINUE_IMPORT'); ?></td>
 		<td width="50%">
 			<input type="hidden" name="SETTINGS[AUTO_CONTINUE_IMPORT]" value="N">
-			<input type="checkbox" name="SETTINGS[AUTO_CONTINUE_IMPORT]" value="Y" <?phpif(COption::GetOptionString($module_id, 'AUTO_CONTINUE_IMPORT', 'N')=='Y'){echo 'checked';}?>>
+			<input type="checkbox" name="SETTINGS[AUTO_CONTINUE_IMPORT]" value="Y" <?php if(COption::GetOptionString($module_id, 'AUTO_CONTINUE_IMPORT', 'N')=='Y'){echo 'checked';}?>>
 		</td>
 	</tr>
 	<tr>
 		<td width="50%"><?php echo Loc::getMessage('CODEMATRIX_IX_AUTO_CORRECT_ENCODING'); ?></td>
 		<td width="50%">
 			<input type="hidden" name="SETTINGS[AUTO_CORRECT_ENCODING]" value="N">
-			<input type="checkbox" name="SETTINGS[AUTO_CORRECT_ENCODING]" value="Y" <?phpif(COption::GetOptionString($module_id, 'AUTO_CORRECT_ENCODING', 'N')=='Y'){echo 'checked';}?>>
+			<input type="checkbox" name="SETTINGS[AUTO_CORRECT_ENCODING]" value="Y" <?php if(COption::GetOptionString($module_id, 'AUTO_CORRECT_ENCODING', 'N')=='Y'){echo 'checked';}?>>
 		</td>
 	</tr>
 	
@@ -97,30 +97,30 @@ if($USER->IsAdmin())
 		<td colspan="2"><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_CRON_SETTINGS'); ?></td>
 	</tr>
 	<tr>
-		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_CRON_NEED_CHECKSIZE'); ?> <span id="hint_CRON_NEED_CHECKSIZE"></span><script>BX.hint_replace(BX('hint_CRON_NEED_CHECKSIZE'), '<?phpecho Loc::getMessage("CODEMATRIX_IX_OPTIONS_CRON_NEED_CHECKSIZE_HINT"); ?>');</script></td>
+		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_CRON_NEED_CHECKSIZE'); ?> <span id="hint_CRON_NEED_CHECKSIZE"></span><script>BX.hint_replace(BX('hint_CRON_NEED_CHECKSIZE'), '<?php echo Loc::getMessage("CODEMATRIX_IX_OPTIONS_CRON_NEED_CHECKSIZE_HINT"); ?>');</script></td>
 		<td>
 			<input type="hidden" name="SETTINGS[CRON_NEED_CHECKSIZE]" value="N">
-			<input type="checkbox" name="SETTINGS[CRON_NEED_CHECKSIZE]" value="Y" <?phpif(COption::GetOptionString($module_id, 'CRON_NEED_CHECKSIZE', 'N')=='Y') echo 'checked';?>>
+			<input type="checkbox" name="SETTINGS[CRON_NEED_CHECKSIZE]" value="Y" <?php if(COption::GetOptionString($module_id, 'CRON_NEED_CHECKSIZE', 'N')=='Y') echo 'checked';?>>
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_CRON_CONTINUE_LOADING'); ?></td>
 		<td>
 			<input type="hidden" name="SETTINGS[CRON_CONTINUE_LOADING]" value="N">
-			<input type="checkbox" name="SETTINGS[CRON_CONTINUE_LOADING]" value="Y" <?phpif(COption::GetOptionString($module_id, 'CRON_CONTINUE_LOADING', 'N')=='Y') echo 'checked';?>>
+			<input type="checkbox" name="SETTINGS[CRON_CONTINUE_LOADING]" value="Y" <?php if(COption::GetOptionString($module_id, 'CRON_CONTINUE_LOADING', 'N')=='Y') echo 'checked';?>>
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_CRON_REMOVE_LOADED_FILE'); ?></td>
 		<td>
 			<input type="hidden" name="SETTINGS[CRON_REMOVE_LOADED_FILE]" value="N">
-			<input type="checkbox" name="SETTINGS[CRON_REMOVE_LOADED_FILE]" value="Y" <?phpif(COption::GetOptionString($module_id, 'CRON_REMOVE_LOADED_FILE', 'N')=='Y') echo 'checked';?>>
+			<input type="checkbox" name="SETTINGS[CRON_REMOVE_LOADED_FILE]" value="Y" <?php if(COption::GetOptionString($module_id, 'CRON_REMOVE_LOADED_FILE', 'N')=='Y') echo 'checked';?>>
 		</td>
 	</tr>
 	<tr>
-		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_CRON_USER'); ?> <span id="hint_CRON_USER"></span><script>BX.hint_replace(BX('hint_CRON_USER'), '<?phpecho Loc::getMessage("CODEMATRIX_IX_OPTIONS_CRON_USER_HINT"); ?>');</script></td>
+		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_CRON_USER'); ?> <span id="hint_CRON_USER"></span><script>BX.hint_replace(BX('hint_CRON_USER'), '<?php echo Loc::getMessage("CODEMATRIX_IX_OPTIONS_CRON_USER_HINT"); ?>');</script></td>
 		<td>
-			<?phpecho FindUserID('SETTINGS[CRON_USER_ID]', COption::GetOptionString($module_id, 'CRON_USER_ID', ''), '', $formName);?>
+			<?php echo FindUserID('SETTINGS[CRON_USER_ID]', COption::GetOptionString($module_id, 'CRON_USER_ID', ''), '', $formName);?>
 		</td>
 	</tr>
 	
@@ -130,49 +130,49 @@ if($USER->IsAdmin())
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_MODE'); ?>:</td>
 		<td>
-			<label><input type="radio" name="SETTINGS[NOTIFY_MODE]" value="NONE" <?phpif(COption::GetOptionString($module_id, 'NOTIFY_MODE', 'NONE')=='NONE') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_MODE_NONE'); ?><label><br>
-			<label><input type="radio" name="SETTINGS[NOTIFY_MODE]" value="CRON" <?phpif(COption::GetOptionString($module_id, 'NOTIFY_MODE', 'NONE')=='CRON') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_MODE_CRON'); ?><label><br>
-			<label><input type="radio" name="SETTINGS[NOTIFY_MODE]" value="ALL" <?phpif(COption::GetOptionString($module_id, 'NOTIFY_MODE', 'NONE')=='ALL') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_MODE_ALL'); ?><label>
+			<label><input type="radio" name="SETTINGS[NOTIFY_MODE]" value="NONE" <?php if(COption::GetOptionString($module_id, 'NOTIFY_MODE', 'NONE')=='NONE') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_MODE_NONE'); ?><label><br>
+			<label><input type="radio" name="SETTINGS[NOTIFY_MODE]" value="CRON" <?php if(COption::GetOptionString($module_id, 'NOTIFY_MODE', 'NONE')=='CRON') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_MODE_CRON'); ?><label><br>
+			<label><input type="radio" name="SETTINGS[NOTIFY_MODE]" value="ALL" <?php if(COption::GetOptionString($module_id, 'NOTIFY_MODE', 'NONE')=='ALL') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_MODE_ALL'); ?><label>
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_EMAIL'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[NOTIFY_EMAIL]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'NOTIFY_EMAIL'));?>">
+			<input type="text" name="SETTINGS[NOTIFY_EMAIL]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'NOTIFY_EMAIL'));?>">
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BEGIN_IMPORT'); ?>:</td>
 		<td>
 			<input type="hidden" name="SETTINGS[NOTIFY_BEGIN_IMPORT]" value="N">
-			<input type="checkbox" name="SETTINGS[NOTIFY_BEGIN_IMPORT]" value="Y" <?phpif(COption::GetOptionString($module_id, 'NOTIFY_BEGIN_IMPORT', 'N')=='Y') echo 'checked';?>>
+			<input type="checkbox" name="SETTINGS[NOTIFY_BEGIN_IMPORT]" value="Y" <?php if(COption::GetOptionString($module_id, 'NOTIFY_BEGIN_IMPORT', 'N')=='Y') echo 'checked';?>>
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_END_IMPORT'); ?>:</td>
 		<td>
 			<input type="hidden" name="SETTINGS[NOTIFY_END_IMPORT]" value="N">
-			<input type="checkbox" name="SETTINGS[NOTIFY_END_IMPORT]" value="Y" <?phpif(COption::GetOptionString($module_id, 'NOTIFY_END_IMPORT', 'N')=='Y') echo 'checked';?>>
+			<input type="checkbox" name="SETTINGS[NOTIFY_END_IMPORT]" value="Y" <?php if(COption::GetOptionString($module_id, 'NOTIFY_END_IMPORT', 'N')=='Y') echo 'checked';?>>
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BREAK_IMPORT'); ?>:</td>
 		<td>
 			<input type="hidden" name="SETTINGS[NOTIFY_BREAK_IMPORT]" value="N">
-			<input type="checkbox" name="SETTINGS[NOTIFY_BREAK_IMPORT]" value="Y" <?phpif(COption::GetOptionString($module_id, 'NOTIFY_BREAK_IMPORT', 'N')=='Y') echo 'checked';?>>
+			<input type="checkbox" name="SETTINGS[NOTIFY_BREAK_IMPORT]" value="Y" <?php if(COption::GetOptionString($module_id, 'NOTIFY_BREAK_IMPORT', 'N')=='Y') echo 'checked';?>>
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BREAK_IMPORT_NC'); ?>:</td>
 		<td>
-			<?php$val = COption::GetOptionString($moduleId, 'NOTIFY_BREAK_IMPORT_NC', 'N');?>
+			<?php $val = COption::GetOptionString($moduleId, 'NOTIFY_BREAK_IMPORT_NC', 'N');?>
 			<select name="SETTINGS[NOTIFY_BREAK_IMPORT_NC]" onchange="document.getElementById('notify_break_import_nc_dh').style.display = (this.value=='D' || this.value=='H' ? 'inline' : 'none');">
 				<option value="N"><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BREAK_IMPORT_NC_OFF'); ?></option>
-				<option value="Y"<?phpif($val=='Y'){echo ' selected';}?>><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BREAK_IMPORT_NC_ON'); ?></option>
-				<option value="D"<?phpif($val=='D'){echo ' selected';}?>><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BREAK_IMPORT_NC_DAYS'); ?></option>
-				<option value="H"<?phpif($val=='H'){echo ' selected';}?>><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BREAK_IMPORT_NC_HOURS'); ?></option>
+				<option value="Y"<?php if($val=='Y'){echo ' selected';}?>><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BREAK_IMPORT_NC_ON'); ?></option>
+				<option value="D"<?php if($val=='D'){echo ' selected';}?>><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BREAK_IMPORT_NC_DAYS'); ?></option>
+				<option value="H"<?php if($val=='H'){echo ' selected';}?>><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_NOTIFY_BREAK_IMPORT_NC_HOURS'); ?></option>
 			</select>
-			<input id="notify_break_import_nc_dh" type="text" name="SETTINGS[NOTIFY_BREAK_IMPORT_NC_DH]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($moduleId, 'NOTIFY_BREAK_IMPORT_NC_DH'));?>"<?phpif(!in_array($val, array('D', 'H'))){echo ' style="display: none;"';}?> size="4">
+			<input id="notify_break_import_nc_dh" type="text" name="SETTINGS[NOTIFY_BREAK_IMPORT_NC_DH]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($moduleId, 'NOTIFY_BREAK_IMPORT_NC_DH'));?>"<?php if(!in_array($val, array('D', 'H'))){echo ' style="display: none;"';}?> size="4">
 		</td>
 	</tr>
 	
@@ -182,8 +182,8 @@ if($USER->IsAdmin())
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_DISCOUNT_MODE'); ?>:</td>
 		<td>
-			<label><input type="radio" name="SETTINGS[DISCOUNT_MODE]" value="SPLIT" <?phpif(COption::GetOptionString($module_id, 'DISCOUNT_MODE', 'SPLIT')=='SPLIT') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_DISCOUNT_MODE_SPLIT'); ?></label><br>
-			<label><input type="radio" name="SETTINGS[DISCOUNT_MODE]" value="JOIN" <?phpif(COption::GetOptionString($module_id, 'DISCOUNT_MODE', 'SPLIT')=='JOIN') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_DISCOUNT_MODE_JOIN'); ?></label><br>
+			<label><input type="radio" name="SETTINGS[DISCOUNT_MODE]" value="SPLIT" <?php if(COption::GetOptionString($module_id, 'DISCOUNT_MODE', 'SPLIT')=='SPLIT') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_DISCOUNT_MODE_SPLIT'); ?></label><br>
+			<label><input type="radio" name="SETTINGS[DISCOUNT_MODE]" value="JOIN" <?php if(COption::GetOptionString($module_id, 'DISCOUNT_MODE', 'SPLIT')=='JOIN') echo 'checked';?>> <?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_DISCOUNT_MODE_JOIN'); ?></label><br>
 		</td>
 	</tr>
 	
@@ -193,25 +193,25 @@ if($USER->IsAdmin())
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_PROXY_HOST'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[PROXY_HOST]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'PROXY_HOST', ''))?>" size="35">
+			<input type="text" name="SETTINGS[PROXY_HOST]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'PROXY_HOST', ''))?>" size="35">
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_PROXY_PORT'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[PROXY_PORT]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'PROXY_PORT', ''))?>" size="35">
+			<input type="text" name="SETTINGS[PROXY_PORT]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'PROXY_PORT', ''))?>" size="35">
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_PROXY_USER'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[PROXY_USER]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'PROXY_USER', ''))?>" size="35">
+			<input type="text" name="SETTINGS[PROXY_USER]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'PROXY_USER', ''))?>" size="35">
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_PROXY_PASSWORD'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[PROXY_PASSWORD]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'PROXY_PASSWORD', ''))?>" size="35">
+			<input type="text" name="SETTINGS[PROXY_PASSWORD]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'PROXY_PASSWORD', ''))?>" size="35">
 		</td>
 	</tr>
 	
@@ -221,13 +221,13 @@ if($USER->IsAdmin())
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_TRANSLATE_YANDEX'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[TRANSLATE_YANDEX_KEY]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'TRANSLATE_YANDEX_KEY', ''))?>" size="35">
+			<input type="text" name="SETTINGS[TRANSLATE_YANDEX_KEY]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'TRANSLATE_YANDEX_KEY', ''))?>" size="35">
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_TRANSLATE_GOOGLE'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[TRANSLATE_GOOGLE_KEY]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'TRANSLATE_GOOGLE_KEY', ''))?>" size="35">
+			<input type="text" name="SETTINGS[TRANSLATE_GOOGLE_KEY]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'TRANSLATE_GOOGLE_KEY', ''))?>" size="35">
 		</td>
 	</tr>
 	
@@ -241,7 +241,7 @@ if($USER->IsAdmin())
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_YANDEX_DISC_APIKEY'); ?>:</td>
 		<td>
 			<a name="yandex_token" style="position:absolute; margin-top: -140px;" href="#"></a>
-			<input type="text" name="SETTINGS[YANDEX_APIKEY]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'YANDEX_APIKEY', ''))?>" size="35">
+			<input type="text" name="SETTINGS[YANDEX_APIKEY]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'YANDEX_APIKEY', ''))?>" size="35">
 			&nbsp; <a href="https://oauth.yandex.ru/authorize?response_type=token&client_id=30e9fb3edb184522afaf5e72ee255cbc" target="_blank"><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_YANDEX_DISC_APIKEY_GET'); ?></a>
 		</td>
 	</tr>
@@ -252,7 +252,7 @@ if($USER->IsAdmin())
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_GOOGLE_DRIVE_APIKEY'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[GOOGLE_APIKEY]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'GOOGLE_APIKEY', ''))?>" size="35">
+			<input type="text" name="SETTINGS[GOOGLE_APIKEY]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'GOOGLE_APIKEY', ''))?>" size="35">
 			&nbsp; <a href="https://accounts.google.com/o/oauth2/auth?client_id=685892932415-87toodq5o9e4vq8pqeh1es86vlcf3oi7.apps.googleusercontent.com&redirect_uri=https://kitutions.su/marketplace/oauth.php&access_type=offline&response_type=code&scope=https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/userinfo.email" target="_blank"><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_GOOGLE_DRIVE_APIKEY_GET'); ?></a>
 		</td>
 	</tr>
@@ -263,13 +263,13 @@ if($USER->IsAdmin())
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_CLOUD_MAILRU_LOGIN'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[CLOUD_MAILRU_LOGIN]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'CLOUD_MAILRU_LOGIN', ''))?>" size="35">
+			<input type="text" name="SETTINGS[CLOUD_MAILRU_LOGIN]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'CLOUD_MAILRU_LOGIN', ''))?>" size="35">
 		</td>
 	</tr>
 	<tr>
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_CLOUD_MAILRU_PASSWORD'); ?>:</td>
 		<td>
-			<input type="text" name="SETTINGS[CLOUD_MAILRU_PASSWORD]" value="<?phpecho htmlspecialcharsex(COption::GetOptionString($module_id, 'CLOUD_MAILRU_PASSWORD', ''))?>" size="35">
+			<input type="text" name="SETTINGS[CLOUD_MAILRU_PASSWORD]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'CLOUD_MAILRU_PASSWORD', ''))?>" size="35">
 		</td>
 	</tr>
 	
@@ -309,23 +309,23 @@ if($USER->IsAdmin())
 			<td colspan="2" align="center">
 			<table border="1" cellpadding="5" class="kit-ix-options-rels-table">
 				<tr>
-					<th><?phpecho GetMessage("CODEMATRIX_IX_OPTIONS_IBLOCK_PRODUCTS");?></th>
-					<th><?phpecho GetMessage("CODEMATRIX_IX_OPTIONS_IBLOCK_OFFERS");?></th>
-					<th><?phpecho GetMessage("CODEMATRIX_IX_OPTIONS_IBLOCK_OFFERS_PROP");?></th>
+					<th><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_IBLOCK_PRODUCTS");?></th>
+					<th><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_IBLOCK_OFFERS");?></th>
+					<th><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_IBLOCK_OFFERS_PROP");?></th>
 					<th></th>
 				</tr>
-				<?phpforeach($arRels as $relKey=>$arRel){?>
-				<tr data-index="<?phpecho $relKey?>">
+				<?php foreach($arRels as $relKey=>$arRel){?>
+				<tr data-index="<?php echo $relKey?>">
 					<td>
-						<select name="SETTINGS[CATALOG_RELS][<?phpecho htmlspecialcharsbx($relKey)?>][IBLOCK_ID]">
-							<option value=""><?phpecho GetMessage("CODEMATRIX_IX_OPTIONS_NO_CHOOSEN"); ?></option>
+						<select name="SETTINGS[CATALOG_RELS][<?php echo htmlspecialcharsbx($relKey)?>][IBLOCK_ID]">
+							<option value=""><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_NO_CHOOSEN"); ?></option>
 							<?php
 							foreach($arIblocks as $type)
 							{
-								?><optgroup label="<?phpecho $type['NAME']?>"><?php
+								?><optgroup label="<?php echo $type['NAME']?>"><?php
 								foreach($type['IBLOCKS'] as $iblock)
 								{
-									?><option value="<?phpecho $iblock["ID"];?>" <?phpif($iblock["ID"]==$arRel['IBLOCK_ID']){echo 'selected';}?>><?phpecho htmlspecialcharsbx($iblock["NAME"].' ['.$iblock["ID"].']'); ?></option><?php
+									?><option value="<?php echo $iblock["ID"];?>" <?php if($iblock["ID"]==$arRel['IBLOCK_ID']){echo 'selected';}?>><?php echo htmlspecialcharsbx($iblock["NAME"].' ['.$iblock["ID"].']'); ?></option><?php
 								}
 								?></optgroup><?php
 							}
@@ -333,15 +333,15 @@ if($USER->IsAdmin())
 						</select>
 					</td>
 					<td>
-						<select name="SETTINGS[CATALOG_RELS][<?phpecho htmlspecialcharsbx($relKey)?>][OFFERS_IBLOCK_ID]" onchange="KdaOptions.ReloadProps(this);">
-							<option value=""><?phpecho GetMessage("CODEMATRIX_IX_OPTIONS_NO_CHOOSEN"); ?></option>
+						<select name="SETTINGS[CATALOG_RELS][<?php echo htmlspecialcharsbx($relKey)?>][OFFERS_IBLOCK_ID]" onchange="KdaOptions.ReloadProps(this);">
+							<option value=""><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_NO_CHOOSEN"); ?></option>
 							<?php
 							foreach($arIblocks as $type)
 							{
-								?><optgroup label="<?phpecho $type['NAME']?>"><?php
+								?><optgroup label="<?php echo $type['NAME']?>"><?php
 								foreach($type['IBLOCKS'] as $iblock)
 								{
-									?><option value="<?phpecho $iblock["ID"];?>" <?phpif($iblock["ID"]==$arRel['OFFERS_IBLOCK_ID']){echo 'selected';}?>><?phpecho htmlspecialcharsbx($iblock["NAME"].' ['.$iblock["ID"].']'); ?></option><?php
+									?><option value="<?php echo $iblock["ID"];?>" <?php if($iblock["ID"]==$arRel['OFFERS_IBLOCK_ID']){echo 'selected';}?>><?php echo htmlspecialcharsbx($iblock["NAME"].' ['.$iblock["ID"].']'); ?></option><?php
 								}
 								?></optgroup><?php
 							}
@@ -349,16 +349,16 @@ if($USER->IsAdmin())
 						</select>
 					</td>
 					<td>
-						<select name="SETTINGS[CATALOG_RELS][<?phpecho htmlspecialcharsbx($relKey)?>][OFFERS_PROP_ID]">
-							<option value=""><?phpecho GetMessage("CODEMATRIX_IX_OPTIONS_NO_CHOOSEN"); ?></option>
+						<select name="SETTINGS[CATALOG_RELS][<?php echo htmlspecialcharsbx($relKey)?>][OFFERS_PROP_ID]">
+							<option value=""><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_NO_CHOOSEN"); ?></option>
 							<?php
 							foreach($arProps as $iblockId=>$iblock)
 							{
 								if($arRel['OFFERS_IBLOCK_ID'] > 0 && $iblockId!=$arRel['OFFERS_IBLOCK_ID']) continue;
-								?><optgroup label="<?phpecho $iblock['NAME']?>" data-id="<?phpecho $iblockId;?>"><?php
+								?><optgroup label="<?php echo $iblock['NAME']?>" data-id="<?php echo $iblockId;?>"><?php
 								foreach($iblock['PROPS'] as $prop)
 								{
-									?><option value="<?phpecho $prop["ID"];?>" <?phpif($prop["ID"]==$arRel['OFFERS_PROP_ID']){echo 'selected';}?>><?phpecho htmlspecialcharsbx($prop["NAME"].' ['.$prop["ID"].']'); ?></option><?php
+									?><option value="<?php echo $prop["ID"];?>" <?php if($prop["ID"]==$arRel['OFFERS_PROP_ID']){echo 'selected';}?>><?php echo htmlspecialcharsbx($prop["NAME"].' ['.$prop["ID"].']'); ?></option><?php
 								}
 								?></optgroup><?php
 							}
@@ -366,27 +366,27 @@ if($USER->IsAdmin())
 						</select>
 					</td>
 					<td>
-						<a href="javascript:void(0)" onclick="KitIxOptions.RemoveRel(this);" class="kit-ix-options-rels-delete" title="<?phpecho GetMessage("CODEMATRIX_IX_OPTIONS_REMOVE"); ?>"></a>
+						<a href="javascript:void(0)" onclick="KitIxOptions.RemoveRel(this);" class="kit-ix-options-rels-delete" title="<?php echo GetMessage("CODEMATRIX_IX_OPTIONS_REMOVE"); ?>"></a>
 					</td>
 				</tr>
-				<?php}?>
+				<?php }?>
 			</table>
 			<div class="kit-ix-options-rels">
 				<select name="OFFERS_PROP_ID">
-					<option value=""><?phpecho GetMessage("CODEMATRIX_IX_OPTIONS_NO_CHOOSEN"); ?></option>
+					<option value=""><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_NO_CHOOSEN"); ?></option>
 					<?php
 					foreach($arProps as $iblockId=>$iblock)
 					{
-						?><optgroup label="<?phpecho $iblock['NAME']?>" data-id="<?phpecho $iblockId;?>"><?php
+						?><optgroup label="<?php echo $iblock['NAME']?>" data-id="<?php echo $iblockId;?>"><?php
 						foreach($iblock['PROPS'] as $prop)
 						{
-							?><option value="<?phpecho $prop["ID"];?>" <?phpif($prop["ID"]==$iblockId){echo 'selected';}?>><?phpecho htmlspecialcharsbx($prop["NAME"].' ['.$prop["ID"].']'); ?></option><?php
+							?><option value="<?php echo $prop["ID"];?>" <?php if($prop["ID"]==$iblockId){echo 'selected';}?>><?php echo htmlspecialcharsbx($prop["NAME"].' ['.$prop["ID"].']'); ?></option><?php
 						}
 						?></optgroup><?php
 					}
 					?>
 				</select>
-				<a href="javascript:void(0)" onclick="KitIxOptions.AddRels(this);"><?phpecho GetMessage("CODEMATRIX_IX_OPTIONS_ADD_RELS"); ?></a>
+				<a href="javascript:void(0)" onclick="KitIxOptions.AddRels(this);"><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_ADD_RELS"); ?></a>
 			</div>
 			</td>
 		</tr>
@@ -394,22 +394,22 @@ if($USER->IsAdmin())
 	}
 	?>
 	
-	<?php$tabControl->BeginNextTab();?>
-	<?phprequire_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/admin/group_rights.php");?>
+	<?php $tabControl->BeginNextTab();?>
+	<?php require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/admin/group_rights.php");?>
 	<?php
 	$tabControl->Buttons();?>
 <script type="text/javascript">
 function RestoreDefaults()
 {
 	if (confirm('<?php echo CUtil::JSEscape(Loc::getMessage("CODEMATRIX_IX_OPTIONS_BTN_HINT_RESTORE_DEFAULT_WARNING")); ?>'))
-		window.location = "<?phpecho $APPLICATION->GetCurPage()?>?lang=<?php echo LANGUAGE_ID; ?>&mid_menu=1&mid=<?php echo $module_id; ?>&RestoreDefaults=Y&<?=bitrix_sessid_get()?>";
+		window.location = "<?php echo $APPLICATION->GetCurPage()?>?lang=<?php echo LANGUAGE_ID; ?>&mid_menu=1&mid=<?php echo $module_id; ?>&RestoreDefaults=Y&<?=bitrix_sessid_get()?>";
 }
 </script>
-	<input type="submit" name="Update" value="<?phpecho Loc::getMessage("CODEMATRIX_IX_OPTIONS_BTN_SAVE")?>">
+	<input type="submit" name="Update" value="<?php echo Loc::getMessage("CODEMATRIX_IX_OPTIONS_BTN_SAVE")?>">
 	<input type="hidden" name="Update" value="Y">
-	<input type="reset" name="reset" value="<?phpecho Loc::getMessage("CODEMATRIX_IX_OPTIONS_BTN_RESET")?>">
-	<input type="button" title="<?phpecho Loc::getMessage("CODEMATRIX_IX_OPTIONS_BTN_HINT_RESTORE_DEFAULT")?>" onclick="RestoreDefaults();" value="<?phpecho Loc::getMessage("CODEMATRIX_IX_OPTIONS_BTN_RESTORE_DEFAULT")?>">
-	<?php$tabControl->End();?>
+	<input type="reset" name="reset" value="<?php echo Loc::getMessage("CODEMATRIX_IX_OPTIONS_BTN_RESET")?>">
+	<input type="button" title="<?php echo Loc::getMessage("CODEMATRIX_IX_OPTIONS_BTN_HINT_RESTORE_DEFAULT")?>" onclick="RestoreDefaults();" value="<?php echo Loc::getMessage("CODEMATRIX_IX_OPTIONS_BTN_RESTORE_DEFAULT")?>">
+	<?php $tabControl->End();?>
 	</form>
 <?php
 }

@@ -52,7 +52,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 ?>
 <form action="" method="post" enctype="multipart/form-data" name="new_property" id="newPropertyForm">
 	<input type="hidden" name="action" value="save">
-	<?phpif($error){
+	<?php if($error){
 		ShowError($error);
 		?><script>
 			EList.NewPropDialogButtonsSet(true);
@@ -63,7 +63,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 		<col width="50%">
 		<col width="50%">
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_TYPE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_NP_TYPE");?>:</td>
 			<td class="adm-detail-content-cell-r">
 				<select name="FIELD[PROPERTY_TYPE]">
 				<?php
@@ -72,12 +72,12 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						?><optgroup label="<?php echo GetMessage('CODEMATRIX_IX_NP_PROPERTY_BASE_TYPE_GROUP'); ?>"><?php
 					}
 					?>
-					<option value="S" <?phpif($PROPERTY_TYPE=="S")echo " selected"?>><?phpecho GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_S")?></option>
-					<option value="N" <?phpif($PROPERTY_TYPE=="N")echo " selected"?>><?phpecho GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_N")?></option>
-					<option value="L" <?phpif($PROPERTY_TYPE=="L")echo " selected"?>><?phpecho GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_L")?></option>
-					<option value="F" <?phpif($PROPERTY_TYPE=="F")echo " selected"?>><?phpecho GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_F")?></option>
-					<option value="G" <?phpif($PROPERTY_TYPE=="G")echo " selected"?>><?phpecho GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_G")?></option>
-					<option value="E" <?phpif($PROPERTY_TYPE=="E")echo " selected"?>><?phpecho GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_E")?></option>
+					<option value="S" <?php if($PROPERTY_TYPE=="S")echo " selected"?>><?php echo GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_S")?></option>
+					<option value="N" <?php if($PROPERTY_TYPE=="N")echo " selected"?>><?php echo GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_N")?></option>
+					<option value="L" <?php if($PROPERTY_TYPE=="L")echo " selected"?>><?php echo GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_L")?></option>
+					<option value="F" <?php if($PROPERTY_TYPE=="F")echo " selected"?>><?php echo GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_F")?></option>
+					<option value="G" <?php if($PROPERTY_TYPE=="G")echo " selected"?>><?php echo GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_G")?></option>
+					<option value="E" <?php if($PROPERTY_TYPE=="E")echo " selected"?>><?php echo GetMessage("CODEMATRIX_IX_NP_IBLOCK_PROP_E")?></option>
 					<?php
 					if ($boolUserPropExist)
 					{
@@ -85,7 +85,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 					}
 					foreach($arUserTypeList as  $ar)
 					{
-						?><option value="<?=htmlspecialcharsbx($ar["PROPERTY_TYPE"].":".$ar["USER_TYPE"])?>" <?phpif($PROPERTY_TYPE==$ar["PROPERTY_TYPE"].":".$ar["USER_TYPE"])echo " selected"?>><?=htmlspecialcharsbx($ar["DESCRIPTION"])?></option>
+						?><option value="<?=htmlspecialcharsbx($ar["PROPERTY_TYPE"].":".$ar["USER_TYPE"])?>" <?php if($PROPERTY_TYPE==$ar["PROPERTY_TYPE"].":".$ar["USER_TYPE"])echo " selected"?>><?=htmlspecialcharsbx($ar["DESCRIPTION"])?></option>
 						<?php
 					}
 					if ($boolUserPropExist)
@@ -98,60 +98,60 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_ACTIVE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_NP_ACTIVE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="checkbox" name="FIELD[ACTIVE]" value="Y" <?phpif(!isset($_POST['FIELD']['ACTIVE']) || $_POST['FIELD']['ACTIVE']=='Y'){?>checked<?php}?>>
+				<input type="checkbox" name="FIELD[ACTIVE]" value="Y" <?php if(!isset($_POST['FIELD']['ACTIVE']) || $_POST['FIELD']['ACTIVE']=='Y'){?>checked<?php }?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_SORT");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_NP_SORT");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="FIELD[SORT]" value="<?phpecho ($_POST['FIELD']['SORT'] ? htmlspecialcharsex($_POST['FIELD']['SORT']) : '500')?>">
+				<input type="text" name="FIELD[SORT]" value="<?php echo ($_POST['FIELD']['SORT'] ? htmlspecialcharsex($_POST['FIELD']['SORT']) : '500')?>">
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><b><?phpecho GetMessage("CODEMATRIX_IX_NP_NAME");?></b>:</td>
+			<td class="adm-detail-content-cell-l"><b><?php echo GetMessage("CODEMATRIX_IX_NP_NAME");?></b>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="FIELD[NAME]" value="<?phpecho ($_POST['FIELD']['NAME'] ? htmlspecialcharsex($_POST['FIELD']['NAME']) : '')?>">
+				<input type="text" name="FIELD[NAME]" value="<?php echo ($_POST['FIELD']['NAME'] ? htmlspecialcharsex($_POST['FIELD']['NAME']) : '')?>">
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_CODE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_NP_CODE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="FIELD[CODE]" value="<?phpecho ($_POST['FIELD']['CODE'] ? htmlspecialcharsex($_POST['FIELD']['CODE']) : '')?>">
+				<input type="text" name="FIELD[CODE]" value="<?php echo ($_POST['FIELD']['CODE'] ? htmlspecialcharsex($_POST['FIELD']['CODE']) : '')?>">
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_MULTIPLE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_NP_MULTIPLE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="checkbox" name="FIELD[MULTIPLE]" value="Y" <?phpif(isset($_POST['FIELD']['MULTIPLE']) && $_POST['FIELD']['MULTIPLE']=='Y'){?>checked<?php}?>>
+				<input type="checkbox" name="FIELD[MULTIPLE]" value="Y" <?php if(isset($_POST['FIELD']['MULTIPLE']) && $_POST['FIELD']['MULTIPLE']=='Y'){?>checked<?php }?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_IS_REQUIRED");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_NP_IS_REQUIRED");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="checkbox" name="FIELD[IS_REQUIRED]" value="Y" <?phpif(isset($_POST['FIELD']['IS_REQUIRED']) && $_POST['FIELD']['IS_REQUIRED']=='Y'){?>checked<?php}?>>
+				<input type="checkbox" name="FIELD[IS_REQUIRED]" value="Y" <?php if(isset($_POST['FIELD']['IS_REQUIRED']) && $_POST['FIELD']['IS_REQUIRED']=='Y'){?>checked<?php }?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_SEARCHABLE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_NP_SEARCHABLE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="checkbox" name="FIELD[SEARCHABLE]" value="Y" <?phpif(isset($_POST['FIELD']['SEARCHABLE']) && $_POST['FIELD']['SEARCHABLE']=='Y'){?>checked<?php}?>>
+				<input type="checkbox" name="FIELD[SEARCHABLE]" value="Y" <?php if(isset($_POST['FIELD']['SEARCHABLE']) && $_POST['FIELD']['SEARCHABLE']=='Y'){?>checked<?php }?>>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_NP_FILTRABLE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_NP_FILTRABLE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="checkbox" name="FIELD[FILTRABLE]" value="Y" <?phpif(isset($_POST['FIELD']['FILTRABLE']) && $_POST['FIELD']['FILTRABLE']=='Y'){?>checked<?php}?>>
+				<input type="checkbox" name="FIELD[FILTRABLE]" value="Y" <?php if(isset($_POST['FIELD']['FILTRABLE']) && $_POST['FIELD']['FILTRABLE']=='Y'){?>checked<?php }?>>
 			</td>
 		</tr>
 	</table>
 </form>
-<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

@@ -580,7 +580,7 @@ class Filter {
 		if($this->type=='s') $arGroups = $fl->GetSectionFiltrableFields($iblockId);
 		elseif($this->type=='hl') $arGroups = $fl->GetHigloadFiltrableFields($iblockId);
 		else $arGroups = $fl->GetFiltrableFields($iblockId, (bool)($this->type=='o'));
-		?><select name="S_FIELD"><option value=""><?phpecho Loc::getMessage("KDA_IE_CHOOSE_FIELD");?></option><?phpif($this->type!='s'){?><option value="GROUP"><?phpecho Loc::getMessage("KDA_IE_FI_GROUP_COND");?></option><?php}?><?php
+		?><select name="S_FIELD"><option value=""><?php echo Loc::getMessage("KDA_IE_CHOOSE_FIELD");?></option><?php if($this->type!='s'){?><option value="GROUP"><?php echo Loc::getMessage("KDA_IE_FI_GROUP_COND");?></option><?php }?><?php
 		foreach($arGroups as $k2=>$v2)
 		{
 			$groupOption = '';
@@ -608,14 +608,14 @@ class Filter {
 	{
 		if(!is_array($arFilter)) $arFilter = array();
 		?>
-		<div class="kda-ee-sheet-cfilter" id="<?phpecho $fid;?>" data-type="<?phpecho $this->type;?>" <?phpif(!in_array($this->type, array('e', 'hl'))){echo ' style="display: none;"';}?>>
+		<div class="kda-ee-sheet-cfilter" id="<?php echo $fid;?>" data-type="<?php echo $this->type;?>" <?php if(!in_array($this->type, array('e', 'hl'))){echo ' style="display: none;"';}?>>
 			<div class="kda-ee-sheet-cfilter-hidden">
-				<input type="hidden" name="OLD_FILTER" value="<?phpecho (count($arFilter) > 0 ? htmlspecialcharsbx(\CUtil::PhpToJSObject($arFilter)) : '');?>">
-				<input type="hidden" name="IBLOCK_ID" value="<?phpecho htmlspecialcharsbx($this->iblockId);?>">
-				<?php$this->ShowSelectFilterFields($fl, $this->iblockId, $arFilter);?>
+				<input type="hidden" name="OLD_FILTER" value="<?php echo (count($arFilter) > 0 ? htmlspecialcharsbx(\CUtil::PhpToJSObject($arFilter)) : '');?>">
+				<input type="hidden" name="IBLOCK_ID" value="<?php echo htmlspecialcharsbx($this->iblockId);?>">
+				<?php $this->ShowSelectFilterFields($fl, $this->iblockId, $arFilter);?>
 			</div>
 			<div class="kda-ee-cfilter-field-list"></div>
-			<a class="kda-ee-cfilter-add-field" href="javascript:void(0)"><?phpecho Loc::getMessage('KDA_IE_FILTER_ADD_FIELD');?></a>
+			<a class="kda-ee-cfilter-add-field" href="javascript:void(0)"><?php echo Loc::getMessage('KDA_IE_FILTER_ADD_FIELD');?></a>
 		</div>
 		<?php
 	}

@@ -78,7 +78,7 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 <form action="" method="post" enctype="multipart/form-data" name="field_settings">
 	<input type="hidden" name="action" value="save">
 	<div style="display: none;">
-		<?phpecho $sectionSelect;?>
+		<?php echo $sectionSelect;?>
 	</div>
 	
 	<?php
@@ -92,18 +92,18 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 		<col width="50%">
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="" <?=(!isset($arParams['SECTION_LOAD_MODE']) || strlen($arParams['SECTION_LOAD_MODE'])==0 ? 'checked' : '')?> id="kit_slm_default"><label for="kit_slm_default"><?phpecho GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_DEFAULT");?></label><br>
-				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED' ? 'checked' : '')?> id="kit_slm_mapped"><label for="kit_slm_mapped"><?phpecho GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED");?></label><br>
-				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED_CHILD" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED_CHILD' ? 'checked' : '')?> id="kit_slm_mapped_child"><label for="kit_slm_mapped_child"><?phpecho GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED_CHILD");?></label>
+				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="" <?=(!isset($arParams['SECTION_LOAD_MODE']) || strlen($arParams['SECTION_LOAD_MODE'])==0 ? 'checked' : '')?> id="kit_slm_default"><label for="kit_slm_default"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_DEFAULT");?></label><br>
+				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED' ? 'checked' : '')?> id="kit_slm_mapped"><label for="kit_slm_mapped"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED");?></label><br>
+				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED_CHILD" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED_CHILD' ? 'checked' : '')?> id="kit_slm_mapped_child"><label for="kit_slm_mapped_child"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED_CHILD");?></label>
 			</td>
 		</tr>
 
 
 		<tr class="heading">
 			<td colspan="2">
-				<?phpecho GetMessage("CODEMATRIX_IX_SECTION_MAPPING_TITLE");?>
+				<?php echo GetMessage("CODEMATRIX_IX_SECTION_MAPPING_TITLE");?>
 			</td>
 		</tr>
 		
@@ -134,10 +134,10 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 			$xmlId = trim($xmlId);
 		?>
 			<tr>
-				<td><?phpecho $arXmlSection['NAME'].(trim($xmlId)==trim($arXmlSection['NAME']) ? '' : ' ['.$xmlId.']');?></td>
+				<td><?php echo $arXmlSection['NAME'].(trim($xmlId)==trim($arXmlSection['NAME']) ? '' : ' ['.$xmlId.']');?></td>
 				<td>
-				  <div class="kit-ix-select-mapping-wrap" data-nc-message="<?phpecho GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
-					<a href="javascript:void(0)" class="kit-ix-mapping-add-field" title="<?phpecho GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
+				  <div class="kit-ix-select-mapping-wrap" data-nc-message="<?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
+					<a href="javascript:void(0)" class="kit-ix-mapping-add-field" title="<?php echo GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
 					<?php
 					$isFields = false;
 					if(array_key_exists($xmlId, $arMap2))
@@ -165,17 +165,17 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 				  </div>
 				</td>
 			</tr>
-		<?php}?>
+		<?php }?>
 		</table>
-		<div style="padding: 10px 0px 0px 0px; text-align: right;"><input type="button" value="<?phpecho GetMessage("CODEMATRIX_IX_AUTO_INSERT_SECTIONS");?>" onclick="ESettings.JuxtaposeSections(this)"></div>
+		<div style="padding: 10px 0px 0px 0px; text-align: right;"><input type="button" value="<?php echo GetMessage("CODEMATRIX_IX_AUTO_INSERT_SECTIONS");?>" onclick="ESettings.JuxtaposeSections(this)"></div>
 		<?php
 		echo BeginNote();
 		echo GetMessage("CODEMATRIX_IX_AUTO_MAPPING_NOTE");
 		echo EndNote();
 		?>
-		<?php}?>
+		<?php }?>
 	  </td>
 	</tr>
 	</table>
 </form>
-<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

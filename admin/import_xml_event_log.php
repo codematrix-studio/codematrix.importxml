@@ -398,8 +398,8 @@ if (!call_user_func($moduleDemoExpiredFunc)) {
 	call_user_func($moduleShowDemoFunc);
 }
 ?>
-<form name="find_form" id="filter_find_form" method="GET" action="<?phpecho $APPLICATION->GetCurPage()?>?">
-<input type="hidden" name="lang" value="<?phpecho LANG?>">
+<form name="find_form" id="filter_find_form" method="GET" action="<?php echo $APPLICATION->GetCurPage()?>?">
+<input type="hidden" name="lang" value="<?php echo LANG?>">
 <?php
 $arFilterNames = array(
 	"find_exec_id" => GetMessage("CODEMATRIX_IX_EVENTLOG_PROFILE_EXEC_ID"),
@@ -413,27 +413,27 @@ $oFilter = new CAdminFilter($sTableID."_filter", $arFilterNames);
 $oFilter->Begin();
 ?>
 <tr>
-	<td><?phpecho GetMessage("CODEMATRIX_IX_EVENTLOG_PROFILE_ID")?>:</td>
+	<td><?php echo GetMessage("CODEMATRIX_IX_EVENTLOG_PROFILE_ID")?>:</td>
 	<td>
 		<select name="find_profile_id" >
-			<option value=""><?phpecho GetMessage("CODEMATRIX_IX_ALL"); ?></option>
+			<option value=""><?php echo GetMessage("CODEMATRIX_IX_ALL"); ?></option>
 			<?php
 			foreach($arProfiles as $k=>$profile)
 			{
 				$key = $k + 1;
-				?><option value="<?phpecho $key;?>" <?phpif($find_profile_id==$key){echo 'selected';}?>><?phpecho $profile; ?></option><?php
+				?><option value="<?php echo $key;?>" <?php if($find_profile_id==$key){echo 'selected';}?>><?php echo $profile; ?></option><?php
 			}
 			?>
 		</select>
 	</td>
 </tr>
 <tr>
-	<td><?phpecho GetMessage("CODEMATRIX_IX_EVENTLOG_PROFILE_EXEC_ID")?>:</td>
-	<td><input type="text" name="find_exec_id" size="47" value="<?phpecho htmlspecialcharsbx($find_exec_id)?>"></td>
+	<td><?php echo GetMessage("CODEMATRIX_IX_EVENTLOG_PROFILE_EXEC_ID")?>:</td>
+	<td><input type="text" name="find_exec_id" size="47" value="<?php echo htmlspecialcharsbx($find_exec_id)?>"></td>
 </tr>
 <tr>
-	<td><?phpecho GetMessage("CODEMATRIX_IX_EVENTLOG_TIMESTAMP_X")?>:</td>
-	<td><?phpecho CAdminCalendar::CalendarPeriod("find_timestamp_x_1", "find_timestamp_x_2", $find_timestamp_x_1, $find_timestamp_x_2, false, 15, true)?></td>
+	<td><?php echo GetMessage("CODEMATRIX_IX_EVENTLOG_TIMESTAMP_X")?>:</td>
+	<td><?php echo CAdminCalendar::CalendarPeriod("find_timestamp_x_1", "find_timestamp_x_2", $find_timestamp_x_1, $find_timestamp_x_2, false, 15, true)?></td>
 </tr>
 <?php
 $arSiteDropdown = array("reference" => array(
@@ -459,16 +459,16 @@ $arSiteDropdown = array("reference" => array(
 ));
 ?>
 <tr>
-	<td><?phpecho GetMessage("CODEMATRIX_IX_EVENTLOG_TYPE")?>:</td>
-	<td><?phpecho SelectBoxMFromArray("find_type[]", $arSiteDropdown, $find_type, GetMessage("CODEMATRIX_IX_ALL"), "");?></td>
+	<td><?php echo GetMessage("CODEMATRIX_IX_EVENTLOG_TYPE")?>:</td>
+	<td><?php echo SelectBoxMFromArray("find_type[]", $arSiteDropdown, $find_type, GetMessage("CODEMATRIX_IX_ALL"), "");?></td>
 </tr>
 <tr>
-	<td><?phpecho GetMessage("CODEMATRIX_IX_EVENTLOG_ITEM_ID")?>:</td>
-	<td><input type="text" name="find_item_id" size="47" value="<?phpecho htmlspecialcharsbx($find_item_id)?>"></td>
+	<td><?php echo GetMessage("CODEMATRIX_IX_EVENTLOG_ITEM_ID")?>:</td>
+	<td><input type="text" name="find_item_id" size="47" value="<?php echo htmlspecialcharsbx($find_item_id)?>"></td>
 </tr>
 <tr>
-	<td><?phpecho GetMessage("CODEMATRIX_IX_EVENTLOG_USER_ID")?>:</td>
-	<td><input type="text" name="find_user_id" size="47" value="<?phpecho htmlspecialcharsbx($find_user_id)?>"></td>
+	<td><?php echo GetMessage("CODEMATRIX_IX_EVENTLOG_USER_ID")?>:</td>
+	<td><input type="text" name="find_user_id" size="47" value="<?php echo htmlspecialcharsbx($find_user_id)?>"></td>
 </tr>
 <?php
 $oFilter->Buttons(array("table_id"=>$sTableID, "url"=>$APPLICATION->GetCurPage(), "form"=>"find_form"));

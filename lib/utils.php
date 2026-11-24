@@ -499,7 +499,7 @@ class Utils {
 				while(!$break && !feof($handle)) 
 				{
 					$str = fgets($handle, 65536);
-					if(trim($str) && strpos($str, '>')!==false && stripos($str, '<?phpxml')===false && stripos($str, '<!DOCTYPE')===false)
+					if(trim($str) && strpos($str, '>')!==false && stripos($str, '<?php xml')===false && stripos($str, '<!DOCTYPE')===false)
 					{
 						$break = true;
 					}
@@ -1319,7 +1319,7 @@ class Utils {
 					$ob = self::GetHttpClient(array('socketTimeout'=>$maxTime, 'streamTimeout'=>$maxTime, 'disableSslVerification'=>true), $arHeaders, $arCookies, $path);
 					if(strlen($postBody) > 0)
 					{
-						if(strpos($postBody, '<?phpxml')!==false) $ob->setHeader('content-type', 'application/xml');
+						if(strpos($postBody, '<?php xml')!==false) $ob->setHeader('content-type', 'application/xml');
 						if($dRes = $ob->post($path, $postBody))
 						{
 							$dir = \Bitrix\Main\IO\Path::getDirectory($temp_path2);
@@ -1366,7 +1366,7 @@ class Utils {
 						$handle = fopen($temp_path, 'r');
 						while(!($str = trim(fgets($handle, 1024))) && !feof($handle) && ++$i<10) {}
 						fclose($handle);
-						$isXmlHeader = (bool)(stripos(trim($str), '<?phpxml')!==false);
+						$isXmlHeader = (bool)(stripos(trim($str), '<?php xml')!==false);
 						$isJsonHeader = (bool)(in_array(substr(trim($str), 0, 1), array('[', '{')));
 
 						$realFileName = '';
@@ -1447,7 +1447,7 @@ class Utils {
 					{
 						return $arMaskFile;
 					}
-					elseif(($arFileTmp = \CFile::MakeFileArray($temp_path)) && $arFileTmp['size'] > 0 && strpos($arFileTmp['type'], 'xml')!==false && strpos(file_get_contents($arFileTmp['tmp_name'], false, null, 0, 4096), '<?phpxml')!==false)
+					elseif(($arFileTmp = \CFile::MakeFileArray($temp_path)) && $arFileTmp['size'] > 0 && strpos($arFileTmp['type'], 'xml')!==false && strpos(file_get_contents($arFileTmp['tmp_name'], false, null, 0, 4096), '<?php xml')!==false)
 					{
 						$arFile = $arFileTmp;
 					}
@@ -1474,7 +1474,7 @@ class Utils {
 					$handle = fopen($arFile['tmp_name'], 'r');
 					while(!($str = trim(fgets($handle, 1024))) && !feof($handle) && ++$i<10) {}
 					fclose($handle);
-					$isXmlHeader = (bool)(stripos(trim($str), '<?phpxml')!==false);
+					$isXmlHeader = (bool)(stripos(trim($str), '<?php xml')!==false);
 					$isJsonHeader = (bool)(in_array(substr(trim($str), 0, 1), array('[', '{')));
 					$ext = ToLower(self::GetFileExtension($arFile['tmp_name']));
 					if(!in_array($ext, array('xml', 'yml')) &&
@@ -2283,41 +2283,41 @@ class Utils {
 		
 		$oFilter->Begin();
 		?>
-			<?php/*?><tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_FILTER_FROMTO_ID")?>:</td>
+			<?php /*?><tr>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_FILTER_FROMTO_ID")?>:</td>
 				<td nowrap>
-					<input type="text" name="<?phpecho $sf;?>[find_el_id_start]" size="10" value="<?phpecho htmlspecialcharsex($arFields['find_el_id_start'])?>">
+					<input type="text" name="<?php echo $sf;?>[find_el_id_start]" size="10" value="<?php echo htmlspecialcharsex($arFields['find_el_id_start'])?>">
 					...
-					<input type="text" name="<?phpecho $sf;?>[find_el_id_end]" size="10" value="<?phpecho htmlspecialcharsex($arFields['find_el_id_end'])?>">
+					<input type="text" name="<?php echo $sf;?>[find_el_id_end]" size="10" value="<?php echo htmlspecialcharsex($arFields['find_el_id_end'])?>">
 				</td>
-			</tr><?php*/?>
+			</tr><?php */?>
 
 			<tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_FIELD_SECTION_ID")?>:</td>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_FIELD_SECTION_ID")?>:</td>
 				<td>
-					<select name="<?phpecho $sf;?>[find_section_section][]" multiple size="5">
-						<option value="-1"<?phpif((is_array($arFields['find_section_section']) && in_array("-1", $arFields['find_section_section'])) || $arFields['find_section_section']=="-1")echo" selected"?>><?phpecho Loc::getMessage("CODEMATRIX_IX_VALUE_ANY")?></option>
-						<option value="0"<?phpif((is_array($arFields['find_section_section']) && in_array("0", $arFields['find_section_section'])) || $arFields['find_section_section']=="0")echo" selected"?>><?phpecho Loc::getMessage("CODEMATRIX_IX_UPPER_LEVEL")?></option>
+					<select name="<?php echo $sf;?>[find_section_section][]" multiple size="5">
+						<option value="-1"<?php if((is_array($arFields['find_section_section']) && in_array("-1", $arFields['find_section_section'])) || $arFields['find_section_section']=="-1")echo" selected"?>><?php echo Loc::getMessage("CODEMATRIX_IX_VALUE_ANY")?></option>
+						<option value="0"<?php if((is_array($arFields['find_section_section']) && in_array("0", $arFields['find_section_section'])) || $arFields['find_section_section']=="0")echo" selected"?>><?php echo Loc::getMessage("CODEMATRIX_IX_UPPER_LEVEL")?></option>
 						<?php
 						$bsections = \CIBlockSection::GetTreeList(Array("IBLOCK_ID"=>$IBLOCK_ID), array("ID", "NAME", "DEPTH_LEVEL"));
 						while($ar = $bsections->GetNext()):
-							?><option value="<?phpecho $ar["ID"]?>"<?phpif((is_array($arFields['find_section_section']) && in_array($ar["ID"], $arFields['find_section_section'])) || $ar["ID"]==$arFields['find_section_section'])echo " selected"?>><?phpecho str_repeat("&nbsp;.&nbsp;", $ar["DEPTH_LEVEL"])?><?phpecho $ar["NAME"]?></option><?php
+							?><option value="<?php echo $ar["ID"]?>"<?php if((is_array($arFields['find_section_section']) && in_array($ar["ID"], $arFields['find_section_section'])) || $ar["ID"]==$arFields['find_section_section'])echo " selected"?>><?php echo str_repeat("&nbsp;.&nbsp;", $ar["DEPTH_LEVEL"])?><?php echo $ar["NAME"]?></option><?php
 						endwhile;
 						?>
 					</select><br>
-					<input type="checkbox" name="<?phpecho $sf;?>[find_el_subsections]" value="Y"<?phpif($arFields['find_el_subsections']=="Y")echo" checked"?>> <?phpecho Loc::getMessage("CODEMATRIX_IX_INCLUDING_SUBSECTIONS")?>
+					<input type="checkbox" name="<?php echo $sf;?>[find_el_subsections]" value="Y"<?php if($arFields['find_el_subsections']=="Y")echo" checked"?>> <?php echo Loc::getMessage("CODEMATRIX_IX_INCLUDING_SUBSECTIONS")?>
 				</td>
 			</tr>
 
 			<tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_FIELD_TIMESTAMP_X")?>:</td>
-				<td><?phpecho CalendarPeriod($sf."[find_el_timestamp_from]", htmlspecialcharsex($arFields['find_el_timestamp_from']), $sf."[find_el_timestamp_to]", htmlspecialcharsex($arFields['find_el_timestamp_to']), "filter_form", "Y")?></font></td>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_FIELD_TIMESTAMP_X")?>:</td>
+				<td><?php echo CalendarPeriod($sf."[find_el_timestamp_from]", htmlspecialcharsex($arFields['find_el_timestamp_from']), $sf."[find_el_timestamp_to]", htmlspecialcharsex($arFields['find_el_timestamp_to']), "filter_form", "Y")?></font></td>
 			</tr>
 
 			<tr>
 				<td><?=Loc::getMessage("CODEMATRIX_IX_FIELD_MODIFIED_BY")?>:</td>
 				<td>
-					<?phpecho FindUserID(
+					<?php echo FindUserID(
 						$sf."[find_el_modified_user_id]",
 						$arFields['find_el_modified_user_id'],
 						"",
@@ -2332,14 +2332,14 @@ class Utils {
 			</tr>
 
 			<tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_EL_ADMIN_DCREATE")?>:</td>
-				<td><?phpecho CalendarPeriod($sf."[find_el_created_from]", htmlspecialcharsex($arFields['find_el_created_from']), $sf."[find_el_created_to]", htmlspecialcharsex($arFields['find_el_created_to']), "filter_form", "Y")?></td>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_EL_ADMIN_DCREATE")?>:</td>
+				<td><?php echo CalendarPeriod($sf."[find_el_created_from]", htmlspecialcharsex($arFields['find_el_created_from']), $sf."[find_el_created_to]", htmlspecialcharsex($arFields['find_el_created_to']), "filter_form", "Y")?></td>
 			</tr>
 
 			<tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_EL_ADMIN_WCREATE")?></td>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_EL_ADMIN_WCREATE")?></td>
 				<td>
-					<?phpecho FindUserID(
+					<?php echo FindUserID(
 						$sf."[find_el_created_user_id]",
 						$arFields['find_el_created_user_id'],
 						"",
@@ -2354,78 +2354,78 @@ class Utils {
 			</tr>
 
 			<tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_EL_A_ACTFROM")?>:</td>
-				<td><?phpecho CalendarPeriod($sf."[find_el_date_active_from_from]", htmlspecialcharsex($arFields['find_el_date_active_from_from']), $sf."[find_el_date_active_from_to]", htmlspecialcharsex($arFields['find_el_date_active_from_to']), "filter_form")?></td>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_EL_A_ACTFROM")?>:</td>
+				<td><?php echo CalendarPeriod($sf."[find_el_date_active_from_from]", htmlspecialcharsex($arFields['find_el_date_active_from_from']), $sf."[find_el_date_active_from_to]", htmlspecialcharsex($arFields['find_el_date_active_from_to']), "filter_form")?></td>
 			</tr>
 
 			<tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_EL_A_ACTTO")?>:</td>
-				<td><?phpecho CalendarPeriod($sf."[find_el_date_active_to_from]", htmlspecialcharsex($arFields['find_el_date_active_to_from']), $sf."[find_el_date_active_to_to]", htmlspecialcharsex($arFields['find_el_date_active_to_to']), "filter_form")?></td>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_EL_A_ACTTO")?>:</td>
+				<td><?php echo CalendarPeriod($sf."[find_el_date_active_to_from]", htmlspecialcharsex($arFields['find_el_date_active_to_from']), $sf."[find_el_date_active_to_to]", htmlspecialcharsex($arFields['find_el_date_active_to_to']), "filter_form")?></td>
 			</tr>
 
 			<tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_FIELD_ACTIVE")?>:</td>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_FIELD_ACTIVE")?>:</td>
 				<td>
-					<select name="<?phpecho $sf;?>[find_el_active]">
+					<select name="<?php echo $sf;?>[find_el_active]">
 						<option value=""><?=htmlspecialcharsex(Loc::getMessage('CODEMATRIX_IX_VALUE_ANY'))?></option>
-						<option value="Y"<?phpif($arFields['find_el_active']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_YES"))?></option>
-						<option value="N"<?phpif($arFields['find_el_active']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_NO"))?></option>
+						<option value="Y"<?php if($arFields['find_el_active']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_YES"))?></option>
+						<option value="N"<?php if($arFields['find_el_active']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_NO"))?></option>
 					</select>
 				</td>
 			</tr>
 
 			<tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_FIELD_NAME")?>:</td>
-				<td><input type="text" name="<?phpecho $sf;?>[find_el_name]" value="<?phpecho htmlspecialcharsex($arFields['find_el_name'])?>" size="30"></td>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_FIELD_NAME")?>:</td>
+				<td><input type="text" name="<?php echo $sf;?>[find_el_name]" value="<?php echo htmlspecialcharsex($arFields['find_el_name'])?>" size="30"></td>
 			</tr>
 			<tr>
-				<td><?phpecho Loc::getMessage("CODEMATRIX_IX_EL_ADMIN_DESC")?></td>
-				<td><input type="text" name="<?phpecho $sf;?>[find_el_intext]" value="<?phpecho htmlspecialcharsex($arFields['find_el_intext'])?>" size="30"></td>
+				<td><?php echo Loc::getMessage("CODEMATRIX_IX_EL_ADMIN_DESC")?></td>
+				<td><input type="text" name="<?php echo $sf;?>[find_el_intext]" value="<?php echo htmlspecialcharsex($arFields['find_el_intext'])?>" size="30"></td>
 			</tr>
 
 			<tr>
 				<td><?=Loc::getMessage("CODEMATRIX_IX_EL_A_CODE")?>:</td>
-				<td><input type="text" name="<?phpecho $sf;?>[find_el_code]" value="<?phpecho htmlspecialcharsex($arFields['find_el_code'])?>" size="30"></td>
+				<td><input type="text" name="<?php echo $sf;?>[find_el_code]" value="<?php echo htmlspecialcharsex($arFields['find_el_code'])?>" size="30"></td>
 			</tr>
 			<tr>
 				<td><?=Loc::getMessage("CODEMATRIX_IX_EL_A_EXTERNAL_ID")?>:</td>
 				<td>
-					<select class="kit-ix-filter-chval" name="<?phpecho $sf;?>[find_el_vtype_external_id]">
-						<option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option>
-						<option value="contain"<?phpif($arFields["find_el_vtype_external_id"]=='contain'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_VTYPE_CONTAIN")?></option>
-						<option value="not_contain"<?phpif($arFields["find_el_vtype_external_id"]=='not_contain'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_VTYPE_NOT_CONTAIN")?></option>
-						<option value="begin_with"<?phpif($arFields["find_el_vtype_external_id"]=='begin_with'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_VTYPE_BEGIN_WITH")?></option>
-						<option value="end_on"<?phpif($arFields["find_el_vtype_external_id"]=='end_on'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_VTYPE_END_ON")?></option>
-						<option value="empty"<?phpif($arFields["find_el_vtype_external_id"]=='empty'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_IS_EMPTY")?></option>
-						<option value="not_empty"<?phpif($arFields["find_el_vtype_external_id"]=='not_empty'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY")?></option>
+					<select class="kit-ix-filter-chval" name="<?php echo $sf;?>[find_el_vtype_external_id]">
+						<option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option>
+						<option value="contain"<?php if($arFields["find_el_vtype_external_id"]=='contain'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_CONTAIN")?></option>
+						<option value="not_contain"<?php if($arFields["find_el_vtype_external_id"]=='not_contain'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_NOT_CONTAIN")?></option>
+						<option value="begin_with"<?php if($arFields["find_el_vtype_external_id"]=='begin_with'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_BEGIN_WITH")?></option>
+						<option value="end_on"<?php if($arFields["find_el_vtype_external_id"]=='end_on'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_END_ON")?></option>
+						<option value="empty"<?php if($arFields["find_el_vtype_external_id"]=='empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_EMPTY")?></option>
+						<option value="not_empty"<?php if($arFields["find_el_vtype_external_id"]=='not_empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY")?></option>
 					</select>
-					<input type="text" name="<?phpecho $sf;?>[find_el_external_id]" value="<?phpecho htmlspecialcharsex($arFields["find_el_external_id"])?>" size="30">
+					<input type="text" name="<?php echo $sf;?>[find_el_external_id]" value="<?php echo htmlspecialcharsex($arFields["find_el_external_id"])?>" size="30">
 				</td>
 			</tr>
 			<tr>
 				<td><?=Loc::getMessage("CODEMATRIX_IX_EL_A_PREVIEW_PICTURE")?>:</td>
 				<td>
-					<select name="<?phpecho $sf;?>[find_el_preview_picture]">
+					<select name="<?php echo $sf;?>[find_el_preview_picture]">
 						<option value=""><?=htmlspecialcharsex(Loc::getMessage('CODEMATRIX_IX_VALUE_ANY'))?></option>
-						<option value="Y"<?phpif($arFields['find_el_preview_picture']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY"))?></option>
-						<option value="N"<?phpif($arFields['find_el_preview_picture']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_IS_EMPTY"))?></option>
+						<option value="Y"<?php if($arFields['find_el_preview_picture']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY"))?></option>
+						<option value="N"<?php if($arFields['find_el_preview_picture']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_IS_EMPTY"))?></option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td><?=Loc::getMessage("CODEMATRIX_IX_EL_A_DETAIL_PICTURE")?>:</td>
 				<td>
-					<select name="<?phpecho $sf;?>[find_el_detail_picture]">
+					<select name="<?php echo $sf;?>[find_el_detail_picture]">
 						<option value=""><?=htmlspecialcharsex(Loc::getMessage('CODEMATRIX_IX_VALUE_ANY'))?></option>
-						<option value="Y"<?phpif($arFields['find_el_detail_picture']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY"))?></option>
-						<option value="N"<?phpif($arFields['find_el_detail_picture']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_IS_EMPTY"))?></option>
+						<option value="Y"<?php if($arFields['find_el_detail_picture']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY"))?></option>
+						<option value="N"<?php if($arFields['find_el_detail_picture']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_IS_EMPTY"))?></option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td><?=Loc::getMessage("CODEMATRIX_IX_EL_A_TAGS")?>:</td>
 				<td>
-					<input type="text" name="<?phpecho $sf;?>[find_el_tags]" value="<?phpecho htmlspecialcharsex($arFields['find_el_tags'])?>" size="30">
+					<input type="text" name="<?php echo $sf;?>[find_el_tags]" value="<?php echo htmlspecialcharsex($arFields['find_el_tags'])?>" size="30">
 				</td>
 			</tr>
 			<?php
@@ -2436,7 +2436,7 @@ class Utils {
 				?><tr>
 					<td><?=Loc::getMessage("CODEMATRIX_IX_CATALOG_TYPE"); ?>:</td>
 					<td>
-						<select name="<?phpecho $sf;?>[find_el_catalog_type][]" multiple>
+						<select name="<?php echo $sf;?>[find_el_catalog_type][]" multiple>
 							<option value=""><?=htmlspecialcharsex(Loc::getMessage('CODEMATRIX_IX_VALUE_ANY'))?></option>
 							<?php
 							$catalogTypes = (!empty($arFields['find_el_catalog_type']) ? $arFields['find_el_catalog_type'] : array());
@@ -2454,36 +2454,36 @@ class Utils {
 				}
 				?>
 				<tr>
-					<td><?phpecho Loc::getMessage("CODEMATRIX_IX_CATALOG_BUNDLE")?>:</td>
+					<td><?php echo Loc::getMessage("CODEMATRIX_IX_CATALOG_BUNDLE")?>:</td>
 					<td>
-						<select name="<?phpecho $sf;?>[find_el_catalog_bundle]">
+						<select name="<?php echo $sf;?>[find_el_catalog_bundle]">
 							<option value=""><?=htmlspecialcharsex(Loc::getMessage('CODEMATRIX_IX_VALUE_ANY'))?></option>
-							<option value="Y"<?phpif($arFields['find_el_catalog_bundle']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_YES"))?></option>
-							<option value="N"<?phpif($arFields['find_el_catalog_bundle']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_NO"))?></option>
+							<option value="Y"<?php if($arFields['find_el_catalog_bundle']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_YES"))?></option>
+							<option value="N"<?php if($arFields['find_el_catalog_bundle']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_NO"))?></option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td><?phpecho Loc::getMessage("CODEMATRIX_IX_CATALOG_AVAILABLE")?>:</td>
+					<td><?php echo Loc::getMessage("CODEMATRIX_IX_CATALOG_AVAILABLE")?>:</td>
 					<td>
-						<select name="<?phpecho $sf;?>[find_el_catalog_available]">
+						<select name="<?php echo $sf;?>[find_el_catalog_available]">
 							<option value=""><?=htmlspecialcharsex(Loc::getMessage('CODEMATRIX_IX_VALUE_ANY'))?></option>
-							<option value="Y"<?phpif($arFields['find_el_catalog_available']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_YES"))?></option>
-							<option value="N"<?phpif($arFields['find_el_catalog_available']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_NO"))?></option>
+							<option value="Y"<?php if($arFields['find_el_catalog_available']=="Y")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_YES"))?></option>
+							<option value="N"<?php if($arFields['find_el_catalog_available']=="N")echo " selected"?>><?=htmlspecialcharsex(Loc::getMessage("CODEMATRIX_IX_NO"))?></option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td><?phpecho Loc::getMessage("CODEMATRIX_IX_CATALOG_QUANTITY")?>:</td>
+					<td><?php echo Loc::getMessage("CODEMATRIX_IX_CATALOG_QUANTITY")?>:</td>
 					<td>
-						<select name="<?phpecho $sf;?>[find_el_catalog_quantity_comp]">
-							<option value="eq" <?phpif($arFields['find_el_catalog_quantity_comp']=='eq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_EQ')?></option>
-							<option value="gt" <?phpif($arFields['find_el_catalog_quantity_comp']=='gt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GT')?></option>
-							<option value="geq" <?phpif($arFields['find_el_catalog_quantity_comp']=='geq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GEQ')?></option>
-							<option value="lt" <?phpif($arFields['find_el_catalog_quantity_comp']=='lt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LT')?></option>
-							<option value="leq" <?phpif($arFields['find_el_catalog_quantity_comp']=='leq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LEQ')?></option>
+						<select name="<?php echo $sf;?>[find_el_catalog_quantity_comp]">
+							<option value="eq" <?php if($arFields['find_el_catalog_quantity_comp']=='eq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_EQ')?></option>
+							<option value="gt" <?php if($arFields['find_el_catalog_quantity_comp']=='gt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GT')?></option>
+							<option value="geq" <?php if($arFields['find_el_catalog_quantity_comp']=='geq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GEQ')?></option>
+							<option value="lt" <?php if($arFields['find_el_catalog_quantity_comp']=='lt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LT')?></option>
+							<option value="leq" <?php if($arFields['find_el_catalog_quantity_comp']=='leq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LEQ')?></option>
 						</select>
-						<input type="text" name="<?phpecho $sf;?>[find_el_catalog_quantity]" value="<?phpecho htmlspecialcharsex($arFields['find_el_catalog_quantity'])?>" size="10">
+						<input type="text" name="<?php echo $sf;?>[find_el_catalog_quantity]" value="<?php echo htmlspecialcharsex($arFields['find_el_catalog_quantity'])?>" size="10">
 					</td>
 				</tr>
 				
@@ -2494,16 +2494,16 @@ class Utils {
 					{
 						?>
 						<tr>
-							<td><?phpecho sprintf(Loc::getMessage("CODEMATRIX_IX_CATALOG_STORE_QUANTITY"), $arStore['TITLE'])?>:</td>
+							<td><?php echo sprintf(Loc::getMessage("CODEMATRIX_IX_CATALOG_STORE_QUANTITY"), $arStore['TITLE'])?>:</td>
 							<td>
-								<select name="<?phpecho $sf;?>[find_el_catalog_store<?phpecho $arStore['ID'];?>_quantity_comp]">
-									<option value="eq" <?phpif($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='eq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_EQ')?></option>
-									<option value="gt" <?phpif($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='gt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GT')?></option>
-									<option value="geq" <?phpif($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='geq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GEQ')?></option>
-									<option value="lt" <?phpif($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='lt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LT')?></option>
-									<option value="leq" <?phpif($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='leq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LEQ')?></option>
+								<select name="<?php echo $sf;?>[find_el_catalog_store<?php echo $arStore['ID'];?>_quantity_comp]">
+									<option value="eq" <?php if($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='eq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_EQ')?></option>
+									<option value="gt" <?php if($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='gt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GT')?></option>
+									<option value="geq" <?php if($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='geq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GEQ')?></option>
+									<option value="lt" <?php if($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='lt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LT')?></option>
+									<option value="leq" <?php if($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity_comp']=='leq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LEQ')?></option>
 								</select>
-								<input type="text" name="<?phpecho $sf;?>[find_el_catalog_store<?phpecho $arStore['ID'];?>_quantity]" value="<?phpecho htmlspecialcharsex($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity'])?>" size="10">
+								<input type="text" name="<?php echo $sf;?>[find_el_catalog_store<?php echo $arStore['ID'];?>_quantity]" value="<?php echo htmlspecialcharsex($arFields['find_el_catalog_store'.$arStore['ID'].'_quantity'])?>" size="10">
 							</td>
 						</tr>
 						<?php
@@ -2516,17 +2516,17 @@ class Utils {
 					{
 						?>
 						<tr>
-							<td><?phpecho sprintf(Loc::getMessage("CODEMATRIX_IX_CATALOG_PRICE"), $arPrice['NAME_LANG'])?>:</td>
+							<td><?php echo sprintf(Loc::getMessage("CODEMATRIX_IX_CATALOG_PRICE"), $arPrice['NAME_LANG'])?>:</td>
 							<td>
-								<select name="<?phpecho $sf;?>[find_el_catalog_price_<?phpecho $arPrice['ID'];?>_comp]">
-									<option value="eq" <?phpif($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='eq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_EQ')?></option>
-									<option value="empty" <?phpif($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='empty'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_EMPTY')?></option>
-									<option value="gt" <?phpif($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='gt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GT')?></option>
-									<option value="geq" <?phpif($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='geq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GEQ')?></option>
-									<option value="lt" <?phpif($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='lt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LT')?></option>
-									<option value="leq" <?phpif($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='leq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LEQ')?></option>
+								<select name="<?php echo $sf;?>[find_el_catalog_price_<?php echo $arPrice['ID'];?>_comp]">
+									<option value="eq" <?php if($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='eq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_EQ')?></option>
+									<option value="empty" <?php if($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='empty'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_EMPTY')?></option>
+									<option value="gt" <?php if($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='gt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GT')?></option>
+									<option value="geq" <?php if($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='geq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_GEQ')?></option>
+									<option value="lt" <?php if($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='lt'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LT')?></option>
+									<option value="leq" <?php if($arFields['find_el_catalog_price_'.$arPrice['ID'].'_comp']=='leq'){echo 'selected';}?>><?=Loc::getMessage('CODEMATRIX_IX_COMPARE_LEQ')?></option>
 								</select>
-								<input type="text" name="<?phpecho $sf;?>[find_el_catalog_price_<?phpecho $arPrice['ID'];?>]" value="<?phpecho htmlspecialcharsex($arFields['find_el_catalog_price_'.$arPrice['ID']])?>" size="10">
+								<input type="text" name="<?php echo $sf;?>[find_el_catalog_price_<?php echo $arPrice['ID'];?>]" value="<?php echo htmlspecialcharsex($arFields['find_el_catalog_price_'.$arPrice['ID']])?>" size="10">
 							</td>
 						</tr>
 						<?php
@@ -2540,7 +2540,7 @@ class Utils {
 		<tr>
 			<td><?=$arProp["NAME"]?>:</td>
 			<td>
-				<?phpif(array_key_exists("GetAdminFilterHTML", $arProp["PROPERTY_USER_TYPE"])):
+				<?php if(array_key_exists("GetAdminFilterHTML", $arProp["PROPERTY_USER_TYPE"])):
 					$fieldName = "filter1_find_el_property_".$arProp["ID"];
 					if(isset($arFields["find_el_property_".$arProp["ID"]."_from"])) $GLOBALS[$fieldName."_from"] = $arFields["find_el_property_".$arProp["ID"]."_from"];
 					if(isset($arFields["find_el_property_".$arProp["ID"]."_to"])) $GLOBALS[$fieldName."_to"] = $arFields["find_el_property_".$arProp["ID"]."_to"];
@@ -2554,30 +2554,30 @@ class Utils {
 						),
 					));
 				elseif($arProp["PROPERTY_TYPE"]=='S'):?>
-					<select class="kit-ix-filter-chval" name="<?phpecho $sf;?>[find_el_vtype_property_<?=$arProp["ID"]?>]">
-						<option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option>
-						<option value="contain"<?phpif($arFields["find_el_vtype_property_".$arProp["ID"]]=='contain'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_VTYPE_CONTAIN")?></option>
-						<option value="not_contain"<?phpif($arFields["find_el_vtype_property_".$arProp["ID"]]=='not_contain'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_VTYPE_NOT_CONTAIN")?></option>
-						<option value="begin_with"<?phpif($arFields["find_el_vtype_property_".$arProp["ID"]]=='begin_with'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_VTYPE_BEGIN_WITH")?></option>
-						<option value="end_on"<?phpif($arFields["find_el_vtype_property_".$arProp["ID"]]=='end_on'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_VTYPE_END_ON")?></option>
-						<option value="empty"<?phpif($arFields["find_el_vtype_property_".$arProp["ID"]]=='empty'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_IS_EMPTY")?></option>
-						<option value="not_empty"<?phpif($arFields["find_el_vtype_property_".$arProp["ID"]]=='not_empty'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY")?></option>
+					<select class="kit-ix-filter-chval" name="<?php echo $sf;?>[find_el_vtype_property_<?=$arProp["ID"]?>]">
+						<option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option>
+						<option value="contain"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='contain'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_CONTAIN")?></option>
+						<option value="not_contain"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='not_contain'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_NOT_CONTAIN")?></option>
+						<option value="begin_with"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='begin_with'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_BEGIN_WITH")?></option>
+						<option value="end_on"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='end_on'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_END_ON")?></option>
+						<option value="empty"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_EMPTY")?></option>
+						<option value="not_empty"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='not_empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY")?></option>
 					</select>
-					<input type="text" name="<?phpecho $sf;?>[find_el_property_<?=$arProp["ID"]?>]" value="<?phpecho htmlspecialcharsex($arFields["find_el_property_".$arProp["ID"]])?>" size="30">
-				<?phpelseif($arProp["PROPERTY_TYPE"]=='N' || $arProp["PROPERTY_TYPE"]=='E'):?>
-					<select class="kit-ix-filter-chval" name="<?phpecho $sf;?>[find_el_vtype_property_<?=$arProp["ID"]?>]"><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option><option value="empty"<?phpif($arFields["find_el_vtype_property_".$arProp["ID"]]=='empty'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_IS_EMPTY")?></option><option value="not_empty"<?phpif($arFields["find_el_vtype_property_".$arProp["ID"]]=='not_empty'){echo ' selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY")?></option></select><input type="text" name="<?phpecho $sf;?>[find_el_property_<?=$arProp["ID"]?>]" value="<?phpecho htmlspecialcharsex($arFields["find_el_property_".$arProp["ID"]])?>" size="30">
-				<?phpelseif($arProp["PROPERTY_TYPE"]=='L'):?>
+					<input type="text" name="<?php echo $sf;?>[find_el_property_<?=$arProp["ID"]?>]" value="<?php echo htmlspecialcharsex($arFields["find_el_property_".$arProp["ID"]])?>" size="30">
+				<?php elseif($arProp["PROPERTY_TYPE"]=='N' || $arProp["PROPERTY_TYPE"]=='E'):?>
+					<select class="kit-ix-filter-chval" name="<?php echo $sf;?>[find_el_vtype_property_<?=$arProp["ID"]?>]"><option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option><option value="empty"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_EMPTY")?></option><option value="not_empty"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='not_empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY")?></option></select><input type="text" name="<?php echo $sf;?>[find_el_property_<?=$arProp["ID"]?>]" value="<?php echo htmlspecialcharsex($arFields["find_el_property_".$arProp["ID"]])?>" size="30">
+				<?php elseif($arProp["PROPERTY_TYPE"]=='L'):?>
 					<?php
 					$propVal = $arFields["find_el_property_".$arProp["ID"]];
 					if(!is_array($propVal)) $propVal = array($propVal);
 					?>
-					<select name="<?phpecho $sf;?>[find_el_property_<?=$arProp["ID"]?>][]" multiple size="5">
-						<option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_VALUE_ANY")?></option>
-						<option value="NOT_REF"<?phpif(in_array("NOT_REF", $propVal))echo " selected"?>><?phpecho Loc::getMessage("CODEMATRIX_IX_ELEMENT_EDIT_NOT_SET")?></option><?php
+					<select name="<?php echo $sf;?>[find_el_property_<?=$arProp["ID"]?>][]" multiple size="5">
+						<option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_VALUE_ANY")?></option>
+						<option value="NOT_REF"<?php if(in_array("NOT_REF", $propVal))echo " selected"?>><?php echo Loc::getMessage("CODEMATRIX_IX_ELEMENT_EDIT_NOT_SET")?></option><?php
 						$dbrPEnum = \CIBlockPropertyEnum::GetList(Array("SORT"=>"ASC", "NAME"=>"ASC"), Array("PROPERTY_ID"=>$arProp["ID"]));
 						while($arPEnum = $dbrPEnum->GetNext()):
 						?>
-							<option value="<?=$arPEnum["ID"]?>"<?phpif(in_array($arPEnum["ID"], $propVal))echo " selected"?>><?=$arPEnum["VALUE"]?></option>
+							<option value="<?=$arPEnum["ID"]?>"<?php if(in_array($arPEnum["ID"], $propVal))echo " selected"?>><?=$arPEnum["VALUE"]?></option>
 						<?php
 						endwhile;
 				?></select>
@@ -2616,7 +2616,7 @@ class Utils {
 		$oFilter->Buttons();
 		/*?><span class="adm-btn-wrap"><input type="submit"  class="adm-btn" name="set_filter" value="<?php echo Loc::getMessage("admin_lib_filter_set_butt"); ?>" title="<?php echo Loc::getMessage("admin_lib_filter_set_butt_title"); ?>" onClick="return EProfile.ApplyFilter(this);"></span>
 		<span class="adm-btn-wrap"><input type="submit"  class="adm-btn" name="del_filter" value="<?php echo Loc::getMessage("admin_lib_filter_clear_butt"); ?>" title="<?php echo Loc::getMessage("admin_lib_filter_clear_butt_title"); ?>" onClick="return EList.DeleteFilter(this);"></span>
-		<?php*/
+		<?php */
 		$oFilter->End();
 		
 		?>
@@ -2659,7 +2659,7 @@ class Utils {
 		?>
 		<tr>
 			<td>ID</td>
-			<td><input type="text" name="<?phpecho $sf?>[find_ID]" size="47" value="<?phpecho htmlspecialcharsbx($arFields['find_ID'])?>"></td>
+			<td><input type="text" name="<?php echo $sf?>[find_ID]" size="47" value="<?php echo htmlspecialcharsbx($arFields['find_ID'])?>"></td>
 		</tr>
 		<?php
 		foreach($arUserFields as $FIELD_NAME=>$arUserField)
@@ -2685,7 +2685,7 @@ class Utils {
 		$oFilter->Buttons();
 		/*?><span class="adm-btn-wrap"><input type="submit"  class="adm-btn" name="set_filter" value="<?php echo Loc::getMessage("admin_lib_filter_set_butt"); ?>" title="<?php echo Loc::getMessage("admin_lib_filter_set_butt_title"); ?>" onClick="return EList.ApplyFilter(this);"></span>
 		<span class="adm-btn-wrap"><input type="submit"  class="adm-btn" name="del_filter" value="<?php echo Loc::getMessage("admin_lib_filter_clear_butt"); ?>" title="<?php echo Loc::getMessage("admin_lib_filter_clear_butt_title"); ?>" onClick="return EList.DeleteFilter(this);"></span>
-		<?php*/
+		<?php */
 		$oFilter->End();
 
 		?>

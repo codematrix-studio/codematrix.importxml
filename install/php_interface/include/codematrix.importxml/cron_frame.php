@@ -122,7 +122,7 @@ foreach($arProfiles as $PROFILE_ID)
 		{
 			$arFile = array();
 			$i = $iFirst = 5;
-			while($i > 0 && (empty($arFile) || $arFile['size']==0 || ($arFile['size']<1024 && stripos(file_get_contents($arFile['tmp_name']), '<?phpxml')===false)) && ($i==$iFirst || sleep(300) || 1))
+			while($i > 0 && (empty($arFile) || $arFile['size']==0 || ($arFile['size']<1024 && stripos(file_get_contents($arFile['tmp_name']), '<?php xml')===false)) && ($i==$iFirst || sleep(300) || 1))
 			{
 				$arFile = \Bitrix\CodeMatrixImportxml\Utils::MakeFileArray($params['EXT_DATA_FILE'], 86400);
 				$i--;

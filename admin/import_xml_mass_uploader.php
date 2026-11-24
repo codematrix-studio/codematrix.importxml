@@ -84,9 +84,9 @@ elseif(COption::GetOptionString($module_id, 'IMAGES_PATH')) $folder = COption::G
 		<col width="50%">
 		<col width="50%">
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_MASS_UPLOAD_FOLDER");?>:</td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_MASS_UPLOAD_FOLDER");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="text" name="folder" value="<?phpecho htmlspecialcharsex($folder);?>" size="30">
+				<input type="text" name="folder" value="<?php echo htmlspecialcharsex($folder);?>" size="30">
 			</td>
 		</tr>
 		<tr>
@@ -105,4 +105,4 @@ elseif(COption::GetOptionString($module_id, 'IMAGES_PATH')) $folder = COption::G
 		</tr>
 	</table>
 </form>
-<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

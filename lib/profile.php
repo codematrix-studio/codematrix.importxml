@@ -1096,12 +1096,12 @@ class Profile {
 	public function ShowProfileList($fname, $PROFILE_ID='')
 	{
 		$arProfiles = $this->GetList(is_numeric($PROFILE_ID) && strlen($PROFILE_ID) > 0 ? array('LOGIC'=>'OR', array('ACTIVE'=>'Y'), array('ID'=>$PROFILE_ID+1)) : array());
-		?><select name="<?phpecho $fname;?>" id="<?phpecho $fname;?>" onchange="EProfile.Choose(this)" style="max-width: 400px; padding-right: 30px;"><?php
-			?><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_NO_PROFILE"); ?></option><?php
-			?><option value="new" <?phpif($_REQUEST[$fname]=='new'){echo 'selected';}?>><?phpecho Loc::getMessage("CODEMATRIX_IX_NEW_PROFILE"); ?></option><?php
+		?><select name="<?php echo $fname;?>" id="<?php echo $fname;?>" onchange="EProfile.Choose(this)" style="max-width: 400px; padding-right: 30px;"><?php
+			?><option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_NO_PROFILE"); ?></option><?php
+			?><option value="new" <?php if($_REQUEST[$fname]=='new'){echo 'selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_NEW_PROFILE"); ?></option><?php
 			foreach($arProfiles as $k=>$profile)
 			{
-				?><option value="<?phpecho $k;?>" <?phpif(strlen($_REQUEST[$fname])>0 && strval($_REQUEST[$fname])===strval($k)){echo 'selected';}?>><?phpecho '['.$k.'] '.$profile; ?></option><?php
+				?><option value="<?php echo $k;?>" <?php if(strlen($_REQUEST[$fname])>0 && strval($_REQUEST[$fname])===strval($k)){echo 'selected';}?>><?php echo '['.$k.'] '.$profile; ?></option><?php
 			}
 		?></select><?php
 	}
@@ -1110,11 +1110,11 @@ class Profile {
 	{
 		//$arProfiles = $this->GetList(is_numeric($PROFILE_ID) && strlen($PROFILE_ID) > 0 ? array('LOGIC'=>'OR', array('ACTIVE'=>'Y'), array('ID'=>$PROFILE_ID+1)) : array());
 		$arProfiles = $this->GetList();
-		?><select name="<?phpecho $fname;?>" id="<?phpecho $fname;?>"><?php
-			?><option value=""><?phpecho Loc::getMessage("CODEMATRIX_IX_NO_PROFILE"); ?></option><?php
+		?><select name="<?php echo $fname;?>" id="<?php echo $fname;?>"><?php
+			?><option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_NO_PROFILE"); ?></option><?php
 			foreach($arProfiles as $k=>$profile)
 			{
-				?><option value="<?phpecho $k;?>" <?phpif(is_numeric($PROFILE_ID) && strlen($PROFILE_ID) > 0 && strval($PROFILE_ID)===strval($k)){echo 'selected';}?>><?phpecho $profile; ?></option><?php
+				?><option value="<?php echo $k;?>" <?php if(is_numeric($PROFILE_ID) && strlen($PROFILE_ID) > 0 && strval($PROFILE_ID)===strval($k)){echo 'selected';}?>><?php echo $profile; ?></option><?php
 			}
 		?></select><?php
 	}

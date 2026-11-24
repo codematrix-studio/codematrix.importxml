@@ -74,4 +74,4 @@ if(count($FILTER) > 0 && count(preg_grep('/^find_/', array_keys($FILTER))) > 0)
 	}
 	?>
 </form>
-<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

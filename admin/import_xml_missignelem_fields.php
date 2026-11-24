@@ -58,7 +58,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 		
 		<tr class="heading">
 			<td colspan="2">
-				<?phpecho GetMessage(($isOffers ? "CODEMATRIX_IX_LIST_SETTING_PROPERTIES_DEFAULT_OFFER" : "CODEMATRIX_IX_LIST_SETTING_PROPERTIES_DEFAULT")); ?>
+				<?php echo GetMessage(($isOffers ? "CODEMATRIX_IX_LIST_SETTING_PROPERTIES_DEFAULT_OFFER" : "CODEMATRIX_IX_LIST_SETTING_PROPERTIES_DEFAULT")); ?>
 			</td>
 		</tr>
 		<?php
@@ -71,10 +71,10 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				else $fieldName = $arDefaultElFields[$k]['NAME'];
 				?>
 				<tr class="kit-ix-list-settings-defaults">
-					<td class="adm-detail-content-cell-l"><?phpecho $fieldName;?>:</td>
+					<td class="adm-detail-content-cell-l"><?php echo $fieldName;?>:</td>
 					<td class="adm-detail-content-cell-r">
-						<input type="text" name="DEFAULTS[<?phpecho $k;?>]" value="<?phpecho htmlspecialcharsex($v);?>">
-						<a class="delete" href="javascript:void(0)" onclick="ESettings.RemoveDefaultProp(this);" title="<?phpecho GetMessage("CODEMATRIX_IX_LIST_SETTING_DELETE"); ?>"></a>
+						<input type="text" name="DEFAULTS[<?php echo $k;?>]" value="<?php echo htmlspecialcharsex($v);?>">
+						<a class="delete" href="javascript:void(0)" onclick="ESettings.RemoveDefaultProp(this);" title="<?php echo GetMessage("CODEMATRIX_IX_LIST_SETTING_DELETE"); ?>"></a>
 					</td>
 				</tr>
 				<?php
@@ -85,14 +85,14 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			<td class="adm-detail-content-cell-l"></td>
 			<td class="adm-detail-content-cell-r">
 				<input type="text" name="empty" value="">
-				<a class="delete" href="javascript:void(0)" onclick="ESettings.RemoveDefaultProp(this);" title="<?phpecho GetMessage("CODEMATRIX_IX_LIST_SETTING_DELETE"); ?>"></a>
+				<a class="delete" href="javascript:void(0)" onclick="ESettings.RemoveDefaultProp(this);" title="<?php echo GetMessage("CODEMATRIX_IX_LIST_SETTING_DELETE"); ?>"></a>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" class="kit-ix-chosen-td">
 				<select name="prop_default" style="min-width: 200px; max-width: 500px;" class="kit-ix-chosen-multi" onchange="ESettings.AddDefaultProp(this)">
-					<option value=""><?phpecho GetMessage('CODEMATRIX_IX_PLACEHOLDER_CHOOSE');?></option>
-					<optgroup label="<?phpecho GetMessage('CODEMATRIX_IX_LIST_SETTING_ELEMENT');?>">
+					<option value=""><?php echo GetMessage('CODEMATRIX_IX_PLACEHOLDER_CHOOSE');?></option>
+					<optgroup label="<?php echo GetMessage('CODEMATRIX_IX_LIST_SETTING_ELEMENT');?>">
 						<?php
 						foreach($arDefaultElFields as $elKey=>$elField)
 						{
@@ -100,8 +100,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						}
 						?>
 					</optgroup>
-					<?phpif(!empty($arDefaultProps)){?>
-						<optgroup label="<?phpecho GetMessage('CODEMATRIX_IX_LIST_SETTING_PROPERTIES');?>">
+					<?php if(!empty($arDefaultProps)){?>
+						<optgroup label="<?php echo GetMessage('CODEMATRIX_IX_LIST_SETTING_PROPERTIES');?>">
 							<?php
 							foreach($arDefaultProps as $prop)
 							{
@@ -109,9 +109,9 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 							}
 							?>
 						</optgroup>
-					<?php}?>
-					<?phpif(!empty($arDefaultCatFields)){?>
-						<optgroup label="<?phpecho GetMessage('CODEMATRIX_IX_LIST_SETTING_CATALOG');?>">
+					<?php }?>
+					<?php if(!empty($arDefaultCatFields)){?>
+						<optgroup label="<?php echo GetMessage('CODEMATRIX_IX_LIST_SETTING_CATALOG');?>">
 							<?php
 							foreach($arDefaultCatFields as $cKey=>$cField)
 							{
@@ -119,10 +119,10 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 							}
 							?>
 						</optgroup>
-					<?php}?>
+					<?php }?>
 				</select>
 			</td>
 		</tr>		
 	</table>
 </form>
-<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

@@ -93,10 +93,10 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 	<?php
 	foreach($arSharePriceTypes as $k=>$v)
 	{
-		?><option value="<?phpecho $k;?>"<?phpif($DEFAULTS['PRICE_TYPE']==$k){echo ' selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
+		?><option value="<?php echo $k;?>"<?php if($DEFAULTS['PRICE_TYPE']==$k){echo ' selected';}?>><?php echo htmlspecialcharsbx($v); ?></option><?php
 	}
 	?>
-	<option value="PURCHASING_PRICE"<?phpif($DEFAULTS['PRICE_TYPE']=='PURCHASING_PRICE'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_TYPE_PURCHASING"); ?></option>
+	<option value="PURCHASING_PRICE"<?php if($DEFAULTS['PRICE_TYPE']=='PURCHASING_PRICE'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_TYPE_PURCHASING"); ?></option>
  </select>
 	
 <?php
@@ -115,97 +115,97 @@ while((($jk = ($j > 0 ? '_'.$j : '')) || true) && ($jp = 'PARAMS'.$jk) && ($jm =
 	$DEFAULTS = $arParams1[$jp];
 	if(!is_array($DEFAULTS)) $DEFAULTS = array();
 ?>	
- <div class="kit-ix-price-calculating-wrap" data-index="<?phpecho $j;?>"<?phpif($j > 0){echo 'style="display: none;"';}?>>
+ <div class="kit-ix-price-calculating-wrap" data-index="<?php echo $j;?>"<?php if($j > 0){echo 'style="display: none;"';}?>>
 	<table width="100%" class="kit-ix-price-calculating">
 		<col width="50%">
 		<col width="50%">
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_TYPE"); ?></td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_TYPE"); ?></td>
 			<td class="adm-detail-content-cell-r">
-				<select name="DEFAULTS<?phpecho $jk;?>[PRICE_TYPE]" onclick="EProfile.ChangeTypeTypeSelect(this)">
+				<select name="DEFAULTS<?php echo $jk;?>[PRICE_TYPE]" onclick="EProfile.ChangeTypeTypeSelect(this)">
 					<?php
 					foreach($arSharePriceTypes as $k=>$v)
 					{
-						?><option value="<?phpecho $k;?>"<?phpif($DEFAULTS['PRICE_TYPE']==$k){echo ' selected';}?>><?phpecho htmlspecialcharsbx($v); ?></option><?php
+						?><option value="<?php echo $k;?>"<?php if($DEFAULTS['PRICE_TYPE']==$k){echo ' selected';}?>><?php echo htmlspecialcharsbx($v); ?></option><?php
 					}
 					?>
-					<option value="PURCHASING_PRICE"<?phpif($DEFAULTS['PRICE_TYPE']=='PURCHASING_PRICE'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_TYPE_PURCHASING"); ?></option>
+					<option value="PURCHASING_PRICE"<?php if($DEFAULTS['PRICE_TYPE']=='PURCHASING_PRICE'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_TYPE_PURCHASING"); ?></option>
 				</select>
 			</td>
 		</tr>
 		
-		<?phpif(count($arSharePriceTypes) > 0){?>
+		<?php if(count($arSharePriceTypes) > 0){?>
 		<tr>
 			<td class="adm-detail-content-cell-l"></td>
 			<td class="adm-detail-content-cell-r">
 				<div class="kit-ix-price-calculating-ptypes"></div>
-				<div class="kit-ix-price-calculating-ptype-new"><a href="javascript:void(0)" onclick="EProfile.AddNewCalcType(this)"><span><?phpecho GetMessage("CODEMATRIX_IX_CALC_ADD_PRICE_TYPE"); ?></span></a></div>
+				<div class="kit-ix-price-calculating-ptype-new"><a href="javascript:void(0)" onclick="EProfile.AddNewCalcType(this)"><span><?php echo GetMessage("CODEMATRIX_IX_CALC_ADD_PRICE_TYPE"); ?></span></a></div>
 			</td>
 		</tr>
-		<?php}?>
+		<?php }?>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_CALC"); ?></td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_CALC"); ?></td>
 			<td class="adm-detail-content-cell-r">
-				<select name="DEFAULTS<?phpecho $jk;?>[PRICE_CALC]">
-					<option value="MIN"<?phpif($DEFAULTS['PRICE_CALC']=='MIN'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_CALC_MIN");?></option>
-					<option value="MAX"<?phpif($DEFAULTS['PRICE_CALC']=='MAX'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_CALC_MAX");?></option>
+				<select name="DEFAULTS<?php echo $jk;?>[PRICE_CALC]">
+					<option value="MIN"<?php if($DEFAULTS['PRICE_CALC']=='MIN'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_CALC_MIN");?></option>
+					<option value="MAX"<?php if($DEFAULTS['PRICE_CALC']=='MAX'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_CALC_MAX");?></option>
 				</select>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_EMPTY_ACTION"); ?></td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_EMPTY_ACTION"); ?></td>
 			<td class="adm-detail-content-cell-r">
-				<select name="DEFAULTS<?phpecho $jk;?>[PRICE_EMPTY_ACTION]">
-					<option value="DELETE"<?phpif($DEFAULTS['PRICE_EMPTY_ACTION']=='DELETE'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_EMPTY_ACTION_DELETE");?></option>
-					<option value="SALE_OLD"<?phpif($DEFAULTS['PRICE_EMPTY_ACTION']=='SALE_OLD'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_EMPTY_ACTION_SALE_OLD");?></option>
+				<select name="DEFAULTS<?php echo $jk;?>[PRICE_EMPTY_ACTION]">
+					<option value="DELETE"<?php if($DEFAULTS['PRICE_EMPTY_ACTION']=='DELETE'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_EMPTY_ACTION_DELETE");?></option>
+					<option value="SALE_OLD"<?php if($DEFAULTS['PRICE_EMPTY_ACTION']=='SALE_OLD'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_EMPTY_ACTION_SALE_OLD");?></option>
 				</select>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND"); ?></td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND"); ?></td>
 			<td class="adm-detail-content-cell-r">
-				<select name="DEFAULTS<?phpecho $jk;?>[PRICE_ROUND]" onchange="if(this.value){$(this).next('select').show();}else{$(this).next('select').hide();}">
-					<option value=""><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_OFF");?></option>
-					<option value="MATH"<?phpif($DEFAULTS['PRICE_ROUND']=='MATH'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_MATH");?></option>
-					<option value="UP"<?phpif($DEFAULTS['PRICE_ROUND']=='UP'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_UP");?></option>
-					<option value="DOWN"<?phpif($DEFAULTS['PRICE_ROUND']=='DOWN'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DOWN");?></option>
+				<select name="DEFAULTS<?php echo $jk;?>[PRICE_ROUND]" onchange="if(this.value){$(this).next('select').show();}else{$(this).next('select').hide();}">
+					<option value=""><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_OFF");?></option>
+					<option value="MATH"<?php if($DEFAULTS['PRICE_ROUND']=='MATH'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_MATH");?></option>
+					<option value="UP"<?php if($DEFAULTS['PRICE_ROUND']=='UP'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_UP");?></option>
+					<option value="DOWN"<?php if($DEFAULTS['PRICE_ROUND']=='DOWN'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DOWN");?></option>
 				</select>
-				<select name="DEFAULTS<?phpecho $jk;?>[PRICE_ROUND_DIGIT]" <?phpif(!$DEFAULTS['PRICE_ROUND']){echo 'style="display: none;"';}?>>
-					<option value="0.01"<?phpif($DEFAULTS['PRICE_ROUND_DIGIT']=='0.01'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_001");?></option>
-					<option value="0.1"<?phpif($DEFAULTS['PRICE_ROUND_DIGIT']=='0.1'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_01");?></option>
-					<option value=""<?phpif(!is_numeric($DEFAULTS['PRICE_ROUND_DIGIT'])){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_0");?></option>
-					<option value="10"<?phpif($DEFAULTS['PRICE_ROUND_DIGIT']=='10'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_10");?></option>
-					<option value="100"<?phpif($DEFAULTS['PRICE_ROUND_DIGIT']=='100'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_100");?></option>
-					<option value="1000"<?phpif($DEFAULTS['PRICE_ROUND_DIGIT']=='1000'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_1000");?></option>
-					<option value="10000"<?phpif($DEFAULTS['PRICE_ROUND_DIGIT']=='10000'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_10000");?></option>
+				<select name="DEFAULTS<?php echo $jk;?>[PRICE_ROUND_DIGIT]" <?php if(!$DEFAULTS['PRICE_ROUND']){echo 'style="display: none;"';}?>>
+					<option value="0.01"<?php if($DEFAULTS['PRICE_ROUND_DIGIT']=='0.01'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_001");?></option>
+					<option value="0.1"<?php if($DEFAULTS['PRICE_ROUND_DIGIT']=='0.1'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_01");?></option>
+					<option value=""<?php if(!is_numeric($DEFAULTS['PRICE_ROUND_DIGIT'])){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_0");?></option>
+					<option value="10"<?php if($DEFAULTS['PRICE_ROUND_DIGIT']=='10'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_10");?></option>
+					<option value="100"<?php if($DEFAULTS['PRICE_ROUND_DIGIT']=='100'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_100");?></option>
+					<option value="1000"<?php if($DEFAULTS['PRICE_ROUND_DIGIT']=='1000'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_1000");?></option>
+					<option value="10000"<?php if($DEFAULTS['PRICE_ROUND_DIGIT']=='10000'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ROUND_DIGIT_10000");?></option>
 				</select>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICE_ONLY_AVAILABLE"); ?></td>
+			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_CALC_PRICE_ONLY_AVAILABLE"); ?></td>
 			<td class="adm-detail-content-cell-r">
-				<input type="hidden" name="DEFAULTS<?phpecho $jk;?>[ONLY_AVAILABLE]" value="N">
-				<input type="checkbox" name="DEFAULTS<?phpecho $jk;?>[ONLY_AVAILABLE]" value="Y"<?phpif($DEFAULTS['ONLY_AVAILABLE']!='N'){echo ' checked';}?>>
+				<input type="hidden" name="DEFAULTS<?php echo $jk;?>[ONLY_AVAILABLE]" value="N">
+				<input type="checkbox" name="DEFAULTS<?php echo $jk;?>[ONLY_AVAILABLE]" value="Y"<?php if($DEFAULTS['ONLY_AVAILABLE']!='N'){echo ' checked';}?>>
 			</td>
 		</tr>
 		
-		<?phpif($j==0){?>
+		<?php if($j==0){?>
 			<tr>
-				<td class="adm-detail-content-cell-l"><?phpecho GetMessage("CODEMATRIX_IX_CALC_QUANTITY"); ?></td>
+				<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_CALC_QUANTITY"); ?></td>
 				<td class="adm-detail-content-cell-r">
-					<select name="DEFAULTS<?phpecho $jk;?>[QUANTITY_CALC]">
-						<option value="FROM_PRICE"<?phpif($DEFAULTS['QUANTITY_CALC']=='FROM_PRICE'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_QUANTITY_FROM_PRICE");?></option>
-						<option value="SUM"<?phpif($DEFAULTS['QUANTITY_CALC']=='SUM'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_QUANTITY_SUM");?></option>
-						<option value="NONE"<?phpif($DEFAULTS['QUANTITY_CALC']=='NONE'){echo ' selected';}?>><?phpecho GetMessage("CODEMATRIX_IX_CALC_QUANTITY_NONE");?></option>
+					<select name="DEFAULTS<?php echo $jk;?>[QUANTITY_CALC]">
+						<option value="FROM_PRICE"<?php if($DEFAULTS['QUANTITY_CALC']=='FROM_PRICE'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_QUANTITY_FROM_PRICE");?></option>
+						<option value="SUM"<?php if($DEFAULTS['QUANTITY_CALC']=='SUM'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_QUANTITY_SUM");?></option>
+						<option value="NONE"<?php if($DEFAULTS['QUANTITY_CALC']=='NONE'){echo ' selected';}?>><?php echo GetMessage("CODEMATRIX_IX_CALC_QUANTITY_NONE");?></option>
 					</select>
 				</td>
 			</tr>
-		<?php}?>
+		<?php }?>
 	</table>
 	
 <?php
@@ -242,48 +242,48 @@ foreach($arIblocks as $iblockType=>$iblockId)
   <div class="kit-ix-price-calculating-iblock">&nbsp;
 	<div style="display: none;">
 		<select name="price">
-			<option value=""><?phpecho GetMessage("CODEMATRIX_IX_NOT_CHOOSE");?></option><?php
+			<option value=""><?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE");?></option><?php
 			if(($arGroupFields = preg_grep('/^IP_PROP/', array_keys($arFieldsPrice))) && count($arGroupFields) > 0)
 			{
-				?><optgroup label="<?phpecho GetMessage("CODEMATRIX_IX_CALC_PROPS")?>"><?php
+				?><optgroup label="<?php echo GetMessage("CODEMATRIX_IX_CALC_PROPS")?>"><?php
 				foreach($arFieldsPrice as $k=>$v)
 				{
 					if(!in_array($k, $arGroupFields)) continue;
-					?><option value="<?phpecho $k; ?>"><?phpecho htmlspecialcharsbx($v); ?></option><?php
+					?><option value="<?php echo $k; ?>"><?php echo htmlspecialcharsbx($v); ?></option><?php
 				}
 				?></optgroup><?php
 			}
 			if(($arGroupFields = preg_grep('/^ICAT_PRICE/', array_keys($arFieldsPrice))) && count($arGroupFields) > 0)
 			{
-				?><optgroup label="<?phpecho GetMessage("CODEMATRIX_IX_CALC_PRICES")?>"><?php
+				?><optgroup label="<?php echo GetMessage("CODEMATRIX_IX_CALC_PRICES")?>"><?php
 				foreach($arFieldsPrice as $k=>$v)
 				{
 					if(!in_array($k, $arGroupFields)) continue;
-					?><option value="<?phpecho $k; ?>"><?phpecho htmlspecialcharsbx($v); ?></option><?php
+					?><option value="<?php echo $k; ?>"><?php echo htmlspecialcharsbx($v); ?></option><?php
 				}
 				?></optgroup><?php
 			}
 			?>	
 		</select>
 		<select name="quantity">
-			<option value=""><?phpecho GetMessage("CODEMATRIX_IX_NOT_CHOOSE");?></option><?php
+			<option value=""><?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE");?></option><?php
 			if(($arGroupFields = preg_grep('/^IP_PROP/', array_keys($arFieldsQnt))) && count($arGroupFields) > 0)
 			{
-				?><optgroup label="<?phpecho GetMessage("CODEMATRIX_IX_CALC_PROPS")?>"><?php
+				?><optgroup label="<?php echo GetMessage("CODEMATRIX_IX_CALC_PROPS")?>"><?php
 				foreach($arFieldsQnt as $k=>$v)
 				{
 					if(!in_array($k, $arGroupFields)) continue;
-					?><option value="<?phpecho $k; ?>"><?phpecho htmlspecialcharsbx($v); ?></option><?php
+					?><option value="<?php echo $k; ?>"><?php echo htmlspecialcharsbx($v); ?></option><?php
 				}
 				?></optgroup><?php
 			}
 			if(($arGroupFields = preg_grep('/^ICAT_STORE/', array_keys($arFieldsQnt))) && count($arGroupFields) > 0)
 			{
-				?><optgroup label="<?phpecho GetMessage("CODEMATRIX_IX_CALC_STORES")?>"><?php
+				?><optgroup label="<?php echo GetMessage("CODEMATRIX_IX_CALC_STORES")?>"><?php
 				foreach($arFieldsQnt as $k=>$v)
 				{
 					if(!in_array($k, $arGroupFields)) continue;
-					?><option value="<?phpecho $k; ?>"><?phpecho htmlspecialcharsbx($v); ?></option><?php
+					?><option value="<?php echo $k; ?>"><?php echo htmlspecialcharsbx($v); ?></option><?php
 				}
 				?></optgroup><?php
 			}
@@ -296,56 +296,56 @@ foreach($arIblocks as $iblockType=>$iblockId)
 		<col width="50%">
 		<tr class="heading">
 			<td colspan="2">
-				<?phpecho GetMessage("CODEMATRIX_IX_REL_TABLE_PRICES").(count($arIblocks) > 1 ? ' ('.GetMessage("CODEMATRIX_IX_REL_TABLE_PRICES_IBLOCK_".$iblockType).')' : ''); ?>
+				<?php echo GetMessage("CODEMATRIX_IX_REL_TABLE_PRICES").(count($arIblocks) > 1 ? ' ('.GetMessage("CODEMATRIX_IX_REL_TABLE_PRICES_IBLOCK_".$iblockType).')' : ''); ?>
 			</td>
 		</tr>
 		
 		<tr>
 			<td colspan="2" class="kit-ix-pricing-rels">
-				<table width="100%" cellpadding="5" border="1" data-iblock-id="<?phpecho $iblockId?>">
+				<table width="100%" cellpadding="5" border="1" data-iblock-id="<?php echo $iblockId?>">
 				  <tr>
-					<th width="45%"><?phpecho GetMessage("CODEMATRIX_IX_REL_TABLE_COL_QNT"); ?></th>
-					<th width="45%"><?phpecho GetMessage("CODEMATRIX_IX_REL_TABLE_COL_PRICE"); ?></th>
-					<th width="10%"><?phpecho GetMessage("CODEMATRIX_IX_REL_TABLE_COL_EXTRA"); ?></th>
+					<th width="45%"><?php echo GetMessage("CODEMATRIX_IX_REL_TABLE_COL_QNT"); ?></th>
+					<th width="45%"><?php echo GetMessage("CODEMATRIX_IX_REL_TABLE_COL_PRICE"); ?></th>
+					<th width="10%"><?php echo GetMessage("CODEMATRIX_IX_REL_TABLE_COL_EXTRA"); ?></th>
 					<th width="30px"></th>
 				  </tr>
 				<?php
 				foreach($MAP[$iblockId] as $index=>$arMap)
 				{
 				?>
-				  <tr data-index="<?phpecho $index;?>">
+				  <tr data-index="<?php echo $index;?>">
 					<td>
 					  <div class="kit-ix-select-mapping">
-						<input type="hidden" name="MAP<?phpecho $jk;?>[<?phpecho $iblockId;?>][<?phpecho $index;?>][quantity]" value="<?phpecho htmlspecialcharsbx($arMap['quantity']);?>">
-						<a href="javascript:void(0)" onclick="EProfile.RelTablePriceShowSelect(this, 'quantity', true)" data-default-text="<?phpecho GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>"><?phpecho (strlen($arMap['quantity']) > 0 && isset($arFieldsQnt[$arMap['quantity']]) ? $arFieldsQnt[$arMap['quantity']] : GetMessage("CODEMATRIX_IX_NOT_CHOOSE"))?></a>
+						<input type="hidden" name="MAP<?php echo $jk;?>[<?php echo $iblockId;?>][<?php echo $index;?>][quantity]" value="<?php echo htmlspecialcharsbx($arMap['quantity']);?>">
+						<a href="javascript:void(0)" onclick="EProfile.RelTablePriceShowSelect(this, 'quantity', true)" data-default-text="<?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>"><?php echo (strlen($arMap['quantity']) > 0 && isset($arFieldsQnt[$arMap['quantity']]) ? $arFieldsQnt[$arMap['quantity']] : GetMessage("CODEMATRIX_IX_NOT_CHOOSE"))?></a>
 					  </div>
 					</td>
 					<td>
 					  <div class="kit-ix-select-mapping">
-						<input type="hidden" name="MAP<?phpecho $jk;?>[<?phpecho $iblockId;?>][<?phpecho $index;?>][price]" value="<?phpecho htmlspecialcharsbx($arMap['price']);?>">
-						<a href="javascript:void(0)" onclick="EProfile.RelTablePriceShowSelect(this, 'price', true)" data-default-text="<?phpecho GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>"><?phpecho (strlen($arMap['price']) > 0 && isset($arFieldsPrice[$arMap['price']]) ? $arFieldsPrice[$arMap['price']] : GetMessage("CODEMATRIX_IX_NOT_CHOOSE"))?></a>
+						<input type="hidden" name="MAP<?php echo $jk;?>[<?php echo $iblockId;?>][<?php echo $index;?>][price]" value="<?php echo htmlspecialcharsbx($arMap['price']);?>">
+						<a href="javascript:void(0)" onclick="EProfile.RelTablePriceShowSelect(this, 'price', true)" data-default-text="<?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>"><?php echo (strlen($arMap['price']) > 0 && isset($arFieldsPrice[$arMap['price']]) ? $arFieldsPrice[$arMap['price']] : GetMessage("CODEMATRIX_IX_NOT_CHOOSE"))?></a>
 					  </div>
 					</td>
 					<td>
-						<input type="text" size="10" name="MAP<?phpecho $jk;?>[<?phpecho $iblockId;?>][<?phpecho $index;?>][extra]" value="<?phpecho htmlspecialcharsbx($arMap['extra']);?>">
+						<input type="text" size="10" name="MAP<?php echo $jk;?>[<?php echo $iblockId;?>][<?php echo $index;?>][extra]" value="<?php echo htmlspecialcharsbx($arMap['extra']);?>">
 					</td>
 					<td>
-					  <a href="javascript:void(0)" class="kit-ix-delete-row" onclick="EProfile.RelTablePriceRowRemove(this)" title="<?phpecho GetMessage("CODEMATRIX_IX_REL_TABLE_REMOVE_ROW"); ?>"></a>
+					  <a href="javascript:void(0)" class="kit-ix-delete-row" onclick="EProfile.RelTablePriceRowRemove(this)" title="<?php echo GetMessage("CODEMATRIX_IX_REL_TABLE_REMOVE_ROW"); ?>"></a>
 					</td>
 				  </tr>
 				<?php
 				}
 				?>
 				</table>
-				<a href="javascript:void(0)" onclick="EProfile.RelTablePriceRowAdd(this)"><?phpecho GetMessage("CODEMATRIX_IX_REL_TABLE_ADD_ROW"); ?></a>
+				<a href="javascript:void(0)" onclick="EProfile.RelTablePriceRowAdd(this)"><?php echo GetMessage("CODEMATRIX_IX_REL_TABLE_ADD_ROW"); ?></a>
 			</td>
 		</tr>		
 	</table>
   </div>
-<?php}?>
+<?php }?>
  </div>
 <?php
 $j++;
 }?>
 </form>
-<?phprequire($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>
