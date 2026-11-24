@@ -1546,7 +1546,7 @@ class Utils {
 
 				if($ext === 'zip' && class_exists('\\ZipArchive'))
 				{
-					$zipObj = new \\ZipArchive();
+					$zipObj = new \ZipArchive();
 					if($zipObj->open($archiveFn) === true)
 					{
 						$validArchive = true;
@@ -1606,8 +1606,8 @@ class Utils {
 				{
 					try
 					{
-						$phar = new \\PharData($archiveFn);
-						$iterator = new \\RecursiveIteratorIterator($phar, \\RecursiveIteratorIterator::LEAVES_ONLY);
+						$phar = new \PharData($archiveFn);
+						$iterator = new \RecursiveIteratorIterator($phar, \RecursiveIteratorIterator::LEAVES_ONLY);
 						foreach($iterator as $entry)
 						{
 							if(!$entry->isFile()) continue;
@@ -1628,7 +1628,7 @@ class Utils {
 							}
 						}
 					}
-					catch(\\Exception $e)
+					catch(\Exception $e)
 					{
 						$archiveExtracted = false;
 					}
