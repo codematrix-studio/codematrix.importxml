@@ -1602,7 +1602,7 @@ class Utils {
 						$rar->close();
 					}
 				}
-				elseif(in_array($ext, array('tar', 'tar.gz', 'tgz')) && class_exists('\\PharData'))
+				elseif(($ext === 'tar' || $isTarGz) && class_exists('\\PharData'))
 				{
 					try
 					{
@@ -1611,7 +1611,9 @@ class Utils {
 						foreach($iterator as $entry)
 						{
 							if(!$entry->isFile()) continue;
-							$entryName = $iterator->getSubPathName();
+							$entryName = $entry->getPathname();
+							$archivePrefix = 'phar://'.$archiveFn.'/';
+							if(strpos($entryName, $archivePrefix) === 0) $entryName = substr($entryName, strlen($archivePrefix));
 							$target = $extractEntry($entryName);
 							if($target === false) continue;
 							$source = $phar[$entryName];
@@ -1621,10 +1623,6 @@ class Utils {
 								fwrite($out, $source->getContent());
 								fclose($out);
 								$archiveExtracted = true;
-							}
-							elseif(is_resource($out))
-							{
-								fclose($out);
 							}
 						}
 					}
