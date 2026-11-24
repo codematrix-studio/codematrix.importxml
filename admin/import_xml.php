@@ -594,13 +594,6 @@ $arSubMenu[] = array(
 );
 $aMenu = array(
 	array(
-		/*"TEXT"=>GetMessage("CODEMATRIX_IX_MENU_HELP"),
-		"TITLE"=>GetMessage("CODEMATRIX_IX_MENU_HELP"),
-		"ONCLICK" => "EHelper.ShowHelp();",
-		"ICON" => "",*/
-		"HTML" => '<a href="https://esolutions.su/solutions/'.$moduleId.'/?tab=video" target="blank" class="adm-btn" title="'.GetMessage("CODEMATRIX_IX_MENU_VIDEO").'">'.GetMessage("CODEMATRIX_IX_MENU_VIDEO").'</a>'
-	),
-	array(
 		/*"TEXT"=>GetMessage("CODEMATRIX_IX_MENU_FAQ"),
 		"TITLE"=>GetMessage("CODEMATRIX_IX_MENU_FAQ"),
 		"ONCLICK" => "EHelper.ShowHelp(1);",
