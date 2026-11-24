@@ -316,30 +316,9 @@ class Cloud
 	{
 		$fileTypes = self::GetFileTypes($fromFile);
 		$path2 = '';
-		if(preg_match('/^https?:\/\/drive\.google\.com\/drive\/folders\/([^\/\?]+)(\?|$)/i', $path, $m))
+		if(preg_match('/^https?:\/\/drive\.google\.com\/drive\/folders\/([^\/\?]+)(\?|$)/i', $path))
 		{
-			//folder
-			$folderId = $m[1];
-			$arFiles = array();
-			$arFolder = array();
-			if($this->GdriveGetAccessToken($arFolder, $folderId, 'folder'))
-			{
-				if(is_array($arFolder) && isset($arFolder['files']) && is_array($arFolder['files']))
-				{
-					foreach($arFolder['files'] as $apiFile)
-					{
-						$tmpPath = static::GetTmpFilePath($apiFile['name']);
-						$path = $this->GdriveGetDownloadLink($tmpPath, $apiFile['id']);
-						$client = $this->GdriveGetHttpClient($path);
-						if($res = $client->download($path, $tmpPath))
-						{
-							$arFiles[] = $res = $tmpPath;
-						}
-						if(!$fromFile) return $res;
-					}
-				}
-			}
-			return $arFiles;
+			return array('ERROR_MESSAGE' => Loc::getMessage('CODEMATRIX_IX_GOOGLE_DRIVE_FOLDER_UNSUPPORTED'));
 		}
 		elseif(preg_match('/^https?:\/\/docs\.google\.com\/spreadsheets.*\?.*?output=(xlsx|xls|csv)/i', $path, $m))
 		{
@@ -427,77 +406,18 @@ class Cloud
 	
 	public function GdriveGetHttpClient($path)
 	{
-		$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>true));
-		//if(strpos($path, 'googleapis.com')!==false)
-		if($this->gdriveAccessToken)
-		{
-			$client->setHeader('Authorization', "Bearer ".$this->gdriveAccessToken);
-		}
-		return $client;
+		return new \\Bitrix\\Main\\Web\\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>true));
 	}
-	
-	public function GdriveGetAccessToken(&$arFile, $id, $type='file')
-	{
-		$refreshToken = \Bitrix\Main\Config\Option::get(static::$moduleId, 'GOOGLE_APIKEY', '');
-		$accessToken = \Bitrix\Main\Config\Option::get(static::$moduleId, 'GOOGLE_ACCESS_TOKEN', '');
-		if($type=='folder') $apiPath = 'https://www.googleapis.com/drive/v3/files/?q="'.$id.'"+in+parents+and+trashed=false&fields=files(id,name)';
-		else $apiPath = 'https://www.googleapis.com/drive/v3/files/'.$id.'?fields=id,webContentLink,name';
-		if($accessToken)
-		{
-			$ob = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
-			$ob->setHeader('Authorization', "Bearer ".$accessToken);
-			$res = $ob->get($apiPath);
-			$arFile = \CUtil::JsObjectToPhp($res);
-			if($arFile['error'])
-			{
-				$accessToken = '';
-				\Bitrix\Main\Config\Option::set(static::$moduleId, 'GOOGLE_ACCESS_TOKEN', $accessToken);
-			}
-		}
-		if(!$accessToken && $refreshToken)
-		{
-			$ob = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
-			$res = $ob->post('https://esolutions.su/marketplace/oauth.php', array('refresh_token'=> $refreshToken));
-			$arRes = \CUtil::JsObjectToPhp($res);
-			if($arRes['access_token'])
-			{
-				$accessToken = $arRes['access_token'];
-				\Bitrix\Main\Config\Option::set(static::$moduleId, 'GOOGLE_ACCESS_TOKEN', $accessToken);
-				
-				$ob = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
-				$ob->setHeader('Authorization', "Bearer ".$accessToken);
-				$res = $ob->get($apiPath);
-				$arFile = \CUtil::JsObjectToPhp($res);
-			}
-		}
-		return $accessToken;
-	}
-	
+
 	public function GdriveGetDownloadLink(&$tmpPath, $id, $isExcel=false)
 	{
 		$path1 = 'https://docs.google.com/spreadsheets/d/'.$id.'/export?format=xlsx&id='.$id;
 		$path2 = 'https://drive.google.com/uc?authuser=0&id='.$id.'&export=download&confirm=1';
-		$arFile = array();
-		if($accessToken = $this->GdriveGetAccessToken($arFile, $id))
-		{
-			$this->gdriveAccessToken = $accessToken;
-			if(!empty($arFile))
-			{
-				if($arFile['name']) $tmpPath = static::GetTmpFilePath($arFile['name']);
-				if($arFile['webContentLink'] && !$isExcel)
-				{
-					$path1 = $arFile['webContentLink'];
-					//if(strpos($path1, 'id='.$id)===false) $path1 .= (strpos($path1, '?') ? '&' : '?').'id='.$id;
-				}
-			}
 
-			//$path2 = 'https://www.googleapis.com/drive/v3/files/'.$id.'?alt=media&key='.$apiKey;
-			$path2 = 'https://www.googleapis.com/drive/v3/files/'.$id.'?alt=media';
-		}
 		if($isExcel) return array($path1, $path2);
-		else return $path2;
+		return $path2;
 	}
-	
+
 	public function DropboxGetFile(&$tmpPath, $path, $fromFile=false)
 	{
 		$fileTypes = self::GetFileTypes($fromFile);
