@@ -1,0 +1,34 @@
+<?
+$MESS['IBLOCK_BAD_FILE_ERROR'] = "Произошла ошибка при загрузке файла на сервер.";
+$MESS['IBLOCK_BAD_FILE_NOT_FOUND'] = "Файл не найден.";
+$MESS['IBLOCK_BAD_FILE_NOT_PICTURE'] = "Не графический файл.";
+$MESS['IBLOCK_ERR_BAD_FILE_UNSUPPORTED'] = "Изменение размера картинки возможно только для файлов JPEG, GIF, PNG или WEBP.";
+$MESS['CODEMATRIX_IX_NOT_SET_UID'] = "Не указано поле для идентификации элемента (поле %s)";
+$MESS['CODEMATRIX_IX_NOT_SET_SECTION_UID'] = "Не указано поле для идентификации раздела (поле %s)";
+$MESS['CODEMATRIX_IX_NOT_SET_FIELD'] = "Не указано поле %s";
+$MESS['CODEMATRIX_IX_ADD_ELEMENT_ERROR'] = "Ошибка при создании элемента: %s (%s)";
+$MESS['CODEMATRIX_IX_UPDATE_ELEMENT_ERROR'] = "Ошибка при изменении элемента: %s (%s)";
+$MESS['CODEMATRIX_IX_ADD_OFFER_ERROR'] = "Ошибка при создании торгового предложения: %s (%s)";
+$MESS['CODEMATRIX_IX_UPDATE_OFFER_ERROR'] = "Ошибка при обновлении торгового предложения: %s (%s)";
+$MESS['CODEMATRIX_IX_FIELD_VAL_N'] = "0,нет,Нет,НЕТ,not,n,false";
+$MESS['CODEMATRIX_IX_FIELD_VAL_Y'] = "1,да,Да,ДА,yes,y,true";
+$MESS['CODEMATRIX_IX_ADD_SECTION_ERROR'] = "Ошибка при создании раздела '%s': %s (%s)";
+$MESS['CODEMATRIX_IX_NOT_SAVE_SECTION_SEPARATE'] = "Ошибка при сохранении раздела (%s)";
+$MESS['CODEMATRIX_IX_NEW_ELEMENT_WITH_ID'] = "Не удается создать элемент с ID=\"%s\". %s";
+$MESS['CODEMATRIX_IX_NEW_OFFER_WITH_ID'] = "Не удается создать торговое предложение с ID=\"%s\". %s";
+$MESS['CODEMATRIX_IX_DISCOUNT_PRODUCT_GIFT'] = "Подарок к товару";
+$MESS['CODEMATRIX_IX_DISCOUNT_NAME_TYPE_P'] = "Скидка";
+$MESS['CODEMATRIX_IX_DISCOUNT_NAME_TYPE_F'] = "Скидка";
+$MESS['CODEMATRIX_IX_DISCOUNT_NAME_TYPE_S'] = "Скидка с фиксированной ценой";
+$MESS['CODEMATRIX_IX_FATAL_ERROR'] = "Ошибка выполнения скрипта: [%s] %s.<br>Файл: %s, строка %s<br>";
+$MESS['CODEMATRIX_IX_PRODUCTS_TAG_1C'] = "Товары";
+$MESS['CODEMATRIX_IX_PRODUCT_TAG_1C'] = "Товар";
+$MESS['CODEMATRIX_IX_SECTIONS_TAG_1C'] = "Группы";
+$MESS['CODEMATRIX_IX_SECTION_TAG_1C'] = "Группа";
+$MESS['CODEMATRIX_IX_PROP_STRING'] = "Строка";
+$MESS['CODEMATRIX_IX_PROP_NUMBER'] = "Число";
+$MESS['CODEMATRIX_IX_PROP_LIST'] = "Справочник";
+$MESS['CODEMATRIX_IX_ERROR_FORMAT_ID'] = "ID должно содержать только цифры и не может начинаться с нуля";
+$MESS['CODEMATRIX_IX_ERROR_EXISTING_ID'] = "Элемент с указанным ID уже существует";
+$MESS['CODEMATRIX_IX_ERROR_OUTOFRANGE_ID'] = "ID не может быть больше %s";
+?>

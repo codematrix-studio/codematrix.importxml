@@ -1,0 +1,30 @@
+<?
+$MESS["CODEMATRIX_IX_PROPERTY_NOT_CREATE"] = "Не создавать новые свойства";
+$MESS["CODEMATRIX_IX_PROPERTY_NOT_LOAD_WO_MAPPED"] = "Не загружать свойства, для которых не указано сопоставление";
+$MESS["CODEMATRIX_IX_PROPERTY_MAPPING_TITLE"] = "Сопоставление свойств";
+$MESS["CODEMATRIX_IX_PROPERTY_NOT_CHOOSE_FIELDS"] = "Для построения списка свойств необходимо выбрать поле &laquo;Название свойства&raquo;";
+$MESS["CODEMATRIX_IX_PROPERTY_NO_STRUCT"] = "Не удалось построить список свойств";
+$MESS["CODEMATRIX_IX_PROPERTY_IN_FILE"] = "Свойство в файле импорта";
+$MESS["CODEMATRIX_IX_PROPERTY_ON_SITE"] = "Поле на сайте";
+$MESS["CODEMATRIX_IX_NOT_CHOOSE"] = "- не выбрано -";
+$MESS["CODEMATRIX_IX_ADD_FIELD"] = "Добавить поле";
+$MESS["CODEMATRIX_IX_PROPERTY_CREATE_TITLE"] = "Параметры новых (создаваемых) свойств";
+$MESS["CODEMATRIX_IX_NP_SORT"] = "Порядок сортировки";
+$MESS["CODEMATRIX_IX_NP_CODE"] = "Символьный код";
+$MESS["CODEMATRIX_IX_NP_CODE_PREFIX"] = "Префикс для символьного кода";
+$MESS["CODEMATRIX_IX_NP_MULTIPLE"] = "Создавать свойства множественными";
+$MESS["CODEMATRIX_IX_NP_TYPE"] = "Тип";
+$MESS["CODEMATRIX_IX_NP_PROPERTY_BASE_TYPE_GROUP"] = "Базовые типы";
+$MESS["CODEMATRIX_IX_NP_PROPERTY_USER_TYPE_GROUP"] = "Пользовательские типы";
+$MESS["CODEMATRIX_IX_NP_IBLOCK_PROP_S"] = "Строка";
+$MESS["CODEMATRIX_IX_NP_IBLOCK_PROP_N"] = "Число";
+$MESS["CODEMATRIX_IX_NP_IBLOCK_PROP_L"] = "Список";
+$MESS["CODEMATRIX_IX_NP_IBLOCK_PROP_F"] = "Файл";
+$MESS["CODEMATRIX_IX_NP_IBLOCK_PROP_G"] = "Привязка к разделам";
+$MESS["CODEMATRIX_IX_NP_IBLOCK_PROP_E"] = "Привязка к элементам";
+$MESS["CODEMATRIX_IX_NP_ALAILABLE_COLUMNS"] = "Доступные колонки";
+$MESS["CODEMATRIX_IX_NP_SMART_FILTER"] = "Показывать в умном фильтре";
+$MESS["CODEMATRIX_IX_NP_DISPLAY_EXPANDED"] = "Показывать развернутым";
+$MESS["CODEMATRIX_IX_NP_SHOW_IN_FORM"] = "Показывать на странице редактирования элемента";
+$MESS["CODEMATRIX_IX_SETTINGS_BTN"] = "Настройки поля";
+?>

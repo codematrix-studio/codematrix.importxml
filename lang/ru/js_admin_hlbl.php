@@ -1,0 +1,34 @@
+<?
+$MESS['CODEMATRIX_IX_GROUP_ELEMENT'] = "Элемент";
+$MESS['CODEMATRIX_IX_GROUP_OFFER'] = "Торговое предложение";
+$MESS['CODEMATRIX_IX_GROUP_SECTION'] = "Раздел";
+$MESS['CODEMATRIX_IX_GROUP_SUBSECTION'] = "Подраздел";
+$MESS['CODEMATRIX_IX_GROUP_PROPERTY'] = "Свойство элемента";
+$MESS['CODEMATRIX_IX_ADD_FIELD'] = "Добавить поле";
+$MESS['CODEMATRIX_IX_ADD_FIELD_COPY_SETTING'] = "При нажатии клавиши Shift будут\r\nскопированы настройки из предыдущего поля";
+$MESS['CODEMATRIX_IX_REMOVE_FIELD'] = "Удалить поле";
+$MESS['CODEMATRIX_IX_FIELD_SETTINGS'] = "Настройки поля";
+$MESS['CODEMATRIX_IX_SHOW_ALL_ATTRIBUTES'] = "Показать все значения";
+$MESS['CODEMATRIX_IX_POPUP_FIELD_SETTINGS_TITLE'] = "Настройки загрузки поля";
+$MESS['CODEMATRIX_IX_TOOLS_IMG_LOADER_TITLE'] = "Массовый загрузчик";
+$MESS['CODEMATRIX_IX_INSERT_FIND_FIELD'] = "подставить найденное поле";
+$MESS['CODEMATRIX_IX_POPUP_CRON_TITLE'] = "Настройка cron";
+$MESS['CODEMATRIX_IX_POPUP_LIST_SETTINGS_TITLE'] = "Настройки импорта листа";
+$MESS['CODEMATRIX_IX_POPUP_NEW_PROPERTY_TITLE'] = "Новое свойство";
+$MESS['CODEMATRIX_IX_POPUP_HELP_TITLE'] = "Помощь";
+$MESS['CODEMATRIX_IX_IS_SECTION_NAME'] = "Ячейка содержит название раздела";
+$MESS['CODEMATRIX_IX_SECTION_FIELD_SETTINGS'] = "Настройки импорта поля";
+$MESS['CODEMATRIX_IX_RESET_ACTION'] = "Отменить действие";
+$MESS['CODEMATRIX_IX_INSERT_ALL_FIND_VALUES'] = "Подставить все найденные значения";
+$MESS['CODEMATRIX_IX_POPUP_SOURCE_EMAIL'] = "Настройки импорта с Email-адреса";
+$MESS['CODEMATRIX_IX_SOURCE_EMAIL_SUCCESS'] = "Успешно";
+$MESS['CODEMATRIX_IX_SOURCE_EMAIL_FAIL'] = "Ошибка при подключении";
+$MESS['CODEMATRIX_IX_SOURCE_EMAIL_FAIL_NOTE'] = "<b>Обратите внимание!</b> У Яндекса, mail.ru и ряда других почтовых сервисов доступ к imap-серверу по основному паролю может быть запрещён. В этом случае нужно создать в настройках аккаунта <b>пароль приложения</b> и использовать его для подключения.";
+$MESS['CODEMATRIX_IX_POPUP_SOURCE_LINKAUTH'] = "Настройки импорта с авторизацией";
+$MESS['CODEMATRIX_IX_SOURCE_LAUTH_SUCCESS'] = "Загрузка прошла успешно";
+$MESS['CODEMATRIX_IX_SOURCE_LAUTH_FAIL'] = "Ошибка при загрузке";
+$MESS['CODEMATRIX_IX_POPUP_MISSINGELEM_FIELDS_TITLE'] = "Значения полей для отсутствующих в файле элементов";
+$MESS['CODEMATRIX_IX_POPUP_MISSINGOFFER_FIELDS_TITLE'] = "Значения полей для отсутствующих в файле торговых предложений";
+$MESS['CODEMATRIX_IX_POPUP_MISSINGELEM_FILTER_TITLE'] = "Фильтр для отсутствующих в файле элементов";
+$MESS["CODEMATRIX_IX_CRON_CHOOSE_PROFILE"] = "Выберите профиль";
+?>
