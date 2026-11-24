@@ -406,7 +406,7 @@ class Cloud
 	
 	public function GdriveGetHttpClient($path)
 	{
-		return new \\Bitrix\\Main\\Web\\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>true));
+		return new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>true));
 	}
 
 	public function GdriveGetDownloadLink(&$tmpPath, $id, $isExcel=false)
