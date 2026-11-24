@@ -1513,24 +1513,34 @@ class Utils {
 			if(file_exists($tmpsubdir)) self::DeleteDirFiles($tmpsubdir);
 			CheckDirPath($tmpsubdir);
 			$archiveExtracted = false;
+			$isTarGz = preg_match('/\.(tar\.gz|tgz)$/i', (string)$arFile['name']) === 1;
+			$isGzip = preg_match('/\.gz$/i', (string)$arFile['name']) === 1 && !$isTarGz;
 			$archiveRoot = realpath($tmpsubdir);
 			if($archiveRoot)
 			{
 				$extractEntry = function($entryName) use ($tmpsubdir, $archiveRoot)
 				{
-					$entryName = str_replace('\\', '/', (string)$entryName);
+					$entryName = str_replace(chr(92), '/', (string)$entryName);
 					if($entryName === '' || strpos($entryName, "\0") !== false || $entryName[0] === '/' || preg_match('/^[a-z]:/i', $entryName)) return false;
 					$parts = explode('/', $entryName);
-					if(in_array('..', $parts, true)) return false;
+					if(in_array('..', $parts, true) || in_array('.', $parts, true)) return false;
 					$parts = array_values(array_filter($parts, 'strlen'));
 					if(empty($parts)) return false;
-					$relativePath = implode(DIRECTORY_SEPARATOR, $parts);
-					$target = rtrim($tmpsubdir, '/\\').DIRECTORY_SEPARATOR.$relativePath;
-					$parent = dirname($target);
-					CheckDirPath(rtrim($parent, '/\\').DIRECTORY_SEPARATOR);
-					$realParent = realpath($parent);
+
 					$rootPrefix = rtrim($archiveRoot, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
-					if(!$realParent || ($realParent !== $archiveRoot && strpos($realParent.DIRECTORY_SEPARATOR, $rootPrefix) !== 0)) return false;
+					$current = $archiveRoot;
+					for($i=0; $i<count($parts)-1; $i++)
+					{
+						$current .= DIRECTORY_SEPARATOR.$parts[$i];
+						if(is_link($current)) return false;
+						if(!is_dir($current) && !@mkdir($current, 0775)) return false;
+						$realCurrent = realpath($current);
+						if(!$realCurrent || ($realCurrent !== $archiveRoot && strpos($realCurrent.DIRECTORY_SEPARATOR, $rootPrefix) !== 0)) return false;
+						$current = $realCurrent;
+					}
+
+					$target = $current.DIRECTORY_SEPARATOR.end($parts);
+					if(is_link($target)) return false;
 					return $target;
 				};
 
@@ -1544,7 +1554,7 @@ class Utils {
 						{
 							$entryName = $zipObj->getNameIndex($i);
 							if($entryName === false) {$validArchive = false; break;}
-							$normalizedName = str_replace('\\\\', '/', $entryName);
+							$normalizedName = str_replace(chr(92), '/', $entryName);
 							if($normalizedName !== '' && ($normalizedName[0] === '/' || preg_match('/^[a-z]:/i', $normalizedName) || in_array('..', explode('/', $normalizedName), true) || strpos($normalizedName, "\0") !== false))
 							{
 								$validArchive = false;
@@ -1556,7 +1566,7 @@ class Utils {
 							for($i=0; $i<$zipObj->numFiles; $i++)
 							{
 								$entryName = $zipObj->getNameIndex($i);
-								$isDirectory = substr($entryName, -1) === '/' || substr($entryName, -1) === '\\\\';
+								$isDirectory = substr($entryName, -1) === '/' || substr($entryName, -1) === chr(92);
 								$target = $extractEntry($entryName);
 								if($target === false) continue;
 								if($isDirectory)
@@ -1612,7 +1622,7 @@ class Utils {
 								fclose($out);
 								$archiveExtracted = true;
 							}
-							elseif($out)
+							elseif(is_resource($out))
 							{
 								fclose($out);
 							}
@@ -1623,7 +1633,7 @@ class Utils {
 						$archiveExtracted = false;
 					}
 				}
-				elseif(mb_substr($ext, -3)=='.gz' && $ext!='tar.gz' && function_exists('gzopen'))
+				elseif($isGzip && function_exists('gzopen'))
 				{
 					$gzName = basename((string)$arFile['name']);
 					$gzName = preg_replace('/\\.gz$/i', '', $gzName);
