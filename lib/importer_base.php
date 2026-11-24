@@ -2738,7 +2738,7 @@ class ImporterBase {
 			if(!isset($arRates['TIME']) || $arRates['TIME'] < time() - 6*60*60)
 			{
 				$arRates2 = array();
-				$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>20, 'disableSslVerification'=>true));
+				$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>20, 'disableSslVerification'=>false));
 				$res = $client->get('http://www.cbr.ru/scripts/XML_daily.asp');
 				if($res)
 				{

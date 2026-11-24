@@ -89,7 +89,7 @@ elseif($_POST['action']=='loadparams')
 		while(strlen($location)>0 && $redirectCount<=5)
 		{
 			$lastLocation = $location;
-			$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>true, 'redirect'=>false));
+			$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>false, 'redirect'=>false));
 			$client->setCookies($arCookies);
 			foreach($arHeaders as $hk=>$hv) $client->setHeader($hk, $hv);
 			$htmlPage = $client->get($location);
@@ -110,7 +110,7 @@ elseif($_POST['action']=='loadparams')
 		}
 		elseif(in_array($status, array(400, 405)))
 		{
-			$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>true, 'redirect'=>false));
+			$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>false, 'redirect'=>false));
 			$res = trim($client->post($lastLocation, array('grant_type'=>'password')));
 			if(strpos($res, '{')===0 && ($arAnswer = \CUtil::JsObjectToPhp($res)) && is_array($arAnswer) && 
 				((array_key_exists('error', $arAnswer) && !empty($arAnswer['error']))
