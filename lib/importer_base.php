@@ -1780,7 +1780,7 @@ class ImporterBase {
 				$tempPath2 = $tmpsubdir.(\Bitrix\Main\IO\Path::convertLogicalToPhysical($basename));
 				$arOptions = array();
 				if($this->useProxy) $arOptions = $this->proxySettings;
-				$arOptions['disableSslVerification'] = true;
+				$arOptions['disableSslVerification'] = false;
 				$arOptions['redirect'] = false;
 				$arOptions['socketTimeout'] = $arOptions['streamTimeout'] = 10;
 				$arHeaders = array(
