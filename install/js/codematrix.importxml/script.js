@@ -1,3 +1,28 @@
+(function($){
+	if(!$ || !$.ajaxPrefilter) return;
+	$.ajaxPrefilter(function(options){
+		var method = String(options.type || options.method || 'GET').toUpperCase();
+		if(method !== 'POST') return;
+		var sessid = $('#sessid').val();
+		if(!sessid) return;
+		if(typeof options.data === 'string')
+		{
+			if(!/(^|&)sessid=/.test(options.data))
+			{
+				options.data += (options.data ? '&' : '') + 'sessid=' + encodeURIComponent(sessid);
+			}
+		}
+		else if($.isPlainObject(options.data))
+		{
+			if(!options.data.sessid) options.data.sessid = sessid;
+		}
+		else if(options.data == null)
+		{
+			options.data = {sessid: sessid};
+		}
+	});
+})(jQuery);
+
 var codeMatrixIXModuleName = 'codematrix.importxml';
 var codeMatrixIXModuleFilePrefix = 'codematrix_import_xml';
 var EIXPreview = {
