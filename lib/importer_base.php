@@ -1780,7 +1780,7 @@ class ImporterBase {
 				$tempPath2 = $tmpsubdir.(\Bitrix\Main\IO\Path::convertLogicalToPhysical($basename));
 				$arOptions = array();
 				if($this->useProxy) $arOptions = $this->proxySettings;
-				$arOptions['disableSslVerification'] = true;
+				$arOptions['disableSslVerification'] = false;
 				$arOptions['redirect'] = false;
 				$arOptions['socketTimeout'] = $arOptions['streamTimeout'] = 10;
 				$arHeaders = array(
@@ -2738,7 +2738,7 @@ class ImporterBase {
 			if(!isset($arRates['TIME']) || $arRates['TIME'] < time() - 6*60*60)
 			{
 				$arRates2 = array();
-				$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>20, 'disableSslVerification'=>true));
+				$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>20, 'disableSslVerification'=>false));
 				$res = $client->get('http://www.cbr.ru/scripts/XML_daily.asp');
 				if($res)
 				{

@@ -119,7 +119,7 @@ class Cloud
 		if(strlen($fragment) > 0)
 		{
 			$pattern = self::GetPatternForRegexp(preg_replace('/^\s*(\/\*)*\//', '', $fragment));
-			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>15, 'disableSslVerification'=>true));
+			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>15, 'disableSslVerification'=>false));
 			$client->setHeader('Authorization', "OAuth ".$token);
 			$res = $client->get('https://cloud-api.yandex.net/v1/disk/public/resources?public_key='.urlencode($path).(strlen($subPath) > 0 ? '&path='.urlencode($subPath) : '').'&limit=99999');
 			$arRes = \CUtil::JsObjectToPhp($res);
@@ -177,7 +177,7 @@ class Cloud
 			}
 			else
 			{
-				$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
+				$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>false));
 				$client->setHeader('Authorization', "OAuth ".$token);
 				$res = $client->get('https://cloud-api.yandex.net/v1/disk/public/resources?public_key='.urlencode($path).(strlen($subPath) > 0 ? '&path='.urlencode($subPath) : '').'&limit=9999'.($fromFile ? '' : '&sort=-created'));
 				$arRes = \CUtil::JsObjectToPhp($res);
@@ -223,7 +223,7 @@ class Cloud
 			$loop = 5;
 			while(($loop--) > 0)
 			{
-				$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
+				$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>false));
 				$client->setHeader('Authorization', "OAuth ".$token);
 				$res = $client->get('https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key='.urlencode($path).(strlen($subPath) > 0 ? '&path='.urlencode($subPath) : ''));
 				$arRes = \CUtil::JsObjectToPhp($res);
@@ -256,7 +256,7 @@ class Cloud
 				if((!defined('BX_UTF') || !BX_UTF)) $filename = $GLOBALS['APPLICATION']->ConvertCharset($filename, 'UTF-8', 'CP1251');
 				$tmpPath = static::GetTmpFilePath($filename);
 			}
-			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
+			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>false));
 			$client->setHeader('Authorization', "OAuth ".$token);
 			if($client->download($fileLink, $tmpPath))
 			{
@@ -406,7 +406,7 @@ class Cloud
 	
 	public function GdriveGetHttpClient($path)
 	{
-		return new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>true));
+		return new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>false));
 	}
 
 	public function GdriveGetDownloadLink(&$tmpPath, $id, $isExcel=false)
@@ -434,7 +434,7 @@ class Cloud
 		{
 			$path = \Bitrix\Main\Text\Encoding::convertEncoding($path, $siteEncoding, 'utf-8');
 		}
-		$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>true, 'redirect'=>false));
+		$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>false, 'redirect'=>false));
 		$client->setHeader('User-Agent', 'BitrixSM HttpClient class');
 		$client->get($path);
 		$arCookies = $client->getCookies()->toArray();
@@ -442,7 +442,7 @@ class Cloud
 		{
 			$path = preg_replace('/^([^\/]*\/\/[^\/]+\/).*$/', '$1', $path).trim($client->getHeaders()->get('location'), '/');
 		}
-		$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>true));
+		$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>30, 'disableSslVerification'=>false));
 		$client->setHeader('User-Agent', 'BitrixSM HttpClient class');
 		$client->setCookies($arCookies);
 		if($client->download($path, $tmpPath))
@@ -482,7 +482,7 @@ class Cloud
 	public function PostimgGetFile(&$tmpPath, $path, $fromFile=false)
 	{
 		$fileTypes = self::GetFileTypes($fromFile);
-		$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
+		$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>false));
 		$client->setHeader('User-Agent', \Bitrix\CodeMatrixImportxml\Utils::GetUserAgent());
 		$client->setHeader('Accept', 'image/webp,*/*;q=0.8');
 		$res = $client->download($path, $tmpPath);

@@ -92,16 +92,26 @@ function GetPhpPathForCron($checkPath = false)
 }
 
 
+if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
+$docRoot = rtrim($_SERVER["DOCUMENT_ROOT"], '/');
+require_once($docRoot."/bitrix/modules/main/include/prolog_admin_before.php");
+$moduleId = 'codematrix.importxml';
+$MODULE_RIGHT = $APPLICATION->GetGroupRight($moduleId);
+if($MODULE_RIGHT < "W")
+{
+	$APPLICATION->AuthForm(GetMessage("ACCESS_DENIED"));
+}
+if(isset($_REQUEST["action"]) && !check_bitrix_sessid())
+{
+	$APPLICATION->RestartBuffer();
+	header('HTTP/1.1 403 Forbidden');
+	die();
+}
 if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="getphpversion")
 {
 	echo GetPhpPathForCron(true);
 	die();
 }
-
-if(!defined('NO_AGENT_CHECK')) define('NO_AGENT_CHECK', true);
-$docRoot = rtrim($_SERVER["DOCUMENT_ROOT"], '/');
-require_once($docRoot."/bitrix/modules/main/include/prolog_admin_before.php");
-$moduleId = 'codematrix.importxml';
 CModule::IncludeModule('iblock');
 CModule::IncludeModule($moduleId);
 IncludeModuleLangFile(__FILE__);
@@ -431,8 +441,8 @@ $obJSPopup->ShowTitlebar(GetMessage("CODEMATRIX_IX_CRON_TITLE"));*/
 /*Define php path*/
 $obRequest = \Bitrix\Main\Context::getCurrent()->getRequest();
 $selfLink = ($_SERVER['SERVER_PORT']==443 || ToLower($_SERVER['HTTPS']) == "on" ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-$ob = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>true, 'socketTimeout'=>3, 'streamTimeout'=>3));
-if(($res = trim($ob->post($selfLink, array('action'=>'getphpversion')))) && stripos($res, 'php')!==false) $phpPath = $res;
+$ob = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>false, 'socketTimeout'=>3, 'streamTimeout'=>3));
+if(($res = trim($ob->post($selfLink, array('action'=>'getphpversion', 'sessid'=>bitrix_sessid())))) && stripos($res, 'php')!==false) $phpPath = $res;
 else $phpPath = GetPhpPathForCron();
 /*/Define php path*/
 

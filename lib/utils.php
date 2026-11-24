@@ -1131,7 +1131,7 @@ class Utils {
 						$location = trim($arParams['PAGEAUTH']);
 						while(strlen($location)>0 && $redirectCount<=5)
 						{
-							$client = self::GetHttpClient(array('disableSslVerification'=>true, 'redirect'=>false), $arHeaders, $arCookies, $location);
+							$client = self::GetHttpClient(array('disableSslVerification'=>false, 'redirect'=>false), $arHeaders, $arCookies, $location);
 							$res = $client->get($location);
 							static::MergeCookie($arCookies, $client->getCookies()->toArray());
 							$arHeaders['Referer'] = $location;
@@ -1168,14 +1168,14 @@ class Utils {
 						
 						if(in_array($status, array(400, 405)) && array_key_exists('client_secret', $arParams['VARS']))
 						{
-							$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>true, 'redirect'=>false));
+							$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>false, 'redirect'=>false));
 							$res = trim($client->post($location, array('grant_type'=>'password')));
 							if(strpos($res, '{')===0 && ($arAnswer = \CUtil::JsObjectToPhp($res)) && is_array($arAnswer) && 
 								((array_key_exists('error', $arAnswer) && !empty($arAnswer['error']))
 								|| (array_key_exists('message', $arAnswer) && !empty($arAnswer['message']))))
 							{
 								if(!array_key_exists('grant_type', $arParams['VARS']) || strlen($arParams['VARS']['grant_type'])==0) $arParams['VARS']['grant_type'] = 'password';
-								$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>true, 'redirect'=>false));
+								$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>false, 'redirect'=>false));
 								$arAnswer = \CUtil::JsObjectToPhp(trim($client->post($location, $arParams['VARS'])));
 								if(is_array($arAnswer) && isset($arAnswer['token_type']) && isset($arAnswer['access_token']))
 								{
@@ -1187,12 +1187,12 @@ class Utils {
 
 						while(strlen($location)>0 && $redirectCount<=5)
 						{
-							$client = self::GetHttpClient(array('disableSslVerification'=>true, 'redirect'=>false), $arHeaders, $arCookies, $location);
+							$client = self::GetHttpClient(array('disableSslVerification'=>false, 'redirect'=>false), $arHeaders, $arCookies, $location);
 							$res = $client->post($location, $arParams['VARS']);
 							$status = $client->getStatus();
 							if($status==404)
 							{
-								$client = self::GetHttpClient(array('disableSslVerification'=>true, 'redirect'=>false), $arHeaders, $arCookies, $location);
+								$client = self::GetHttpClient(array('disableSslVerification'=>false, 'redirect'=>false), $arHeaders, $arCookies, $location);
 								$res = $client->get($location);
 								$status = $client->getStatus();
 							}
@@ -1211,7 +1211,7 @@ class Utils {
 						$val = '';
 						if($path)
 						{
-							$client = self::GetHttpClient(array('disableSslVerification'=>true), $arHeaders, $arCookies, $path);
+							$client = self::GetHttpClient(array('disableSslVerification'=>false), $arHeaders, $arCookies, $path);
 							$val = $client->get($path);
 						}
 						$res = self::ExecuteFilterExpression($val, $handler, '', $arCookies, $arHeaders, $arParams);
@@ -1316,7 +1316,7 @@ class Utils {
 					if(!self::detectUtf8($path)) $path = self::Win1251Utf8($path);
 					$path = preg_replace_callback('/[^:@\/?=&#%!$,\-\.\+\{\}\[\]]+/', array(__CLASS__, 'UrlEncodeCallback'), $path);
 
-					$ob = self::GetHttpClient(array('socketTimeout'=>$maxTime, 'streamTimeout'=>$maxTime, 'disableSslVerification'=>true), $arHeaders, $arCookies, $path);
+					$ob = self::GetHttpClient(array('socketTimeout'=>$maxTime, 'streamTimeout'=>$maxTime, 'disableSslVerification'=>false), $arHeaders, $arCookies, $path);
 					if(strlen($postBody) > 0)
 					{
 						if(strpos($postBody, '<?php xml')!==false) $ob->setHeader('content-type', 'application/xml');
@@ -1335,14 +1335,14 @@ class Utils {
 					{
 						if($ob->getStatus()!=200)
 						{
-							$ob = self::GetHttpClient(array('socketTimeout'=>$maxTime, 'streamTimeout'=>$maxTime, 'disableSslVerification'=>true, 'redirect'=>false), $arHeaders, array(), $path);
+							$ob = self::GetHttpClient(array('socketTimeout'=>$maxTime, 'streamTimeout'=>$maxTime, 'disableSslVerification'=>false, 'redirect'=>false), $arHeaders, array(), $path);
 							$ob->get($path);
 							$loop = 0;
 							while(in_array($ob->getStatus(), array(301, 302, 303)) && ++$loop<=5)
 							{
 								self::GetNewLocation($path, $ob->getHeaders()->get('location'));
 								$arCookies = $ob->getCookies()->toArray();
-								$ob = self::GetHttpClient(array('socketTimeout'=>15, 'streamTimeout'=>15, 'disableSslVerification'=>true, 'redirect'=>false), $arHeaders, $arCookies, $path);
+								$ob = self::GetHttpClient(array('socketTimeout'=>15, 'streamTimeout'=>15, 'disableSslVerification'=>false, 'redirect'=>false), $arHeaders, $arCookies, $path);
 								$ob->download($path, $temp_path2);
 							}
 						}
@@ -1512,53 +1512,159 @@ class Utils {
 			$tmpsubdir = dirname($archiveFn).'/zip/';
 			if(file_exists($tmpsubdir)) self::DeleteDirFiles($tmpsubdir);
 			CheckDirPath($tmpsubdir);
-			if(mb_substr($ext, -3)=='.gz' && $ext!='tar.gz' && function_exists('gzopen'))
+			$archiveExtracted = false;
+			$isTarGz = preg_match('/\.(tar\.gz|tgz)$/i', (string)$arFile['name']) === 1;
+			$isGzip = preg_match('/\.gz$/i', (string)$arFile['name']) === 1 && !$isTarGz;
+			$archiveRoot = realpath($tmpsubdir);
+			if($archiveRoot)
 			{
-				$handle1 = gzopen($archiveFn, 'rb');
-				$handle2 = fopen($tmpsubdir.mb_substr(basename(ToLower(mb_substr($archiveFn, -3)=='.gz') ? $archiveFn : $arFile['name']), 0, -3), 'wb');
-				while(!gzeof($handle1)) {
-					fwrite($handle2, gzread($handle1, 4096));
-				}
-				fclose($handle2);
-				gzclose($handle1);
-			}
-			elseif($ext=='rar' && class_exists('\RarArchive'))
-			{
-				$rar = \RarArchive::open($archiveFn);
-				$entries = $rar->getEntries();
-				foreach($entries as $entry)
+				$extractEntry = function($entryName) use ($tmpsubdir, $archiveRoot)
 				{
-					$entry->extract($tmpsubdir, $tmpsubdir.$entry->getName());
-				}
-				$rar->close();
-			}
-			elseif($ext=='zip' && filesize($archiveFn) > 5*1024*1024 && class_exists('\ZipArchive') && ($zipObj = new \ZipArchive) && $zipObj->open($archiveFn)===true && $zipObj->numFiles > 0)
-			{
-				$zipObj->extractTo($tmpsubdir);
-				for($i=0; $i<$zipObj->numFiles; $i++)
-				{
-					$zipPath = $zipObj->getNameIndex($i);
-					if(!file_exists($tmpsubdir.$zipPath))
+					$entryName = str_replace(chr(92), '/', (string)$entryName);
+					if($entryName === '' || strpos($entryName, "\0") !== false || $entryName[0] === '/' || preg_match('/^[a-z]:/i', $entryName)) return false;
+					$parts = explode('/', $entryName);
+					if(in_array('..', $parts, true) || in_array('.', $parts, true)) return false;
+					$parts = array_values(array_filter($parts, 'strlen'));
+					if(empty($parts)) return false;
+
+					$rootPrefix = rtrim($archiveRoot, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+					$current = $archiveRoot;
+					for($i=0; $i<count($parts)-1; $i++)
 					{
-						CheckDirPath($tmpsubdir.$zipPath);
-						copy("zip://".$archiveFn."#".$zipPath, $tmpsubdir.$zipPath);
+						$current .= DIRECTORY_SEPARATOR.$parts[$i];
+						if(is_link($current)) return false;
+						if(!is_dir($current) && !@mkdir($current, 0775)) return false;
+						$realCurrent = realpath($current);
+						if(!$realCurrent || ($realCurrent !== $archiveRoot && strpos($realCurrent.DIRECTORY_SEPARATOR, $rootPrefix) !== 0)) return false;
+						$current = $realCurrent;
+					}
+
+					$target = $current.DIRECTORY_SEPARATOR.end($parts);
+					if(is_link($target)) return false;
+					return $target;
+				};
+
+				if($ext === 'zip' && class_exists('\\ZipArchive'))
+				{
+					$zipObj = new \ZipArchive();
+					if($zipObj->open($archiveFn) === true)
+					{
+						$validArchive = true;
+						for($i=0; $i<$zipObj->numFiles; $i++)
+						{
+							$entryName = $zipObj->getNameIndex($i);
+							if($entryName === false) {$validArchive = false; break;}
+							$normalizedName = str_replace(chr(92), '/', $entryName);
+							if($normalizedName !== '' && ($normalizedName[0] === '/' || preg_match('/^[a-z]:/i', $normalizedName) || in_array('..', explode('/', $normalizedName), true) || strpos($normalizedName, "\0") !== false))
+							{
+								$validArchive = false;
+								break;
+							}
+						}
+						if($validArchive)
+						{
+							for($i=0; $i<$zipObj->numFiles; $i++)
+							{
+								$entryName = $zipObj->getNameIndex($i);
+								$isDirectory = substr($entryName, -1) === '/' || substr($entryName, -1) === chr(92);
+								$target = $extractEntry($entryName);
+								if($target === false) continue;
+								if($isDirectory)
+								{
+									CheckDirPath(rtrim($target, '/\\').DIRECTORY_SEPARATOR);
+									continue;
+								}
+								$stream = $zipObj->getStream($entryName);
+								if(!$stream) continue;
+								$out = fopen($target, 'wb');
+								if($out)
+								{
+									stream_copy_to_stream($stream, $out);
+									fclose($out);
+									$archiveExtracted = true;
+								}
+								fclose($stream);
+							}
+						}
+						$zipObj->close();
 					}
 				}
-				$zipObj->close();
-			}
-			else
-			{
-				$type = (in_array($ext, array('tar.gz', 'tgz')) ? 'TAR.GZ' : 'ZIP');
-				$zipObj = \CBXArchive::GetArchive($archiveFn, $type);
-				$zipObj->Unpack($tmpsubdir);
-				if(count(array_diff(scandir($tmpsubdir), array('.', '..')))==0 && function_exists('exec'))
+				elseif($ext === 'rar' && class_exists('\\RarArchive'))
 				{
-					$command = 'unzip "'.$archiveFn.'" -d '.$tmpsubdir;
-					@exec($command);
+					$rar = \RarArchive::open($archiveFn);
+					if($rar)
+					{
+						foreach($rar->getEntries() as $entry)
+						{
+							$target = $extractEntry($entry->getName());
+							if($target !== false && $entry->extract($tmpsubdir, $target)) $archiveExtracted = true;
+						}
+						$rar->close();
+					}
 				}
-				elseif($arFile['type']=='application/zip') self::CorrectEncodingForExtractDir($tmpsubdir);
+				elseif(($ext === 'tar' || $isTarGz) && class_exists('\\PharData'))
+				{
+					try
+					{
+						$phar = new \PharData($archiveFn);
+						$iterator = new \RecursiveIteratorIterator($phar, \RecursiveIteratorIterator::LEAVES_ONLY);
+						foreach($iterator as $entry)
+						{
+							if(!$entry->isFile()) continue;
+							$entryName = $entry->getPathname();
+							$archivePrefix = 'phar://'.$archiveFn.'/';
+							if(strpos($entryName, $archivePrefix) === 0) $entryName = substr($entryName, strlen($archivePrefix));
+							$target = $extractEntry($entryName);
+							if($target === false) continue;
+							$source = $phar[$entryName];
+							$out = fopen($target, 'wb');
+							if($out && $source)
+							{
+								fwrite($out, $source->getContent());
+								fclose($out);
+								$archiveExtracted = true;
+							}
+						}
+					}
+					catch(\Exception $e)
+					{
+						$archiveExtracted = false;
+					}
+				}
+				elseif($isGzip && function_exists('gzopen'))
+				{
+					$gzName = basename((string)$arFile['name']);
+					$gzName = preg_replace('/\\.gz$/i', '', $gzName);
+					$target = $extractEntry($gzName);
+					$handle1 = gzopen($archiveFn, 'rb');
+					$handle2 = ($target !== false ? fopen($target, 'wb') : false);
+					if($handle1 && $handle2)
+					{
+						while(!gzeof($handle1))
+						{
+							$chunk = gzread($handle1, 4096);
+							if($chunk === false) break;
+							fwrite($handle2, $chunk);
+						}
+						fclose($handle2);
+						gzclose($handle1);
+						$archiveExtracted = true;
+					}
+					else
+					{
+						if($handle1) gzclose($handle1);
+						if($handle2) fclose($handle2);
+					}
+				}
 			}
-			
+			if($archiveExtracted && $arFile['type'] === 'application/zip')
+			{
+				self::CorrectEncodingForExtractDir($tmpsubdir);
+			}
+			if(!$archiveExtracted)
+			{
+				self::DeleteDirFiles($tmpsubdir);
+			}
 			$arFile = array();
 			if(!is_array($path)) $urlComponents = parse_url($path);
 			else $urlComponents = array();
@@ -1612,7 +1718,7 @@ class Utils {
 			$path1 = current(explode('?', $path));
 			$path2 = preg_replace('/\/[^\/]+$/', '/', $path1);
 			$path3 = preg_replace('/^.*\/([^\/]+)$/', '$1', $path1);
-			$ob = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>$maxTime, 'streamTimeout'=>$maxTime, 'disableSslVerification'=>true));
+			$ob = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>$maxTime, 'streamTimeout'=>$maxTime, 'disableSslVerification'=>false));
 			$ob->setCookies($arCookies);
 			foreach($arHeaders as $hk=>$hv) $ob->setHeader($hk, $hv);
 			$content = urldecode($ob->get($path2));
@@ -1752,7 +1858,7 @@ class Utils {
 	{
 		if(stripos($path, 'wsdl')!==false && class_exists('\SoapClient'))
 		{
-			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>15, 'disableSslVerification'=>true));
+			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>15, 'disableSslVerification'=>false));
 			$client->setHeader('User-Agent', self::GetUserAgent());
 			$res = $client->get($path);
 			if(stripos($res, '<wsdl:definitions')!==false || stripos($res, '<definitions')!==false)
@@ -3309,7 +3415,7 @@ class Utils {
 		if($apiKey = \Bitrix\Main\Config\Option::get(static::$moduleId, 'TRANSLATE_GOOGLE_KEY', ''))
 		{
 			if($langTo===false) $langTo = LANGUAGE_ID;
-			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
+			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>false));
 			$res = $client->post('https://translation.googleapis.com/language/translate/v2', array('q'=>$string, 'source'=>$langFrom, 'target'=>$langTo, 'format'=>"text", 'key'=>$apiKey));
 			$arRes = \CUtil::JSObjectToPhp($res);
 			if(isset($arRes['data']['translations'][0]['translatedText']))
@@ -3321,7 +3427,7 @@ class Utils {
 			($apiKey = \Bitrix\Main\Config\Option::get(static::$moduleId, 'TRANSLATE_YANDEX_KEY', '')))
 		{
 			if($langTo===false) $langTo = LANGUAGE_ID;
-			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
+			$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>false));
 			$client->setHeader('Content-Type', 'application/xml');
 			$res = $client->get('https://translate.yandex.net/api/v1.5/tr.json/translate?key='.$apiKey.'&lang='.$langFrom.'-'.$langTo.'&text='.urlencode($string));
 			$arRes = \CUtil::JSObjectToPhp($res);
@@ -3350,7 +3456,7 @@ class Utils {
 	
 	public static function DownloadTextTextByLink($val, $altVal='')
 	{
-		$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>true));
+		$client = new \Bitrix\Main\Web\HttpClient(array('socketTimeout'=>10, 'disableSslVerification'=>false));
 		$path = (strlen(trim($altVal)) > 0 ? trim($altVal) : trim($val));
 		if(strlen($path)==0) return '';
 		$arUrl = parse_url($path);
@@ -3518,7 +3624,7 @@ class Utils {
 					if(!file_exists($realFile) || filesize($realFile)==0 || stripos(file_get_contents($realFile, false, null, 0, 100), '<html')!==false)
 					{
 						CheckDirPath($imgPathDir);
-						$ob = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>true, 'socketTimeout'=>15, 'streamTimeout'=>15));
+						$ob = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>false, 'socketTimeout'=>15, 'streamTimeout'=>15));
 						$ob->setHeader('User-Agent', self::GetUserAgent());
 						$ob->download($img, $imgPath);
 						if($k0==0 && ($ob->getStatus()==404 || (!file_exists($realFile) || filesize($realFile)==0 || stripos(file_get_contents($realFile, false, null, 0, 100), '<html')!==false)))
@@ -3656,7 +3762,7 @@ class Utils {
 	
 	public static function GetHttpClient($arParams=false, $arHeaders=array(), $arCookies=array(), $path='')
 	{
-		if(!is_array($arParams)) $arParams = array('disableSslVerification'=>true);
+		if(!is_array($arParams)) $arParams = array('disableSslVerification'=>false);
 		$arParams['useProxy'] = false;
 		$client = new \Bitrix\CodeMatrixImportxml\HttpClient($arParams);
 		if(is_array($arCookies) && count($arCookies) > 0) $client->setCookies($arCookies);

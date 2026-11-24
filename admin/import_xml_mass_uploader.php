@@ -5,48 +5,109 @@ $module_id = 'codematrix.importxml';
 CModule::IncludeModule($module_id);
 IncludeModuleLangFile(__FILE__);
 
+$MODULE_RIGHT = $APPLICATION->GetGroupRight($module_id);
+if($MODULE_RIGHT < "W")
+{
+	$APPLICATION->AuthForm(GetMessage("ACCESS_DENIED"));
+}
+
 $success = false;
 $error = '';
-if($_POST['action']=='save')
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'save')
 {
 	define('PUBLIC_AJAX_MODE', 'Y');
-	$oRequest = \Bitrix\Main\Context::getCurrent()->getRequest();
-	$dir = trim(htmlspecialcharsbx($oRequest->get('folder')), '/');
-	if(strlen($dir) > 0) 
+	if(!check_bitrix_sessid())
 	{
-		if(CUtil::DetectUTF8($dir)) $dir = utf8win1251($dir);
-		$dir = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/';
-		CheckDirPath($dir);
-		$arImages = array();
-
-		if(is_array($_POST['images']))
-		{
-			$key = 0;
-			foreach($_POST['images'] as $k=>$v)
-			{
-				foreach($v as $k2=>$v2)
-				{
-					if(isset($arImages[$key]) && isset($arImages[$key][$k2])) $key++;
-					$arImages[$key][$k2] = $v2;
-				}			
-			}
-		}
-
-		foreach($arImages as $arImage)
-		{
-			//if(CUtil::DetectUTF8($arImage['name'])) $arImage['name'] = utf8win1251($arImage['name']);
-			$fn = $_SERVER['DOCUMENT_ROOT'].$arImage['tmp_name'];
-			if(!file_exists($fn)) $fn = CTempFile::GetAbsoluteRoot().$arImage['tmp_name'];
-			if(!file_exists($fn)) continue;
-			$imgName = \Bitrix\Main\IO\Path::convertLogicalToPhysical($arImage['name']);
-			copy($fn, $dir.$imgName);
-			unlink($fn);
-		}
-		$success = true;
+		$error = GetMessage("ACCESS_DENIED");
 	}
 	else
 	{
-		$error = GetMessage("CODEMATRIX_IX_MASS_UPLOAD_ERROR_EMPTY_DIR");
+		$oRequest = \Bitrix\Main\Context::getCurrent()->getRequest();
+		$dir = trim((string)$oRequest->get('folder'));
+		$dir = str_replace('\\', '/', $dir);
+		$dir = trim($dir, '/');
+
+		$documentRoot = realpath($_SERVER['DOCUMENT_ROOT']);
+		$pathParts = explode('/', $dir);
+		$invalidPath = ($dir === '' || strpos($dir, "\0") !== false || preg_match('/^[a-z][a-z0-9+.-]*:/i', $dir) || in_array('..', $pathParts, true) || in_array('.', $pathParts, true));
+
+		if($invalidPath || !$documentRoot)
+		{
+			$error = GetMessage("CODEMATRIX_IX_MASS_UPLOAD_ERROR_EMPTY_DIR");
+		}
+		else
+		{
+			if(CUtil::DetectUTF8($dir)) $dir = utf8win1251($dir);
+			$targetDir = $documentRoot.DIRECTORY_SEPARATOR.str_replace('/', DIRECTORY_SEPARATOR, $dir);
+			CheckDirPath(rtrim($targetDir, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR);
+			$realTargetDir = realpath($targetDir);
+			$rootPrefix = rtrim($documentRoot, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+
+			if(!$realTargetDir || strpos($realTargetDir.DIRECTORY_SEPARATOR, $rootPrefix) !== 0)
+			{
+				$error = GetMessage("CODEMATRIX_IX_MASS_UPLOAD_ERROR_EMPTY_DIR");
+			}
+			else
+			{
+				$tempRoot = realpath(CTempFile::GetAbsoluteRoot());
+				$arImages = array();
+
+				if(isset($_POST['images']) && is_array($_POST['images']))
+				{
+					$key = 0;
+					foreach($_POST['images'] as $v)
+					{
+						if(!is_array($v)) continue;
+						foreach($v as $field=>$value)
+						{
+							if(isset($arImages[$key]) && array_key_exists($field, $arImages[$key])) $key++;
+							$arImages[$key][$field] = $value;
+						}
+					}
+				}
+
+				foreach($arImages as $arImage)
+				{
+					if(empty($arImage['tmp_name']) || empty($arImage['name'])) continue;
+					$tmpName = str_replace('\\', '/', (string)$arImage['tmp_name']);
+					$tmpName = ltrim($tmpName, '/');
+					$candidatePaths = array(
+						realpath($documentRoot.DIRECTORY_SEPARATOR.$tmpName),
+						realpath(rtrim(CTempFile::GetAbsoluteRoot(), '/\\').DIRECTORY_SEPARATOR.$tmpName),
+						realpath((string)$arImage['tmp_name'])
+					);
+					$candidate = false;
+					if($tempRoot)
+					{
+						$tempPrefix = rtrim($tempRoot, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+						foreach($candidatePaths as $candidatePath)
+						{
+							if($candidatePath && strpos($candidatePath, $tempPrefix) === 0 && is_file($candidatePath))
+							{
+								$candidate = $candidatePath;
+								break;
+							}
+						}
+					}
+					if(!$candidate) continue;
+
+					$originalName = basename(str_replace('\\', '/', (string)$arImage['name']));
+					$imgName = \Bitrix\Main\IO\Path::convertLogicalToPhysical($originalName);
+					if($imgName === '' || $imgName === '.' || $imgName === '..' || strpos($imgName, "\0") !== false || strpos($imgName, '/') !== false || strpos($imgName, '\\') !== false) continue;
+
+					if(copy($candidate, $realTargetDir.DIRECTORY_SEPARATOR.$imgName))
+					{
+						unlink($candidate);
+						$success = true;
+					}
+					else
+					{
+						$error = GetMessage("CODEMATRIX_IX_MASS_UPLOAD_ERROR_EMPTY_DIR");
+					}
+				}
+				if(!$success && !$error) $error = GetMessage("CODEMATRIX_IX_MASS_UPLOAD_ERROR_EMPTY_DIR");
+			}
+		}
 	}
 }
 
@@ -78,7 +139,8 @@ $folder = '/upload/images/';
 if(isset($_POST['folder'])) $folder = $_POST['folder'];
 elseif(COption::GetOptionString($module_id, 'IMAGES_PATH')) $folder = COption::GetOptionString($module_id, 'IMAGES_PATH');
 ?>
-<form action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data" name="field_settings">
+<form action="<?=htmlspecialcharsbx($APPLICATION->GetCurPageParam())?>" method="post" enctype="multipart/form-data" name="field_settings">
+	<?=bitrix_sessid_post()?>
 	<input type="hidden" name="action" value="save">
 	<table width="100%">
 		<col width="50%">
@@ -93,8 +155,8 @@ elseif(COption::GetOptionString($module_id, 'IMAGES_PATH')) $folder = COption::G
 			<td colspan="2">
 				<?php
 				$fileInput = new \Bitrix\Main\UI\FileInput(array(
-					'name' => 'images[]', 
-					'edit' => false, 
+					'name' => 'images[]',
+					'edit' => false,
 					'id' => 'upload_images_'.md5(mt_rand()),
 					'description' => false,
 					'upload' => true
