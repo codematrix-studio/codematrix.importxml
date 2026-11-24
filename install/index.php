@@ -27,8 +27,8 @@ class codematrix_importxml extends CModule
             $this->MODULE_VERSION = $arModuleVersion['VERSION'];
             $this->MODULE_VERSION_DATE = $arModuleVersion['VERSION_DATE'];
         }
-        $this->PARTNER_NAME = GetMessage('CODEMATRIX_PARTNER_NAME');
-        $this->PARTNER_URI = 'http://kitutions.su/';
+        $this->PARTNER_NAME = 'CodeMatrix STUDIO';
+        $this->PARTNER_URI = 'https://github.com/codematrix-studio';
         $this->MODULE_NAME = GetMessage('CODEMATRIX_IMPORTXML_MODULE_NAME');
         $this->MODULE_DESCRIPTION = GetMessage('CODEMATRIX_IMPORTXML_MODULE_DESCRIPTION');
     }
