@@ -94,9 +94,9 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 		<tr>
 			<td class="adm-detail-content-cell-l"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE");?>:</td>
 			<td class="adm-detail-content-cell-r">
-				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="" <?=(!isset($arParams['SECTION_LOAD_MODE']) || strlen($arParams['SECTION_LOAD_MODE'])==0 ? 'checked' : '')?> id="kit_slm_default"><label for="kit_slm_default"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_DEFAULT");?></label><br>
-				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED' ? 'checked' : '')?> id="kit_slm_mapped"><label for="kit_slm_mapped"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED");?></label><br>
-				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED_CHILD" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED_CHILD' ? 'checked' : '')?> id="kit_slm_mapped_child"><label for="kit_slm_mapped_child"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED_CHILD");?></label>
+				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="" <?=(!isset($arParams['SECTION_LOAD_MODE']) || strlen($arParams['SECTION_LOAD_MODE'])==0 ? 'checked' : '')?> id="codematrix_slm_default"><label for="codematrix_slm_default"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_DEFAULT");?></label><br>
+				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED' ? 'checked' : '')?> id="codematrix_slm_mapped"><label for="codematrix_slm_mapped"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED");?></label><br>
+				<input type="radio" name="MAP[SECTION_LOAD_MODE]" value="MAPPED_CHILD" <?=($arParams['SECTION_LOAD_MODE']=='MAPPED_CHILD' ? 'checked' : '')?> id="codematrix_slm_mapped_child"><label for="codematrix_slm_mapped_child"><?php echo GetMessage("CODEMATRIX_IX_SECTION_LOAD_MODE_MAPPED_CHILD");?></label>
 			</td>
 		</tr>
 
@@ -115,7 +115,7 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 		else
 		{
 		?>
-		<table width="100%" border="1" cellpadding="5" id="kit_propgroup_tbl">
+		<table width="100%" border="1" cellpadding="5" id="codematrix_propgroup_tbl">
 		<col width="50%">
 		<col width="50%">
 		<tr>
@@ -136,8 +136,8 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 			<tr>
 				<td><?php echo $arXmlSection['NAME'].(trim($xmlId)==trim($arXmlSection['NAME']) ? '' : ' ['.$xmlId.']');?></td>
 				<td>
-				  <div class="kit-ix-select-mapping-wrap" data-nc-message="<?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
-					<a href="javascript:void(0)" class="kit-ix-mapping-add-field" title="<?php echo GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
+				  <div class="codematrix-ix-select-mapping-wrap" data-nc-message="<?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
+					<a href="javascript:void(0)" class="codematrix-ix-mapping-add-field" title="<?php echo GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
 					<?php
 					$isFields = false;
 					if(array_key_exists($xmlId, $arMap2))
@@ -146,8 +146,8 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 						{
 							if(array_key_exists($val, $arSections))
 							{
-								echo '<div class="kit-ix-select-mapping" data-xml-id="'.htmlspecialcharsbx($xmlId).'">'.
-										'<input id="kit_mapping_'.$index.'" type="hidden" name="MAP[MAP]['.$index.'][XML_ID]" value="'.htmlspecialcharsbx($xmlId).'"><input type="hidden" name="MAP[MAP]['.$index.'][ID]" value="'.htmlspecialcharsbx($val).'">'.
+								echo '<div class="codematrix-ix-select-mapping" data-xml-id="'.htmlspecialcharsbx($xmlId).'">'.
+										'<input id="codematrix_mapping_'.$index.'" type="hidden" name="MAP[MAP]['.$index.'][XML_ID]" value="'.htmlspecialcharsbx($xmlId).'"><input type="hidden" name="MAP[MAP]['.$index.'][ID]" value="'.htmlspecialcharsbx($val).'">'.
 										'<a href="javascript:void(0)" onclick="ESettings.ShowSelectMapping(this)">'.$arSections[$val].'</a>'.
 									'</div>';
 								$index++;
@@ -157,7 +157,7 @@ $arSections['NOT_LOAD_WITH_CHILDREN'] = GetMessage("CODEMATRIX_IX_NOT_LOAD_SECTI
 					}
 					if(!$isFields)
 					{
-						echo '<div class="kit-ix-select-mapping" data-xml-id="'.htmlspecialcharsbx($xmlId).'">'.
+						echo '<div class="codematrix-ix-select-mapping" data-xml-id="'.htmlspecialcharsbx($xmlId).'">'.
 								'<a href="javascript:void(0)" onclick="ESettings.ShowSelectMapping(this)">'.GetMessage("CODEMATRIX_IX_NOT_CHOOSE").'</a>'.
 							'</div>';
 					}

@@ -87,7 +87,7 @@ if($OFFERS_IBLOCK_ID) $arParams2 = unserialize(\Bitrix\Main\Config\Option::get('
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_admin.php");
 ?>
-<form action="" method="post" enctype="multipart/form-data" name="field_settings" id="kit-ix-price-calculating-form">
+<form action="" method="post" enctype="multipart/form-data" name="field_settings" id="codematrix-ix-price-calculating-form">
  <input type="hidden" name="action" value="save">
  <select name="SHARE_PRICE_TYPE" style="display: none;">
 	<?php
@@ -115,8 +115,8 @@ while((($jk = ($j > 0 ? '_'.$j : '')) || true) && ($jp = 'PARAMS'.$jk) && ($jm =
 	$DEFAULTS = $arParams1[$jp];
 	if(!is_array($DEFAULTS)) $DEFAULTS = array();
 ?>	
- <div class="kit-ix-price-calculating-wrap" data-index="<?php echo $j;?>"<?php if($j > 0){echo 'style="display: none;"';}?>>
-	<table width="100%" class="kit-ix-price-calculating">
+ <div class="codematrix-ix-price-calculating-wrap" data-index="<?php echo $j;?>"<?php if($j > 0){echo 'style="display: none;"';}?>>
+	<table width="100%" class="codematrix-ix-price-calculating">
 		<col width="50%">
 		<col width="50%">
 		
@@ -139,8 +139,8 @@ while((($jk = ($j > 0 ? '_'.$j : '')) || true) && ($jp = 'PARAMS'.$jk) && ($jm =
 		<tr>
 			<td class="adm-detail-content-cell-l"></td>
 			<td class="adm-detail-content-cell-r">
-				<div class="kit-ix-price-calculating-ptypes"></div>
-				<div class="kit-ix-price-calculating-ptype-new"><a href="javascript:void(0)" onclick="EProfile.AddNewCalcType(this)"><span><?php echo GetMessage("CODEMATRIX_IX_CALC_ADD_PRICE_TYPE"); ?></span></a></div>
+				<div class="codematrix-ix-price-calculating-ptypes"></div>
+				<div class="codematrix-ix-price-calculating-ptype-new"><a href="javascript:void(0)" onclick="EProfile.AddNewCalcType(this)"><span><?php echo GetMessage("CODEMATRIX_IX_CALC_ADD_PRICE_TYPE"); ?></span></a></div>
 			</td>
 		</tr>
 		<?php }?>
@@ -239,7 +239,7 @@ foreach($arIblocks as $iblockType=>$iblockId)
 	$arFieldsQnt = array_merge($arFieldsPrice, $arStores);
 	$arFieldsPrice = array_merge($arFieldsPrice, $arPriceTypes);
 ?>
-  <div class="kit-ix-price-calculating-iblock">&nbsp;
+  <div class="codematrix-ix-price-calculating-iblock">&nbsp;
 	<div style="display: none;">
 		<select name="price">
 			<option value=""><?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE");?></option><?php
@@ -291,7 +291,7 @@ foreach($arIblocks as $iblockType=>$iblockId)
 		</select>
 	</div>
 	
-	<table width="100%" class="kit-ix-price-calculating">
+	<table width="100%" class="codematrix-ix-price-calculating">
 		<col width="50%">
 		<col width="50%">
 		<tr class="heading">
@@ -301,7 +301,7 @@ foreach($arIblocks as $iblockType=>$iblockId)
 		</tr>
 		
 		<tr>
-			<td colspan="2" class="kit-ix-pricing-rels">
+			<td colspan="2" class="codematrix-ix-pricing-rels">
 				<table width="100%" cellpadding="5" border="1" data-iblock-id="<?php echo $iblockId?>">
 				  <tr>
 					<th width="45%"><?php echo GetMessage("CODEMATRIX_IX_REL_TABLE_COL_QNT"); ?></th>
@@ -315,13 +315,13 @@ foreach($arIblocks as $iblockType=>$iblockId)
 				?>
 				  <tr data-index="<?php echo $index;?>">
 					<td>
-					  <div class="kit-ix-select-mapping">
+					  <div class="codematrix-ix-select-mapping">
 						<input type="hidden" name="MAP<?php echo $jk;?>[<?php echo $iblockId;?>][<?php echo $index;?>][quantity]" value="<?php echo htmlspecialcharsbx($arMap['quantity']);?>">
 						<a href="javascript:void(0)" onclick="EProfile.RelTablePriceShowSelect(this, 'quantity', true)" data-default-text="<?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>"><?php echo (strlen($arMap['quantity']) > 0 && isset($arFieldsQnt[$arMap['quantity']]) ? $arFieldsQnt[$arMap['quantity']] : GetMessage("CODEMATRIX_IX_NOT_CHOOSE"))?></a>
 					  </div>
 					</td>
 					<td>
-					  <div class="kit-ix-select-mapping">
+					  <div class="codematrix-ix-select-mapping">
 						<input type="hidden" name="MAP<?php echo $jk;?>[<?php echo $iblockId;?>][<?php echo $index;?>][price]" value="<?php echo htmlspecialcharsbx($arMap['price']);?>">
 						<a href="javascript:void(0)" onclick="EProfile.RelTablePriceShowSelect(this, 'price', true)" data-default-text="<?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>"><?php echo (strlen($arMap['price']) > 0 && isset($arFieldsPrice[$arMap['price']]) ? $arFieldsPrice[$arMap['price']] : GetMessage("CODEMATRIX_IX_NOT_CHOOSE"))?></a>
 					  </div>
@@ -330,7 +330,7 @@ foreach($arIblocks as $iblockType=>$iblockId)
 						<input type="text" size="10" name="MAP<?php echo $jk;?>[<?php echo $iblockId;?>][<?php echo $index;?>][extra]" value="<?php echo htmlspecialcharsbx($arMap['extra']);?>">
 					</td>
 					<td>
-					  <a href="javascript:void(0)" class="kit-ix-delete-row" onclick="EProfile.RelTablePriceRowRemove(this)" title="<?php echo GetMessage("CODEMATRIX_IX_REL_TABLE_REMOVE_ROW"); ?>"></a>
+					  <a href="javascript:void(0)" class="codematrix-ix-delete-row" onclick="EProfile.RelTablePriceRowRemove(this)" title="<?php echo GetMessage("CODEMATRIX_IX_REL_TABLE_REMOVE_ROW"); ?>"></a>
 					</td>
 				  </tr>
 				<?php

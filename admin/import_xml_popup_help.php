@@ -13,15 +13,15 @@ $imgPath = '/bitrix/panel/'.$moduleId.'/images/video_icons/';
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_admin.php");
 ?>
 
-<div class="kit-ix-tabs" id="kit-ix-help-tabs">
-	<div class="kit-ix-tabs-heads">
+<div class="codematrix-ix-tabs" id="codematrix-ix-help-tabs">
+	<div class="codematrix-ix-tabs-heads">
 		<a href="javascript:void(0)" onclick="EHelper.SetTab(this);" class="active" title="<?php echo htmlspecialcharsex(GetMessage("CODEMATRIX_IX_HELP_TAB1_ALT"));?>"><?php echo GetMessage("CODEMATRIX_IX_HELP_TAB1");?></a>
 		<a href="javascript:void(0)" onclick="EHelper.SetTab(this);" title="<?php echo htmlspecialcharsex(GetMessage("CODEMATRIX_IX_HELP_TAB2_ALT"));?>"><?php echo GetMessage("CODEMATRIX_IX_HELP_TAB2");?></a>
 	</div>
-	<div class="kit-ix-tabs-bodies">
+	<div class="codematrix-ix-tabs-bodies">
 		<div class="active">
 			<div>&nbsp;</div>
-			<div class="kit-ix-video-list">
+			<div class="codematrix-ix-video-list">
 				<a href="https://www.youtube.com/watch?v=2gMUw1Mtolg" target="_blank" title="<?php echo htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_HELP_VIDEO_COMMON"));?>">
 					<img src="<?php echo $imgPath;?>common.jpg" width="196px" height="110px" alt="<?php echo htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_HELP_VIDEO_COMMON"));?>" title="<?php echo htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_HELP_VIDEO_COMMON"));?>">
 					<span><?php echo GetMessage("CODEMATRIX_IX_HELP_VIDEO_COMMON");?></span>
@@ -39,8 +39,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 		</div>
 		<div>
 			<div>&nbsp;</div>
-			<p class="kit-ix-help-faq-prolog"><i><?php echo sprintf(GetMessage("CODEMATRIX_IX_FAQ_PROLOG"), 'app@kitutions.su', 'app@kitutions.su');?></i></p>
-			<ol id="kit-ix-help-faq">
+			<p class="codematrix-ix-help-faq-prolog"><i><?php echo sprintf(GetMessage("CODEMATRIX_IX_FAQ_PROLOG"), 'app@kitutions.su', 'app@kitutions.su');?></i></p>
+			<ol id="codematrix-ix-help-faq">
 				<li>
 					<a href="#"><?php echo GetMessage("CODEMATRIX_IX_FAQ_QUEST_SLOW_IMPORT");?></a>
 					<div><?php echo GetMessage("CODEMATRIX_IX_FAQ_ANS_SLOW_IMPORT");?></div>

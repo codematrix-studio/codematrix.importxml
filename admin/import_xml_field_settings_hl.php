@@ -144,7 +144,7 @@ $xmlViewer->GetAvailableTags($availableTags, $xpath, $arStuct);
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_admin.php");
 ?>
-<form action="" method="post" enctype="multipart/form-data" name="field_settings" class="kit_ix_settings_form">
+<form action="" method="post" enctype="multipart/form-data" name="field_settings" class="codematrix_ix_settings_form">
 	<input type="hidden" name="action" value="save">
 	<table width="100%">
 		<col width="50%">
@@ -242,7 +242,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_TITLE");?></td>
 		</tr>
 		<tr>
-			<td class="kit-ix-settings-margin-container" colspan="2">
+			<td class="codematrix-ix-settings-margin-container" colspan="2">
 				<?php
 				list($fName, $arVals) = GetFieldEextraVal($PEXTRASETTINGS, 'CONVERSION');
 				$showCondition = true;
@@ -269,7 +269,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						$cellsOptions .= '<option value="{'.htmlspecialcharsbx($k2).'}"'.($v['CELL']=='{'.$k2.'}' ? ' selected' : '').'>'.$v2.'</option>';
 					}
 					$cellsOptions .= '<option value="ELSE"'.($v['CELL']=='ELSE' ? ' selected' : '').'>'.GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_CELL_ELSE").'</option>';
-					echo '<div class="kit-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
+					echo '<div class="codematrix-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
 							GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_CONDITION_TITLE").
 							' <select name="'.$fName.'[CELL][]" class="field_cell">'.
 								$cellsOptions.
@@ -334,7 +334,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_CONDITIONS_TITLE");?></td>
 			</tr>
 			<tr>
-				<td class="kit-ix-settings-margin-container" colspan="2">
+				<td class="codematrix-ix-settings-margin-container" colspan="2">
 					<?php
 					list($fName, $arVals) = GetFieldEextraVal($PEXTRASETTINGS, 'CONDITIONS');
 					$showCondition = true;
@@ -358,7 +358,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						{
 							$cellsOptions .= '<option value="{'.htmlspecialcharsbx($k2).'}"'.($v['CELL']=='{'.$k2.'}' ? ' selected' : '').'>'.$v2.'</option>';
 						}
-						echo '<div class="kit-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
+						echo '<div class="codematrix-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
 								GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_CONDITION_TITLE").
 								' <select name="'.$fName.'[CELL][]" class="field_cell_wide">'.
 									$cellsOptions.
@@ -803,12 +803,12 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			</td>
 		</tr>
 		<tr>
-			<td class="kit-ix-settings-margin-container" colspan="2">
+			<td class="codematrix-ix-settings-margin-container" colspan="2">
 				<a href="javascript:void(0)" onclick="ESettings.ShowPHPExpression(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_EXPRESSION");?></a>
 				<?php
 				list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'FILTER_EXPRESSION');
 				?>
-				<div class="kit-ix-settings-phpexpression" style="display: none;">
+				<div class="codematrix-ix-settings-phpexpression" style="display: none;">
 					<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_EXPRESSION_HINT");?>
 					<textarea name="<?php echo $fName?>"><?php echo $val?></textarea>
 				</div>

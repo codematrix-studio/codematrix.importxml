@@ -43,7 +43,7 @@ if(!is_array($FILTER)) $FILTER = array();
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_admin.php");
 ?>
-<form action="" method="post" enctype="multipart/form-data" name="filter_form" id="kit-ix-filter" class="kit-ix-filter">
+<form action="" method="post" enctype="multipart/form-data" name="filter_form" id="codematrix-ix-filter" class="codematrix-ix-filter">
 	<?php \Bitrix\CodeMatrixImportxml\Utils::ShowFilterHighload('codematrix_importxml_hl_'.$PROFILE_ID, $HIGHLOADBLOCK_ID, $FILTER);?>
 </form>
 <?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_popup_admin.php");?>

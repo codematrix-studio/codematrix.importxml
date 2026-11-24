@@ -60,9 +60,9 @@ if($_POST['action']=='save' && $_POST['EMAIL_SETTINGS'])
 	if(ob_get_contents()) ob_end_clean();
 	
 	echo '<script>';
-	echo 'if($(".kit-ix-file-choose input[name=\"SETTINGS_DEFAULT[EMAIL_DATA_FILE]\"]").length == 0){$(".kit-ix-file-choose").prepend(\'<input type="hidden" name="SETTINGS_DEFAULT[EMAIL_DATA_FILE]" value="">\');}';
-	echo '$(".kit-ix-file-choose input[name=\"SETTINGS_DEFAULT[EMAIL_DATA_FILE]\"]").val("'.htmlspecialcharsex(base64_encode(serialize($_POST['EMAIL_SETTINGS']))).'");';
-	echo '$(".kit-ix-file-choose input[name=\"EXT_DATA_FILE\"]").val("");';
+	echo 'if($(".codematrix-ix-file-choose input[name=\"SETTINGS_DEFAULT[EMAIL_DATA_FILE]\"]").length == 0){$(".codematrix-ix-file-choose").prepend(\'<input type="hidden" name="SETTINGS_DEFAULT[EMAIL_DATA_FILE]" value="">\');}';
+	echo '$(".codematrix-ix-file-choose input[name=\"SETTINGS_DEFAULT[EMAIL_DATA_FILE]\"]").val("'.htmlspecialcharsex(base64_encode(serialize($_POST['EMAIL_SETTINGS']))).'");';
+	echo '$(".codematrix-ix-file-choose input[name=\"EXT_DATA_FILE\"]").val("");';
 	echo 'BX.WindowManager.Get().Close();';
 	echo '</script>';
 	die();
@@ -75,7 +75,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 <form action="<?php echo $APPLICATION->GetCurUri();?>" method="post" enctype="multipart/form-data" name="field_settings">
 	<input type="hidden" name="action" value="save">
 	<?php //ShowPostData($_POST);?>
-	<table width="100%" class="kit-ix-list-settings kit-ix-email-settings">
+	<table width="100%" class="codematrix-ix-list-settings codematrix-ix-email-settings">
 		<col width="50%">
 		<col width="50%">
 		<tr class="heading">
@@ -112,7 +112,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" class="kit-ix-email-checkparams">
+			<td colspan="2" class="codematrix-ix-email-checkparams">
 				<a href="javascript:void(0)" onclick="EProfile.CheckEmailConnectData(this)"><?php echo GetMessage("CODEMATRIX_IX_ECON_CHECK_SETTINGS");?></a> <div id="connect_result"></div>
 			</td>
 		</tr>

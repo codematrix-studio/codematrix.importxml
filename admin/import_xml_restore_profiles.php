@@ -85,10 +85,10 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			</td>
 		</tr>
 		
-		<tr id="kit_restore_profile_list_row" style="display: none;">
+		<tr id="codematrix_restore_profile_list_row" style="display: none;">
 			<td class="adm-detail-content-cell-l" valign="top"><?php echo GetMessage("CODEMATRIX_IX_RESTORE_PROFILE_CHOOSE");?>:</td>
 			<td class="adm-detail-content-cell-r" valign="top">
-				<div id="kit_restore_profile_list"></div>
+				<div id="codematrix_restore_profile_list"></div>
 			</td>
 		</tr>
 	</table>

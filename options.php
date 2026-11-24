@@ -307,7 +307,7 @@ if($USER->IsAdmin())
 		
 		<tr>
 			<td colspan="2" align="center">
-			<table border="1" cellpadding="5" class="kit-ix-options-rels-table">
+			<table border="1" cellpadding="5" class="codematrix-ix-options-rels-table">
 				<tr>
 					<th><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_IBLOCK_PRODUCTS");?></th>
 					<th><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_IBLOCK_OFFERS");?></th>
@@ -366,12 +366,12 @@ if($USER->IsAdmin())
 						</select>
 					</td>
 					<td>
-						<a href="javascript:void(0)" onclick="KitIxOptions.RemoveRel(this);" class="kit-ix-options-rels-delete" title="<?php echo GetMessage("CODEMATRIX_IX_OPTIONS_REMOVE"); ?>"></a>
+						<a href="javascript:void(0)" onclick="KitIxOptions.RemoveRel(this);" class="codematrix-ix-options-rels-delete" title="<?php echo GetMessage("CODEMATRIX_IX_OPTIONS_REMOVE"); ?>"></a>
 					</td>
 				</tr>
 				<?php }?>
 			</table>
-			<div class="kit-ix-options-rels">
+			<div class="codematrix-ix-options-rels">
 				<select name="OFFERS_PROP_ID">
 					<option value=""><?php echo GetMessage("CODEMATRIX_IX_OPTIONS_NO_CHOOSEN"); ?></option>
 					<?php

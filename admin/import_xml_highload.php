@@ -370,9 +370,9 @@ if ($REQUEST_METHOD == "POST" && $STEP > 1 && check_bitrix_sessid())
 		if(strlen($error) > 0) echo $error;
 		//print_r($arStruct);
 		
-		echo '<div class="kit_ix_xml_wrap" id="kit_ix_xml_wrap">';
+		echo '<div class="codematrix_ix_xml_wrap" id="codematrix_ix_xml_wrap">';
 		
-		echo '<div class="kit_ix_xml_settings">';
+		echo '<div class="codematrix_ix_xml_settings">';
 		echo '<input type="hidden" name="SETTINGS[XPATHS_MULTI]" value="'.base64_encode(serialize($arXPathsMulti)).'">';
 		echo '<input type="hidden" name="defaultsettings_json" value="'.htmlspecialcharsbx(CUtil::PhpToJSObject($SETTINGS_DEFAULT)).'">';
 		echo '<input type="hidden" name="settings_json" value="'.htmlspecialcharsbx(CUtil::PhpToJSObject($SETTINGS)).'">';
@@ -382,7 +382,7 @@ if ($REQUEST_METHOD == "POST" && $STEP > 1 && check_bitrix_sessid())
 		$fl->ShowSelectFieldsHighload($SETTINGS_DEFAULT['HIGHLOADBLOCK_ID'], 'element_fields');
 		echo '</div>';
 		
-		echo '<div class="kit_ix_xml_struct">';
+		echo '<div class="codematrix_ix_xml_struct">';
 		$xmlViewer->ShowXmlTag($arStruct);
 		echo '</div>';
 		
@@ -512,7 +512,7 @@ if(strlen($strErrorProfile.$strError) > 0)
 }
 ?>
 
-<form method="POST" action="<?php echo $sDocPath ?>?<?php if(strlen($PROFILE_ID) > 0){echo 'PROFILE_ID='.$PROFILE_ID.'&';}?>lang=<?php echo LANG ?>" ENCTYPE="multipart/form-data" name="dataload" id="dataload" class="kit-ix-s1-form">
+<form method="POST" action="<?php echo $sDocPath ?>?<?php if(strlen($PROFILE_ID) > 0){echo 'PROFILE_ID='.$PROFILE_ID.'&';}?>lang=<?php echo LANG ?>" ENCTYPE="multipart/form-data" name="dataload" id="dataload" class="codematrix-ix-s1-form">
 
 <?php
 $arProfile = (strlen($PROFILE_ID) > 0 ? $oProfile->GetFieldsByID($PROFILE_ID) : array());
@@ -549,10 +549,10 @@ if ($STEP == 1)
 ?>
 
 	<tr class="heading">
-		<td colspan="2" class="kit-ix-profile-header">
+		<td colspan="2" class="codematrix-ix-profile-header">
 			<div>
 				<?php echo GetMessage("CODEMATRIX_IX_PROFILE_HEADER"); ?>
-				<?php /*?><a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?php echo GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="kit-ix-help-link"></a><?php */?>
+				<?php /*?><a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?php echo GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="codematrix-ix-help-link"></a><?php */?>
 			</div>
 		</td>
 	</tr>
@@ -563,7 +563,7 @@ if ($STEP == 1)
 			<?php $oProfile->ShowProfileList('PROFILE_ID');?>
 			
 			<?php if(strlen($PROFILE_ID) > 0 && $PROFILE_ID!='new'){?>
-				<span class="kit-ix-edit-btns">
+				<span class="codematrix-ix-edit-btns">
 					<a href="javascript:void(0)" class="adm-table-btn-edit" onclick="EProfile.ShowRename();" title="<?php echo GetMessage("CODEMATRIX_IX_RENAME_PROFILE");?>" id="action_edit_button"></a>
 					<a href="javascript:void(0);" class="adm-table-btn-copy" onclick="EProfile.Copy();" title="<?php echo GetMessage("CODEMATRIX_IX_COPY_PROFILE");?>" id="action_copy_button"></a>
 					<a href="javascript:void(0);" class="adm-table-btn-delete" onclick="if(confirm('<?php echo GetMessage("CODEMATRIX_IX_DELETE_PROFILE_CONFIRM");?>')){EProfile.Delete();}" title="<?php echo GetMessage("CODEMATRIX_IX_DELETE_PROFILE");?>" id="action_delete_button"></a>
@@ -587,8 +587,8 @@ if ($STEP == 1)
 		{
 	?>
 		<tr>
-			<td class="kit-ix-settings-margin-container" colspan="2" align="center">
-				<a class="kit-ix-grey" href="javascript:void(0)" onclick="ESettings.AddProfileDescription(this)"><?php echo GetMessage("CODEMATRIX_IX_PROFILE_DESCRIPTION_ADD");?></a>
+			<td class="codematrix-ix-settings-margin-container" colspan="2" align="center">
+				<a class="codematrix-ix-grey" href="javascript:void(0)" onclick="ESettings.AddProfileDescription(this)"><?php echo GetMessage("CODEMATRIX_IX_PROFILE_DESCRIPTION_ADD");?></a>
 			</td>
 		</tr>
 		<?php
@@ -607,7 +607,7 @@ if ($STEP == 1)
 		
 		<tr>
 			<td width="40%"><?php echo GetMessage("CODEMATRIX_IX_URL_DATA_FILE"); ?></td>
-			<td width="60%" class="kit-ix-file-choose">
+			<td width="60%" class="codematrix-ix-file-choose">
 				<!--CODEMATRIX_IX_CHOOSE_FILE-->
 				<?php if($SETTINGS_DEFAULT['EMAIL_DATA_FILE']) echo '<input type="hidden" name="SETTINGS_DEFAULT[EMAIL_DATA_FILE]" value="'.htmlspecialcharsbx($SETTINGS_DEFAULT['EMAIL_DATA_FILE']).'">';?>
 				<?php if($SETTINGS_DEFAULT['EXT_DATA_FILE']) echo '<input type="hidden" name="EXT_DATA_FILE" value="'.htmlspecialcharsbx($SETTINGS_DEFAULT['EXT_DATA_FILE']).'">';?>
@@ -706,7 +706,7 @@ if ($STEP == 1)
 		</tr>
 		
 		<tr class="heading">
-			<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_PROCESSING_MISSING_ELEMENTS"); ?> <a href="javascript:void(0)" onclick="EProfile.ToggleAdditionalSettings(this)" class="kit_ix_head_more show"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL_SHOW_HIDE"); ?></a></td>
+			<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_PROCESSING_MISSING_ELEMENTS"); ?> <a href="javascript:void(0)" onclick="EProfile.ToggleAdditionalSettings(this)" class="codematrix_ix_head_more show"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL_SHOW_HIDE"); ?></a></td>
 		</tr>
 		<tr>
 			<td><?php echo GetMessage("CODEMATRIX_IX_ELEMENT_MISSING_REMOVE_ELEMENT"); ?>:</td>
@@ -723,7 +723,7 @@ if ($STEP == 1)
 		</tr>
 		
 		<tr class="heading">
-			<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL"); ?> <a href="javascript:void(0)" onclick="EProfile.ToggleAdditionalSettings(this)" class="kit_ix_head_more show" id="kda-head-more-link"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL_SHOW_HIDE"); ?></a></td>
+			<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL"); ?> <a href="javascript:void(0)" onclick="EProfile.ToggleAdditionalSettings(this)" class="codematrix_ix_head_more show" id="kda-head-more-link"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_ADDITONAL_SHOW_HIDE"); ?></a></td>
 		</tr>
 		
 		<?php /*?>
@@ -758,9 +758,9 @@ if ($STEP == 1)
 		</tr>
 		
 		<tr>
-			<td class="kit-ix-settings-margin-container" colspan="2" align="center">
+			<td class="codematrix-ix-settings-margin-container" colspan="2" align="center">
 				<a href="javascript:void(0)" onclick="ESettings.ShowPHPExpression(this)"><?php echo GetMessage("CODEMATRIX_IX_ONAFTERSAVE_HANDLER");?></a>
-				<div class="kit-ix-settings-phpexpression" style="display: none;">
+				<div class="codematrix-ix-settings-phpexpression" style="display: none;">
 					<?php echo GetMessage("CODEMATRIX_IX_ONAFTERSAVE_HANDLER_HINT");?>
 					<textarea name="SETTINGS_DEFAULT[ONAFTERSAVE_HANDLER]"><?php echo $SETTINGS_DEFAULT['ONAFTERSAVE_HANDLER']?></textarea>
 				</div>
@@ -780,7 +780,7 @@ if ($STEP == 2)
 	
 	<tr>
 		<td colspan="2" id="preview_file">
-			<div class="kit-ix-file-preloader">
+			<div class="codematrix-ix-file-preloader">
 				<?php echo GetMessage("CODEMATRIX_IX_PRELOADING"); ?>
 			</div>
 		</td>
@@ -797,7 +797,7 @@ if ($STEP == 3)
 {
 ?>
 	<tr>
-		<td id="resblock" class="kit-ix-result">
+		<td id="resblock" class="codematrix-ix-result">
 		 <table width="100%"><tr><td width="50%">
 			<div id="progressbar"><span class="pline"></span><span class="presult load"><b>0%</b><span 
 				data-prefix="<?php echo GetMessage("CODEMATRIX_IX_READ_LINES"); ?>" 
@@ -811,7 +811,7 @@ if ($STEP == 3)
 				<?php echo CAdminMessage::ShowMessage(array(
 					"TYPE" => "ERROR",
 					"MESSAGE" => GetMessage("CODEMATRIX_IX_IMPORT_ERROR_CONNECT"),
-					"DETAILS" => '<div>'.(COption::GetOptionString($moduleId, 'AUTO_CONTINUE_IMPORT', 'N')=='Y' ? sprintf(GetMessage("CODEMATRIX_IX_IMPORT_AUTO_CONTINUE"), '<span id="kit_ix_auto_continue_time"></span>').'<br>' : '').'<a href="javascript:void(0)" onclick="EProfile.ContinueProccess(this, '.$PROFILE_ID.');" id="kda_ie_continue_link">'.GetMessage("CODEMATRIX_IX_PROCESSED_CONTINUE").'</a><br><br>'.sprintf(GetMessage("CODEMATRIX_IX_IMPORT_ERROR_CONNECT_COMMENT"), '/bitrix/admin/settings.php?lang=ru&mid='.$moduleId.'&mid_menu=1').'</div>',
+					"DETAILS" => '<div>'.(COption::GetOptionString($moduleId, 'AUTO_CONTINUE_IMPORT', 'N')=='Y' ? sprintf(GetMessage("CODEMATRIX_IX_IMPORT_AUTO_CONTINUE"), '<span id="codematrix_ix_auto_continue_time"></span>').'<br>' : '').'<a href="javascript:void(0)" onclick="EProfile.ContinueProccess(this, '.$PROFILE_ID.');" id="kda_ie_continue_link">'.GetMessage("CODEMATRIX_IX_PROCESSED_CONTINUE").'</a><br><br>'.sprintf(GetMessage("CODEMATRIX_IX_IMPORT_ERROR_CONNECT_COMMENT"), '/bitrix/admin/settings.php?lang=ru&mid='.$moduleId.'&mid_menu=1').'</div>',
 					"HTML" => true,
 				))?>
 			</div>

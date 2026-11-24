@@ -379,26 +379,26 @@ class XMLViewer
 	{
 		foreach($arStruct as $k=>$v)
 		{
-			echo '<div class="kit_ix_xml_struct_item" data-name="'.htmlspecialcharsex($k).'">';
-			echo '&lt;<a href="javascript:void(0)" onclick="EIXPreview.ShowBaseElements(this)" class="kit_ix_open_tag">'.$k.'</a>';
+			echo '<div class="codematrix_ix_xml_struct_item" data-name="'.htmlspecialcharsex($k).'">';
+			echo '&lt;<a href="javascript:void(0)" onclick="EIXPreview.ShowBaseElements(this)" class="codematrix_ix_open_tag">'.$k.'</a>';
 			if(is_array($v) && !empty($v['@attributes']))
 			{
 				foreach($v['@attributes'] as $k2=>$v2)
 				{
-					echo ' '.$k2.'="<span class="kit_ix_str_value" data-attr="'.htmlspecialcharsex($k2).'"><span class="kit_ix_str_value_val" title="'.htmlspecialcharsex($v2).'">'.$this->GetShowVal($v2).'</span></span>"';
+					echo ' '.$k2.'="<span class="codematrix_ix_str_value" data-attr="'.htmlspecialcharsex($k2).'"><span class="codematrix_ix_str_value_val" title="'.htmlspecialcharsex($v2).'">'.$this->GetShowVal($v2).'</span></span>"';
 				}
 				unset($v['@attributes']);
 			}
 			echo '&gt;';
 			/*if(is_array($v) && isset($v['@value']))
 			{
-				echo '<span class="kit_ix_str_value"><span class="kit_ix_str_value_val">'.$this->GetShowVal($v['@value']).'</span></span>';
+				echo '<span class="codematrix_ix_str_value"><span class="codematrix_ix_str_value_val">'.$this->GetShowVal($v['@value']).'</span></span>';
 				unset($v['@value']);
 			}*/
 			if((is_array($v) && isset($v['@value'])) || empty($v))
 			{
 				$val = ((is_array($v) && isset($v['@value'])) ? $v['@value'] : '');
-				echo '<span class="kit_ix_str_value"><span class="kit_ix_str_value_val" title="'.htmlspecialcharsex($val).'">'.$this->GetShowVal($val).'</span></span>';
+				echo '<span class="codematrix_ix_str_value"><span class="codematrix_ix_str_value_val" title="'.htmlspecialcharsex($val).'">'.$this->GetShowVal($val).'</span></span>';
 			}
 			if(is_array($v) && isset($v['@value'])) 
 			{
@@ -441,8 +441,8 @@ class XMLViewer
 	
 	public function ShowXmlTagChoose()
 	{
-		//echo '<a href="javascript:void(0)" onclick="" class="kit_ix_dropdown_btn"></a>';
-		echo '<span class="kit_ix_group_value"></span>';
+		//echo '<a href="javascript:void(0)" onclick="" class="codematrix_ix_dropdown_btn"></a>';
+		echo '<span class="codematrix_ix_group_value"></span>';
 	}
 	
 	public function GetAvailableTags(&$arTags, $path, $arStruct)

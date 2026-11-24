@@ -2390,7 +2390,7 @@ class Utils {
 			<tr>
 				<td><?=Loc::getMessage("CODEMATRIX_IX_EL_A_EXTERNAL_ID")?>:</td>
 				<td>
-					<select class="kit-ix-filter-chval" name="<?php echo $sf;?>[find_el_vtype_external_id]">
+					<select class="codematrix-ix-filter-chval" name="<?php echo $sf;?>[find_el_vtype_external_id]">
 						<option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option>
 						<option value="contain"<?php if($arFields["find_el_vtype_external_id"]=='contain'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_CONTAIN")?></option>
 						<option value="not_contain"<?php if($arFields["find_el_vtype_external_id"]=='not_contain'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_NOT_CONTAIN")?></option>
@@ -2554,7 +2554,7 @@ class Utils {
 						),
 					));
 				elseif($arProp["PROPERTY_TYPE"]=='S'):?>
-					<select class="kit-ix-filter-chval" name="<?php echo $sf;?>[find_el_vtype_property_<?=$arProp["ID"]?>]">
+					<select class="codematrix-ix-filter-chval" name="<?php echo $sf;?>[find_el_vtype_property_<?=$arProp["ID"]?>]">
 						<option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option>
 						<option value="contain"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='contain'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_CONTAIN")?></option>
 						<option value="not_contain"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='not_contain'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_VTYPE_NOT_CONTAIN")?></option>
@@ -2565,7 +2565,7 @@ class Utils {
 					</select>
 					<input type="text" name="<?php echo $sf;?>[find_el_property_<?=$arProp["ID"]?>]" value="<?php echo htmlspecialcharsex($arFields["find_el_property_".$arProp["ID"]])?>" size="30">
 				<?php elseif($arProp["PROPERTY_TYPE"]=='N' || $arProp["PROPERTY_TYPE"]=='E'):?>
-					<select class="kit-ix-filter-chval" name="<?php echo $sf;?>[find_el_vtype_property_<?=$arProp["ID"]?>]"><option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option><option value="empty"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_EMPTY")?></option><option value="not_empty"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='not_empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY")?></option></select><input type="text" name="<?php echo $sf;?>[find_el_property_<?=$arProp["ID"]?>]" value="<?php echo htmlspecialcharsex($arFields["find_el_property_".$arProp["ID"]])?>" size="30">
+					<select class="codematrix-ix-filter-chval" name="<?php echo $sf;?>[find_el_vtype_property_<?=$arProp["ID"]?>]"><option value=""><?php echo Loc::getMessage("CODEMATRIX_IX_IS_VALUE")?></option><option value="empty"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_EMPTY")?></option><option value="not_empty"<?php if($arFields["find_el_vtype_property_".$arProp["ID"]]=='not_empty'){echo ' selected';}?>><?php echo Loc::getMessage("CODEMATRIX_IX_IS_NOT_EMPTY")?></option></select><input type="text" name="<?php echo $sf;?>[find_el_property_<?=$arProp["ID"]?>]" value="<?php echo htmlspecialcharsex($arFields["find_el_property_".$arProp["ID"]])?>" size="30">
 				<?php elseif($arProp["PROPERTY_TYPE"]=='L'):?>
 					<?php
 					$propVal = $arFields["find_el_property_".$arProp["ID"]];
@@ -3495,7 +3495,7 @@ class Utils {
 	public static function DownloadImagesFromText($val, $domain='')
 	{
 		$domain = trim($domain);
-		$imgDir = '/upload/kit_images/';
+		$imgDir = '/upload/codematrix_images/';
 		$arPatterns = array(
 			'/<img[^>]*\ssrc=["\']([^"\'<>]+)["\'][^>]*>/Uis',
 			'/<a[^>]*\shref=["\']([^"\'<>]+\.(jpg|jpeg|png|gif|svg|webp|bmp|pdf)(\?[^"\']*)?)["\'][^>]*>/Uis',

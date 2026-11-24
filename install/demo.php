@@ -71,8 +71,8 @@ function codematrix_importxml_show_demo($bAjax = false) {
 	{
 		if(!$bAjax)
 		{
-			print BeginNote('id="kit-ix-updates-message"');
-			print '<div id="kit-ix-updates-message-inner"></div>';
+			print BeginNote('id="codematrix-ix-updates-message"');
+			print '<div id="codematrix-ix-updates-message-inner"></div>';
 			print EndNote();
 		}
 		else
@@ -121,7 +121,7 @@ function codematrix_importxml_show_demo($bAjax = false) {
 			if($updateEnd && is_callable(array('CUpdateClientPartner', 'GetLicenseKey')))
 			{
 				$lckey = md5("BITRIX".CUpdateClientPartner::GetLicenseKey()."LICENCE");
-				echo '<div id="kit-ix-updates-message-inner">'.GetMessage("CODEMATRIX_IMPORTXML_DEMO_MESSAGE_UPDATE_END", array("#LCKEY#"=>$lckey, "#LANG#"=>LANGUAGE_ID)).'</div>';
+				echo '<div id="codematrix-ix-updates-message-inner">'.GetMessage("CODEMATRIX_IMPORTXML_DEMO_MESSAGE_UPDATE_END", array("#LCKEY#"=>$lckey, "#LANG#"=>LANGUAGE_ID)).'</div>';
 			}
 		}
 	}

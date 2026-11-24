@@ -411,7 +411,7 @@ if(is_array($arVals))
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_admin.php");
 ?>
-<form action="" method="post" enctype="multipart/form-data" name="field_settings" class="kit_ix_settings_form">
+<form action="" method="post" enctype="multipart/form-data" name="field_settings" class="codematrix_ix_settings_form">
 	<input type="hidden" name="action" value="save">
 	<input type="hidden" name="POSTSTRUCT" value="<?php echo htmlspecialcharsbx($_POST['POSTSTRUCT'])?>">
 	<input type="hidden" name="POSTXPATH" value="<?php echo htmlspecialcharsbx($xpath)?>">
@@ -508,7 +508,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				if(!$bMultipleProp && strlen($propertyName) > 0)
 				{
 					list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'REL_ELEMENT_EXTRA_FIELD');
-					echo '<select name="'.$fName.'" class="kit-ix-select2text"><option value="PRIMARY"'.($val=='PRIMARY' ? ' selected' : '').'>'.GetMessage("CODEMATRIX_IX_SETTINGS_REL_ELEMENT_FIELD").'</option><option value="EXTRA"'.($val=='EXTRA' ? ' selected' : '').'>'.GetMessage("CODEMATRIX_IX_SETTINGS_REL_ELEMENT_EXTRA_FIELD").'</option></select>';
+					echo '<select name="'.$fName.'" class="codematrix-ix-select2text"><option value="PRIMARY"'.($val=='PRIMARY' ? ' selected' : '').'>'.GetMessage("CODEMATRIX_IX_SETTINGS_REL_ELEMENT_FIELD").'</option><option value="EXTRA"'.($val=='EXTRA' ? ' selected' : '').'>'.GetMessage("CODEMATRIX_IX_SETTINGS_REL_ELEMENT_EXTRA_FIELD").'</option></select>';
 				}
 				else
 				{
@@ -894,8 +894,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 		
 		<tr class="heading">
 			<td colspan="2">
-					<div class="kit-ix-settings-header-links">
-						<div class="kit-ix-settings-header-links-inner">
+					<div class="codematrix-ix-settings-header-links">
+						<div class="codematrix-ix-settings-header-links-inner">
 							<a href="javascript:void(0)" onclick="ESettings.ExportConvCSV(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_EXPORT_CSV"); ?></a> /
 							<a href="javascript:void(0)" onclick="ESettings.ImportConvCSV(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_IMPORT_CSV"); ?></a>
 						</div>
@@ -904,7 +904,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			</td>
 		</tr>
 		<tr>
-			<td class="kit-ix-settings-margin-container" colspan="2" id="kit-ix-conv-wrap0">
+			<td class="codematrix-ix-settings-margin-container" colspan="2" id="codematrix-ix-conv-wrap0">
 				<?php
 				list($fName, $arVals) = GetFieldEextraVal($PEXTRASETTINGS, 'CONVERSION');
 				$showCondition = true;
@@ -931,7 +931,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						$cellsOptions .= '<option value="{'.htmlspecialcharsbx($k2).'}"'.($v['CELL']=='{'.$k2.'}' ? ' selected' : '').'>'.htmlspecialcharsbx($v2).'</option>';
 					}
 					$cellsOptions .= '<option value="ELSE"'.($v['CELL']=='ELSE' ? ' selected' : '').'>'.GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_CELL_ELSE").'</option>';
-					echo '<div class="kit-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
+					echo '<div class="codematrix-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
 							GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_CONDITION_TITLE").
 							' <select name="'.$fName.'[CELL][]" class="field_cell">'.
 								$cellsOptions.
@@ -1003,7 +1003,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 		</tr>
 		<?php if($fieldXpath!=='none'){?>
 		<tr>
-			<td colspan="2" class="kit_ix_tag_value_list">
+			<td colspan="2" class="codematrix_ix_tag_value_list">
 				<a href="javascript:void(0)" onclick="return ESettings.ShowValuesFromFile(this, '<?=$profileId?>', '<?php echo $fieldXpath;?>', '')" title="<?php echo GetMessage("CODEMATRIX_IX_SHOW_VALUES_FROM_FILE");?>"><?php echo GetMessage("CODEMATRIX_IX_SHOW_VALUES_FROM_FILE");?></a>
 				<div style="display: none;">
 				<a href="javascript:void(0)" onclick="return ESettings.ShowValuesFromFile(this, '<?=$profileId?>', '<?php echo $fieldXpath;?>', '')" title="<?php echo GetMessage("CODEMATRIX_IX_SHOW_VALUES_FROM_FILE_SOURCE");?>"><?php echo GetMessage("CODEMATRIX_IX_SHOW_VALUES_FROM_FILE_SOURCE");?></a>
@@ -1020,7 +1020,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_CONDITIONS_TITLE");?></td>
 			</tr>
 			<tr>
-				<td class="kit-ix-settings-margin-container" colspan="2">
+				<td class="codematrix-ix-settings-margin-container" colspan="2">
 					<?php
 					list($fName, $arVals) = GetFieldEextraVal($PEXTRASETTINGS, 'CONDITIONS');
 					$showCondition = true;
@@ -1044,7 +1044,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						{
 							$cellsOptions .= '<option value="{'.htmlspecialcharsbx($k2).'}"'.($v['CELL']=='{'.$k2.'}' ? ' selected' : '').'>'.$v2.'</option>';
 						}
-						echo '<div class="kit-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
+						echo '<div class="codematrix-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
 								GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_CONDITION_TITLE").
 								' <select name="'.$fName.'[CELL][]" class="field_cell_wide">'.
 									$cellsOptions.
@@ -1097,13 +1097,13 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			?>
 			<tr class="heading">
 				<td colspan="2">
-					<div class="kit-ix-settings-header-links">
-						<div class="kit-ix-settings-header-links-inner">
+					<div class="codematrix-ix-settings-header-links">
+						<div class="codematrix-ix-settings-header-links-inner">
 							<a href="javascript:void(0)" onclick="ESettings.ShowMarginTemplateBlockLoad(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_LOAD_TEMPLATE"); ?></a> /
 							<a href="javascript:void(0)" onclick="ESettings.ShowMarginTemplateBlock(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_SAVE_TEMPLATE"); ?></a>
 						</div>
-						<div class="kit-ix-settings-margin-templates" id="margin_templates">
-							<div class="kit-ix-settings-margin-templates-inner">
+						<div class="codematrix-ix-settings-margin-templates" id="margin_templates">
+							<div class="codematrix-ix-settings-margin-templates-inner">
 								<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_MARGIN_CHOOSE_EXISTS_TEMPLATE"); ?><br>
 								<select name="MARGIN_TEMPLATE_ID">
 									<option value=""><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_MARGIN_NOT_CHOOSE"); ?></option>
@@ -1119,8 +1119,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 								<input type="submit" onclick="return ESettings.SaveMarginTemplate(this, '<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_TEMPLATE_SAVED"); ?>');" name="save" value="<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_SAVE_BTN"); ?>">
 							</div>
 						</div>
-						<div class="kit-ix-settings-margin-templates" id="margin_templates_load">
-							<div class="kit-ix-settings-margin-templates-inner">
+						<div class="codematrix-ix-settings-margin-templates" id="margin_templates_load">
+							<div class="codematrix-ix-settings-margin-templates-inner">
 								<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_MARGIN_CHOOSE_TEMPLATE"); ?><br>
 								<select name="MARGIN_TEMPLATE_ID">
 									<option value=""><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_MARGIN_NOT_CHOOSE"); ?></option>
@@ -1140,13 +1140,13 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" class="kit-ix-settings-margin-container">
+				<td colspan="2" class="codematrix-ix-settings-margin-container">
 					<div id="settings_margins">
 						<?php
 						foreach($val as $k=>$v)
 						{
 						?>
-							<div class="kit-ix-settings-margin" style="display: <?=($showMargin ? 'block' : 'none')?>;">
+							<div class="codematrix-ix-settings-margin" style="display: <?=($showMargin ? 'block' : 'none')?>;">
 								<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_APPLY"); ?> <select name="<?=$fName?>[TYPE][]"><option value="1" <?=($v['TYPE']==1 ? 'selected' : '')?>><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_APPLY_MARGIN"); ?></option><option value="-1" <?=($v['TYPE']==-1 ? 'selected' : '')?>><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_APPLY_DISCOUNT"); ?></option></select>
 								<input type="text" name="<?=$fName?>[PERCENT][]" value="<?=htmlspecialcharsbx($v['PERCENT'])?>">
 								<select name="<?=$fName?>[PERCENT_TYPE][]"><option value="P" <?=($v['PERCENT_TYPE']=='P' ? 'selected' : '')?>><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_TYPE_PERCENT"); ?></option><option value="F" <?=($v['PERCENT_TYPE']=='F' ? 'selected' : '')?>><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_TYPE_FIX"); ?></option></select>
@@ -1284,7 +1284,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						?>
 						<div class="adm-list-item">
 							<div class="adm-list-control">
-								<input type="checkbox" id="<?php echo md5($fName);?>" name="<?=$fName?>" value="Y" <?php echo ($val=='Y' ? 'checked' : '')?> onclick="if(this.checked){$('#kit_picprocessing_wrap').show();}else{$('#kit_picprocessing_wrap').hide();}">
+								<input type="checkbox" id="<?php echo md5($fName);?>" name="<?=$fName?>" value="Y" <?php echo ($val=='Y' ? 'checked' : '')?> onclick="if(this.checked){$('#codematrix_picprocessing_wrap').show();}else{$('#codematrix_picprocessing_wrap').hide();}">
 							</div>
 							<div class="adm-list-label">
 								<label
@@ -1293,7 +1293,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 							</div>
 						</div>
 				<?php }?>
-				<div id="kit_picprocessing_wrap" <?php if($bElemPicture && !$bElemPictureIncProcessing){echo 'style="display: none;"';}?>>
+				<div id="codematrix_picprocessing_wrap" <?php if($bElemPicture && !$bElemPictureIncProcessing){echo 'style="display: none;"';}?>>
 					<div></div>
 					<div class="adm-list-item">
 						<div class="adm-list-control">
@@ -1765,12 +1765,12 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				</td>
 			</tr>
 			<tr>
-				<td class="kit-ix-settings-margin-container" colspan="2">
+				<td class="codematrix-ix-settings-margin-container" colspan="2">
 					<a href="javascript:void(0)" onclick="ESettings.ShowPHPExpression(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_EXPRESSION");?></a>
 					<?php
 					list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'FILTER_EXPRESSION');
 					?>
-					<div class="kit-ix-settings-phpexpression" style="display: none;">
+					<div class="codematrix-ix-settings-phpexpression" style="display: none;">
 						<?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FILTER_EXPRESSION_HINT");?>
 						<textarea name="<?php echo $fName?>"><?php echo $val?></textarea>
 					</div>
@@ -1913,12 +1913,12 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 		<?php }?>
 		
 		<tr>
-			<td class="kit-ix-settings-margin-container" colspan="2">
+			<td class="codematrix-ix-settings-margin-container" colspan="2">
 				<a href="javascript:void(0)" onclick="ESettings.ShowPHPExpression(this)"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_FIELD_NOTE");?></a>
 				<?php
 				list($fName, $val) = GetFieldEextraVal($PEXTRASETTINGS, 'FIELD_NOTE');
 				?>
-				<div class="kit-ix-settings-phpexpression" style="display: none;">
+				<div class="codematrix-ix-settings-phpexpression" style="display: none;">
 					<textarea name="<?php echo $fName?>"><?php echo $val?></textarea>
 				</div>
 			</td>
@@ -1942,7 +1942,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				<td colspan="2"><?php echo GetMessage("CODEMATRIX_IX_SETTINGS_EXTRA_CONVERSION_TITLE");?></td>
 			</tr>
 			<tr>
-				<td class="kit-ix-settings-margin-container" colspan="2" id="kit-ix-conv-wrap1">
+				<td class="codematrix-ix-settings-margin-container" colspan="2" id="codematrix-ix-conv-wrap1">
 					<?php
 					list($fName, $arVals) = GetFieldEextraVal($PEXTRASETTINGS, 'EXTRA_CONVERSION');
 					$showCondition = true;
@@ -1991,7 +1991,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 						$cellsOptions .= '<option value="ELSE"'.($v['CELL']=='ELSE' ? ' selected' : '').'>'.GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_CELL_ELSE").'</option>';
 						$cellsOptions .= '</optgroup>';
 						
-						echo '<div class="kit-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
+						echo '<div class="codematrix-ix-settings-conversion" '.(!$showCondition ? 'style="display: none;"' : '').'>'.
 								GetMessage("CODEMATRIX_IX_SETTINGS_CONVERSION_CONDITION_TITLE").
 								' <select name="'.$fName.'[CELL][]" class="field_cell">'.
 									$cellsOptions.

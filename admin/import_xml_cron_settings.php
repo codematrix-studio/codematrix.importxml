@@ -453,8 +453,8 @@ if(preg_match_all("#^\s*(([\*\-/,\d]+\s+){5})(\S+)\s+.*?(\S+)".preg_quote(CODEMA
 <form action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data" name="field_settings">
 	<input type="hidden" name="action" value="save">
 	<input type="hidden" name="recordkey" value="">
-	<div id="kit-ix-cron-result"></div>
-	<div id="kit-ix-cron-form">
+	<div id="codematrix-ix-cron-result"></div>
+	<div id="codematrix-ix-cron-form">
 		<table width="100%">
 			<col width="40%">
 			<col width="60%">
@@ -464,7 +464,7 @@ if(preg_match_all("#^\s*(([\*\-/,\d]+\s+){5})(\S+)\s+.*?(\S+)".preg_quote(CODEMA
 			<tr>
 				<td class="adm-detail-content-cell-l" width="40%"><?php echo GetMessage("CODEMATRIX_IX_CRON_CHOOSE_PROFILE");?>:</td>
 				<td class="adm-detail-content-cell-r">
-					<select name="PROFILE_ID[]" onchange="/*EProfile.Choose(this)*/" class="kit-chosen-multi" style="width: 400px;" size="3" multiple><?php
+					<select name="PROFILE_ID[]" onchange="/*EProfile.Choose(this)*/" class="codematrix-chosen-multi" style="width: 400px;" size="3" multiple><?php
 						/*?><option value=""><?php echo GetMessage("CODEMATRIX_IX_CRON_NO_PROFILE"); ?></option><?php */
 						foreach($arProfiles as $k=>$profile)
 						{
@@ -513,12 +513,12 @@ if(preg_match_all("#^\s*(([\*\-/,\d]+\s+){5})(\S+)\s+.*?(\S+)".preg_quote(CODEMA
 	</div>
 	
 	<div>&nbsp;</div>
-	<div id="kit-ix-cron-records_wrap">
+	<div id="codematrix-ix-cron-records_wrap">
 	<?php
 	if(count($arRecords) > 0)
 	{
 	?>
-		<table width="100%" class="kit-ix-cron-records" cellspacing="8">
+		<table width="100%" class="codematrix-ix-cron-records" cellspacing="8">
 			<col width="30%">
 			<col>
 			<col width="30px">
@@ -528,7 +528,7 @@ if(preg_match_all("#^\s*(([\*\-/,\d]+\s+){5})(\S+)\s+.*?(\S+)".preg_quote(CODEMA
 					<?php echo GetMessage("CODEMATRIX_IX_CRON_REC_TITLE"); ?>
 				</td>
 			</tr>
-			<tr class="kit-ix-cron-records-titles">
+			<tr class="codematrix-ix-cron-records-titles">
 				<td><?php echo GetMessage("CODEMATRIX_IX_CRON_REC_TIME"); ?></td>
 				<td><?php echo GetMessage("CODEMATRIX_IX_CRON_REC_PROFILE"); ?></td>
 				<td></td>
@@ -549,8 +549,8 @@ if(preg_match_all("#^\s*(([\*\-/,\d]+\s+){5})(\S+)\s+.*?(\S+)".preg_quote(CODEMA
 				echo '<tr>'.
 					'<td>'.$time.'</td>'.
 					'<td>'.implode(', ', $arRecProfiles).'</td>'.
-					'<td><a class="kit-ix-cron-record-edit" href="javascript:void(0)" onclick="return EProfile.EditCronRecord(this, \''.$key.'\');" title="'.htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_CRON_EDIT")).'" data-phppath="'.htmlspecialcharsbx($rec['phppath']).'" data-time="'.htmlspecialcharsbx($rec['time']).'" data-profiles="'.htmlspecialcharsbx(implode(',', $rec['pid'])).'"></a></td>'.
-					'<td><a class="kit-ix-cron-record-delete" href="javascript:void(0)" onclick="return EProfile.DeleteFromCron(this, \''.$key.'\');" title="'.htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_CRON_UNSET")).'"></a></td>'.
+					'<td><a class="codematrix-ix-cron-record-edit" href="javascript:void(0)" onclick="return EProfile.EditCronRecord(this, \''.$key.'\');" title="'.htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_CRON_EDIT")).'" data-phppath="'.htmlspecialcharsbx($rec['phppath']).'" data-time="'.htmlspecialcharsbx($rec['time']).'" data-profiles="'.htmlspecialcharsbx(implode(',', $rec['pid'])).'"></a></td>'.
+					'<td><a class="codematrix-ix-cron-record-delete" href="javascript:void(0)" onclick="return EProfile.DeleteFromCron(this, \''.$key.'\');" title="'.htmlspecialcharsbx(GetMessage("CODEMATRIX_IX_CRON_UNSET")).'"></a></td>'.
 				'</tr>';
 			}
 			?>

@@ -211,8 +211,8 @@ if(is_callable(array('\Bitrix\Iblock\Model\PropertyFeature', 'isEnabledFeatures'
 			<tr>
 				<td><?php echo $arXmlProp['NAME'];?></td>
 				<td>
-				  <div class="kit-ix-select-mapping-wrap" data-nc-message="<?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
-					<a href="javascript:void(0)" class="kit-ix-mapping-add-field" title="<?php echo GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
+				  <div class="codematrix-ix-select-mapping-wrap" data-nc-message="<?php echo GetMessage("CODEMATRIX_IX_NOT_CHOOSE")?>">
+					<a href="javascript:void(0)" class="codematrix-ix-mapping-add-field" title="<?php echo GetMessage("CODEMATRIX_IX_ADD_FIELD");?>" onclick="ESettings.AddSelectMappingField(this)"></a>
 					<?php
 					$isFields = false;
 					if(array_key_exists($xmlId, $arMap2))
@@ -222,10 +222,10 @@ if(is_callable(array('\Bitrix\Iblock\Model\PropertyFeature', 'isEnabledFeatures'
 						{
 							if(array_key_exists($val['ID'], $arFields) && !in_array($val['ID'], $arTmpVals))
 							{
-								echo '<div class="kit-ix-select-mapping kit-ix-select-mapping-full" data-xml-id="'.htmlspecialcharsbx($xmlId).'">'.
-										'<input id="kit_mapping_'.$index.'" type="hidden" name="MAP[MAP]['.$index.'][XML_ID]" value="'.htmlspecialcharsbx($xmlId).'"><input type="hidden" name="MAP[MAP]['.$index.'][ID]" value="'.htmlspecialcharsbx($val['ID']).'">'.
+								echo '<div class="codematrix-ix-select-mapping codematrix-ix-select-mapping-full" data-xml-id="'.htmlspecialcharsbx($xmlId).'">'.
+										'<input id="codematrix_mapping_'.$index.'" type="hidden" name="MAP[MAP]['.$index.'][XML_ID]" value="'.htmlspecialcharsbx($xmlId).'"><input type="hidden" name="MAP[MAP]['.$index.'][ID]" value="'.htmlspecialcharsbx($val['ID']).'">'.
 										'<a href="javascript:void(0)" onclick="ESettings.ShowSelectMapping(this, true)">'.$arFields[$val['ID']].'</a>'.
-										'<a id="field_settings_0'.$index.'" href="javascript:void(0)" onclick="ESettings.ShowSelectMappingSettings(event, this)" class="kit-ix-select-mapping-settings'.(strlen($val['EXTRA'])==0 ? ' inactive' : '').'" title="'.GetMessage("CODEMATRIX_IX_SETTINGS_BTN").'" data-group="offproperty"><input type="hidden" name="MAP[MAP]['.$index.'][EXTRA]" value="'.htmlspecialcharsbx($val['EXTRA']).'"></a>'.
+										'<a id="field_settings_0'.$index.'" href="javascript:void(0)" onclick="ESettings.ShowSelectMappingSettings(event, this)" class="codematrix-ix-select-mapping-settings'.(strlen($val['EXTRA'])==0 ? ' inactive' : '').'" title="'.GetMessage("CODEMATRIX_IX_SETTINGS_BTN").'" data-group="offproperty"><input type="hidden" name="MAP[MAP]['.$index.'][EXTRA]" value="'.htmlspecialcharsbx($val['EXTRA']).'"></a>'.
 									'</div>';
 								$index++;
 								$isFields = true;
@@ -235,9 +235,9 @@ if(is_callable(array('\Bitrix\Iblock\Model\PropertyFeature', 'isEnabledFeatures'
 					}
 					if(!$isFields)
 					{
-						echo '<div class="kit-ix-select-mapping" data-xml-id="'.htmlspecialcharsbx($xmlId).'">'.
+						echo '<div class="codematrix-ix-select-mapping" data-xml-id="'.htmlspecialcharsbx($xmlId).'">'.
 								'<a href="javascript:void(0)" onclick="ESettings.ShowSelectMapping(this, true)">'.GetMessage("CODEMATRIX_IX_NOT_CHOOSE").'</a>'.
-								'<a href="javascript:void(0)" onclick="ESettings.ShowSelectMappingSettings(event, this)" class="kit-ix-select-mapping-settings inactive" title="'.GetMessage("CODEMATRIX_IX_SETTINGS_BTN").'" data-group="offproperty"></a>'.
+								'<a href="javascript:void(0)" onclick="ESettings.ShowSelectMappingSettings(event, this)" class="codematrix-ix-select-mapping-settings inactive" title="'.GetMessage("CODEMATRIX_IX_SETTINGS_BTN").'" data-group="offproperty"></a>'.
 							'</div>';
 					}
 					?>

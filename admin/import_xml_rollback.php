@@ -145,7 +145,7 @@ function DoNext(NS)
 </script>
 <div id="rollback_result_div"></div>
 
-<form method="POST" action="<?php echo $sDocPath ?>?lang=<?php echo LANG ?>" ENCTYPE="multipart/form-data" name="rollback" id="kit-ix-rollback">
+<form method="POST" action="<?php echo $sDocPath ?>?lang=<?php echo LANG ?>" ENCTYPE="multipart/form-data" name="rollback" id="codematrix-ix-rollback">
 
 <?php
 $oProfile = \Bitrix\CodeMatrixImportxml\Profile::getInstance();
@@ -166,10 +166,10 @@ $tabControl->Begin();
 <?php $tabControl->BeginNextTab();?>
 
 	<!--<tr class="heading">
-		<td colspan="2" class="kit-ix-profile-header">
+		<td colspan="2" class="codematrix-ix-profile-header">
 			<div>
 				<?php echo GetMessage("CODEMATRIX_IX_PROFILE_HEADER"); ?>
-				<a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?php echo GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="kit-ix-help-link"></a>
+				<a href="javascript:void(0)" onclick="EHelper.ShowHelp();" title="<?php echo GetMessage("CODEMATRIX_IX_MENU_HELP"); ?>" class="codematrix-ix-help-link"></a>
 			</div>
 		</td>
 	</tr>-->

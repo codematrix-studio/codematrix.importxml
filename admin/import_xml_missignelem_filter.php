@@ -60,7 +60,7 @@ if(count($FILTER) > 0 && count(preg_grep('/^find_/', array_keys($FILTER))) > 0)
 	else $FILTER = array();
 }
 ?>
-<form action="" method="post" enctype="multipart/form-data" name="filter_form" id="kit-ix-filter" class="kit-ix-filter">
+<form action="" method="post" enctype="multipart/form-data" name="filter_form" id="codematrix-ix-filter" class="codematrix-ix-filter">
 	<?php
 	if($oldTypeFilter)
 	{

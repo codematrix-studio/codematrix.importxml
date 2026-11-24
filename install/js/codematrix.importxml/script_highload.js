@@ -3,11 +3,11 @@ var kitIXModuleFilePrefix = 'codematrix_import_xml';
 var EIXPreview = {
 	Init: function()
 	{
-		eval('var params = ' + $('#kit_ix_xml_wrap input[name="settings_json"]').val() + ';');
-		eval('var extraparams = ' + $('#kit_ix_xml_wrap input[name="extrasettings_json"]').val() + ';');
-		$('#kit_ix_xml_wrap input[name="settings_json"]').remove();
-		$('#kit_ix_xml_wrap input[name="extrasettings_json"]').remove();
-		$('#kit_ix_xml_wrap input[name="defaultsettings_json"]').remove();
+		eval('var params = ' + $('#codematrix_ix_xml_wrap input[name="settings_json"]').val() + ';');
+		eval('var extraparams = ' + $('#codematrix_ix_xml_wrap input[name="extrasettings_json"]').val() + ';');
+		$('#codematrix_ix_xml_wrap input[name="settings_json"]').remove();
+		$('#codematrix_ix_xml_wrap input[name="extrasettings_json"]').remove();
+		$('#codematrix_ix_xml_wrap input[name="defaultsettings_json"]').remove();
 
 		if(params.GROUPS)
 		{
@@ -26,7 +26,7 @@ var EIXPreview = {
 			var selectNames = ['section_fields', 'subsection_fields', 'element_fields', 'property_fields'];
 			for(var j=0; j<selectNames.length; j++)
 			{
-				var select = $('#kit_ix_xml_wrap select[name="'+selectNames[j]+'"]');
+				var select = $('#codematrix_ix_xml_wrap select[name="'+selectNames[j]+'"]');
 				for(var i in params.FIELDS)
 				{
 					arVals = params.FIELDS[i].split(';');
@@ -45,7 +45,7 @@ var EIXPreview = {
 	
 	ShowBaseElements: function(link)
 	{
-		this.currentTag = $(link).closest('.kit_ix_xml_struct_item');
+		this.currentTag = $(link).closest('.codematrix_ix_xml_struct_item');
 		var menuItems = [];
 		menuItems.push({
 			TEXT: BX.message("CODEMATRIX_IX_GROUP_ELEMENT"),
@@ -61,13 +61,13 @@ var EIXPreview = {
 			var obj = this;
 			this.UnsetBaseElement(type);
 			
-			$(this.currentTag).closest('.kit_ix_xml_struct_item').attr('data-base-element', type.toLowerCase());
-			$(this.currentTag).find('> .kit_ix_group_value').html('<input type="hidden" name="SETTINGS[GROUPS]['+type+']" value=""><span>'+BX.message("CODEMATRIX_IX_GROUP_"+type)+'<a href="javascript:void(0)" onclick="return EIXPreview.UnsetBaseElement(\''+type+'\')" class="kit_ix_group_value_close" title="'+BX.message("CODEMATRIX_IX_REMOVE_FIELD")+'"></a></span>');
-			$('#kit_ix_xml_wrap input[name="SETTINGS[GROUPS]['+type+']"]').val(this.GetXPathByTag(this.currentTag));
-			var objValue = $(this.currentTag).find('.kit_ix_str_value');
-			objValue.addClass('kit_ix_str_value_active');
-			objValue.find('.kit_ix_str_value_val').bind('click', function(){obj.ShowElementFields(this);});
-			$(this.currentTag).find('.kit_ix_str_value[data-attr]').bind('contextmenu', function(e){return obj.ShowAttrActions(e, this);});
+			$(this.currentTag).closest('.codematrix_ix_xml_struct_item').attr('data-base-element', type.toLowerCase());
+			$(this.currentTag).find('> .codematrix_ix_group_value').html('<input type="hidden" name="SETTINGS[GROUPS]['+type+']" value=""><span>'+BX.message("CODEMATRIX_IX_GROUP_"+type)+'<a href="javascript:void(0)" onclick="return EIXPreview.UnsetBaseElement(\''+type+'\')" class="codematrix_ix_group_value_close" title="'+BX.message("CODEMATRIX_IX_REMOVE_FIELD")+'"></a></span>');
+			$('#codematrix_ix_xml_wrap input[name="SETTINGS[GROUPS]['+type+']"]').val(this.GetXPathByTag(this.currentTag));
+			var objValue = $(this.currentTag).find('.codematrix_ix_str_value');
+			objValue.addClass('codematrix_ix_str_value_active');
+			objValue.find('.codematrix_ix_str_value_val').bind('click', function(){obj.ShowElementFields(this);});
+			$(this.currentTag).find('.codematrix_ix_str_value[data-attr]').bind('contextmenu', function(e){return obj.ShowAttrActions(e, this);});
 		}
 	},
 	
@@ -75,15 +75,15 @@ var EIXPreview = {
 	{
 		if(type)
 		{
-			var oldInput = $('#kit_ix_xml_wrap input[name="SETTINGS[GROUPS]['+type+']"]');
+			var oldInput = $('#codematrix_ix_xml_wrap input[name="SETTINGS[GROUPS]['+type+']"]');
 			if(oldInput.length > 0)
 			{
-				oldInput.closest('.kit_ix_xml_struct_item').removeAttr('data-base-element');
-				var objValue = oldInput.closest('.kit_ix_xml_struct_item').find('.kit_ix_str_value');
-				objValue.find('.kit_ix_str_value_field .kit_ix_str_value_close').trigger('click');
-				objValue.removeClass('kit_ix_str_value_active');
-				objValue.find('.kit_ix_str_value_val').unbind('click').unbind('contextmenu');
-				oldInput.closest('.kit_ix_group_value').html('');
+				oldInput.closest('.codematrix_ix_xml_struct_item').removeAttr('data-base-element');
+				var objValue = oldInput.closest('.codematrix_ix_xml_struct_item').find('.codematrix_ix_str_value');
+				objValue.find('.codematrix_ix_str_value_field .codematrix_ix_str_value_close').trigger('click');
+				objValue.removeClass('codematrix_ix_str_value_active');
+				objValue.find('.codematrix_ix_str_value_val').unbind('click').unbind('contextmenu');
+				oldInput.closest('.codematrix_ix_group_value').html('');
 			}
 		}
 	},
@@ -92,7 +92,7 @@ var EIXPreview = {
 	{
 		if($(tag).attr('data-attr')) var xpath = '@'+$(tag).attr('data-attr');
 		else var xpath = $(tag).attr('data-name');
-		while((tag = $(tag).parent()) && tag.hasClass('kit_ix_xml_struct_item'))
+		while((tag = $(tag).parent()) && tag.hasClass('codematrix_ix_xml_struct_item'))
 		{
 			xpath = $(tag).attr('data-name') + '/'+ xpath;
 		}
@@ -101,7 +101,7 @@ var EIXPreview = {
 	
 	GetXPathByVal: function(valObj)
 	{
-		var xpath = this.GetXPathByTag(valObj.closest('.kit_ix_xml_struct_item'));
+		var xpath = this.GetXPathByTag(valObj.closest('.codematrix_ix_xml_struct_item'));
 		if(valObj.attr('data-attr'))
 		{
 			xpath += '/@'+valObj.attr('data-attr');
@@ -112,9 +112,9 @@ var EIXPreview = {
 	GetTagByXPath: function(xpath)
 	{
 		var arPath = xpath.split('/');
-		var parent = $('#kit_ix_xml_wrap .kit_ix_xml_struct');
+		var parent = $('#codematrix_ix_xml_wrap .codematrix_ix_xml_struct');
 		var i = 0;
-		while(i < arPath.length && (parent = parent.find('> .kit_ix_xml_struct_item[data-name="'+arPath[i]+'"]')) && parent.length > 0){i++;}
+		while(i < arPath.length && (parent = parent.find('> .codematrix_ix_xml_struct_item[data-name="'+arPath[i]+'"]')) && parent.length > 0){i++;}
 		if(i < arPath.length) return false;
 		return parent;
 	},
@@ -131,7 +131,7 @@ var EIXPreview = {
 		var tag = this.GetTagByXPath(xpath);
 		if(tag==false) return false;
 		
-		var valObj = tag.find('> .kit_ix_str_value' + (attr.length > 0 ? '[data-attr="'+attr+'"]' : ':not([data-attr])'));
+		var valObj = tag.find('> .codematrix_ix_str_value' + (attr.length > 0 ? '[data-attr="'+attr+'"]' : ':not([data-attr])'));
 		return valObj;
 	},
 	
@@ -140,8 +140,8 @@ var EIXPreview = {
 		var obj = this;
 		valObj = $(valObj);
 		var copySettings = ((typeof event == 'object') && (event.ctrlKey || event.shiftKey));
-		var fieldsCode = valObj.closest('.kit_ix_xml_struct_item[data-base-element]').attr('data-base-element');
-		var pSelect = $('#kit_ix_xml_wrap select[name="'+fieldsCode+'_fields"]');
+		var fieldsCode = valObj.closest('.codematrix_ix_xml_struct_item[data-base-element]').attr('data-base-element');
+		var pSelect = $('#codematrix_ix_xml_wrap select[name="'+fieldsCode+'_fields"]');
 		var select = $(pSelect).clone();
 		var options = select[0].options;
 		var oldValue = this.GetFieldValue(valObj);
@@ -169,7 +169,7 @@ var EIXPreview = {
 			var settings = false;
 			if(copySettings)
 			{
-				settings = valObj.prev('.kit_ix_str_value_field').find('.kit_ix_str_value_settings input').val();
+				settings = valObj.prev('.codematrix_ix_str_value_field').find('.codematrix_ix_str_value_settings input').val();
 				if(settings.length > 0) eval('settings = '+settings+';');
 			}
 			if(typeof settings == 'object')
@@ -206,11 +206,11 @@ var EIXPreview = {
 	{
 		return;
 		this.currentAttr = $(valObj);
-		var linkObj = $(valObj).prev('.kit_ix_str_value_cm');
+		var linkObj = $(valObj).prev('.codematrix_ix_str_value_cm');
 		if(linkObj.length == 0)
 		{
-			$(valObj).before('<a href="javascript:void(0)" class="kit_ix_str_value_cm"></a>');
-			linkObj = $(valObj).prev('.kit_ix_str_value_cm');
+			$(valObj).before('<a href="javascript:void(0)" class="codematrix_ix_str_value_cm"></a>');
+			linkObj = $(valObj).prev('.codematrix_ix_str_value_cm');
 			
 			var menuItems = [];
 			menuItems.push({
@@ -249,7 +249,7 @@ var EIXPreview = {
 	SetFieldValue: function(valObj, option, num, extraparams)
 	{
 		valObj = $(valObj);
-		var valObjParent = valObj.closest('.kit_ix_str_value');
+		var valObjParent = valObj.closest('.codematrix_ix_str_value');
 		if((typeof option == 'object') && option.value)
 		{
 			var textValue = '';
@@ -262,7 +262,7 @@ var EIXPreview = {
 			textValue += option.text;
 			var xpath = this.GetXPathByVal(valObjParent);
 			
-			if(valObj.hasClass('kit_ix_str_value_field'))
+			if(valObj.hasClass('codematrix_ix_str_value_field'))
 			{
 				var span = valObj;
 				if(!num && num!==0)
@@ -277,36 +277,36 @@ var EIXPreview = {
 			else
 			{
 				var obj = this;
-				var valObjVal = valObjParent.find('.kit_ix_str_value_val');
-				if(!valObjVal.hasClass('kit_ix_str_value_val_selected'))
+				var valObjVal = valObjParent.find('.codematrix_ix_str_value_val');
+				if(!valObjVal.hasClass('codematrix_ix_str_value_val_selected'))
 				{
-					valObjVal.addClass('kit_ix_str_value_val_selected').unbind('click');
-					//valObjParent.append('<a href="javascript:void(0)" onclick="return EIXPreview.ShowElementFields(this, event)" class="kit_ix_str_value_add" title="'+BX.message("CODEMATRIX_IX_ADD_FIELD")+'"></a>');
-					var addLink = $('<a href="javascript:void(0)" class="kit_ix_str_value_add" title="'+BX.message("CODEMATRIX_IX_ADD_FIELD")+'\r\n\r\n'+BX.message("CODEMATRIX_IX_ADD_FIELD_COPY_SETTING")+'"></a>');
+					valObjVal.addClass('codematrix_ix_str_value_val_selected').unbind('click');
+					//valObjParent.append('<a href="javascript:void(0)" onclick="return EIXPreview.ShowElementFields(this, event)" class="codematrix_ix_str_value_add" title="'+BX.message("CODEMATRIX_IX_ADD_FIELD")+'"></a>');
+					var addLink = $('<a href="javascript:void(0)" class="codematrix_ix_str_value_add" title="'+BX.message("CODEMATRIX_IX_ADD_FIELD")+'\r\n\r\n'+BX.message("CODEMATRIX_IX_ADD_FIELD_COPY_SETTING")+'"></a>');
 					addLink.bind('click', function(e){return EIXPreview.ShowElementFields(this, e)});
 					valObjParent.append(addLink);
 				}
 				if(!num && num!==0)
 				{
-					var inputs = $('#kit_ix_xml_wrap input[name^="SETTINGS[FIELDS]["]');
+					var inputs = $('#codematrix_ix_xml_wrap input[name^="SETTINGS[FIELDS]["]');
 					var i = 0;
-					while($('#kit_ix_xml_wrap input[name="SETTINGS[FIELDS]['+i+']"]').length > 0)
+					while($('#codematrix_ix_xml_wrap input[name="SETTINGS[FIELDS]['+i+']"]').length > 0)
 					{
 						i++;
 					}
 					num = i;
 				}
-				var span = $('<span class="kit_ix_str_value_field"><input type="hidden" name="SETTINGS[FIELDS]['+num+']" value=""><span></span><a href="javascript:void(0)" onclick="return EIXPreview.ShowFieldSettings(event, this)" class="kit_ix_str_value_settings" id="field_settings_'+num+'" title="'+BX.message("CODEMATRIX_IX_FIELD_SETTINGS")+'"><input name="EXTRASETTINGS['+num+']" value="" type="hidden"></a><a href="javascript:void(0)" onclick="return EIXPreview.DeleteFieldValue(event, this)" class="kit_ix_str_value_close" title="'+BX.message("CODEMATRIX_IX_REMOVE_FIELD")+'"></a></span>');
-				span.insertBefore(valObjParent.find('.kit_ix_str_value_add'));
+				var span = $('<span class="codematrix_ix_str_value_field"><input type="hidden" name="SETTINGS[FIELDS]['+num+']" value=""><span></span><a href="javascript:void(0)" onclick="return EIXPreview.ShowFieldSettings(event, this)" class="codematrix_ix_str_value_settings" id="field_settings_'+num+'" title="'+BX.message("CODEMATRIX_IX_FIELD_SETTINGS")+'"><input name="EXTRASETTINGS['+num+']" value="" type="hidden"></a><a href="javascript:void(0)" onclick="return EIXPreview.DeleteFieldValue(event, this)" class="codematrix_ix_str_value_close" title="'+BX.message("CODEMATRIX_IX_REMOVE_FIELD")+'"></a></span>');
+				span.insertBefore(valObjParent.find('.codematrix_ix_str_value_add'));
 				//valObjParent.append(span);
 				
 				if(typeof extraparams=='object')
 				{
-					span.find('.kit_ix_str_value_settings input').val(JSON.stringify(extraparams));
+					span.find('.codematrix_ix_str_value_settings input').val(JSON.stringify(extraparams));
 				}
 				else
 				{
-					span.find('.kit_ix_str_value_settings').addClass("inactive");
+					span.find('.codematrix_ix_str_value_settings').addClass("inactive");
 				}
 				span.bind('click', function(){obj.ShowElementFields(this);});
 			}
@@ -317,9 +317,9 @@ var EIXPreview = {
 		}
 		else
 		{
-			if(valObj.hasClass('kit_ix_str_value_field'))
+			if(valObj.hasClass('codematrix_ix_str_value_field'))
 			{
-				valObj.find('a.kit_ix_str_value_close').trigger('click');
+				valObj.find('a.codematrix_ix_str_value_close').trigger('click');
 			}
 		}
 	},
@@ -327,20 +327,20 @@ var EIXPreview = {
 	DeleteFieldValue: function(e, link)
 	{
 		e.stopPropagation();
-		var parent = $(link).closest('.kit_ix_str_value');
-		$(link).closest('.kit_ix_str_value_field').remove();
-		if(parent.find('.kit_ix_str_value_field').length==0)
+		var parent = $(link).closest('.codematrix_ix_str_value');
+		$(link).closest('.codematrix_ix_str_value_field').remove();
+		if(parent.find('.codematrix_ix_str_value_field').length==0)
 		{
 			var obj = this;
-			parent.find('.kit_ix_str_value_val').removeClass('kit_ix_str_value_val_selected').bind('click', function(){obj.ShowElementFields(this);});
-			parent.find('.kit_ix_str_value_add').remove();
+			parent.find('.codematrix_ix_str_value_val').removeClass('codematrix_ix_str_value_val_selected').bind('click', function(){obj.ShowElementFields(this);});
+			parent.find('.codematrix_ix_str_value_add').remove();
 		}
 		return false;
 	},
 	
 	ShowBaseElements2: function(link)
 	{
-		var pSelect = $('#kit_ix_xml_wrap select[name="group"]');
+		var pSelect = $('#codematrix_ix_xml_wrap select[name="group"]');
 		var select = $(pSelect).clone();
 		var options = select[0].options;
 		/*for(var i=0; i<options.length; i++)
@@ -403,7 +403,7 @@ var EIXPreview = {
 	{
 		e.stopPropagation();
 		
-		var parent = $(btn).closest('.kit_ix_str_value_field');
+		var parent = $(btn).closest('.codematrix_ix_str_value_field');
 		var title = parent.find('>span:eq(0)').html().replace(/\s+\{\d+\}$/, '');
 		var val = this.GetFieldValue(parent);
 		var name = $(btn).find('input[type=hidden]').attr('name');
@@ -411,10 +411,10 @@ var EIXPreview = {
 		
 		var form = $(btn).closest('form')[0];
 		var postextra = $('input', btn).val();
-		var poststruct = $('#kit_ix_xml_wrap input[name="struct_base64"]').val();
-		var fieldsCode = $(btn).closest('.kit_ix_xml_struct_item[data-base-element]').attr('data-base-element');
+		var poststruct = $('#codematrix_ix_xml_wrap input[name="struct_base64"]').val();
+		var fieldsCode = $(btn).closest('.codematrix_ix_xml_struct_item[data-base-element]').attr('data-base-element');
 		var xPathList = {};
-		var groups = $('#kit_ix_xml_wrap input[name^="SETTINGS[GROUPS]["]');
+		var groups = $('#codematrix_ix_xml_wrap input[name^="SETTINGS[GROUPS]["]');
 		for(var i=0; i<groups.length; i++)
 		{
 			var groupCode = groups[i].name.replace(/^.*\[([^\[]*)\]$/, '$1');
@@ -625,9 +625,9 @@ var EProfile = {
 			$('input[type=checkbox]', this.DIV).each(function(){
 				BX.adminFormTools.modifyCheckbox(this);
 			});
-			if(typeof $('select.kit-chosen-multi').chosen == 'function')
+			if(typeof $('select.codematrix-chosen-multi').chosen == 'function')
 			{
-				$('select.kit-chosen-multi').chosen({search_contains: true, placeholder_text: BX.message("CODEMATRIX_IX_CRON_CHOOSE_PROFILE")});
+				$('select.codematrix-chosen-multi').chosen({search_contains: true, placeholder_text: BX.message("CODEMATRIX_IX_CRON_CHOOSE_PROFILE")});
 			}
 		});
 			
@@ -640,7 +640,7 @@ var EProfile = {
 		var form = $(btn).closest('form');
 		var action = form[0].getAttribute('action');
 		$.post(action, form.serialize()+'&subaction='+btn.name, function(data){
-			$('#kit-ix-cron-result').html(data);
+			$('#codematrix-ix-cron-result').html(data);
 			obj.UpdateCronRecords(action);
 			if($('input[name="recordkey"]', form).val().length > 0)
 			{
@@ -655,7 +655,7 @@ var EProfile = {
 	
 	EditCronRecord: function(btn, key)
 	{
-		$('#kit-ix-cron-result').html('');
+		$('#codematrix-ix-cron-result').html('');
 		btn = $(btn);
 		var obj = this;
 		var form = btn.closest('form');
@@ -675,7 +675,7 @@ var EProfile = {
 		var form = $(btn).closest('form');
 		var action = form[0].getAttribute('action');
 		$.post(action, 'action=deleterecord&key='+encodeURIComponent(key), function(data){
-			$('#kit-ix-cron-result').html('');
+			$('#codematrix-ix-cron-result').html('');
 			obj.UpdateCronRecords(action);
 		});
 	},
@@ -683,7 +683,7 @@ var EProfile = {
 	UpdateCronRecords: function(action)
 	{
 		$.get(action, function(data){
-			$('#kit-ix-cron-records_wrap').html($(data).find('#kit-ix-cron-records_wrap').html());
+			$('#codematrix-ix-cron-records_wrap').html($(data).find('#codematrix-ix-cron-records_wrap').html());
 		});
 	},
 	
@@ -725,7 +725,7 @@ var EProfile = {
 	ToggleAdditionalSettings: function(link)
 	{
 		if(link) link = $(link);
-		else link = $('.kit_ix_head_more');
+		else link = $('.codematrix_ix_head_more');
 		if(link.length==0) return;
 		$(link).each(function(){
 			var tr = $(this).closest('tr');
@@ -798,7 +798,7 @@ var EProfile = {
 			$('input[type=checkbox]', this.DIV).each(function(){
 				BX.adminFormTools.modifyCheckbox(this);
 			});
-			$('select.kit-ix-chosen-multi').chosen();
+			$('select.codematrix-ix-chosen-multi').chosen();
 		});
 			
 		dialog.Show();
@@ -810,7 +810,7 @@ var EProfile = {
 	{
 		var pid = $('#PROFILE_ID').val();
 		var post = '';
-		var json = $('.kit-ix-file-choose input[name="SETTINGS_DEFAULT[EMAIL_DATA_FILE]"]').val();
+		var json = $('.codematrix-ix-file-choose input[name="SETTINGS_DEFAULT[EMAIL_DATA_FILE]"]').val();
 		if(json)
 		{
 			eval('post = {EMAIL_SETTINGS: '+json+'};');
@@ -884,7 +884,7 @@ var EProfile = {
 	{
 		var pid = $('#PROFILE_ID').val();
 		var post = '';
-		var json = $('.kit-ix-file-choose input[name="EXT_DATA_FILE"]').val();
+		var json = $('.codematrix-ix-file-choose input[name="EXT_DATA_FILE"]').val();
 		if(json && json.substr(0,1)=='{')
 		{
 			eval('post = {AUTH_SETTINGS: '+json+'};');
@@ -922,18 +922,18 @@ var EProfile = {
 	
 	SetLinkAuthParams: function(jData)
 	{
-		if($('.kit-ix-file-choose input[name="EXT_DATA_FILE"]').length == 0)
+		if($('.codematrix-ix-file-choose input[name="EXT_DATA_FILE"]').length == 0)
 		{
-			$(".kit-ix-file-choose").prepend('<input type="hidden" name="EXT_DATA_FILE" value="">');
+			$(".codematrix-ix-file-choose").prepend('<input type="hidden" name="EXT_DATA_FILE" value="">');
 		}
-		$('.kit-ix-file-choose input[name="EXT_DATA_FILE"]').val(JSON.stringify(jData));
-		$('.kit-ix-file-choose input[name="SETTINGS_DEFAULT[EMAIL_DATA_FILE]"]').val('');
+		$('.codematrix-ix-file-choose input[name="EXT_DATA_FILE"]').val(JSON.stringify(jData));
+		$('.codematrix-ix-file-choose input[name="SETTINGS_DEFAULT[EMAIL_DATA_FILE]"]').val('');
 		BX.WindowManager.Get().Close();
 	},
 	
 	LauthAddVar: function(link)
 	{
-		var tr = $(link).closest('tr').prev('tr.kit-ix-lauth-var');
+		var tr = $(link).closest('tr').prev('tr.codematrix-ix-lauth-var');
 		var newTr = tr.clone();
 		newTr.find('input').val('');
 		tr.after(newTr);
@@ -983,7 +983,7 @@ var EProfile = {
 					var countVars = varInputs.length;
 					while(countVars < res.VARS.length)
 					{
-						$('td.kit-ix-lauth-addvar a', form).trigger('click');
+						$('td.codematrix-ix-lauth-addvar a', form).trigger('click');
 						countVars++;
 					}
 					varInputs = $('input[name="vars[]"]', form);
@@ -1027,8 +1027,8 @@ var EProfile = {
 				name: 'savebtn',
 				className: BX.browser.IsIE() && BX.browser.IsDoctype() && !BX.browser.IsIE10() ? '' : 'adm-btn-save',
 				action: function () {
-					$('#kit-ix-filter').find('tr[id*="_filter_row_"]:hidden').find('input,select,textarea').val('').trigger('change');
-					$.post('/bitrix/admin/'+kitIXModuleFilePrefix+'_missignelem_filter_hl.php?lang='+BX.message('LANGUAGE_ID'), $('#kit-ix-filter').serialize(), function(data){
+					$('#codematrix-ix-filter').find('tr[id*="_filter_row_"]:hidden').find('input,select,textarea').val('').trigger('change');
+					$.post('/bitrix/admin/'+kitIXModuleFilePrefix+'_missignelem_filter_hl.php?lang='+BX.message('LANGUAGE_ID'), $('#codematrix-ix-filter').serialize(), function(data){
 						$('#ELEMENT_MISSING_FILTER').val($.trim(data));
 						BX.WindowManager.Get().Close();
 					});
@@ -1216,7 +1216,7 @@ var EImport = {
 				}
 				obj.errorStatus = true;
 				$('#block_error_import').show();
-				var timeBlock = document.getElementById('kit_ix_auto_continue_time');
+				var timeBlock = document.getElementById('codematrix_ix_auto_continue_time');
 				if(timeBlock)
 				{
 					timeBlock.innerHTML = '';
@@ -1230,7 +1230,7 @@ var EImport = {
 	TimeoutOnAutoConinue: function()
 	{
 		var obj = this;
-		var timeBlock = document.getElementById('kit_ix_auto_continue_time');
+		var timeBlock = document.getElementById('codematrix_ix_auto_continue_time');
 		var time = timeBlock.innerHTML;
 		if(time.length==0)
 		{
@@ -1372,7 +1372,7 @@ var ESettings = {
 	
 	AddMargin: function(link)
 	{
-		var div = $(link).closest('td').find('.kit-ix-settings-margin:eq(0)');
+		var div = $(link).closest('td').find('.codematrix-ix-settings-margin:eq(0)');
 		if(!div.is(':visible'))
 		{
 			div.show();
@@ -1388,10 +1388,10 @@ var ESettings = {
 	
 	RemoveMargin: function(link)
 	{
-		var divs = $(link).closest('td').find('.kit-ix-settings-margin');
+		var divs = $(link).closest('td').find('.codematrix-ix-settings-margin');
 		if(divs.length > 1)
 		{
-			$(link).closest('.kit-ix-settings-margin').remove();
+			$(link).closest('.codematrix-ix-settings-margin').remove();
 		}
 		else
 		{
@@ -1479,7 +1479,7 @@ var ESettings = {
 	
 	BindConversionEvents: function()
 	{
-		$('.kit-ix-settings-conversion').each(function(){
+		$('.codematrix-ix-settings-conversion').each(function(){
 			var parent = this;
 			$('select.field_cell', parent).bind('change', function(){
 				if(this.value=='ELSE' || this.value=='LOADED')
@@ -1498,7 +1498,7 @@ var ESettings = {
 	
 	AddConversion: function(link)
 	{
-		var prevDiv = $(link).prev('.kit-ix-settings-conversion');
+		var prevDiv = $(link).prev('.codematrix-ix-settings-conversion');
 		if(!prevDiv.is(':visible'))
 		{
 			prevDiv.show();
@@ -1515,8 +1515,8 @@ var ESettings = {
 	
 	RemoveConversion: function(link)
 	{
-		var div = $(link).closest('.kit-ix-settings-conversion');
-		if($(link).closest('td').find('.kit-ix-settings-conversion').length > 1)
+		var div = $(link).closest('.codematrix-ix-settings-conversion');
+		if($(link).closest('td').find('.codematrix-ix-settings-conversion').length > 1)
 		{
 			div.remove();
 		}
@@ -1578,7 +1578,7 @@ var ESettings = {
 	
 	ShowPHPExpression: function(link)
 	{
-		var div = $(link).next('.kit-ix-settings-phpexpression');
+		var div = $(link).next('.codematrix-ix-settings-phpexpression');
 		if(div.is(':visible')) div.hide();
 		else div.show();
 	},
@@ -1622,7 +1622,7 @@ var ESettings = {
 		var parent = $(select).closest('tr');
 		var inputName = 'DEFAULTS['+select.value+']';
 		if($(parent).closest('table').find('input[name="'+inputName+'"]').length > 0) return;
-		var tmpl = parent.prev('tr.kit-ix-list-settings-defaults');
+		var tmpl = parent.prev('tr.codematrix-ix-list-settings-defaults');
 		var tr = tmpl.clone();
 		tr.css('display', '');
 		$('.adm-detail-content-cell-l', tr).html(select.options[select.selectedIndex].innerHTML+':');
@@ -1660,7 +1660,7 @@ var EHelper = {
 			'resizable':true});
 			
 		BX.addCustomEvent(dialog, 'onWindowRegister', function(){
-			$('#kit-ix-help-faq > li > a').bind('click', function(){
+			$('#codematrix-ix-help-faq > li > a').bind('click', function(){
 				var div = $(this).next('div');
 				if(div.is(':visible')) div.stop().slideUp();
 				else div.stop().slideDown();
@@ -1669,7 +1669,7 @@ var EHelper = {
 			
 			if(index > 0)
 			{
-				$('#kit-ix-help-tabs .kit-ix-tabs-heads a:eq('+parseInt(index)+')').trigger('click');
+				$('#codematrix-ix-help-tabs .codematrix-ix-tabs-heads a:eq('+parseInt(index)+')').trigger('click');
 			}
 		});
 			
@@ -1678,9 +1678,9 @@ var EHelper = {
 	
 	SetTab: function(link)
 	{
-		var parent = $(link).closest('.kit-ix-tabs');
-		var heads = $('.kit-ix-tabs-heads a', parent);
-		var bodies = $('.kit-ix-tabs-bodies > div', parent);
+		var parent = $(link).closest('.codematrix-ix-tabs');
+		var heads = $('.codematrix-ix-tabs-heads a', parent);
+		var bodies = $('.codematrix-ix-tabs-bodies > div', parent);
 		var index = 0;
 		for(var i=0; i<heads.length; i++)
 		{
@@ -1724,15 +1724,15 @@ $(document).ready(function(){
 
 	EProfile.Init();
 	
-	if($('#kit-ix-updates-message').length > 0)
+	if($('#codematrix-ix-updates-message').length > 0)
 	{
 		$.post('/bitrix/admin/'+kitIXModuleFilePrefix+'.php?lang='+BX.message('LANGUAGE_ID'), 'MODE=AJAX&ACTION=SHOW_MODULE_MESSAGE', function(data){
 			data = $(data);
-			var inner = $('#kit-ix-updates-message-inner', data);
+			var inner = $('#codematrix-ix-updates-message-inner', data);
 			if(inner.length > 0 && inner.html().length > 0)
 			{
-				$('#kit-ix-updates-message-inner').replaceWith(inner);
-				$('#kit-ix-updates-message').show();
+				$('#codematrix-ix-updates-message-inner').replaceWith(inner);
+				$('#codematrix-ix-updates-message').show();
 			}
 		});
 	}

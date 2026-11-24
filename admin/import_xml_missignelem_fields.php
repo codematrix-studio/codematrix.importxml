@@ -52,7 +52,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 ?>
 <form action="" method="post" enctype="multipart/form-data" name="field_settings">
 	<input type="hidden" name="action" value="save">
-	<table width="100%" class="kit-ix-list-settings">
+	<table width="100%" class="codematrix-ix-list-settings">
 		<col width="50%">
 		<col width="50%">
 		
@@ -70,7 +70,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 				elseif(isset($arDefaultCatFields[$k])) $fieldName = $arDefaultCatFields[$k]['NAME'];
 				else $fieldName = $arDefaultElFields[$k]['NAME'];
 				?>
-				<tr class="kit-ix-list-settings-defaults">
+				<tr class="codematrix-ix-list-settings-defaults">
 					<td class="adm-detail-content-cell-l"><?php echo $fieldName;?>:</td>
 					<td class="adm-detail-content-cell-r">
 						<input type="text" name="DEFAULTS[<?php echo $k;?>]" value="<?php echo htmlspecialcharsex($v);?>">
@@ -81,7 +81,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			}
 		}
 		?>		
-		<tr class="kit-ix-list-settings-defaults" style="display: none;">
+		<tr class="codematrix-ix-list-settings-defaults" style="display: none;">
 			<td class="adm-detail-content-cell-l"></td>
 			<td class="adm-detail-content-cell-r">
 				<input type="text" name="empty" value="">
@@ -89,8 +89,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_popup_adm
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" class="kit-ix-chosen-td">
-				<select name="prop_default" style="min-width: 200px; max-width: 500px;" class="kit-ix-chosen-multi" onchange="ESettings.AddDefaultProp(this)">
+			<td colspan="2" class="codematrix-ix-chosen-td">
+				<select name="prop_default" style="min-width: 200px; max-width: 500px;" class="codematrix-ix-chosen-multi" onchange="ESettings.AddDefaultProp(this)">
 					<option value=""><?php echo GetMessage('CODEMATRIX_IX_PLACEHOLDER_CHOOSE');?></option>
 					<optgroup label="<?php echo GetMessage('CODEMATRIX_IX_LIST_SETTING_ELEMENT');?>">
 						<?php
