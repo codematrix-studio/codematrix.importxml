@@ -1,4 +1,4 @@
-<?
+<?php
 use Bitrix\Main\Localization\Loc,
 	Bitrix\Main\Loader;
 $moduleId = $module_id = 'codematrix.importxml';
@@ -15,7 +15,7 @@ if($USER->IsAdmin())
 		array("DIV" => "edit0", "TAB" => Loc::getMessage("CODEMATRIX_IX_SETTINGS"), "ICON" => "", "TITLE" => Loc::getMessage("CODEMATRIX_IX_SETTINGS_TITLE")),
 		array("DIV" => "edit2", "TAB" => Loc::getMessage("MAIN_TAB_RIGHTS"), "ICON" => "form_settings", "TITLE" => Loc::getMessage("MAIN_TAB_TITLE_RIGHTS")),
 	);
-	$tabControl = new CAdminTabControl("kitImportxmlTabControl", $aTabs, true, true);
+	$tabControl = new CAdminTabControl("codeMatrixImportxmlTabControl", $aTabs, true, true);
 
 	if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['RestoreDefaults']) && !empty($_GET['RestoreDefaults']) && check_bitrix_sessid())
 	{
@@ -31,7 +31,7 @@ if($USER->IsAdmin())
 			$arGROUPS[] = $ar;
 		}
 		reset($arGROUPS);
-		while (list(,$value) = each($arGROUPS))
+		foreach ($arGROUPS as $value)
 			$APPLICATION->DelGroupRight($module_id, array($value["ID"]));
 	
 		LocalRedirect($APPLICATION->GetCurPage().'?lang='.LANGUAGE_ID.'&mid_menu=1&mid='.$module_id);
