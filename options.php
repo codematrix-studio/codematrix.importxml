@@ -253,7 +253,7 @@ if($USER->IsAdmin())
 		<td><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_GOOGLE_DRIVE_APIKEY'); ?>:</td>
 		<td>
 			<input type="text" name="SETTINGS[GOOGLE_APIKEY]" value="<?php echo htmlspecialcharsex(COption::GetOptionString($module_id, 'GOOGLE_APIKEY', ''))?>" size="35">
-			&nbsp; <a href="https://accounts.google.com/o/oauth2/auth?client_id=685892932415-87toodq5o9e4vq8pqeh1es86vlcf3oi7.apps.googleusercontent.com&redirect_uri=https://kitutions.su/marketplace/oauth.php&access_type=offline&response_type=code&scope=https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/userinfo.email" target="_blank"><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_GOOGLE_DRIVE_APIKEY_GET'); ?></a>
+			&nbsp; <a href="https://accounts.google.com/o/oauth2/auth?client_id=685892932415-87toodq5o9e4vq8pqeh1es86vlcf3oi7.apps.googleusercontent.com&redirect_uri=https://esolutions.su/marketplace/oauth.php&access_type=offline&response_type=code&scope=https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/userinfo.email" target="_blank"><?php echo Loc::getMessage('CODEMATRIX_IX_OPTIONS_GOOGLE_DRIVE_APIKEY_GET'); ?></a>
 		</td>
 	</tr>
 	
