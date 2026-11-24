@@ -291,7 +291,7 @@ if ($REQUEST_METHOD == "POST" && $STEP > 1 && check_bitrix_sessid())
 							$existsOldFile = (bool)($arOldFile && $arOldFile['SRC'] && file_exists($_SERVER['DOCUMENT_ROOT'].$arOldFile['SRC']));
 							$oldFileSize = (int)filesize($_SERVER['DOCUMENT_ROOT'].$arOldFile['SRC']);
 							$oldFileSize = ($_POST['OLD_FILE_SIZE'] > 0 && $oldFileSize > 0 && (max($_POST['OLD_FILE_SIZE'], $oldFileSize)/min($_POST['OLD_FILE_SIZE'], $oldFileSize) < 2) ? $_POST['OLD_FILE_SIZE'] : $oldFileSize);
-							$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>true));
+							$client = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>false));
 							$newFileSize = 0;
 							$lastModified = '';
 							if(stripos(trim($filepath), 'http')===0 && strpos($filepath, '{API_')===false && !\Bitrix\CodeMatrixImportxml\Utils::IsApiService($filepath) && is_callable(array($client, 'head')) && ($headers = $client->head($filepath)) && $client->getStatus()!=404)

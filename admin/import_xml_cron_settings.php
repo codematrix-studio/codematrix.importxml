@@ -441,7 +441,7 @@ $obJSPopup->ShowTitlebar(GetMessage("CODEMATRIX_IX_CRON_TITLE"));*/
 /*Define php path*/
 $obRequest = \Bitrix\Main\Context::getCurrent()->getRequest();
 $selfLink = ($_SERVER['SERVER_PORT']==443 || ToLower($_SERVER['HTTPS']) == "on" ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-$ob = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>true, 'socketTimeout'=>3, 'streamTimeout'=>3));
+$ob = new \Bitrix\Main\Web\HttpClient(array('disableSslVerification'=>false, 'socketTimeout'=>3, 'streamTimeout'=>3));
 if(($res = trim($ob->post($selfLink, array('action'=>'getphpversion', 'sessid'=>bitrix_sessid())))) && stripos($res, 'php')!==false) $phpPath = $res;
 else $phpPath = GetPhpPathForCron();
 /*/Define php path*/
