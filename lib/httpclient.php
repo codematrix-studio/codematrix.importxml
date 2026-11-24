@@ -104,8 +104,8 @@ class HttpClient extends \Bitrix\Main\Web\HttpClient
 			$f = fopen($filePath2, 'w');
 			$ch = curl_init();
 			curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 			curl_setopt($ch, CURLOPT_URL,$url);
 			if(isset($p['HOST']) && $p['HOST']) curl_setopt($ch, CURLOPT_PROXY, $p['HOST'].':'.$p['PORT']);
 			if(isset($p['USER']) && $p['USER']) curl_setopt($ch, CURLOPT_PROXYUSERPWD, $p['USER'].':'.$p['PASSWORD']);
@@ -117,10 +117,15 @@ class HttpClient extends \Bitrix\Main\Web\HttpClient
 			curl_setopt($ch, CURLOPT_FILE, $f);
 			curl_setopt($ch, CURLOPT_HEADERFUNCTION, array($this, 'mCurlGetHeaders'));
 			$res = curl_exec($ch);
+			$this->status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			$curlError = curl_errno($ch);
 			curl_close($ch);
 			fclose($f);
 
-			$this->status = intval(curl_getinfo($ch, CURLINFO_HTTP_CODE));
+			if($res === false || $curlError !== 0)
+			{
+				return false;
+			}
 
 			return $res;			
 		}

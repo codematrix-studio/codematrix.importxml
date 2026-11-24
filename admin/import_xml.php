@@ -82,6 +82,12 @@ $io = CBXVirtualIo::GetInstance();
 if ($REQUEST_METHOD == "POST" && $MODE=='AJAX')
 {
 	define('PUBLIC_AJAX_MODE', 'Y');
+	if(!check_bitrix_sessid())
+	{
+		$APPLICATION->RestartBuffer();
+		header('HTTP/1.1 403 Forbidden');
+		die();
+	}
 	if($ACTION=='SHOW_MODULE_MESSAGE')
 	{
 		$APPLICATION->RestartBuffer();

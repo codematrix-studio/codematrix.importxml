@@ -1512,53 +1512,147 @@ class Utils {
 			$tmpsubdir = dirname($archiveFn).'/zip/';
 			if(file_exists($tmpsubdir)) self::DeleteDirFiles($tmpsubdir);
 			CheckDirPath($tmpsubdir);
-			if(mb_substr($ext, -3)=='.gz' && $ext!='tar.gz' && function_exists('gzopen'))
+			$archiveExtracted = false;
+			$archiveRoot = realpath($tmpsubdir);
+			if($archiveRoot)
 			{
-				$handle1 = gzopen($archiveFn, 'rb');
-				$handle2 = fopen($tmpsubdir.mb_substr(basename(ToLower(mb_substr($archiveFn, -3)=='.gz') ? $archiveFn : $arFile['name']), 0, -3), 'wb');
-				while(!gzeof($handle1)) {
-					fwrite($handle2, gzread($handle1, 4096));
-				}
-				fclose($handle2);
-				gzclose($handle1);
-			}
-			elseif($ext=='rar' && class_exists('\RarArchive'))
-			{
-				$rar = \RarArchive::open($archiveFn);
-				$entries = $rar->getEntries();
-				foreach($entries as $entry)
+				$extractEntry = function($entryName) use ($tmpsubdir, $archiveRoot)
 				{
-					$entry->extract($tmpsubdir, $tmpsubdir.$entry->getName());
-				}
-				$rar->close();
-			}
-			elseif($ext=='zip' && filesize($archiveFn) > 5*1024*1024 && class_exists('\ZipArchive') && ($zipObj = new \ZipArchive) && $zipObj->open($archiveFn)===true && $zipObj->numFiles > 0)
-			{
-				$zipObj->extractTo($tmpsubdir);
-				for($i=0; $i<$zipObj->numFiles; $i++)
+					$entryName = str_replace('\\', '/', (string)$entryName);
+					if($entryName === '' || strpos($entryName, "\0") !== false || $entryName[0] === '/' || preg_match('/^[a-z]:/i', $entryName)) return false;
+					$parts = explode('/', $entryName);
+					if(in_array('..', $parts, true)) return false;
+					$parts = array_values(array_filter($parts, 'strlen'));
+					if(empty($parts)) return false;
+					$relativePath = implode(DIRECTORY_SEPARATOR, $parts);
+					$target = rtrim($tmpsubdir, '/\\').DIRECTORY_SEPARATOR.$relativePath;
+					$parent = dirname($target);
+					CheckDirPath(rtrim($parent, '/\\').DIRECTORY_SEPARATOR);
+					$realParent = realpath($parent);
+					$rootPrefix = rtrim($archiveRoot, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+					if(!$realParent || ($realParent !== $archiveRoot && strpos($realParent.DIRECTORY_SEPARATOR, $rootPrefix) !== 0)) return false;
+					return $target;
+				};
+
+				if($ext === 'zip' && class_exists('\\ZipArchive'))
 				{
-					$zipPath = $zipObj->getNameIndex($i);
-					if(!file_exists($tmpsubdir.$zipPath))
+					$zipObj = new \\ZipArchive();
+					if($zipObj->open($archiveFn) === true)
 					{
-						CheckDirPath($tmpsubdir.$zipPath);
-						copy("zip://".$archiveFn."#".$zipPath, $tmpsubdir.$zipPath);
+						$validArchive = true;
+						for($i=0; $i<$zipObj->numFiles; $i++)
+						{
+							$entryName = $zipObj->getNameIndex($i);
+							if($entryName === false) {$validArchive = false; break;}
+							$normalizedName = str_replace('\\\\', '/', $entryName);
+							if($normalizedName !== '' && ($normalizedName[0] === '/' || preg_match('/^[a-z]:/i', $normalizedName) || in_array('..', explode('/', $normalizedName), true) || strpos($normalizedName, "\0") !== false))
+							{
+								$validArchive = false;
+								break;
+							}
+						}
+						if($validArchive)
+						{
+							for($i=0; $i<$zipObj->numFiles; $i++)
+							{
+								$entryName = $zipObj->getNameIndex($i);
+								$isDirectory = substr($entryName, -1) === '/' || substr($entryName, -1) === '\\\\';
+								$target = $extractEntry($entryName);
+								if($target === false) continue;
+								if($isDirectory)
+								{
+									CheckDirPath(rtrim($target, '/\\').DIRECTORY_SEPARATOR);
+									continue;
+								}
+								$stream = $zipObj->getStream($entryName);
+								if(!$stream) continue;
+								$out = fopen($target, 'wb');
+								if($out)
+								{
+									stream_copy_to_stream($stream, $out);
+									fclose($out);
+									$archiveExtracted = true;
+								}
+								fclose($stream);
+							}
+						}
+						$zipObj->close();
 					}
 				}
-				$zipObj->close();
-			}
-			else
-			{
-				$type = (in_array($ext, array('tar.gz', 'tgz')) ? 'TAR.GZ' : 'ZIP');
-				$zipObj = \CBXArchive::GetArchive($archiveFn, $type);
-				$zipObj->Unpack($tmpsubdir);
-				if(count(array_diff(scandir($tmpsubdir), array('.', '..')))==0 && function_exists('exec'))
+				elseif($ext === 'rar' && class_exists('\\RarArchive'))
 				{
-					$command = 'unzip "'.$archiveFn.'" -d '.$tmpsubdir;
-					@exec($command);
+					$rar = \\RarArchive::open($archiveFn);
+					if($rar)
+					{
+						foreach($rar->getEntries() as $entry)
+						{
+							$target = $extractEntry($entry->getName());
+							if($target !== false && $entry->extract($tmpsubdir, $target)) $archiveExtracted = true;
+						}
+						$rar->close();
+					}
 				}
-				elseif($arFile['type']=='application/zip') self::CorrectEncodingForExtractDir($tmpsubdir);
+				elseif(in_array($ext, array('tar', 'tar.gz', 'tgz')) && class_exists('\\PharData'))
+				{
+					try
+					{
+						$phar = new \\PharData($archiveFn);
+						$iterator = new \\RecursiveIteratorIterator($phar, \\RecursiveIteratorIterator::LEAVES_ONLY);
+						foreach($iterator as $entry)
+						{
+							if(!$entry->isFile()) continue;
+							$entryName = $iterator->getSubPathName();
+							$target = $extractEntry($entryName);
+							if($target === false) continue;
+							$source = $phar[$entryName];
+							$out = fopen($target, 'wb');
+							if($out && $source)
+							{
+								fwrite($out, $source->getContent());
+								fclose($out);
+								$archiveExtracted = true;
+							}
+							elseif($out)
+							{
+								fclose($out);
+							}
+						}
+					}
+					catch(\\Exception $e)
+					{
+						$archiveExtracted = false;
+					}
+				}
+				elseif(mb_substr($ext, -3)=='.gz' && $ext!='tar.gz' && function_exists('gzopen'))
+				{
+					$gzName = basename((string)$arFile['name']);
+					$gzName = preg_replace('/\\.gz$/i', '', $gzName);
+					$target = $extractEntry($gzName);
+					$handle1 = gzopen($archiveFn, 'rb');
+					$handle2 = ($target !== false ? fopen($target, 'wb') : false);
+					if($handle1 && $handle2)
+					{
+						while(!gzeof($handle1))
+						{
+							$chunk = gzread($handle1, 4096);
+							if($chunk === false) break;
+							fwrite($handle2, $chunk);
+						}
+						fclose($handle2);
+						gzclose($handle1);
+						$archiveExtracted = true;
+					}
+					else
+					{
+						if($handle1) gzclose($handle1);
+						if($handle2) fclose($handle2);
+					}
+				}
 			}
-			
+			if(!$archiveExtracted)
+			{
+				self::DeleteDirFiles($tmpsubdir);
+			}
 			$arFile = array();
 			if(!is_array($path)) $urlComponents = parse_url($path);
 			else $urlComponents = array();
