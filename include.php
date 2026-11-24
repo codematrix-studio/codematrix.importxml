@@ -17,7 +17,6 @@ if (!class_exists('CCodeMatrixImportXMLRunner')) {
 
         static function ImportHighloadblock($_2029131979, $_1137406749, $_1334224997, $_1605213925, $_279272061 = false)
         {
-            if (self::__1667935303()) return array();
             $_906924150 = new \Bitrix\CodeMatrixImportxml\ImporterHl($_2029131979, $_1137406749, $_1334224997, $_1605213925, $_279272061);
             return $_906924150->Import();
         }

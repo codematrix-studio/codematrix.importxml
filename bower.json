@@ -1,6 +1,6 @@
 {
-  "name": "import.xml_yml",
-  "version": "0.5.0",
+  "name": "codematrix.importxml",
+  "version": "0.1.0",
   "main": "",
   "ignore": [
     "source",
