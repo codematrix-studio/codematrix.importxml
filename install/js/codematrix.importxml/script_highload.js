@@ -1,5 +1,5 @@
-var kitIXModuleName = 'codematrix.importxml';
-var kitIXModuleFilePrefix = 'codematrix_import_xml';
+var codeMatrixIXModuleName = 'codematrix.importxml';
+var codeMatrixIXModuleFilePrefix = 'codematrix_import_xml';
 var EIXPreview = {
 	Init: function()
 	{
@@ -423,7 +423,7 @@ var EIXPreview = {
 		
 		var dialogParams = {
 			'title':BX.message("CODEMATRIX_IX_POPUP_FIELD_SETTINGS_TITLE") + ' "' + title + '" {'+index+'}',
-			'content_url':'/bitrix/admin/'+kitIXModuleFilePrefix+'_field_settings_hl.php?lang='+BX.message('LANGUAGE_ID')+'&field='+val+'&field_name='+name+'&index='+index+'&PROFILE_ID='+form.PROFILE_ID.value,
+			'content_url':'/bitrix/admin/'+codeMatrixIXModuleFilePrefix+'_field_settings_hl.php?lang='+BX.message('LANGUAGE_ID')+'&field='+val+'&field_name='+name+'&index='+index+'&PROFILE_ID='+form.PROFILE_ID.value,
 			'width':'900',
 			'height':'400',
 			'resizable':true,
@@ -600,7 +600,7 @@ var EProfile = {
 	{
 		var dialog = new BX.CAdminDialog({
 			'title':BX.message("CODEMATRIX_IX_POPUP_CRON_TITLE"),
-			'content_url':'/bitrix/admin/'+kitIXModuleFilePrefix+'_cron_settings.php?lang='+BX.message('LANGUAGE_ID')+'&suffix=highload',
+			'content_url':'/bitrix/admin/'+codeMatrixIXModuleFilePrefix+'_cron_settings.php?lang='+BX.message('LANGUAGE_ID')+'&suffix=highload',
 			'width':'800',
 			'height':'400',
 			'resizable':true});
@@ -771,7 +771,7 @@ var EProfile = {
 		
 		var dialogParams = {
 			'title':BX.message(input.attr('id').indexOf('OFFER_')==0 ? "CODEMATRIX_IX_POPUP_MISSINGOFFER_FIELDS_TITLE" : "CODEMATRIX_IX_POPUP_MISSINGELEM_FIELDS_TITLE"),
-			'content_url':'/bitrix/admin/'+kitIXModuleFilePrefix+'_missignelem_fields.php?lang='+BX.message('LANGUAGE_ID')+'&IBLOCK_ID='+iblockId+'&INPUT_ID='+input.attr('id')+'&OLDDEFAULTS='+input.val(),
+			'content_url':'/bitrix/admin/'+codeMatrixIXModuleFilePrefix+'_missignelem_fields.php?lang='+BX.message('LANGUAGE_ID')+'&IBLOCK_ID='+iblockId+'&INPUT_ID='+input.attr('id')+'&OLDDEFAULTS='+input.val(),
 			'width':'800',
 			'height':'400',
 			'resizable':true
@@ -817,7 +817,7 @@ var EProfile = {
 		}
 		var dialog = new BX.CAdminDialog({
 			'title':BX.message("CODEMATRIX_IX_POPUP_SOURCE_EMAIL"),
-			'content_url':'/bitrix/admin/'+kitIXModuleFilePrefix+'_source_email.php?lang='+BX.message('LANGUAGE_ID')+'&PROFILE_ID='+pid,
+			'content_url':'/bitrix/admin/'+codeMatrixIXModuleFilePrefix+'_source_email.php?lang='+BX.message('LANGUAGE_ID')+'&PROFILE_ID='+pid,
 			'content_post': post,
 			'width':'900',
 			'height':'450',
@@ -891,7 +891,7 @@ var EProfile = {
 		}
 		var dialog = new BX.CAdminDialog({
 			'title':BX.message("CODEMATRIX_IX_POPUP_SOURCE_LINKAUTH"),
-			'content_url':'/bitrix/admin/'+kitIXModuleFilePrefix+'_source_linkauth.php?lang='+BX.message('LANGUAGE_ID')+'&PROFILE_ID='+pid,
+			'content_url':'/bitrix/admin/'+codeMatrixIXModuleFilePrefix+'_source_linkauth.php?lang='+BX.message('LANGUAGE_ID')+'&PROFILE_ID='+pid,
 			'content_post': post,
 			'width':'900',
 			'height':'450',
@@ -1010,7 +1010,7 @@ var EProfile = {
 		
 		var dialogParams = {
 			'title':BX.message("CODEMATRIX_IX_POPUP_MISSINGELEM_FILTER_TITLE"),
-			'content_url':'/bitrix/admin/'+kitIXModuleFilePrefix+'_missignelem_filter_hl.php?lang='+BX.message('LANGUAGE_ID')+'&HIGHLOADBLOCK_ID='+hlblockId+'&PROFILE_ID='+$('#PROFILE_ID').val(),
+			'content_url':'/bitrix/admin/'+codeMatrixIXModuleFilePrefix+'_missignelem_filter_hl.php?lang='+BX.message('LANGUAGE_ID')+'&HIGHLOADBLOCK_ID='+hlblockId+'&PROFILE_ID='+$('#PROFILE_ID').val(),
 			'content_post': {OLDFILTER: $('#ELEMENT_MISSING_FILTER').val()},
 			'width':'800',
 			'height':'400',
@@ -1028,7 +1028,7 @@ var EProfile = {
 				className: BX.browser.IsIE() && BX.browser.IsDoctype() && !BX.browser.IsIE10() ? '' : 'adm-btn-save',
 				action: function () {
 					$('#codematrix-ix-filter').find('tr[id*="_filter_row_"]:hidden').find('input,select,textarea').val('').trigger('change');
-					$.post('/bitrix/admin/'+kitIXModuleFilePrefix+'_missignelem_filter_hl.php?lang='+BX.message('LANGUAGE_ID'), $('#codematrix-ix-filter').serialize(), function(data){
+					$.post('/bitrix/admin/'+codeMatrixIXModuleFilePrefix+'_missignelem_filter_hl.php?lang='+BX.message('LANGUAGE_ID'), $('#codematrix-ix-filter').serialize(), function(data){
 						$('#ELEMENT_MISSING_FILTER').val($.trim(data));
 						BX.WindowManager.Get().Close();
 					});
@@ -1081,7 +1081,7 @@ var EImport = {
 		var obj = this;
 		$.ajax({
 			type: "GET",
-			url: '/upload/tmp/'+kitIXModuleName+'/'+this.pid+'_highload.txt?hash='+(new Date()).getTime(),
+			url: '/upload/tmp/'+codeMatrixIXModuleName+'/'+this.pid+'_highload.txt?hash='+(new Date()).getTime(),
 			success: function(data){
 				var finish = false;
 				if(data && data.substr(0, 1)=='{' && data.substr(data.length-1)=='}')
@@ -1654,7 +1654,7 @@ var EHelper = {
 	{
 		var dialog = new BX.CAdminDialog({
 			'title':BX.message("CODEMATRIX_IX_POPUP_HELP_TITLE"),
-			'content_url':'/bitrix/admin/'+kitIXModuleFilePrefix+'_popup_help.php?lang='+BX.message('LANGUAGE_ID'),
+			'content_url':'/bitrix/admin/'+codeMatrixIXModuleFilePrefix+'_popup_help.php?lang='+BX.message('LANGUAGE_ID'),
 			'width':'900',
 			'height':'450',
 			'resizable':true});
@@ -1707,7 +1707,7 @@ $(document).ready(function(){
 		if(jQuerySrc)
 		{
 			$.getScript(jQuerySrc, function(){
-				$.getScript('/bitrix/js/'+kitIXModuleName+'/chosen/chosen.jquery.min.js');
+				$.getScript('/bitrix/js/'+codeMatrixIXModuleName+'/chosen/chosen.jquery.min.js');
 			});
 		}
 	}
@@ -1726,7 +1726,7 @@ $(document).ready(function(){
 	
 	if($('#codematrix-ix-updates-message').length > 0)
 	{
-		$.post('/bitrix/admin/'+kitIXModuleFilePrefix+'.php?lang='+BX.message('LANGUAGE_ID'), 'MODE=AJAX&ACTION=SHOW_MODULE_MESSAGE', function(data){
+		$.post('/bitrix/admin/'+codeMatrixIXModuleFilePrefix+'.php?lang='+BX.message('LANGUAGE_ID'), 'MODE=AJAX&ACTION=SHOW_MODULE_MESSAGE', function(data){
 			data = $(data);
 			var inner = $('#codematrix-ix-updates-message-inner', data);
 			if(inner.length > 0 && inner.html().length > 0)
