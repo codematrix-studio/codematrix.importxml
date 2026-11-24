@@ -28,6 +28,7 @@
 - [Журнал изменений](CHANGELOG.md)
 - [План переноса и проверки](docs/PORTING.md)
 - [Проверка совместимости с PHP 8](docs/PHP8-COMPATIBILITY.md)
+- [Сторонние компоненты и лицензии](docs/THIRD-PARTY-NOTICES.md)
 
 ## Разработка
 
